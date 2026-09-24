@@ -1,0 +1,8 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Extracted data (the zips are tracked; regenerate with `python -m src.features`)
+data/dataset/
+data/processed/

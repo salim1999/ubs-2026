@@ -195,3 +195,13 @@ milestone. Submissions cannot be made after the milestone 4 deadline.
 
 Each team's final rank is based on the best macro-F1 achieved by any of
 their valid milestone submissions across the whole event.
+
+## Reproducing the Submission
+
+```bash
+python -m venv .venv && .venv/Scripts/pip install "numpy>=1.26" "pandas>=2.2" "scikit-learn>=1.5"
+unzip data/dataset.zip -d data/dataset                  # -> data/dataset/dataset/*.jsonl
+python -m src.features   # builds data/processed/{train,valid,test}_features.csv
+python -m src.model      # validation report: all models fit on train, scored on valid
+python -m src.predict    # picks the best model on valid, refits on train+valid, writes submission.csv
+```

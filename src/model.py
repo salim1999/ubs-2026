@@ -52,10 +52,10 @@ def rule_predict(X: pd.DataFrame) -> np.ndarray:
 
     Preference order per client: (a) a category with fresh early-adoption
     signal (recent transactions, not yet recurring) and no other active
-    subscription competing for attention, ranked by most recent activity;
-    else (b) the active category due for its next payment soonest
-    (smallest recency_days, i.e. most recently charged - likely to recur
-    again soon); else (c) 'none'.
+    subscription competing for attention, ranked by recent transaction
+    count; else (b) the active (still-live) category due for its next
+    payment soonest (smallest days_to_next, i.e. last charge + cadence
+    closest to the cutoff); else (c) 'none'.
     """
     preds = []
     for _, row in X.iterrows():
@@ -70,9 +70,9 @@ def rule_predict(X: pd.DataFrame) -> np.ndarray:
             continue
 
         active_candidates = [
-            (cat, row[f"recency_days_{cat}"])
+            (cat, row[f"days_to_next_{cat}"])
             for cat in TARGET_CATEGORIES
-            if row[f"active_{cat}"] == 1 and not pd.isna(row[f"recency_days_{cat}"])
+            if row[f"active_{cat}"] == 1 and not pd.isna(row[f"days_to_next_{cat}"])
         ]
         if active_candidates:
             active_candidates.sort(key=lambda t: t[1])

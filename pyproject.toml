@@ -1,10 +1,10 @@
 [project]
 name = "ubs-2026"
 version = "0.1.0"
-description = "Add your description here"
-requires-python = ">=3.12"
+description = "Predict each client's next recurring merchant family (UBS challenge, Swiss AI Weeks 2026)"
+requires-python = ">=3.11"
 dependencies = [
-    "numpy>=2.5.3",
-    "pandas>=3.0.6",
-    "scikit-learn>=1.9.1",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
 ]

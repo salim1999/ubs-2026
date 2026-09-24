@@ -28,8 +28,24 @@ import pandas as pd
 
 from src.category_map import TARGET_CATEGORIES
 from src.recurrence import detect_streams, load_transactions
+from src import personas
 
+PERSONA_NAMES = list(personas.PERSONA_RULES)
 RECENT_WINDOW_DAYS = 90
+STALE_GAP_MULTIPLE = 2.0
+
+def _persona_features(df, cutoff, scorer=None):
+    hist = personas.augment(df[df["timestamp"] <= cutoff])
+    X = personas.build_features(hist)
+    if scorer is None:
+        scorer = personas.PersonaScorer().fit(X)
+    S = scorer.scores(X)                      # one column per persona, 0..1
+    S.columns = [f"persona_{c.lower().replace(' / ', '_').replace(' ', '_').replace('-', '_')}"
+                 for c in S.columns]
+    top2 = np.sort(S.values, axis=1)[:, -2:]
+    S["persona_top_margin"] = top2[:, 1] - top2[:, 0]
+    return S, scorer
+
 
 
 def _gap_stats(dates: pd.Series) -> tuple[float, float]:
@@ -85,7 +101,18 @@ def _general_financial_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.Da
 
 
 def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
-    active = streams[streams["is_recurring"] & streams["category"].notna()].copy()
+    recurring = streams[streams["is_recurring"] & streams["category"].notna()].copy()
+
+    # A recurring stream only counts as active if it is still charging at the
+    # cutoff: silent for more than STALE_GAP_MULTIPLE of its own cadence
+    # means it was most likely cancelled. Lapsed streams are kept as a
+    # separate flag - "had it, dropped it" is a different state from "never
+    # had it".
+    recurring["recency_days"] = (cutoff - recurring["last_date"]).dt.days
+    recurring["days_to_next"] = recurring["mean_gap_days"] - recurring["recency_days"]
+    is_live = recurring["recency_days"] <= STALE_GAP_MULTIPLE * recurring["mean_gap_days"]
+    active = recurring[is_live]
+    lapsed = recurring[~is_live]
 
     agg = (
         active.groupby(["client_id", "category"])
@@ -96,6 +123,10 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
             first_date=("first_date", "min"),
             mean_amount=("mean_amount", "mean"),
             gap_cv=("gap_cv", "mean"),
+            mean_gap_days=("mean_gap_days", "mean"),
+            # Soonest expected next charge across the category's streams;
+            # negative means the charge is already overdue.
+            days_to_next=("days_to_next", "min"),
         )
         .reset_index()
     )
@@ -105,14 +136,31 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
     wide_frames = []
     for cat in TARGET_CATEGORIES:
         sub = agg[agg["category"] == cat].set_index("client_id")
-        sub = sub[["n_streams", "n_occurrences", "recency_days", "tenure_days", "mean_amount", "gap_cv"]]
+        sub = sub[
+            [
+                "n_streams",
+                "n_occurrences",
+                "recency_days",
+                "tenure_days",
+                "mean_amount",
+                "gap_cv",
+                "mean_gap_days",
+                "days_to_next",
+            ]
+        ]
         sub.columns = [f"{c}_{cat}" for c in sub.columns]
         sub[f"active_{cat}"] = 1
         wide_frames.append(sub)
 
+    lapsed_cats = lapsed.groupby(["client_id", "category"]).size().unstack()
+    wide_frames.append(
+        lapsed_cats.reindex(columns=TARGET_CATEGORIES).notna().astype(int).add_prefix("lapsed_")
+    )
+
     wide = pd.concat(wide_frames, axis=1)
     for cat in TARGET_CATEGORIES:
         wide[f"active_{cat}"] = wide[f"active_{cat}"].fillna(0).astype(int)
+        wide[f"lapsed_{cat}"] = wide[f"lapsed_{cat}"].fillna(0).astype(int)
 
     wide["n_active_categories"] = wide[[f"active_{c}" for c in TARGET_CATEGORIES]].sum(axis=1)
     wide["n_missing_categories"] = len(TARGET_CATEGORIES) - wide["n_active_categories"]
@@ -139,7 +187,11 @@ def _early_adoption_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataF
     return counts
 
 
-def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
+def build_features(
+    transactions_path: str,
+    cutoff_date: str,
+    persona_scorer: "personas.PersonaScorer | None" = None,
+) -> pd.DataFrame:
     df = load_transactions(transactions_path)
     cutoff = pd.Timestamp(cutoff_date, tz="UTC")
 
@@ -151,8 +203,14 @@ def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
 
     features = general.join(cat_features, how="left").join(recent, how="left")
 
+    persona_cols, fitted = _persona_features(df, cutoff, persona_scorer)
+    features = features.join(persona_cols, how="left")
+    features[persona_cols.columns] = features[persona_cols.columns].fillna(0.0)
+
     active_cols = [f"active_{c}" for c in TARGET_CATEGORIES]
     features[active_cols] = features[active_cols].fillna(0).astype(int)
+    lapsed_cols = [f"lapsed_{c}" for c in TARGET_CATEGORIES]
+    features[lapsed_cols] = features[lapsed_cols].fillna(0).astype(int)
     features["n_active_categories"] = features["n_active_categories"].fillna(0)
     features["n_missing_categories"] = features["n_missing_categories"].fillna(len(TARGET_CATEGORIES))
     recent_cols = [f"recent_txns_{c}" for c in TARGET_CATEGORIES]
@@ -162,20 +220,39 @@ def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
         features["tenure_days"] / 365
     ).clip(lower=1 / 365)
 
-    return features.reset_index()
+    out = features.reset_index()
+    out.attrs["persona_scorer"] = fitted
+    return out
 
 
 if __name__ == "__main__":
-    import sys
+    import pickle, pathlib, sys
 
-    txn_path = sys.argv[1] if len(sys.argv) > 1 else "data/train_transactions.jsonl"
+    data_dir = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "data/dataset/dataset")
     cutoff = sys.argv[2] if len(sys.argv) > 2 else "2026-01-01"
+    out_dir = pathlib.Path("data/processed")
+    out_dir.mkdir(parents=True, exist_ok=True)
 
-    feats = build_features(txn_path, cutoff)
-    print(f"Feature table shape: {feats.shape}")
-    print(f"Columns ({len(feats.columns)}): {list(feats.columns)}")
-    print()
-    print(feats.head(3).to_string())
-    print()
-    print("Missing-value fraction per column (top 15):")
-    print((feats.isna().mean().sort_values(ascending=False)).head(15))
+    # Persona scorer is fit on train only, then reused so valid/test percentiles
+    # are ranked against the same reference population.
+    train = build_features(str(data_dir / "train_transactions.jsonl"), cutoff)
+    scorer = train.attrs["persona_scorer"]
+    splits = {
+        "train": train,
+        "valid": build_features(str(data_dir / "valid_transactions.jsonl"), cutoff, scorer),
+        "test": build_features(str(data_dir / "test_transactions.jsonl"), cutoff, scorer),
+    }
+
+    for name, feats in splits.items():
+        labels_path = data_dir / f"{name}_labels.csv"
+        if labels_path.exists():
+            labels = pd.read_csv(labels_path)[["client_id", "target_next_recurring_merchant"]]
+            feats = feats.merge(labels, on="client_id", how="inner")
+        feats.to_csv(out_dir / f"{name}_features.csv", index=False)
+        print(f"{name}: {feats.shape}")
+
+    with open(out_dir / "persona_scorer.pkl", "wb") as f:
+        pickle.dump(scorer, f)
+
+    persona_cols = [c for c in train.columns if c.startswith("persona_")]
+    print(f"Persona columns ({len(persona_cols)}): {persona_cols}")

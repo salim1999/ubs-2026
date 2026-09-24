@@ -11,7 +11,8 @@ category label would split or mis-drop those cycles. See category_map.py
 for the details behind this design.
 
 A stream is flagged as recurring if it has >=2 transactions at a roughly
-regular ~monthly cadence and a stable amount. Its category is assigned by
+regular cadence (monthly, bimonthly, quarterly, semi-annual or annual - see
+CADENCE_BANDS) and a stable amount. Its category is assigned by
 majority vote across the keyword-derived per-transaction categories of its
 own members (imputing across the rotating-description cycles); a stream
 with zero keyword evidence anywhere stays unresolved (category=None).
@@ -32,13 +33,23 @@ from src.category_map import NON_SUBSCRIPTION_LITERALS, classify
 # cycle to cycle. Amount-clustering is the fix for that specific problem.
 # Applying it to every mcc instead over-fragments mccs that don't have this
 # issue (pharmacy, hotel, ATM, ride-share, ...): many small 2-txn amount
-# clusters land inside the 20-45 day / low-variance recurring window by
+# clusters land inside a cadence band / low-variance recurring window by
 # pure chance, producing false positives. Those mccs keep the simpler
 # whole-group test.
 AMOUNT_CLUSTERED_MCCS = {"5812", "5732"}
 
-MIN_GAP_DAYS = 20
-MAX_GAP_DAYS = 45
+# Accepted mean-gap ranges (days). Monthly alone misses a lot: insurance,
+# mobile and software are often billed quarterly or yearly, and a
+# monthly-only window turned many real subscriptions into apparent "new
+# adoptions" in the target. Histories span ~14 months, so annual streams
+# only show up when both charges fall inside the window.
+CADENCE_BANDS = {
+    "monthly": (20, 45),
+    "bimonthly": (45, 75),
+    "quarterly": (75, 105),
+    "semiannual": (165, 200),
+    "annual": (330, 400),
+}
 MAX_GAP_CV = 0.5
 MAX_AMOUNT_CV = 0.35
 
@@ -91,6 +102,13 @@ def _cluster_by_amount(group: pd.DataFrame) -> list[pd.DataFrame]:
     return [group.loc[idx_list] for idx_list in clusters]
 
 
+def _cadence(mean_gap: float) -> str | None:
+    for name, (lo, hi) in CADENCE_BANDS.items():
+        if lo <= mean_gap <= hi:
+            return name
+    return None
+
+
 def _stream_stats(cluster: pd.DataFrame) -> dict:
     dates = cluster["timestamp"].sort_values()
     amounts = cluster["amount"]
@@ -106,7 +124,7 @@ def _stream_stats(cluster: pd.DataFrame) -> dict:
     is_recurring = bool(
         n >= 2
         and not np.isnan(mean_gap)
-        and MIN_GAP_DAYS <= mean_gap <= MAX_GAP_DAYS
+        and _cadence(mean_gap) is not None
         and (np.isnan(gap_cv) or gap_cv <= MAX_GAP_CV)
         and amount_cv <= MAX_AMOUNT_CV
     )
@@ -125,6 +143,7 @@ def _stream_stats(cluster: pd.DataFrame) -> dict:
         "amount_cv": amount_cv,
         "mean_gap_days": mean_gap,
         "gap_cv": gap_cv,
+        "cadence": _cadence(mean_gap) if not np.isnan(mean_gap) else None,
         "is_recurring": is_recurring,
         "category": category,
         "category_agreement": category_agreement,
@@ -160,7 +179,7 @@ def detect_streams(df: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     import sys
 
-    path = sys.argv[1] if len(sys.argv) > 1 else "data/train_transactions.jsonl"
+    path = sys.argv[1] if len(sys.argv) > 1 else "data/dataset/dataset/train_transactions.jsonl"
     df = load_transactions(path)
     streams = detect_streams(df)
 
