@@ -1,7 +1,8 @@
-"""Build a test submission with either of the project's two main models.
+"""Build a test submission with one of the project's models.
 
     py -3.10 -m src.make_submission rule
-    py -3.10 -m src.make_submission logreg
+    py -3.10 -m src.make_submission logreg    # benchmark 1: global LogReg
+    py -3.10 -m src.make_submission sparse    # benchmark 2: sparse per-label LogReg
 """
 
 import argparse
@@ -10,12 +11,14 @@ import pandas as pd
 
 from src.evaluate import CUTOFF, labelled_features, macro_f1
 from src.features import build_features
-from src.model import ALL_LABELS, LABEL_COL, build_logreg, rule_predict
+from src.model import ALL_LABELS, LABEL_COL, build_logreg, build_sparse_logreg, rule_predict
+
+BUILDERS = {"logreg": build_logreg, "sparse": build_sparse_logreg}
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("model", choices=["rule", "logreg"])
+    parser.add_argument("model", choices=["rule", "logreg", "sparse"])
     parser.add_argument("--suffix", help="output suffix (defaults to the model name)")
     args = parser.parse_args()
     out_path = f"data/submission_{args.suffix or args.model}.csv"
@@ -28,7 +31,7 @@ def main() -> None:
     if args.model == "rule":
         valid_pred = rule_predict(X_valid)
     else:
-        selection_model = build_logreg().fit(X_train, train[LABEL_COL])
+        selection_model = BUILDERS[args.model]().fit(X_train, train[LABEL_COL])
         valid_pred = selection_model.predict(X_valid)
     print(f"{args.model} valid macro-F1: {macro_f1(valid[LABEL_COL], valid_pred):.4f}")
 
@@ -47,7 +50,7 @@ def main() -> None:
         y_full = pd.concat(
             [train[LABEL_COL], valid[LABEL_COL]], ignore_index=True
         )
-        final_model = build_logreg().fit(X_full, y_full)
+        final_model = BUILDERS[args.model]().fit(X_full, y_full)
         test_pred = final_model.predict(X_test)
 
     sub = pd.DataFrame(

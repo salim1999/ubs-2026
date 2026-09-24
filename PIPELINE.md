@@ -324,6 +324,9 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 10 | F | LogReg: absent per-family/stream features filled with 0 instead of median (flags carry absence) | 0.461 | – | – | – | – | ❌ +0.001 = noise, dropped |
 | 11 | D (scratchpad) | Persona features on top of exp 8, scored with LogReg L2 / L1 (C=0.3): **rule's vote** (`first_due_<cat>`, `rule_says_none`) ✅ +0.007/+0.007; quitter ❌; newcomer ❌ (−0.008); **calendar** (`bill_day_<cat>`, `earliest_bill_day`) ✅ +0.005/+0.006; traveller ❌ | 0.472 | – | – | – | – | ✅ not yet in `src/` |
 | 12 | D (scratchpad) | Shrink on top of 11: remove old timing (`recency_days_*`, `days_until_next_due_*`) and D3 adoption → 108 features. Kept (removal hurt): D1 general −0.011, stream stats, stream counts, D4 recent_txns −0.033 | **0.475** (L1 **0.486**) | – | – | – | – | ✅ not yet in `src/` |
+| 13 | D | In `src/`: + rule's vote, + calendar, − old timing, − D3, − `mean_gap_days` → 101 features | 0.477 | 0.471 | 0.484 | – | 0.690 | ✅ |
+| 14 | G | **Benchmark model 2**: sparse per-label L1 LogReg (one-vs-rest, own C per label by inner CV on train); `src/model.py` `build_sparse_logreg` | 0.477 (sparse **0.484**) | 0.471 | 0.484 | – | 0.690 | ✅ always benchmark both |
+| 15 | G (scratchpad) | Personas/segments (rule splits, KMeans, logistic model tree), fixed 5–15 predictor scorecards, last-k payment / Markov features, per-last-family models; date-of-year n/a (shared cutoff) | ≤ 0.482 | – | – | – | – | ❌ none beat the benchmarks |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist

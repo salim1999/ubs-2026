@@ -87,26 +87,27 @@ Use `none` when no recurring merchant family is expected to recur within the
 ## Our Main Models
 
 Our modeling strategy deliberately favors simplicity and interpretability.
-The two models we are carrying forward are:
+We always benchmark **both** logistic models below (plus the rule), fit on
+train only and scored with macro-F1 on valid (`py -3.10 -m src.evaluate "<note>"`).
 
-1. **Due-date rule baseline** -- detect live recurring streams and predict the
-   family whose next payment is due soonest. It predicts `none` when no stream
-   appears live or when the strongest live stream looks like a short trial.
-   Validation macro-F1: **0.4844**.
-2. **Global logistic regression** -- one class-balanced multinomial logistic
-   model trained across all clients and all engineered transaction, recurrence,
-   and per-family features. Validation macro-F1: **0.4601**.
+| Model | What it is | Valid macro-F1 |
+|---|---|---|
+| **Benchmark 1: global logistic regression** | One class-balanced multinomial L2 logistic model over all 101 engineered features (transaction, recurrence, live-stream, per-family). | 0.4771 |
+| **Benchmark 2: sparse per-label logistic regression** | One L1 yes/no logistic model per label ("is it gym?", ..., "is it none?"). Each label picks its own penalty by inner CV on train, so it keeps only its own predictors (27–94 of 101). Predict = most probable label. Best learned model and the most interpretable: every coefficient is the effect on the odds of *that* label vs all others (`coef_table()` in `src/model.py`). | **0.4844** |
+| Due-date rule | Predict the live family due soonest; `none` if no stream is live or the strongest live stream looks like a short trial. No training. | 0.4844 |
 
-The rule is our primary model: it is transparent and currently performs best.
-The global logistic model is our learned benchmark and complementary second
-submission. More complex hurdle, shared-family, and clustered-expert variants
-did not improve validation performance; see [MODEL_COMPARISON.md](MODEL_COMPARISON.md).
+Example story from benchmark 2: *gym* is predicted by recent gym payments (+)
+and the age of the gym subscription (+), and pushed down by insurance activity (−).
+Splitting clients into personas / segments, fixed small scorecards and
+payment-sequence features did not improve validation performance; see
+[MODEL_COMPARISON.md](MODEL_COMPARISON.md) and [PIPELINE.md](PIPELINE.md).
 
-Generate either submission with:
+Generate a submission with:
 
 ```bash
 py -3.10 -m src.make_submission rule
-py -3.10 -m src.make_submission logreg
+py -3.10 -m src.make_submission logreg   # benchmark 1
+py -3.10 -m src.make_submission sparse   # benchmark 2
 ```
 
 ## Data Package

@@ -22,10 +22,12 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
+from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import ConfusionMatrixDisplay, classification_report, confusion_matrix, f1_score
+from sklearn.model_selection import StratifiedKFold
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
@@ -80,6 +82,77 @@ def build_logreg() -> Pipeline:
             ),
         ]
     )
+
+
+class SparsePerLabelLogReg(BaseEstimator, ClassifierMixin):
+    """Benchmark model 2: one sparse yes/no logistic regression per label.
+
+    For each label ("is it gym?", "is it music?", ..., "is it none?") an
+    L1-penalised logistic regression keeps only the predictors that matter
+    for that label. Each label picks its own penalty C by inner CV on the
+    training data, so easy labels end up very sparse and messy ones (none)
+    keep more. Prediction = label with the highest probability.
+
+    Each coefficient reads as: effect of +1 standard deviation of the
+    feature on the log-odds of *this* label vs all others. See coef_table().
+    """
+
+    def __init__(self, Cs=(0.03, 0.1, 0.3, 1.0), inner_folds=3):
+        self.Cs = Cs
+        self.inner_folds = inner_folds
+
+    def _model(self, C):
+        return LogisticRegression(penalty="l1", solver="liblinear", C=C,
+                                  class_weight="balanced", max_iter=2000, random_state=0)
+
+    def fit(self, X, y):
+        X, y = np.asarray(X), np.asarray(y)
+        self.classes_ = np.array(ALL_LABELS)
+        self.models_, self.C_ = {}, {}
+        for label in self.classes_:
+            yb = (y == label).astype(int)
+            folds = StratifiedKFold(self.inner_folds, shuffle=True, random_state=0)
+            cv = {
+                C: np.mean([f1_score(yb[te], self._model(C).fit(X[tr], yb[tr]).predict(X[te]), zero_division=0)
+                            for tr, te in folds.split(X, yb)])
+                for C in self.Cs
+            }
+            self.C_[label] = max(cv, key=cv.get)
+            self.models_[label] = self._model(self.C_[label]).fit(X, yb)
+        return self
+
+    def predict_proba(self, X):
+        X = np.asarray(X)
+        return np.column_stack([self.models_[l].predict_proba(X)[:, 1] for l in self.classes_])
+
+    def predict(self, X):
+        return self.classes_[np.argmax(self.predict_proba(X), axis=1)]
+
+
+def build_sparse_logreg() -> Pipeline:
+    return Pipeline(
+        [
+            ("impute", SimpleImputer(strategy="median")),
+            ("scale", StandardScaler()),
+            ("clf", SparsePerLabelLogReg()),
+        ]
+    )
+
+
+def coef_table(pipe: Pipeline, feature_names, top: int = 5) -> pd.DataFrame:
+    """Top predictors per label of a fitted build_sparse_logreg() pipeline.
+
+    odds_ratio = multiplier on the odds of the label per +1 std of the feature.
+    """
+    clf = pipe.named_steps["clf"]
+    rows = []
+    for label in clf.classes_:
+        coef = pd.Series(clf.models_[label].coef_[0], index=list(feature_names))
+        nz = coef[coef != 0]
+        for feat, c in nz.reindex(nz.abs().sort_values(ascending=False).index)[:top].items():
+            rows.append({"label": label, "C": clf.C_[label], "n_predictors": len(nz),
+                         "feature": feat, "coef": round(c, 3), "odds_ratio": round(float(np.exp(c)), 2)})
+    return pd.DataFrame(rows)
 
 
 def build_hgb() -> HistGradientBoostingClassifier:

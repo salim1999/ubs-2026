@@ -31,7 +31,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.utils.class_weight import compute_sample_weight
 
 from src.features import build_features
-from src.model import ALL_LABELS, LABEL_COL, build_logreg, rule_predict
+from src.model import ALL_LABELS, LABEL_COL, build_logreg, build_sparse_logreg, rule_predict
 from src.recurrence import detect_streams, load_transactions
 from sklearn.ensemble import HistGradientBoostingClassifier
 
@@ -97,8 +97,11 @@ def main() -> None:
     X_valid = valid.drop(columns=["client_id", LABEL_COL])[X_train.columns]
 
     logreg = build_logreg().fit(X_train, y_train)
+    # Benchmark models (always both): logreg = global L2 LogReg (main),
+    # sparse_logreg = one sparse L1 LogReg per label (interpretable).
     preds = {
         "logreg": logreg.predict(X_valid),
+        "sparse_logreg": build_sparse_logreg().fit(X_train, y_train).predict(X_valid),
         "hgb": fit_hgb(X_train, y_train).predict(X_valid),
         "rule": rule_predict(X_valid),
     }
@@ -120,23 +123,25 @@ def main() -> None:
     print("step C diagnostics (valid):")
     for k, v in diag.items():
         print(f"  {k:14s} {v:.3f}")
-    per_class = f1_score(y_valid, preds[best], average=None, labels=ALL_LABELS, zero_division=0)
-    print(f"\nper-class F1 ({best}):")
-    for lab, s in zip(ALL_LABELS, per_class):
-        print(f"  {lab:10s} {s:.3f}")
+    print("\nper-class F1 (benchmark models):")
+    print(f"  {'':10s} {'logreg':>8s} {'sparse':>8s}")
+    per_class = {k: f1_score(y_valid, preds[k], average=None, labels=ALL_LABELS, zero_division=0)
+                 for k in ("logreg", "sparse_logreg")}
+    for i, lab in enumerate(ALL_LABELS):
+        print(f"  {lab:10s} {per_class['logreg'][i]:8.3f} {per_class['sparse_logreg'][i]:8.3f}")
     print("\nconfusion (rows=true, cols=pred):")
     print(pd.DataFrame(confusion_matrix(y_valid, preds[best], labels=ALL_LABELS),
                        index=ALL_LABELS, columns=ALL_LABELS))
 
-    new = not os.path.exists(LOG_PATH)
-    with open(LOG_PATH, "a", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        if new:
-            w.writerow(["time", "note", *scores.keys(), *cv.keys(), *diag.keys()])
-        w.writerow([dt.datetime.now().isoformat(timespec="seconds"), note,
-                    *(f"{s:.4f}" for s in scores.values()),
-                    *(f"{m:.4f}" for m, _ in cv.values()),
-                    *(f"{v:.3f}" for v in diag.values())])
+    header = ["time", "note", *scores.keys(), *cv.keys(), *diag.keys()]
+    row = {"time": dt.datetime.now().isoformat(timespec="seconds"), "note": note,
+           **{k: f"{v:.4f}" for k, v in scores.items()},
+           **{k: f"{m:.4f}" for k, (m, _) in cv.items()},
+           **{k: f"{v:.3f}" for k, v in diag.items()}}
+    old = pd.read_csv(LOG_PATH, dtype=str) if os.path.exists(LOG_PATH) else pd.DataFrame(columns=header)
+    # New columns (e.g. sparse_logreg) are appended; older rows stay empty there.
+    cols = list(old.columns) + [c for c in header if c not in old.columns]
+    pd.concat([old, pd.DataFrame([row])], ignore_index=True)[cols].to_csv(LOG_PATH, index=False)
 
     if submit:
         test = build_features("data/test_transactions.jsonl", CUTOFF)
