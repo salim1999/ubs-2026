@@ -30,6 +30,8 @@ from src.category_map import TARGET_CATEGORIES
 from src.recurrence import detect_streams, load_transactions
 
 RECENT_WINDOW_DAYS = 90
+# A stream counts as live if its next charge is overdue by at most this many days.
+LIVE_MAX_OVER_DAYS = 5
 
 
 def _gap_stats(dates: pd.Series) -> tuple[float, float]:
@@ -139,6 +141,38 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
     return wide
 
 
+def _live_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
+    """Which streams are still running at the cutoff.
+
+    over = days since last charge - mean gap (> 0: next charge is overdue).
+    A stream overdue by more than LIVE_MAX_OVER_DAYS has most likely stopped;
+    days_until_next_due alone can't show that (negative = "due now" or
+    "cancelled months ago"). Streams with only 3-4 charges look like trials
+    that end: those clients are mostly 'none' (train and valid).
+    """
+    active = streams[streams["is_recurring"] & streams["category"].notna()].copy()
+    active["over"] = (cutoff - active["last_date"]).dt.days - active["mean_gap_days"]
+    live = active[active["over"] <= LIVE_MAX_OVER_DAYS]
+
+    fam = active.groupby(["client_id", "category"])["over"].min().unstack()
+    fam = fam.reindex(columns=TARGET_CATEGORIES)
+    out = fam.add_prefix("over_days_")
+    for cat in TARGET_CATEGORIES:
+        out[f"is_live_{cat}"] = (fam[cat] <= LIVE_MAX_OVER_DAYS).astype(int)
+
+    per_client = pd.DataFrame(
+        {
+            "n_live_streams": live.groupby("client_id").size(),
+            "max_live_n_occurrences": live.groupby("client_id")["n_occurrences"].max(),
+            "min_over_days": active.groupby("client_id")["over"].min(),
+        }
+    )
+    out = out.join(per_client, how="outer")
+    out["n_live_streams"] = out["n_live_streams"].fillna(0)
+    out["short_live_stream"] = out["max_live_n_occurrences"].isin([3, 4]).astype(int)
+    return out
+
+
 def _early_adoption_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
     recent = df[
         (df["category"].notna())
@@ -165,7 +199,9 @@ def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
     cat_features = _category_stream_features(streams, cutoff)
     recent = _early_adoption_features(df, cutoff)
 
-    features = general.join(cat_features, how="left").join(recent, how="left")
+    live = _live_stream_features(streams, cutoff)
+
+    features = general.join(cat_features, how="left").join(recent, how="left").join(live, how="left")
 
     active_cols = [f"active_{c}" for c in TARGET_CATEGORIES]
     features[active_cols] = features[active_cols].fillna(0).astype(int)
@@ -173,6 +209,8 @@ def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
     features["n_missing_categories"] = features["n_missing_categories"].fillna(len(TARGET_CATEGORIES))
     recent_cols = [f"recent_txns_{c}" for c in TARGET_CATEGORIES]
     features[recent_cols] = features[recent_cols].fillna(0).astype(int)
+    live_flags = [f"is_live_{c}" for c in TARGET_CATEGORIES] + ["n_live_streams", "short_live_stream"]
+    features[live_flags] = features[live_flags].fillna(0).astype(int)
 
     features["adoption_rate_per_year"] = features["n_active_categories"] / (
         features["tenure_days"] / 365
