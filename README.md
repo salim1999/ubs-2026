@@ -84,6 +84,31 @@ cloud, gym, insurance, mobile, music, software, streaming, none
 Use `none` when no recurring merchant family is expected to recur within the
 90-day horizon.
 
+## Our Main Models
+
+Our modeling strategy deliberately favors simplicity and interpretability.
+The two models we are carrying forward are:
+
+1. **Due-date rule baseline** -- detect live recurring streams and predict the
+   family whose next payment is due soonest. It predicts `none` when no stream
+   appears live or when the strongest live stream looks like a short trial.
+   Validation macro-F1: **0.4844**.
+2. **Global logistic regression** -- one class-balanced multinomial logistic
+   model trained across all clients and all engineered transaction, recurrence,
+   and per-family features. Validation macro-F1: **0.4601**.
+
+The rule is our primary model: it is transparent and currently performs best.
+The global logistic model is our learned benchmark and complementary second
+submission. More complex hurdle, shared-family, and clustered-expert variants
+did not improve validation performance; see [MODEL_COMPARISON.md](MODEL_COMPARISON.md).
+
+Generate either submission with:
+
+```bash
+py -3.10 -m src.make_submission rule
+py -3.10 -m src.make_submission logreg
+```
+
 ## Data Package
 
 You can find the following files in the `data` directory of this repository:

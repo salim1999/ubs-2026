@@ -11,3 +11,4 @@ time,note,logreg,hgb,rule,cv_logreg,cv_hgb,c_detect,c_nextdue,c_none_active,c_fa
 2026-09-24T18:23:52,7 H: live-aware rule (none if no live stream or short 3-4 charge stream; else soonest-due live family),0.4482,0.4558,0.4719,0.4556,0.4897,0.673,0.460,0.829,1.710
 2026-09-24T18:29:45,8 B1: add token 'pass' to music (member pass),0.4601,0.4545,0.4844,0.4706,0.4916,0.690,0.472,0.836,1.754
 2026-09-24T18:35:16,"9 C5: stream vote uses keyword tags first, MCC fallback only if no keyword",0.4552,0.4488,0.4867,0.4717,0.4855,0.693,0.471,0.836,1.760
+2026-09-24T19:06:00,10 F: LogReg fills absent per-family/stream features with 0 (was median),0.4611,0.4545,0.4844,0.4701,0.4916,0.690,0.472,0.836,1.754

@@ -1,41 +1,71 @@
-"""Test submission: LogReg refit on train + valid, predict test.
+"""Build a test submission with either of the project's two main models.
 
-    python -m src.make_submission [suffix]    # writes data/submission_<suffix>.csv
+    py -3.10 -m src.make_submission rule
+    py -3.10 -m src.make_submission logreg
 """
 
-import sys
+import argparse
 
 import pandas as pd
 
 from src.evaluate import CUTOFF, labelled_features, macro_f1
 from src.features import build_features
-from src.model import ALL_LABELS, LABEL_COL, build_logreg
+from src.model import ALL_LABELS, LABEL_COL, build_logreg, rule_predict
 
-OUT = f"data/submission_{sys.argv[1] if len(sys.argv) > 1 else 'thirdsubmission'}.csv"
 
-train = labelled_features("train")
-valid = labelled_features("valid")
-X_train = train.drop(columns=["client_id", LABEL_COL])
-X_valid = valid.drop(columns=["client_id", LABEL_COL]).reindex(columns=X_train.columns)
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("model", choices=["rule", "logreg"])
+    parser.add_argument("--suffix", help="output suffix (defaults to the model name)")
+    args = parser.parse_args()
+    out_path = f"data/submission_{args.suffix or args.model}.csv"
 
-# Selection score: train-only fit, scored on valid.
-print(f"valid macro-F1 (fit on train only): {macro_f1(valid[LABEL_COL], build_logreg().fit(X_train, train[LABEL_COL]).predict(X_valid)):.4f}")
+    train = labelled_features("train")
+    valid = labelled_features("valid")
+    X_train = train.drop(columns=["client_id", LABEL_COL])
+    X_valid = valid.drop(columns=["client_id", LABEL_COL]).reindex(columns=X_train.columns)
 
-# Final model: refit on train + valid.
-X_full = pd.concat([X_train, X_valid], ignore_index=True)
-y_full = pd.concat([train[LABEL_COL], valid[LABEL_COL]], ignore_index=True)
-model = build_logreg().fit(X_full, y_full)
+    if args.model == "rule":
+        valid_pred = rule_predict(X_valid)
+    else:
+        selection_model = build_logreg().fit(X_train, train[LABEL_COL])
+        valid_pred = selection_model.predict(X_valid)
+    print(f"{args.model} valid macro-F1: {macro_f1(valid[LABEL_COL], valid_pred):.4f}")
 
-sample = pd.read_csv("data/sample_submission.csv")
-test = sample[["client_id"]].merge(build_features("data/test_transactions.jsonl", CUTOFF), on="client_id", how="left")
-X_test = test.drop(columns=["client_id"]).reindex(columns=X_train.columns)
-sub = pd.DataFrame({"client_id": sample["client_id"], "predicted_next_recurring_merchant": model.predict(X_test)})
+    sample = pd.read_csv("data/sample_submission.csv")
+    test = sample[["client_id"]].merge(
+        build_features("data/test_transactions.jsonl", CUTOFF),
+        on="client_id",
+        how="left",
+    )
+    X_test = test.drop(columns=["client_id"]).reindex(columns=X_train.columns)
 
-# Submission contract: exact client ids, one row each, allowed labels, column names.
-assert list(sub.columns) == list(sample.columns)
-assert len(sub) == len(sample) and sub["client_id"].is_unique
-assert set(sub["client_id"]) == set(sample["client_id"])
-assert sub["predicted_next_recurring_merchant"].isin(ALL_LABELS).all()
+    if args.model == "rule":
+        test_pred = rule_predict(X_test)
+    else:
+        X_full = pd.concat([X_train, X_valid], ignore_index=True)
+        y_full = pd.concat(
+            [train[LABEL_COL], valid[LABEL_COL]], ignore_index=True
+        )
+        final_model = build_logreg().fit(X_full, y_full)
+        test_pred = final_model.predict(X_test)
 
-sub.to_csv(OUT, index=False)
-print(f"wrote {OUT}: {len(sub)} rows")
+    sub = pd.DataFrame(
+        {
+            "client_id": sample["client_id"],
+            "predicted_next_recurring_merchant": test_pred,
+        }
+    )
+
+    # Submission contract: exact client IDs, one row each, allowed labels.
+    assert list(sub.columns) == list(sample.columns)
+    assert len(sub) == len(sample) and sub["client_id"].is_unique
+    assert set(sub["client_id"]) == set(sample["client_id"])
+    assert sub["predicted_next_recurring_merchant"].isin(ALL_LABELS).all()
+
+    sub.to_csv(out_path, index=False)
+    print(f"wrote {out_path}: {len(sub)} rows")
+
+
+if __name__ == "__main__":
+    main()

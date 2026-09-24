@@ -321,6 +321,7 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 7 | H | Rule: `none` if no live stream or short 3–4 charge stream, else live family due soonest | 0.448 | 0.456 | **0.472** | – | 0.673 | ✅ rule +0.24, best predictor |
 | 8 | B1 | Token `pass` → music ("member pass" was music's untagged description) | **0.460** | 0.455 | **0.484** | – | 0.690 | ✅ LogReg/rule +0.012, HGB flat |
 | 9 | C5 | Stream vote: keyword tags first, MCC fallback only if no keyword | 0.455 | 0.449 | 0.487 | – | 0.693 | ❌ dropped: models −0.005, rule +0.003 (noise), extra code |
+| 10 | F | LogReg: absent per-family/stream features filled with 0 instead of median (flags carry absence) | 0.461 | – | – | – | – | ❌ +0.001 = noise, dropped |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
