@@ -14,3 +14,7 @@ time,note,logreg,hgb,rule,cv_logreg,cv_hgb,c_detect,c_nextdue,c_none_active,c_fa
 2026-09-24T19:06:00,10 F: LogReg fills absent per-family/stream features with 0 (was median),0.4611,0.4545,0.4844,0.4701,0.4916,0.690,0.472,0.836,1.754,
 2026-09-24T21:18:13,13 D: 101 features in src (verify after merge; logreg only),0.4771,0.4714,0.4844,0.4816,0.4867,0.690,0.472,0.836,1.754,
 2026-09-24T21:29:16,14 G: benchmark model 2 = sparse per-label L1 LogReg (own C per label); 101 features,0.4771,0.4714,0.4844,0.4816,0.4867,0.690,0.472,0.836,1.754,0.4844
+2026-09-24T21:39:26,16 D5 late_bro: lateness in cycles per family + late_min_cycles (8 cols),0.4768,0.4722,0.4844,0.4842,0.4900,0.690,0.472,0.836,1.754,0.4791
+2026-09-24T21:44:02,17 D5 + portfolio_bro: families ever / last 90d / dropped (3 cols),0.4782,0.4688,0.4844,0.4816,0.4930,0.690,0.472,0.836,1.754,0.4795
+2026-09-24T21:48:51,18 D5 + refund_bro: tagged refund per family last 90d + count (8 cols); all 19 story cols,0.4894,0.4775,0.4844,0.4907,0.4979,0.690,0.472,0.836,1.754,0.4942
+2026-09-24T21:53:49,"19 D5 check: refund_bro only (without late_bro, portfolio_bro)",0.4878,0.4881,0.4844,0.4863,0.4875,0.690,0.472,0.836,1.754,0.4971

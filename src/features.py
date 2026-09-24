@@ -32,6 +32,8 @@ from src.recurrence import detect_streams, load_transactions
 RECENT_WINDOW_DAYS = 90
 # A stream counts as live if its next charge is overdue by at most this many days.
 LIVE_MAX_OVER_DAYS = 5
+# D5 story-feature blocks (19 columns): lateness (8), portfolio (3), refund (8).
+STORY_BLOCKS = ("late_bro", "portfolio_bro", "refund_bro")
 
 
 def _gap_stats(dates: pd.Series) -> tuple[float, float]:
@@ -187,6 +189,61 @@ def _billing_day_features(df: pd.DataFrame, streams: pd.DataFrame, cutoff: pd.Ti
     return out
 
 
+def _story_features(df: pd.DataFrame, streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
+    """D5 story features: three small, explainable blocks.
+
+    late_bro:      "Whatever is due now comes next." late_cycles_<fam> =
+                   over_days / mean gap, capped to [-1, 3]; 3 = no stream
+                   (not the median: missing means "no stream", the opposite
+                   of "due now"). late_min_cycles = the client's most-due family.
+    portfolio_bro: "Clients who paid for many things and stopped tend to end
+                   with nothing new." Families with >= 2 tagged charges ever,
+                   in the last 90 days, and dropped (>= 2 charges 6-12 months
+                   ago, none in the last 90 days). >= 2 filters decoys.
+    refund_bro:    "A refund proves an active customer, not one leaving."
+                   refund_<fam>_90d = tagged refund in the last 90 days.
+    All inputs are before the cutoff, so nothing leaks the answer.
+    """
+    clients = pd.Index(df["client_id"].unique(), name="client_id")
+    out = pd.DataFrame(index=clients)
+    age = (cutoff - df["timestamp"]).dt.days
+
+    if "late_bro" in STORY_BLOCKS:
+        active = streams[streams["is_recurring"] & streams["category"].notna()].copy()
+        active["over"] = (cutoff - active["last_date"]).dt.days - active["mean_gap_days"]
+        fam = active.groupby(["client_id", "category"]).agg(over=("over", "min"), gap=("mean_gap_days", "mean"))
+        late = (fam["over"] / fam["gap"]).clip(-1, 3).unstack().reindex(index=clients, columns=TARGET_CATEGORIES)
+        late = late.fillna(3).add_prefix("late_cycles_")
+        out = out.join(late)
+        out["late_min_cycles"] = late.min(axis=1)
+
+    if "portfolio_bro" in STORY_BLOCKS:
+        tagged = df[(df["direction"] == "out") & df["category"].notna()]
+        tagged_age = age.loc[tagged.index]
+
+        def n_families(mask):
+            counts = tagged[mask].groupby(["client_id", "category"]).size()
+            return counts[counts >= 2].reset_index().groupby("client_id").size().reindex(clients).fillna(0)
+
+        out["port_families_ever"] = n_families(tagged_age >= 0)
+        out["port_families_last90d"] = n_families(tagged_age < 90)
+        old = tagged[(tagged_age >= 180) & (tagged_age < 365)].groupby(["client_id", "category"]).size()
+        old = set(old[old >= 2].index)
+        recent = set(tagged[tagged_age < 90].groupby(["client_id", "category"]).size().index)
+        dropped = pd.Series([c for c, _ in old - recent], dtype=object).value_counts()
+        out["port_dropped_families"] = dropped.reindex(clients).fillna(0)
+
+    if "refund_bro" in STORY_BLOCKS:
+        refunds = df[(df["type"] == "refund") & df["category"].notna() & (age < 90)]
+        flags = refunds.groupby(["client_id", "category"]).size().unstack()
+        flags = flags.reindex(index=clients, columns=TARGET_CATEGORIES).notna().astype(int)
+        flags.columns = [f"refund_{c}_90d" for c in TARGET_CATEGORIES]
+        out = out.join(flags)
+        out["refund_n_90d"] = flags.sum(axis=1)
+
+    return out
+
+
 def _early_adoption_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
     recent = df[
         (df["category"].notna())
@@ -235,6 +292,8 @@ def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
     features[live_flags] = features[live_flags].fillna(0).astype(int)
     # No recurring stream at all -> the rule says none.
     features["rule_says_none"] = features["rule_says_none"].fillna(1).astype(int)
+
+    features = features.join(_story_features(df, streams, cutoff), how="left")
 
     return features.reset_index()
 

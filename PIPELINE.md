@@ -327,6 +327,9 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 13 | D | In `src/`: + rule's vote, + calendar, − old timing, − D3, − `mean_gap_days` → 101 features | 0.477 | 0.471 | 0.484 | – | 0.690 | ✅ |
 | 14 | G | **Benchmark model 2**: sparse per-label L1 LogReg (one-vs-rest, own C per label by inner CV on train); `src/model.py` `build_sparse_logreg` | 0.477 (sparse **0.484**) | 0.471 | 0.484 | – | 0.690 | ✅ always benchmark both |
 | 15 | G (scratchpad) | Personas/segments (rule splits, KMeans, logistic model tree), fixed 5–15 predictor scorecards, last-k payment / Markov features, per-last-family models; date-of-year n/a (shared cutoff) | ≤ 0.482 | – | – | – | – | ❌ none beat the benchmarks |
+| 16 | D5 | `late_bro`: late_cycles_<fam> = over_days / mean gap, capped [−1, 3], 3 = no stream; late_min_cycles (8) | 0.477 (sparse 0.479) | – | 0.484 | – | – | ≈ flat |
+| 17 | D5 | + `portfolio_bro`: families with ≥2 charges ever / last 90 d / dropped (3) | 0.478 (sparse 0.480) | – | 0.484 | – | – | ≈ flat |
+| 18 | D5 | + `refund_bro`: tagged refund per family in last 90 d + count (8); all 19 story cols → 120 features | **0.489** (sparse **0.494**) | – | 0.484 | – | – | ✅ both models beat the rule; none F1 0.57 → 0.62 |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
