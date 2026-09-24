@@ -87,7 +87,7 @@ matching token wins, checked in this order:
 
 | Order | Family | Tokens |
 |---|---|---|
-| 1 | music | `audio` |
+| 1 | music | `audio`, `pass` (since exp 8) |
 | 2 | streaming | `stream`, `streaming`, `video` |
 | 3 | software | `saas`, `software`, `productivity` |
 | 4 | mobile | `phone` |
@@ -316,6 +316,11 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 2 | D2 | + `mean_gap_days_<cat>`, `days_until_next_due_<cat>` (from stash) | 0.382 | 0.369 | 0.337 | 0.407 / 0.438 | 0.369 | ✅ HGB up, LogReg flat |
 | 3 | C1 | Streams from `direction == "out"` only (refunds broke gaps) | 0.374 | 0.353 | 0.302 | 0.408 / **0.466** | **0.492** | ✅ kept: detection much better, valid F1 flat (within noise), CV ↑; see note |
 | 4 | C1/C2 | Pool each client's charges **across MCCs** (was client × MCC), non-sub exclusion by phrase on all MCCs, amount tol 0.3/0.03 (was 3/0.25, 5812/5732 only). Tol chosen on train. `c_nextdue` 0.36 → 0.46. Rule drops because it still sorts by recency (step H fix next) | 0.424 | **0.441** | 0.229 | 0.428 / **0.479** | **0.673** | ✅ +0.05 / +0.09 on valid |
+| 5 | G | Relaxed lasso: L1 LogReg selects 10/20/30/40/50 predictors, L2 LogReg refits (no tuning) | 0.393 / 0.412 / 0.413 / 0.421 / 0.426 | – | – | – | – | ❌ no gain over all 92 (0.424); `none` needs the many weak features. (Side note: L1 LogReg alone, C=0.3 by train CV, gave 0.447; not adopted) |
+| 6 | D2 | Live-stream features: `over_days_<cat>`, `is_live_<cat>` (overdue ≤ 5 d), `n_live_streams`, `max_live_n_occurrences`, `short_live_stream` (3–4 charges), `min_over_days` | 0.448 | 0.456 | 0.229 | – | 0.673 | ✅ +0.024 / +0.015 |
+| 7 | H | Rule: `none` if no live stream or short 3–4 charge stream, else live family due soonest | 0.448 | 0.456 | **0.472** | – | 0.673 | ✅ rule +0.24, best predictor |
+| 8 | B1 | Token `pass` → music ("member pass" was music's untagged description) | **0.460** | 0.455 | **0.484** | – | 0.690 | ✅ LogReg/rule +0.012, HGB flat |
+| 9 | C5 | Stream vote: keyword tags first, MCC fallback only if no keyword | 0.455 | 0.449 | 0.487 | – | 0.693 | ❌ dropped: models −0.005, rule +0.003 (noise), extra code |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
