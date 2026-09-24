@@ -1,0 +1,16 @@
+# Raw data already archived in data/dataset.zip - don't re-track loose copies
+data/dataset/
+data/*.jsonl
+
+# Generated per-client / processed outputs - archived as zips instead
+inspection/*.csv
+data/processed/*.csv
+
+# Python / tooling
+.venv/
+__pycache__/
+*.pyc
+.python-version
+
+# OS / editor
+.DS_Store

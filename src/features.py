@@ -96,16 +96,35 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
             first_date=("first_date", "min"),
             mean_amount=("mean_amount", "mean"),
             gap_cv=("gap_cv", "mean"),
+            mean_gap_days=("mean_gap_days", "mean"),
         )
         .reset_index()
     )
     agg["recency_days"] = (cutoff - agg["last_date"]).dt.days
     agg["tenure_days"] = (cutoff - agg["first_date"]).dt.days
+    # Where the category's next payment is expected to fall due, relative
+    # to now: negative means overdue by the stream's own usual cadence,
+    # positive means still mid-cycle. Combines the actual period length
+    # (mean_gap_days) with how long it's been since the last payment
+    # (recency_days) - two numbers that were previously only usable
+    # separately.
+    agg["days_until_next_expected"] = agg["mean_gap_days"] - agg["recency_days"]
 
     wide_frames = []
     for cat in TARGET_CATEGORIES:
         sub = agg[agg["category"] == cat].set_index("client_id")
-        sub = sub[["n_streams", "n_occurrences", "recency_days", "tenure_days", "mean_amount", "gap_cv"]]
+        sub = sub[
+            [
+                "n_streams",
+                "n_occurrences",
+                "recency_days",
+                "tenure_days",
+                "mean_amount",
+                "gap_cv",
+                "mean_gap_days",
+                "days_until_next_expected",
+            ]
+        ]
         sub.columns = [f"{c}_{cat}" for c in sub.columns]
         sub[f"active_{cat}"] = 1
         wide_frames.append(sub)

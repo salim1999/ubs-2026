@@ -52,6 +52,19 @@ NON_SUBSCRIPTION_LITERALS = {
     "5732": {"electronics shop", "online marketplace"},
 }
 
+# MCCs with no plausible real-world subscription meaning (transport,
+# groceries, pharmacy, ATM, financial/salary/p2p, hotel - see
+# data/mcc_frequency.json, label_category: null). Tested hard-excluding
+# these from ever getting a target category (vetoing keyword matches like
+# "gym membership" under mcc 5411) on the hypothesis that such matches are
+# noise. Measured worse (macro-F1 0.3982 -> 0.3821): the sample
+# descriptions on these mccs look like genuine subscription text with a
+# corrupted mcc field, not coincidental noise, so trusting mcc as a veto
+# loses more recall than it gains precision in this dataset. Keep empty -
+# current keyword-first behavior is better here despite the real-world
+# intuition that e.g. groceries shouldn't be subscriptions.
+HARD_EXCLUDE_MCCS: set[str] = set()
+
 TARGET_CATEGORIES = ["cloud", "gym", "insurance", "mobile", "music", "software", "streaming"]
 
 
@@ -62,6 +75,9 @@ def classify(mcc: str, description: str) -> str | None:
     transaction may still turn out to be part of a recurring subscription
     stream once merged with same-amount siblings in recurrence.py.
     """
+    if mcc in HARD_EXCLUDE_MCCS:
+        return None
+
     tokens = set(description.split())
 
     for category, keywords in TOKEN_CATEGORY.items():

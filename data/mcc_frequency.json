@@ -1,0 +1,74 @@
+{
+  "4111": {
+    "count": 6857,
+    "meaning": "Transportation - Suburban and Local Commuter Passenger, incl. Ferries (ride share)",
+    "label_category": null
+  },
+  "4814": {
+    "count": 6172,
+    "meaning": "Telecommunication Services (phone/mobile)",
+    "label_category": "mobile",
+    "overloaded": false,
+    "note": "Standard meaning aligns with usage: dominated by 'phone contract' plus generic filler descriptions ('monthly plan', 'service bill'). No conflicting real-world category present."
+  },
+  "5411": {
+    "count": 21040,
+    "meaning": "Grocery Stores, Supermarkets",
+    "label_category": null
+  },
+  "5732": {
+    "count": 19343,
+    "meaning": "Electronics Stores",
+    "label_category": "cloud",
+    "overloaded": true,
+    "note": "Standard meaning does NOT match cloud usage. This code is genuinely mixed in the dataset: real electronics/marketplace purchases ('electronics shop', 'online marketplace', ~12.7k txns) share the code with cloud storage/backup subscriptions ('cloud access', 'storage plan', 'cloud backup', ~3.5k txns). MCC alone cannot separate the two; description text is required."
+  },
+  "5734": {
+    "count": 6849,
+    "meaning": "Computer Software Stores",
+    "label_category": "software",
+    "overloaded": false,
+    "note": "Standard meaning aligns with usage: dominated by 'saas billing', 'productivity suite', 'software access'. Minor generic filler overlap ('monthly plan', 'member plan') shared across other categories too."
+  },
+  "5812": {
+    "count": 25723,
+    "meaning": "Eating Places, Restaurants",
+    "label_category": "streaming / music",
+    "overloaded": true,
+    "note": "Standard meaning does NOT match streaming/music usage - this is a dataset quirk, not a real-world MCC convention. The code is genuinely mixed: real restaurant/dining spend ('coffee shop', 'casual dining') shares it with streaming and music subscriptions ('media streaming', 'audio streaming', 'digital plus', 'premium plan'). MCC alone cannot separate dining from subscription spend, nor streaming from music (both land on 5812) - description keywords ('stream'/'video'/'audio' vs 'dining'/'coffee') are required to disambiguate."
+  },
+  "5912": {
+    "count": 6933,
+    "meaning": "Drug Stores, Pharmacies",
+    "label_category": null
+  },
+  "6011": {
+    "count": 8083,
+    "meaning": "Financial Institutions - Automated Cash Disbursements (ATM)",
+    "label_category": null
+  },
+  "6012": {
+    "count": 28067,
+    "meaning": "Financial Institutions - Merchandise and Services",
+    "label_category": null
+  },
+  "6300": {
+    "count": 5909,
+    "meaning": "Insurance Sales, Underwriting, and Premiums",
+    "label_category": "insurance",
+    "overloaded": false,
+    "note": "Standard meaning aligns with usage: dominated by 'cover plan', 'insurance monthly', 'safe cover', 'policy premium'. Minor generic filler overlap ('monthly plan', 'member plan')."
+  },
+  "7011": {
+    "count": 6932,
+    "meaning": "Hotels, Motels, Resorts - Lodging",
+    "label_category": null
+  },
+  "7997": {
+    "count": 5551,
+    "meaning": "Membership Clubs (Sports, Recreation, Athletic, Gyms)",
+    "label_category": "gym",
+    "overloaded": false,
+    "note": "Standard meaning aligns with usage: dominated by 'urban gym', 'gym membership', 'fit club', 'fitness monthly'. Minor generic filler overlap ('digital service', 'monthly plan')."
+  }
+}

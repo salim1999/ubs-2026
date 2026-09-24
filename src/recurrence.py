@@ -37,10 +37,18 @@ from src.category_map import NON_SUBSCRIPTION_LITERALS, classify
 # whole-group test.
 AMOUNT_CLUSTERED_MCCS = {"5812", "5732"}
 
-MIN_GAP_DAYS = 20
-MAX_GAP_DAYS = 45
+# Single monthly cadence band. Six variants were tried to also admit
+# weekly/biweekly billing (contiguous 14-45/14-90, disjoint bands at loose
+# uniform/moderate/tight/very-tight amount_cv, monthly-only with loosened
+# gap_cv) - all six made macro-F1 worse (0.3982 -> 0.3794 / 0.3594 / 0.3673
+# / 0.3618 / 0.3783 / 0.3817 respectively). Whatever weekly/biweekly signal
+# exists in this dataset is too rare or too entangled with coincidental
+# same-category pairs to extract net-positively under any tolerance tried.
+# Keep the single, original, proven monthly band.
+GAP_BANDS = [
+    {"range": (20, 45), "max_amount_cv": 0.35},
+]
 MAX_GAP_CV = 0.5
-MAX_AMOUNT_CV = 0.35
 
 # Amount-clustering tolerance: start a new cluster when the next amount
 # (sorted ascending) jumps by more than this relative/absolute margin from
@@ -103,12 +111,19 @@ def _stream_stats(cluster: pd.DataFrame) -> dict:
     mean_amount = float(amounts.mean())
     amount_cv = float(amounts.std() / mean_amount) if n > 1 and mean_amount > 0 else 0.0
 
+    matched_band = None
+    if not np.isnan(mean_gap):
+        for band in GAP_BANDS:
+            lo, hi = band["range"]
+            if lo <= mean_gap <= hi:
+                matched_band = band
+                break
+
     is_recurring = bool(
         n >= 2
-        and not np.isnan(mean_gap)
-        and MIN_GAP_DAYS <= mean_gap <= MAX_GAP_DAYS
+        and matched_band is not None
         and (np.isnan(gap_cv) or gap_cv <= MAX_GAP_CV)
-        and amount_cv <= MAX_AMOUNT_CV
+        and amount_cv <= matched_band["max_amount_cv"]
     )
 
     categories = [c for c in cluster["category"] if pd.notna(c)]
