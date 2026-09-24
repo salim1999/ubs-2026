@@ -24,6 +24,9 @@ One row per client, built purely from transactions up to the cutoff date
 
 from __future__ import annotations
 
+import pathlib
+import pickle
+
 import numpy as np
 import pandas as pd
 
@@ -32,6 +35,9 @@ from src.recurrence import CADENCE_CODE, detect_streams, load_transactions
 from src import personas
 
 PERSONA_NAMES = list(personas.PERSONA_RULES)
+DATA_DIR = "data/dataset/dataset"
+PROCESSED_DIR = "data/processed"
+CUTOFF = "2026-01-01"
 RECENT_WINDOW_DAYS = 90
 STALE_GAP_MULTIPLE = 2.0
 
@@ -124,18 +130,26 @@ STREAM_FEATURES = [
 ]
 
 
-def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
-    recurring = streams[streams["is_recurring"] & streams["category"].isin(TARGET_CATEGORIES)].copy()
+def recurring_streams(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
+    """Recurring target-family streams with recency, days_to_next and is_live.
 
-    # A recurring stream only counts as active if it is still charging at the
-    # cutoff: silent for more than STALE_GAP_MULTIPLE of its own cadence
-    # means it was most likely cancelled. Lapsed streams are kept as a
-    # separate flag - "had it, dropped it" is a different state from "never
-    # had it".
+    A recurring stream only counts as live if it is still charging at the
+    cutoff: silent for more than STALE_GAP_MULTIPLE of its own cadence
+    means it was most likely cancelled. Lapsed streams are kept as a
+    separate flag - "had it, dropped it" is a different state from "never
+    had it". Shared with the step-C diagnostics in src.evaluate.
+    """
+    recurring = streams[streams["is_recurring"] & streams["category"].isin(TARGET_CATEGORIES)].copy()
     recurring["recency_days"] = (cutoff - recurring["last_date"]).dt.total_seconds() / 86400
     recurring["days_to_next"] = recurring["median_gap_days"] - recurring["recency_days"]
+    recurring["is_live"] = recurring["recency_days"] <= STALE_GAP_MULTIPLE * recurring["median_gap_days"] + 5
+    return recurring
+
+
+def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
+    recurring = recurring_streams(streams, cutoff)
     recurring["cadence_code"] = recurring["cadence"].map(CADENCE_CODE)
-    is_live = recurring["recency_days"] <= STALE_GAP_MULTIPLE * recurring["median_gap_days"] + 5
+    is_live = recurring["is_live"]
     active = recurring[is_live]
     lapsed = recurring[~is_live]
 
@@ -242,19 +256,23 @@ def build_features(
 
     out = features.reset_index()
     out.attrs["persona_scorer"] = fitted
+    out.attrs["streams"] = streams
     return out
 
 
-if __name__ == "__main__":
-    import pickle, pathlib, sys
+def build_all(
+    data_dir: str = DATA_DIR, cutoff: str = CUTOFF, out_dir: str = PROCESSED_DIR
+) -> dict[str, pd.DataFrame]:
+    """Rebuild train/valid/test features from raw jsonl and write them to out_dir.
 
-    data_dir = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else "data/dataset/dataset")
-    cutoff = sys.argv[2] if len(sys.argv) > 2 else "2026-01-01"
-    out_dir = pathlib.Path("data/processed")
+    The persona scorer is fit on train only, then reused so valid/test
+    percentiles are ranked against the same reference population. Returns
+    the labelled feature tables plus the valid streams (for diagnostics)
+    under key "valid_streams".
+    """
+    data_dir, out_dir = pathlib.Path(data_dir), pathlib.Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # Persona scorer is fit on train only, then reused so valid/test percentiles
-    # are ranked against the same reference population.
     train = build_features(str(data_dir / "train_transactions.jsonl"), cutoff)
     scorer = train.attrs["persona_scorer"]
     splits = {
@@ -262,18 +280,25 @@ if __name__ == "__main__":
         "valid": build_features(str(data_dir / "valid_transactions.jsonl"), cutoff, scorer),
         "test": build_features(str(data_dir / "test_transactions.jsonl"), cutoff, scorer),
     }
+    result = {"valid_streams": splits["valid"].attrs["streams"]}
 
     for name, feats in splits.items():
         labels_path = data_dir / f"{name}_labels.csv"
         if labels_path.exists():
             labels = pd.read_csv(labels_path)[["client_id", "target_next_recurring_merchant"]]
             feats = feats.merge(labels, on="client_id", how="inner")
+        feats.attrs = {}
         feats.to_csv(out_dir / f"{name}_features.csv", index=False)
+        result[name] = feats
         print(f"{name}: {feats.shape}")
 
     if scorer is not None:
         with open(out_dir / "persona_scorer.pkl", "wb") as f:
             pickle.dump(scorer, f)
+    return result
 
-    persona_cols = [c for c in train.columns if c.startswith("persona_")]
-    print(f"Persona columns ({len(persona_cols)}): {persona_cols}")
+
+if __name__ == "__main__":
+    import sys
+
+    build_all(*sys.argv[1:3])

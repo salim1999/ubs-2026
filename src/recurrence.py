@@ -53,7 +53,7 @@ ATTACH_ABS_TOL = 1.5
 
 def load_transactions(path: str) -> pd.DataFrame:
     records = []
-    with open(path) as f:
+    with open(path, encoding="utf-8") as f:
         for line in f:
             records.append(json.loads(line))
     df = pd.DataFrame.from_records(records)

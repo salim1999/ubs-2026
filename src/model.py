@@ -32,6 +32,7 @@ from sklearn.preprocessing import StandardScaler
 from src.category_map import TARGET_CATEGORIES
 
 LABEL_COL = "target_next_recurring_merchant"
+SEED = 42
 ALL_LABELS = TARGET_CATEGORIES + ["none"]
 
 
@@ -95,14 +96,14 @@ def build_logreg() -> Pipeline:
             ("scale", StandardScaler()),
             (
                 "clf",
-                LogisticRegression(max_iter=2000, class_weight="balanced"),
+                LogisticRegression(max_iter=2000, class_weight="balanced", random_state=SEED),
             ),
         ]
     )
 
 
 def build_hgb() -> HistGradientBoostingClassifier:
-    return HistGradientBoostingClassifier(class_weight="balanced", random_state=0)
+    return HistGradientBoostingClassifier(class_weight="balanced", random_state=SEED)
 
 
 def _to_long(X: pd.DataFrame) -> pd.DataFrame:
@@ -134,7 +135,7 @@ class RankingModel:
     p(none) comes from the multiclass HGB, which sees all client context.
     """
 
-    def __init__(self, seed: int = 0):
+    def __init__(self, seed: int = SEED):
         self.seed = seed
 
     def fit(self, X: pd.DataFrame, y: pd.Series) -> "RankingModel":

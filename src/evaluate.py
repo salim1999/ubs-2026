@@ -1,121 +1,190 @@
-"""Cross-validated evaluation harness for model selection.
+"""One-command experiment loop: rebuild features, score, log (ported from timmyo).
 
-A single 1000-client valid split is noisy (+-~0.02 macro-F1), so every
-change is scored with 5-fold stratified CV over train + valid (3000
-labelled clients) with a fixed seed, alongside the plain train->valid
-score for continuity with src.model.
+    python -m src.evaluate "short description of the change"
 
-Usage (after `python -m src.features`):
-    python -m src.evaluate [--no-personas]
+Rebuilds train/valid/test features from the raw jsonl (so any change in
+category_map / recurrence / features / personas is picked up; persona
+scorer fit on train only), then scores every model two ways:
+
+  valid  fit on train, score the 1000 valid clients (continuity with the
+         other branches' numbers).
+  vcv    5-fold StratifiedKFold over the *valid* clients: each fold fits on
+         train + the other 4/5 of valid and predicts the held-out fifth; one
+         macro-F1 over all 1000 pooled predictions. This is the decision
+         metric. Pooling train+valid in plain k-fold CV was optimistic:
+         valid clients are noisier than train and look more like test
+         (median stream gap_cv 0.11 train, 0.29 valid, 0.33 test), so train
+         clients must not dominate the scored folds.
+
+Step-C diagnostics on valid judge stream detection on its own:
+  c_detect      share of non-'none' clients whose target family has a
+                recurring stream (live or lapsed)
+  c_nextdue     share of non-'none' clients whose soonest-due *live* stream
+                (same live test as src.features) is the target family
+  c_none_active share of 'none' clients with >=1 recurring stream
+  c_fams        mean number of recurring families per client
+
+Every run appends one row to experiments.csv, with the git short SHA
+("-dirty" = uncommitted changes on top of that commit).
 """
 
 from __future__ import annotations
 
 import argparse
+import csv
+import datetime as dt
+import os
+import subprocess
 
 import numpy as np
 import pandas as pd
-from sklearn.metrics import f1_score
+from sklearn.metrics import confusion_matrix, f1_score
 from sklearn.model_selection import StratifiedKFold
 
-from src.model import ALL_LABELS, RankingModel, build_hgb, load_xy
+from src.features import CUTOFF, build_all, recurring_streams
+from src.model import ALL_LABELS, LABEL_COL, RankingModel, build_hgb, build_logreg, rule_predict
 
+LOG_PATH = "experiments.csv"
 N_FOLDS = 5
-SEED = 0
+VCV_SEED = 0
 
 
-def load_all(processed_dir: str = "data/processed") -> tuple[pd.DataFrame, pd.Series, int]:
-    """Train + valid stacked; returns (X, y, n_train) so the original split is recoverable."""
-    X_train, y_train = load_xy(f"{processed_dir}/train_features.csv")
-    X_valid, y_valid = load_xy(f"{processed_dir}/valid_features.csv")
-    X = pd.concat([X_train, X_valid[X_train.columns]], ignore_index=True)
-    y = pd.concat([y_train, y_valid], ignore_index=True)
-    return X, y, len(X_train)
+class RuleModel:
+    """rule_predict behind the fit/predict interface; nothing to learn."""
+
+    def fit(self, X, y):
+        return self
+
+    def predict(self, X):
+        return rule_predict(X)
+
+
+class EnsembleModel:
+    """Mean class probabilities of logreg, hgb and the ranking model."""
+
+    def fit(self, X, y):
+        self.members_ = [build().fit(X, y) for build in (build_logreg, build_hgb, RankingModel)]
+        self.classes_ = np.array(ALL_LABELS)
+        return self
+
+    def predict_proba(self, X):
+        probas = []
+        for m in self.members_:
+            p = m.predict_proba(X)
+            probas.append(p[:, [list(m.classes_).index(c) for c in ALL_LABELS]])
+        return np.mean(probas, axis=0)
+
+    def predict(self, X):
+        return self.classes_[self.predict_proba(X).argmax(1)]
+
+
+MODELS = {
+    "rule": RuleModel,
+    "logreg": build_logreg,
+    "hgb": build_hgb,
+    "rank": RankingModel,
+    "ens": EnsembleModel,
+}
 
 
 def macro_f1(y_true, y_pred) -> float:
     return f1_score(y_true, y_pred, average="macro", labels=ALL_LABELS, zero_division=0)
 
 
-def cv_oof_proba(build_model, X: pd.DataFrame, y: pd.Series) -> np.ndarray:
-    """Out-of-fold class probabilities, columns ordered as ALL_LABELS."""
-    oof = np.zeros((len(X), len(ALL_LABELS)))
-    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED)
-    for tr, te in skf.split(X, y):
-        model = build_model()
-        model.fit(X.iloc[tr], y.iloc[tr])
-        proba = model.predict_proba(X.iloc[te])
-        cols = [list(model.classes_).index(c) for c in ALL_LABELS]
-        oof[te] = proba[:, cols]
-    return oof
+def split_xy(feats: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
+    return feats.drop(columns=["client_id", LABEL_COL]), feats[LABEL_COL]
 
 
-def tune_class_weights(proba: np.ndarray, y, n_rounds: int = 3) -> np.ndarray:
-    """Per-class multipliers w maximising macro-F1 of argmax(w * proba).
-
-    Coordinate ascent over a log-spaced grid. Plain argmax optimises
-    accuracy; macro-F1 rewards trading some 'none' precision for recall on
-    the small classes, which these weights learn from OOF predictions.
-    """
-    labels = np.array(ALL_LABELS)
-    w = np.ones(len(labels))
-    grid = np.exp(np.linspace(np.log(0.3), np.log(3.0), 41))
-    best = macro_f1(y, labels[(proba * w).argmax(1)])
-    for _ in range(n_rounds):
-        for k in range(len(labels)):
-            for g in grid:
-                trial = w.copy()
-                trial[k] = g
-                score = macro_f1(y, labels[(proba * trial).argmax(1)])
-                if score > best + 1e-9:
-                    best, w = score, trial
-    return w
+def vcv_predictions(build, X_train, y_train, X_valid, y_valid) -> np.ndarray:
+    """Pooled out-of-fold predictions for the valid clients (see module docstring)."""
+    pred = np.empty(len(X_valid), dtype=object)
+    skf = StratifiedKFold(N_FOLDS, shuffle=True, random_state=VCV_SEED)
+    for tr, te in skf.split(X_valid, y_valid):
+        X_fit = pd.concat([X_train, X_valid.iloc[tr]], ignore_index=True)
+        y_fit = pd.concat([y_train, y_valid.iloc[tr]], ignore_index=True)
+        pred[te] = build().fit(X_fit, y_fit).predict(X_valid.iloc[te])
+    return pred
 
 
-def nested_weight_score(proba: np.ndarray, y: pd.Series) -> float:
-    """Honest estimate of the tuned-weights gain: fit weights on 4/5 of the
-    OOF rows, score on the held-out 1/5."""
-    labels = np.array(ALL_LABELS)
-    pred = np.empty(len(y), dtype=object)
-    skf = StratifiedKFold(n_splits=N_FOLDS, shuffle=True, random_state=SEED + 1)
-    for tr, te in skf.split(proba, y):
-        w = tune_class_weights(proba[tr], y.iloc[tr])
-        pred[te] = labels[(proba[te] * w).argmax(1)]
-    return report("  + tuned weights (nested)", y, pred)
+def stream_diagnostics(streams: pd.DataFrame, labels: pd.Series) -> dict[str, float]:
+    """labels: target family indexed by client_id."""
+    rec = recurring_streams(streams, pd.Timestamp(CUTOFF, tz="UTC"))
+    families = rec.groupby("client_id")["category"].apply(set)
+    live = rec[rec["is_live"]]
+    first_due = live.sort_values("days_to_next").groupby("client_id")["category"].first()
+
+    targets = labels[labels != "none"]
+    nones = labels[labels == "none"]
+    return {
+        "c_detect": np.mean([t in families.get(c, set()) for c, t in targets.items()]),
+        "c_nextdue": np.mean([first_due.get(c) == t for c, t in targets.items()]),
+        "c_none_active": np.mean([len(families.get(c, set())) > 0 for c in nones.index]),
+        "c_fams": np.mean([len(families.get(c, set())) for c in labels.index]),
+    }
 
 
-def report(name: str, y: pd.Series, pred: np.ndarray) -> float:
-    score = macro_f1(y, pred)
-    per_class = f1_score(y, pred, average=None, labels=ALL_LABELS, zero_division=0)
-    cls = "  ".join(f"{c[:5]}={s:.2f}" for c, s in zip(ALL_LABELS, per_class))
-    print(f"{name:28s} macro-F1 {score:.4f} | {cls}")
-    return score
+def git_sha() -> str:
+    def git(*args):
+        return subprocess.run(["git", *args], capture_output=True, text=True).stdout.strip()
+
+    dirty = git("status", "--porcelain", "--untracked-files=no", "--", "src")
+    return git("rev-parse", "--short", "HEAD") + ("-dirty" if dirty else "")
 
 
-MODELS = {"hgb": build_hgb, "rank": RankingModel}
+def log_row(note: str, valid: dict, vcv: dict, diag: dict) -> None:
+    header = ["time", "sha", "note", *(f"valid_{k}" for k in valid), *(f"vcv_{k}" for k in vcv), *diag]
+    row = [dt.datetime.now().isoformat(timespec="seconds"), git_sha(), note,
+           *(f"{s:.4f}" for s in valid.values()), *(f"{s:.4f}" for s in vcv.values()),
+           *(f"{v:.3f}" for v in diag.values())]
+    new = not os.path.exists(LOG_PATH)
+    with open(LOG_PATH, "a", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        if new:
+            w.writerow(header)
+        w.writerow(row)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("note", nargs="?", default="")
+    parser.add_argument("--models", default=",".join(MODELS))
+    parser.add_argument("--no-log", action="store_true")
+    args = parser.parse_args()
+
+    data = build_all()
+    X_train, y_train = split_xy(data["train"])
+    X_valid, y_valid = split_xy(data["valid"])
+    X_valid = X_valid[X_train.columns]
+    all_nan = [c for c in X_train.columns if X_train[c].isna().all() or X_valid[c].isna().all()]
+    assert not all_nan, f"all-NaN feature columns: {all_nan}"
+    print(f"{X_train.shape[1]} features; {len(X_train)} train, {len(X_valid)} valid clients")
+
+    valid, vcv, vcv_preds = {}, {}, {}
+    for name in args.models.split(","):
+        build = MODELS[name]
+        valid[name] = macro_f1(y_valid, build().fit(X_train, y_train).predict(X_valid))
+        vcv_preds[name] = vcv_predictions(build, X_train, y_train, X_valid, y_valid)
+        vcv[name] = macro_f1(y_valid, vcv_preds[name])
+        print(f"  {name:7s} valid {valid[name]:.4f}   vcv {vcv[name]:.4f}")
+
+    diag = stream_diagnostics(data["valid_streams"], data["valid"].set_index("client_id")[LABEL_COL])
+    print("step C diagnostics (valid):")
+    for k, v in diag.items():
+        print(f"  {k:14s} {v:.3f}")
+
+    best = max(vcv, key=vcv.get)
+    per_class = f1_score(y_valid, vcv_preds[best], average=None, labels=ALL_LABELS, zero_division=0)
+    print(f"\nper-class F1, {best} (vcv):")
+    for lab, s in zip(ALL_LABELS, per_class):
+        print(f"  {lab:10s} {s:.3f}")
+    print("\nconfusion (rows=true, cols=pred):")
+    print(pd.DataFrame(confusion_matrix(y_valid, vcv_preds[best], labels=ALL_LABELS),
+                       index=ALL_LABELS, columns=[c[:5] for c in ALL_LABELS]))
+
+    if not args.no_log:
+        log_row(args.note, valid, vcv, diag)
+        print(f"\nlogged to {LOG_PATH}")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--no-personas", action="store_true")
-    parser.add_argument("--models", default="hgb,rank")
-    args = parser.parse_args()
-
-    X, y, n_train = load_all()
-    if args.no_personas:
-        X = X.drop(columns=[c for c in X.columns if c.startswith("persona_")])
-    print(f"{X.shape[1]} features, {len(X)} labelled clients")
-
-    labels = np.array(ALL_LABELS)
-    oofs = {}
-    for name in args.models.split(","):
-        oofs[name] = cv_oof_proba(MODELS[name], X, y)
-        report(f"{name} 5-fold CV", y, labels[oofs[name].argmax(1)])
-        nested_weight_score(oofs[name], y)
-        model = MODELS[name]().fit(X.iloc[:n_train], y.iloc[:n_train])
-        report(f"{name} train->valid", y.iloc[n_train:], model.predict(X.iloc[n_train:]))
-
-    if len(oofs) > 1:
-        blend = np.mean(list(oofs.values()), axis=0)
-        report("blend 5-fold CV", y, labels[blend.argmax(1)])
-        nested_weight_score(blend, y)
+    main()
