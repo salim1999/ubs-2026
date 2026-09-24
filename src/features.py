@@ -9,11 +9,12 @@ One row per client, built purely from transactions up to the cutoff date
      count, amount, cadence regularity).
   2. Early-adoption signal: transactions in a category within the last 90
      days that DON'T yet meet the >=2-occurrence bar to count as
-     "recurring". Important because ~47% of non-'none' targets are brand
-     new categories the client didn't have before cutoff (see recurrence.py
-     write-up) - a single recent transaction in a category can be the only
-     visible precursor of a subscription that will recur in the 90-day
-     prediction window.
+     "recurring". Important because ~65% of non-'none' validation targets
+     are in a category with no active detected stream at cutoff. Most of
+     those (~350 of ~460) do have recent transactions in that category, so
+     they are largely existing subscriptions the stream detector misses
+     (see CADENCE_BANDS in recurrence.py), not true new adoptions. Recent
+     category activity is the signal that recovers them.
   3. General financial behavior: tenure, transaction mix, income
      regularity, adoption pace - context features that don't tie to one
      category but describe the client's overall situation (e.g. clients
@@ -27,16 +28,31 @@ import numpy as np
 import pandas as pd
 
 from src.category_map import TARGET_CATEGORIES
-from src.recurrence import detect_streams, load_transactions
+from src.recurrence import CADENCE_CODE, detect_streams, load_transactions
 from src import personas
 
 PERSONA_NAMES = list(personas.PERSONA_RULES)
 RECENT_WINDOW_DAYS = 90
 STALE_GAP_MULTIPLE = 2.0
 
+# Raw persona-module features kept as model inputs: the ones whose permutation
+# importance on valid macro-F1 clearly exceeded noise. The rest (salary,
+# savings, FX, timing, ...) showed zero or negative importance.
+PERSONA_RAW_FEATURES = [
+    "mcc_gym", "mcc_insurance", "mcc_software", "mcc_dining",
+    "mcc_atm", "mcc_telecom", "tx_per_month", "share_refund",
+]
+# The 10 rule-based persona scores (+ top margin) average strong and useless
+# features together and added ~nothing in permutation importance.
+USE_PERSONA_SCORES = False
+
+
 def _persona_features(df, cutoff, scorer=None):
     hist = personas.augment(df[df["timestamp"] <= cutoff])
     X = personas.build_features(hist)
+    out = X[PERSONA_RAW_FEATURES].add_prefix("persona_")
+    if not USE_PERSONA_SCORES:
+        return out, None
     if scorer is None:
         scorer = personas.PersonaScorer().fit(X)
     S = scorer.scores(X)                      # one column per persona, 0..1
@@ -44,7 +60,7 @@ def _persona_features(df, cutoff, scorer=None):
                  for c in S.columns]
     top2 = np.sort(S.values, axis=1)[:, -2:]
     S["persona_top_margin"] = top2[:, 1] - top2[:, 0]
-    return S, scorer
+    return out.join(S), scorer
 
 
 
@@ -100,54 +116,53 @@ def _general_financial_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.Da
     return pd.DataFrame(rows).set_index("client_id")
 
 
+STREAM_FEATURES = [
+    "n_streams", "n_occurrences", "recency_days", "tenure_days", "mean_amount", "gap_cv",
+    "median_gap_days", "days_to_next", "due_rank", "days_to_next_vs_min", "is_soonest",
+    "n_last_30d", "n_last_60d", "n_last_90d", "n_refunds", "refund_ratio",
+    "last_event_is_refund", "amount_trend", "cadence_code", "n_mccs",
+]
+
+
 def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
-    recurring = streams[streams["is_recurring"] & streams["category"].notna()].copy()
+    recurring = streams[streams["is_recurring"] & streams["category"].isin(TARGET_CATEGORIES)].copy()
 
     # A recurring stream only counts as active if it is still charging at the
     # cutoff: silent for more than STALE_GAP_MULTIPLE of its own cadence
     # means it was most likely cancelled. Lapsed streams are kept as a
     # separate flag - "had it, dropped it" is a different state from "never
     # had it".
-    recurring["recency_days"] = (cutoff - recurring["last_date"]).dt.days
-    recurring["days_to_next"] = recurring["mean_gap_days"] - recurring["recency_days"]
-    is_live = recurring["recency_days"] <= STALE_GAP_MULTIPLE * recurring["mean_gap_days"]
+    recurring["recency_days"] = (cutoff - recurring["last_date"]).dt.total_seconds() / 86400
+    recurring["days_to_next"] = recurring["median_gap_days"] - recurring["recency_days"]
+    recurring["cadence_code"] = recurring["cadence"].map(CADENCE_CODE)
+    is_live = recurring["recency_days"] <= STALE_GAP_MULTIPLE * recurring["median_gap_days"] + 5
     active = recurring[is_live]
     lapsed = recurring[~is_live]
 
-    agg = (
-        active.groupby(["client_id", "category"])
-        .agg(
-            n_streams=("category", "size"),
-            n_occurrences=("n_occurrences", "sum"),
-            last_date=("last_date", "max"),
-            first_date=("first_date", "min"),
-            mean_amount=("mean_amount", "mean"),
-            gap_cv=("gap_cv", "mean"),
-            mean_gap_days=("mean_gap_days", "mean"),
-            # Soonest expected next charge across the category's streams;
-            # negative means the charge is already overdue.
-            days_to_next=("days_to_next", "min"),
-        )
-        .reset_index()
-    )
-    agg["recency_days"] = (cutoff - agg["last_date"]).dt.days
+    # One row per (client, category): the stream due soonest represents it.
+    active = active.sort_values("days_to_next")
+    agg = active.groupby(["client_id", "category"]).agg(
+        n_streams=("category", "size"),
+        n_occurrences=("n_occurrences", "sum"),
+        first_date=("first_date", "min"),
+        **{c: (c, "first") for c in [
+            "recency_days", "mean_amount", "gap_cv", "median_gap_days", "days_to_next",
+            "n_last_30d", "n_last_60d", "n_last_90d", "n_refunds", "refund_ratio",
+            "last_event_is_refund", "amount_trend", "cadence_code", "n_mccs",
+        ]},
+    ).reset_index()
     agg["tenure_days"] = (cutoff - agg["first_date"]).dt.days
+
+    # Cross-category context: trees can't easily learn an argmin over seven
+    # separate days_to_next columns, so rank the client's live categories.
+    by_client = agg.groupby("client_id")["days_to_next"]
+    agg["due_rank"] = by_client.rank(method="first")
+    agg["days_to_next_vs_min"] = agg["days_to_next"] - by_client.transform("min")
+    agg["is_soonest"] = (agg["due_rank"] == 1).astype(int)
 
     wide_frames = []
     for cat in TARGET_CATEGORIES:
-        sub = agg[agg["category"] == cat].set_index("client_id")
-        sub = sub[
-            [
-                "n_streams",
-                "n_occurrences",
-                "recency_days",
-                "tenure_days",
-                "mean_amount",
-                "gap_cv",
-                "mean_gap_days",
-                "days_to_next",
-            ]
-        ]
+        sub = agg[agg["category"] == cat].set_index("client_id")[STREAM_FEATURES]
         sub.columns = [f"{c}_{cat}" for c in sub.columns]
         sub[f"active_{cat}"] = 1
         wide_frames.append(sub)
@@ -167,13 +182,18 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
 
     tenure_cols = [f"tenure_days_{c}" for c in TARGET_CATEGORIES]
     wide["days_since_last_new_category"] = wide[tenure_cols].min(axis=1)
+    due_cols = [f"days_to_next_{c}" for c in TARGET_CATEGORIES]
+    wide["min_days_to_next"] = wide[due_cols].min(axis=1)
+    wide["n_overdue_streams"] = (wide[due_cols] < 0).sum(axis=1)
+    wide["n_live_streams"] = active.groupby("client_id").size().reindex(wide.index).fillna(0)
 
     return wide
 
 
 def _early_adoption_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
     recent = df[
-        (df["category"].notna())
+        (df["category"].isin(TARGET_CATEGORIES))
+        & (~df["is_refund"])
         & (df["timestamp"] > cutoff - pd.Timedelta(days=RECENT_WINDOW_DAYS))
     ]
     counts = (
@@ -195,7 +215,7 @@ def build_features(
     df = load_transactions(transactions_path)
     cutoff = pd.Timestamp(cutoff_date, tz="UTC")
 
-    streams = detect_streams(df)
+    streams = detect_streams(df, cutoff)
 
     general = _general_financial_features(df, cutoff)
     cat_features = _category_stream_features(streams, cutoff)
@@ -251,8 +271,9 @@ if __name__ == "__main__":
         feats.to_csv(out_dir / f"{name}_features.csv", index=False)
         print(f"{name}: {feats.shape}")
 
-    with open(out_dir / "persona_scorer.pkl", "wb") as f:
-        pickle.dump(scorer, f)
+    if scorer is not None:
+        with open(out_dir / "persona_scorer.pkl", "wb") as f:
+            pickle.dump(scorer, f)
 
     persona_cols = [c for c in train.columns if c.startswith("persona_")]
     print(f"Persona columns ({len(persona_cols)}): {persona_cols}")

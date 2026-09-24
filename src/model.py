@@ -50,12 +50,17 @@ def majority_predict(y_train: pd.Series, n: int) -> np.ndarray:
 def rule_predict(X: pd.DataFrame) -> np.ndarray:
     """No learning: use the engineered features directly.
 
-    Preference order per client: (a) a category with fresh early-adoption
-    signal (recent transactions, not yet recurring) and no other active
-    subscription competing for attention, ranked by recent transaction
-    count; else (b) the active (still-live) category due for its next
-    payment soonest (smallest days_to_next, i.e. last charge + cadence
-    closest to the cutoff); else (c) 'none'.
+    Preference order per client: (a) among categories with recent
+    transactions but no active recurring stream, the one with the most
+    recent transactions; else (b) the active (still-live) category due for
+    its next payment soonest (smallest days_to_next = cadence minus days
+    since last charge; negative means overdue); else (c) 'none'.
+
+    Branch (b)'s ordering barely matters: on multi-category validation
+    clients, days_to_next, most-recent and least-recent all pick the target
+    ~29-31% of the time. So this baseline is weak and understates what
+    the engineered features alone can do - read the gap to the trained
+    models with that in mind.
     """
     preds = []
     for _, row in X.iterrows():
@@ -98,6 +103,64 @@ def build_logreg() -> Pipeline:
 
 def build_hgb() -> HistGradientBoostingClassifier:
     return HistGradientBoostingClassifier(class_weight="balanced", random_state=0)
+
+
+def _to_long(X: pd.DataFrame) -> pd.DataFrame:
+    """Wide client table -> one row per (client, category) candidate.
+
+    Per-category columns (suffix _<cat>) become shared columns, so one
+    binary model learns "is this the stream that recurs next" across all
+    families, alongside the client-level context columns and the category id.
+    """
+    suffixes = tuple(f"_{c}" for c in TARGET_CATEGORIES)
+    per_cat = [c for c in X.columns if c.endswith(suffixes)]
+    client_cols = [c for c in X.columns if c not in per_cat]
+    frames = []
+    for i, cat in enumerate(TARGET_CATEGORIES):
+        cols = [c for c in per_cat if c.endswith(f"_{cat}")]
+        part = X[cols].copy()
+        part.columns = [c[: -len(cat) - 1] for c in cols]
+        part = pd.concat([part, X[client_cols].add_prefix("client_")], axis=1)
+        part["cat_id"] = i
+        part["row"] = np.arange(len(X))
+        frames.append(part)
+    return pd.concat(frames, ignore_index=True)
+
+
+class RankingModel:
+    """Candidate ranker for the family + multiclass model for 'none'.
+
+    p(cat) = (1 - p_none) * share of the ranker's score for cat;
+    p(none) comes from the multiclass HGB, which sees all client context.
+    """
+
+    def __init__(self, seed: int = 0):
+        self.seed = seed
+
+    def fit(self, X: pd.DataFrame, y: pd.Series) -> "RankingModel":
+        long = _to_long(X)
+        target = (np.array(TARGET_CATEGORIES)[long["cat_id"]] == y.to_numpy()[long["row"]]).astype(int)
+        feats = long.drop(columns=["row"])
+        self.ranker_ = HistGradientBoostingClassifier(
+            learning_rate=0.05, max_iter=400, max_leaf_nodes=15, l2_regularization=1.0,
+            categorical_features=(feats.columns == "cat_id"), random_state=self.seed,
+        ).fit(feats, target)
+        self.none_ = build_hgb().fit(X, y)
+        self.classes_ = np.array(ALL_LABELS)
+        return self
+
+    def predict_proba(self, X: pd.DataFrame) -> np.ndarray:
+        long = _to_long(X)
+        score = self.ranker_.predict_proba(long.drop(columns=["row"]))[:, 1]
+        S = np.zeros((len(X), len(TARGET_CATEGORIES)))
+        S[long["row"].to_numpy(), long["cat_id"].to_numpy()] = score
+        share = S / S.sum(axis=1, keepdims=True).clip(min=1e-9)
+        mc = self.none_.predict_proba(X)
+        p_none = mc[:, list(self.none_.classes_).index("none")]
+        return np.column_stack([(1 - p_none)[:, None] * share, p_none])
+
+    def predict(self, X: pd.DataFrame) -> np.ndarray:
+        return self.classes_[self.predict_proba(X).argmax(1)]
 
 
 def evaluate(name: str, y_true: pd.Series, y_pred: np.ndarray) -> float:

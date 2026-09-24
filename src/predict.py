@@ -7,7 +7,7 @@ sample_submission.csv. Clients missing from test_features.csv (no usable
 history) fall back to 'none', the majority class.
 
 Usage (after `python -m src.features`):
-    python -m src.predict [--model auto|logreg|hgb] [--out submission.csv]
+    python -m src.predict [--model auto|logreg|hgb|rank] [--out submission.csv]
 """
 
 from __future__ import annotations
@@ -18,9 +18,9 @@ import pathlib
 import pandas as pd
 from sklearn.metrics import f1_score
 
-from src.model import ALL_LABELS, build_hgb, build_logreg, load_xy
+from src.model import ALL_LABELS, RankingModel, build_hgb, build_logreg, load_xy
 
-MODELS = {"logreg": build_logreg, "hgb": build_hgb}
+MODELS = {"logreg": build_logreg, "hgb": build_hgb, "rank": RankingModel}
 
 
 def main() -> None:
