@@ -50,36 +50,22 @@ def majority_predict(y_train: pd.Series, n: int) -> np.ndarray:
 def rule_predict(X: pd.DataFrame) -> np.ndarray:
     """No learning: use the engineered features directly.
 
-    Preference order per client: (a) a category with fresh early-adoption
-    signal (recent transactions, not yet recurring) and no other active
-    subscription competing for attention, ranked by most recent activity;
-    else (b) the active category due for its next payment soonest
-    (smallest recency_days, i.e. most recently charged - likely to recur
-    again soon); else (c) 'none'.
+    'none' if no stream is live (all overdue = stopped) or the longest live
+    stream has only 3-4 charges (a trial that ends); else the live family
+    due soonest (largest over_days = closest to its next charge).
     """
     preds = []
     for _, row in X.iterrows():
-        recent_candidates = [
-            (cat, row[f"recent_txns_{cat}"])
+        live = [
+            (cat, row[f"over_days_{cat}"])
             for cat in TARGET_CATEGORIES
-            if row[f"recent_txns_{cat}"] > 0 and row[f"active_{cat}"] == 0
+            if row[f"is_live_{cat}"] == 1
         ]
-        if recent_candidates:
-            recent_candidates.sort(key=lambda t: -t[1])
-            preds.append(recent_candidates[0][0])
+        if not live or row["short_live_stream"] == 1:
+            preds.append("none")
             continue
-
-        active_candidates = [
-            (cat, row[f"recency_days_{cat}"])
-            for cat in TARGET_CATEGORIES
-            if row[f"active_{cat}"] == 1 and not pd.isna(row[f"recency_days_{cat}"])
-        ]
-        if active_candidates:
-            active_candidates.sort(key=lambda t: t[1])
-            preds.append(active_candidates[0][0])
-            continue
-
-        preds.append("none")
+        live.sort(key=lambda t: -t[1])
+        preds.append(live[0][0])
     return np.array(preds)
 
 
