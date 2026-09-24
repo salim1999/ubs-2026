@@ -1,2 +1,4 @@
 time,sha,note,valid_rule,valid_logreg,valid_hgb,valid_rank,valid_ens,vcv_rule,vcv_logreg,vcv_hgb,vcv_rank,vcv_ens,c_detect,c_nextdue,c_none_active,c_fams
 2026-09-24T19:37:40,2e339be-dirty,0 Salim baseline,0.2422,0.4128,0.4960,0.5179,0.5084,0.2422,0.4756,0.5172,0.5500,0.5376,0.775,0.521,0.867,2.005
+2026-09-24T19:59:50,4aa55fa-dirty,baseline before 8-concept gaps,0.2426,0.3923,0.4315,0.4832,0.4607,0.2426,0.4522,0.4932,0.5424,0.5231,0.690,0.472,0.836,1.752
+2026-09-24T20:01:03,4aa55fa-dirty,"2 W1+W2+W3: timmyo pooled detection, tol 0.3/0.03, monthly only (ported from timmyo)",0.2426,0.3923,0.4315,0.4832,0.4607,0.2426,0.4522,0.4932,0.5424,0.5231,0.690,0.472,0.836,1.752

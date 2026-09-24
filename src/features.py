@@ -12,9 +12,9 @@ One row per client, built purely from transactions up to the cutoff date
      "recurring". Important because ~65% of non-'none' validation targets
      are in a category with no active detected stream at cutoff. Most of
      those (~350 of ~460) do have recent transactions in that category, so
-     they are largely existing subscriptions the stream detector misses
-     (see CADENCE_BANDS in recurrence.py), not true new adoptions. Recent
-     category activity is the signal that recovers them.
+     they are largely existing subscriptions the stream detector misses,
+     not true new adoptions. Recent category activity is the signal that
+     recovers them.
   3. General financial behavior: tenure, transaction mix, income
      regularity, adoption pace - context features that don't tie to one
      category but describe the client's overall situation (e.g. clients
@@ -31,7 +31,7 @@ import numpy as np
 import pandas as pd
 
 from src.category_map import TARGET_CATEGORIES
-from src.recurrence import CADENCE_CODE, detect_streams, load_transactions
+from src.recurrence import detect_streams, load_transactions
 from src import personas
 
 PERSONA_NAMES = list(personas.PERSONA_RULES)
@@ -40,6 +40,7 @@ PROCESSED_DIR = "data/processed"
 CUTOFF = "2026-01-01"
 RECENT_WINDOW_DAYS = 90
 STALE_GAP_MULTIPLE = 2.0
+HORIZON_DAYS = 90
 
 # Raw persona-module features kept as model inputs: the ones whose permutation
 # importance on valid macro-F1 clearly exceeded noise. The rest (salary,
@@ -126,7 +127,9 @@ STREAM_FEATURES = [
     "n_streams", "n_occurrences", "recency_days", "tenure_days", "mean_amount", "gap_cv",
     "median_gap_days", "days_to_next", "due_rank", "days_to_next_vs_min", "is_soonest",
     "n_last_30d", "n_last_60d", "n_last_90d", "n_refunds", "refund_ratio",
-    "last_event_is_refund", "amount_trend", "cadence_code", "n_mccs",
+    "last_event_is_refund", "amount_trend", "n_mccs",
+    "amount_cv", "gap_std_days", "recency_over_gap",
+    "next_due_days", "next_due_rank", "next_due_vs_min", "is_next_due", "next_in_horizon",
 ]
 
 
@@ -138,17 +141,26 @@ def recurring_streams(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFra
     means it was most likely cancelled. Lapsed streams are kept as a
     separate flag - "had it, dropped it" is a different state from "never
     had it". Shared with the step-C diagnostics in src.evaluate.
+
+    next_due_days projects the stream forward by whole cadences: an overdue
+    stream (days_to_next < 0) rolls on to its next cycle instead of counting
+    as "due now". As a rule "the family with the smallest next_due_days is
+    the label", it matched 0.55 of multi-family valid clients (train 0.51),
+    against 0.47 (0.46) for raw days_to_next and ~0.42 for a random pick.
     """
     recurring = streams[streams["is_recurring"] & streams["category"].isin(TARGET_CATEGORIES)].copy()
     recurring["recency_days"] = (cutoff - recurring["last_date"]).dt.total_seconds() / 86400
     recurring["days_to_next"] = recurring["median_gap_days"] - recurring["recency_days"]
+    gap = recurring["median_gap_days"].where(recurring["median_gap_days"] > 0)
+    recurring["next_due_days"] = recurring["days_to_next"] % gap
+    recurring["recency_over_gap"] = recurring["recency_days"] / gap
+    recurring["gap_std_days"] = recurring["gap_cv"] * recurring["mean_gap_days"]
     recurring["is_live"] = recurring["recency_days"] <= STALE_GAP_MULTIPLE * recurring["median_gap_days"] + 5
     return recurring
 
 
 def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
     recurring = recurring_streams(streams, cutoff)
-    recurring["cadence_code"] = recurring["cadence"].map(CADENCE_CODE)
     is_live = recurring["is_live"]
     active = recurring[is_live]
     lapsed = recurring[~is_live]
@@ -162,7 +174,8 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
         **{c: (c, "first") for c in [
             "recency_days", "mean_amount", "gap_cv", "median_gap_days", "days_to_next",
             "n_last_30d", "n_last_60d", "n_last_90d", "n_refunds", "refund_ratio",
-            "last_event_is_refund", "amount_trend", "cadence_code", "n_mccs",
+            "last_event_is_refund", "amount_trend", "n_mccs",
+            "amount_cv", "gap_std_days", "recency_over_gap", "next_due_days",
         ]},
     ).reset_index()
     agg["tenure_days"] = (cutoff - agg["first_date"]).dt.days
@@ -173,6 +186,11 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
     agg["due_rank"] = by_client.rank(method="first")
     agg["days_to_next_vs_min"] = agg["days_to_next"] - by_client.transform("min")
     agg["is_soonest"] = (agg["due_rank"] == 1).astype(int)
+    by_client = agg.groupby("client_id")["next_due_days"]
+    agg["next_due_rank"] = by_client.rank(method="first")
+    agg["next_due_vs_min"] = agg["next_due_days"] - by_client.transform("min")
+    agg["is_next_due"] = (agg["next_due_rank"] == 1).astype(int)
+    agg["next_in_horizon"] = (agg["next_due_days"] <= HORIZON_DAYS).astype(int)
 
     wide_frames = []
     for cat in TARGET_CATEGORIES:
@@ -199,6 +217,7 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
     due_cols = [f"days_to_next_{c}" for c in TARGET_CATEGORIES]
     wide["min_days_to_next"] = wide[due_cols].min(axis=1)
     wide["n_overdue_streams"] = (wide[due_cols] < 0).sum(axis=1)
+    wide["min_next_due_days"] = wide[[f"next_due_days_{c}" for c in TARGET_CATEGORIES]].min(axis=1)
     wide["n_live_streams"] = active.groupby("client_id").size().reindex(wide.index).fillna(0)
 
     return wide
