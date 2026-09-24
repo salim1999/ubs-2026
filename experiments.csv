@@ -12,3 +12,7 @@ time,note,logreg,hgb,rule,cv_logreg,cv_hgb,c_detect,c_nextdue,c_none_active,c_fa
 2026-09-24T18:29:45,8 B1: add token 'pass' to music (member pass),0.4601,0.4545,0.4844,0.4706,0.4916,0.690,0.472,0.836,1.754
 2026-09-24T18:35:16,"9 C5: stream vote uses keyword tags first, MCC fallback only if no keyword",0.4552,0.4488,0.4867,0.4717,0.4855,0.693,0.471,0.836,1.760
 2026-09-24T19:06:00,10 F: LogReg fills absent per-family/stream features with 0 (was median),0.4611,0.4545,0.4844,0.4701,0.4916,0.690,0.472,0.836,1.754
+2026-09-24T19:31:01,train/eval run from claude session,0.4599,0.4344,0.4844,0.4695,0.4906,0.690,0.472,0.836,1.754
+2026-09-24T20:11:57,C3: drop category-less outlier when cluster fails is_recurring (C000545 fix),0.4471,0.4684,0.4918,0.4644,0.4883,0.714,0.481,0.867,1.891
+2026-09-24T20:15:31,C3b: extend outlier drop to up to 2 category-less members,0.4492,0.4594,0.4883,0.4664,0.4899,0.719,0.479,0.867,1.903
+2026-09-24T20:17:42,confirm reverted to 1-member outlier drop,0.4471,0.4684,0.4918,0.4644,0.4883,0.714,0.481,0.867,1.891

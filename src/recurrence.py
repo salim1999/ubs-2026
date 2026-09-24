@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter
+from itertools import combinations
 
 import numpy as np
 import pandas as pd
@@ -80,7 +81,7 @@ def _cluster_by_amount(group: pd.DataFrame) -> list[pd.DataFrame]:
     return [group.loc[idx_list] for idx_list in clusters]
 
 
-def _stream_stats(cluster: pd.DataFrame) -> dict:
+def _raw_stream_stats(cluster: pd.DataFrame) -> dict:
     dates = cluster["timestamp"].sort_values()
     amounts = cluster["amount"]
     n = len(cluster)
@@ -120,6 +121,51 @@ def _stream_stats(cluster: pd.DataFrame) -> dict:
         "n_keyword_hits": len(categories),
         "descriptions": sorted(set(cluster["description"])),
     }
+
+
+MAX_OUTLIERS_DROPPED = 1
+
+
+def _stream_stats(cluster: pd.DataFrame) -> dict:
+    """As _raw_stream_stats, but if the cluster fails is_recurring, try
+    dropping up to MAX_OUTLIERS_DROPPED category-less members (fewest
+    first) and keep the smallest removal that makes it pass.
+
+    Motivation: a client's genuine recurring subscription can get merged,
+    purely by amount coincidence within the tight 3% clustering tolerance,
+    with an unrelated one-off transaction that has no keyword/category
+    evidence at all - e.g. found on validation client C000545, where a
+    single untagged ~$75 August charge joining two insurance payments
+    pulled mean_gap from 29 to 69 days and gap_cv from 0 to 0.58, failing
+    is_recurring even though the insurance pair alone would have passed
+    cleanly. Only category-less members are ever considered for removal,
+    so this can't discard a transaction that is itself keyword-evidence
+    for a *different* real category.
+
+    MAX_OUTLIERS_DROPPED=1 (dropping a single outlier) measured a real
+    win: rule 0.4844 -> 0.4918, hgb 0.4344 -> 0.4684, c_detect 0.690 ->
+    0.714. Tried extending to 2: worse on both stronger models (rule ->
+    0.4883, hgb -> 0.4594) despite c_detect/c_fams both still rising -
+    allowing 2 removals loosens the bar enough to manufacture some false
+    passes out of noise, not just recover genuine false-negatives. Keep 1.
+    """
+    stats = _raw_stream_stats(cluster)
+    if stats["is_recurring"]:
+        return stats
+
+    dropless_candidates = list(cluster[cluster["category"].isna()].index)
+    if not dropless_candidates:
+        return stats
+
+    max_drop = min(MAX_OUTLIERS_DROPPED, len(dropless_candidates), len(cluster) - 2)
+    for n_drop in range(1, max_drop + 1):
+        for combo in combinations(dropless_candidates, n_drop):
+            trimmed = cluster.drop(index=list(combo))
+            trimmed_stats = _raw_stream_stats(trimmed)
+            if trimmed_stats["is_recurring"]:
+                return trimmed_stats
+
+    return stats
 
 
 def detect_streams(df: pd.DataFrame) -> pd.DataFrame:

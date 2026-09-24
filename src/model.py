@@ -47,12 +47,34 @@ def majority_predict(y_train: pd.Series, n: int) -> np.ndarray:
     return np.full(n, majority)
 
 
-def rule_predict(X: pd.DataFrame) -> np.ndarray:
+def rule_predict(
+    X: pd.DataFrame,
+    min_over_days: float | None = None,
+    tie_margin: float | None = None,
+) -> np.ndarray:
     """No learning: use the engineered features directly.
 
     'none' if no stream is live (all overdue = stopped) or the longest live
     stream has only 3-4 charges (a trial that ends); else the live family
     due soonest (largest over_days = closest to its next charge).
+
+    min_over_days: extra confidence gate on top of is_live - tested and
+    REJECTED (macro-F1 0.4844 -> monotonically worse at every threshold
+    tried, down to 0.1163 at min_over_days=0). is_live only requires
+    over_days <= 5 with no lower bound, so a distant-due stream can win by
+    default when it's the only live one - a blanket gate does catch those
+    false positives, but converts more correct non-'none' predictions into
+    wrong 'none' guesses than it fixes, since macro-F1 weighs all 8 classes
+    equally. Left in as an opt-in parameter (default None = off) rather
+    than removed, so the rejected experiment stays runnable/documented.
+
+    tie_margin: when >1 live candidate's over_days are within this many
+    days of the top one, break the tie by stream reliability
+    (n_occurrences desc, then gap_cv asc) instead of picking whichever is
+    marginally closer to due. Targets close calls like C000006/C000042
+    (validation examples where the wrong candidate won by a few days'
+    margin) without the blanket-gate's false-positive-to-false-negative
+    tradeoff. None = off (original argmax-only behavior).
     """
     preds = []
     for _, row in X.iterrows():
@@ -65,7 +87,28 @@ def rule_predict(X: pd.DataFrame) -> np.ndarray:
             preds.append("none")
             continue
         live.sort(key=lambda t: -t[1])
-        preds.append(live[0][0])
+
+        if tie_margin is not None and len(live) > 1:
+            top_over = live[0][1]
+            contenders = [c for c in live if top_over - c[1] <= tie_margin]
+            if len(contenders) > 1:
+                def reliability(item):
+                    cat = item[0]
+                    n_occ = row.get(f"n_occurrences_{cat}", 0)
+                    gap_cv = row.get(f"gap_cv_{cat}", 1.0)
+                    gap_cv = 1.0 if pd.isna(gap_cv) else gap_cv
+                    return (n_occ, -gap_cv)
+
+                winner_cat, winner_over = max(contenders, key=reliability)
+            else:
+                winner_cat, winner_over = live[0]
+        else:
+            winner_cat, winner_over = live[0]
+
+        if min_over_days is not None and winner_over < min_over_days:
+            preds.append("none")
+            continue
+        preds.append(winner_cat)
     return np.array(preds)
 
 
