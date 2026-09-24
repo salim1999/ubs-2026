@@ -43,14 +43,16 @@ TOKEN_CATEGORY = {
     "insurance": {"insurance", "cover", "policy"},
 }
 
-# Literal descriptions confirmed (by manual audit) to be real, non-subscription
-# merchants that happen to share an overloaded MCC. These carry no category
-# keyword and must not be pooled with genuine subscription-like charges when
-# clustering by amount/cadence.
-NON_SUBSCRIPTION_LITERALS = {
-    "5812": {"coffee shop", "casual dining", "fresh foods", "grocery store", "neighborhood market"},
-    "5732": {"electronics shop", "online marketplace"},
-}
+# Real, non-subscription merchants. Like subscriptions, they rotate prefixes/
+# suffixes ("billing grocery store plus", "coffee shop core") and hop MCCs, so
+# they are matched as substrings, on any MCC. They must not be pooled with
+# genuine subscription-like charges when clustering by amount/cadence.
+NON_SUBSCRIPTION_PHRASES = [
+    "atm withdrawal", "p2p send", "service fee", "casual dining", "coffee shop",
+    "electronics shop", "pharmacy", "neighborhood market", "ride share",
+    "hotel booking", "fresh foods", "online marketplace", "grocery store",
+]
+NON_SUBSCRIPTION_TYPES = {"atm", "fee", "p2p_transfer"}
 
 TARGET_CATEGORIES = ["cloud", "gym", "insurance", "mobile", "music", "software", "streaming"]
 

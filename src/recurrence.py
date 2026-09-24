@@ -1,7 +1,7 @@
 """Detects recurring merchant streams per client from raw transactions.
 
-A "stream" is a cluster of a client's transactions at the same mcc and a
-similar amount, found via 1D amount clustering rather than exact
+A "stream" is a cluster of a client's transactions at a similar amount
+(pooled across mccs), found via 1D amount clustering rather than exact
 description matching. This is necessary because some recurring
 subscriptions rotate their description text month to month (e.g.
 "digital plus" -> "premium plan" -> "media streaming" for what is really
@@ -25,17 +25,7 @@ from collections import Counter
 import numpy as np
 import pandas as pd
 
-from src.category_map import NON_SUBSCRIPTION_LITERALS, classify
-
-# Only these two mccs are known to (a) be overloaded with unrelated real
-# merchants and (b) have subscriptions that rotate their description text
-# cycle to cycle. Amount-clustering is the fix for that specific problem.
-# Applying it to every mcc instead over-fragments mccs that don't have this
-# issue (pharmacy, hotel, ATM, ride-share, ...): many small 2-txn amount
-# clusters land inside the 20-45 day / low-variance recurring window by
-# pure chance, producing false positives. Those mccs keep the simpler
-# whole-group test.
-AMOUNT_CLUSTERED_MCCS = {"5812", "5732"}
+from src.category_map import NON_SUBSCRIPTION_PHRASES, NON_SUBSCRIPTION_TYPES, classify
 
 MIN_GAP_DAYS = 20
 MAX_GAP_DAYS = 45
@@ -44,9 +34,12 @@ MAX_AMOUNT_CV = 0.35
 
 # Amount-clustering tolerance: start a new cluster when the next amount
 # (sorted ascending) jumps by more than this relative/absolute margin from
-# the running cluster mean.
-AMOUNT_REL_TOL = 0.25
-AMOUNT_ABS_TOL = 3.0
+# the running cluster mean. Subscription charges vary by ~1-2%, and all of a
+# client's MCCs are pooled, so the margin has to be tight or neighbouring
+# streams (e.g. cloud ~9 and music ~11) merge. On train, 0.5/0.05 .. 0.2/0.02
+# give the same detection; 0.1/0.01 starts splitting real streams.
+AMOUNT_REL_TOL = 0.03
+AMOUNT_ABS_TOL = 0.3
 
 
 def load_transactions(path: str) -> pd.DataFrame:
@@ -62,12 +55,8 @@ def load_transactions(path: str) -> pd.DataFrame:
     return df
 
 
-def _is_excluded_literal(mcc: str, description: str) -> bool:
-    return description in NON_SUBSCRIPTION_LITERALS.get(mcc, set())
-
-
 def _cluster_by_amount(group: pd.DataFrame) -> list[pd.DataFrame]:
-    """Greedy 1D clustering of a (client_id, mcc) group's rows by amount."""
+    """Greedy 1D clustering of one client's candidate rows by amount."""
     ordered = group.sort_values("amount")
     clusters: list[list[int]] = []
     current_idx: list[int] = []
@@ -136,9 +125,13 @@ def _stream_stats(cluster: pd.DataFrame) -> dict:
 def detect_streams(df: pd.DataFrame) -> pd.DataFrame:
     """One row per recurring-candidate amount cluster.
 
-    Clusters within known non-subscription literal descriptions (real
-    dining / electronics / marketplace spend on the overloaded mccs) are
-    excluded upfront so they can't dilute or merge with genuine
+    Candidates are pooled per client across ALL mccs: the same subscription
+    hops between mccs from month to month (e.g. a ~21.5 streaming charge
+    alternating 5812 / 5411), so grouping by client x mcc split one stream
+    into fragments that failed n>=2 or the 45-day gap rule.
+
+    Known non-subscription merchants (dining, groceries, pharmacy, ATM,
+    p2p, ...) are excluded upfront so they can't merge with genuine
     subscription-amount clusters.
 
     Only outgoing money is considered: refunds share the mcc and amount of
@@ -147,17 +140,14 @@ def detect_streams(df: pd.DataFrame) -> pd.DataFrame:
     """
     out = df[df["direction"] == "out"]
     pool = out[
-        ~out.apply(lambda r: _is_excluded_literal(r["mcc"], r["description"]), axis=1)
+        ~out["type"].isin(NON_SUBSCRIPTION_TYPES)
+        & ~out["description"].str.contains("|".join(NON_SUBSCRIPTION_PHRASES))
     ]
 
     rows = []
-    for (client_id, mcc), group in pool.groupby(["client_id", "mcc"]):
-        clusters = (
-            _cluster_by_amount(group) if mcc in AMOUNT_CLUSTERED_MCCS else [group]
-        )
-        for cluster in clusters:
-            stats = _stream_stats(cluster)
-            rows.append({"client_id": client_id, "mcc": mcc, **stats})
+    for client_id, group in pool.groupby("client_id"):
+        for cluster in _cluster_by_amount(group):
+            rows.append({"client_id": client_id, **_stream_stats(cluster)})
 
     return pd.DataFrame(rows)
 
