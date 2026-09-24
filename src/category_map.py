@@ -34,7 +34,7 @@ TOKEN_CATEGORY = {
     # music checked before streaming: "audio streaming" contains both
     # "audio" and "streaming" tokens, and is a music subscription - music
     # must win that overlap, so it's ordered first.
-    "music": {"audio"},
+    "music": {"audio", "pass"},  # "member pass" = untagged music description
     "streaming": {"stream", "streaming", "video"},
     "software": {"saas", "software", "productivity"},
     "mobile": {"phone"},
