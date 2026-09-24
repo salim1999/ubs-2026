@@ -1,0 +1,26 @@
+{
+  "pseudo_source": "train",
+  "n_pseudo_samples": 16871,
+  "n_pseudo_streams": 3165,
+  "selected_variant": "calendar",
+  "selected_alpha": 100.0,
+  "pseudo_cv_mae_days": 3.772625571664175,
+  "historical_mean_mae_days": 4.280091353501311,
+  "blend_weight": 0.5,
+  "live_max_over_days": 3.0,
+  "train_macro_f1": 0.491500144567051,
+  "valid_baseline_macro_f1": 0.4844204458488582,
+  "valid_learned_macro_f1": 0.47969645822692497,
+  "valid_delta": -0.004723987621933212,
+  "valid_per_class_f1": {
+    "cloud": 0.5520833333333334,
+    "gym": 0.5311203319502076,
+    "insurance": 0.4585365853658537,
+    "mobile": 0.5314009661835748,
+    "music": 0.40223463687150846,
+    "software": 0.4035087719298246,
+    "streaming": 0.4210526315789474,
+    "none": 0.5376344086021505
+  },
+  "n_valid_recurring_streams": 1991
+}

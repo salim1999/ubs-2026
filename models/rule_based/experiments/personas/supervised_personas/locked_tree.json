@@ -1,0 +1,22 @@
+{
+  "node_id": 0,
+  "n_train_clients": 2000,
+  "default_action": "median_g5",
+  "feature": "avg_out_amount",
+  "feature_label": "Average outgoing payment",
+  "threshold": 140.6081606349206,
+  "left": {
+    "node_id": 1,
+    "n_train_clients": 1700,
+    "default_action": "median_g7",
+    "persona": "Everyday spenders",
+    "rule": "Median cadence, 7-day grace"
+  },
+  "right": {
+    "node_id": 2,
+    "n_train_clients": 300,
+    "default_action": "median_g3",
+    "persona": "High-ticket spenders",
+    "rule": "Median cadence, 3-day grace"
+  }
+}

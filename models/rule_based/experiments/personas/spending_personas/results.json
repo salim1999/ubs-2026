@@ -1,0 +1,38 @@
+{
+  "method": "four train-fitted RFM-plus spender personas with guarded local rules",
+  "n_personas": 4,
+  "persona_features": [
+    "activity",
+    "outflow",
+    "inflow",
+    "card_use",
+    "cash_p2p",
+    "breadth",
+    "subscriptions"
+  ],
+  "global_config": "median_gap|grace=5|short_gate=true",
+  "selection_guardrails": {
+    "minimum_persona_size": 200,
+    "shrinkage_strength": 300,
+    "minimum_shrunk_cv_delta": 0.003,
+    "minimum_folds_won": 3
+  },
+  "selected_persona_configs": {
+    "High-velocity spenders": "median_gap|grace=5|short_gate=true",
+    "Low-key everyday users": "mean_gap|grace=3|short_gate=false",
+    "Subscription regulars": "median_gap|grace=5|short_gate=true",
+    "Transfer & cash movers": "median_gap|grace=5|short_gate=true"
+  },
+  "train_macro_f1": {
+    "global_median": 0.5032857184959572,
+    "persona_rules_apparent": 0.5041181982134724
+  },
+  "validation_macro_f1": {
+    "original_mean_baseline_reference": 0.4844204458488582,
+    "global_median_rule": 0.49685288345096884,
+    "persona_rules": 0.49363170648035687
+  },
+  "validation_delta_vs_original": 0.009211260631498686,
+  "validation_delta_vs_global_median": -0.003221176970611972,
+  "silhouette_k4": 0.1784474016279392
+}

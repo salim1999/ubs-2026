@@ -1,0 +1,1001 @@
+client_id,persona,true_label,persona_prediction,global_median_prediction
+C000000,Multi-subscription active,none,streaming,streaming
+C000002,Short or lapsed explorer,software,none,none
+C000003,Short or lapsed explorer,none,none,none
+C000006,Multi-subscription active,insurance,cloud,cloud
+C000013,Mature regular,none,none,none
+C000032,Mature regular,insurance,gym,gym
+C000036,Short or lapsed explorer,none,none,none
+C000042,Multi-subscription active,cloud,cloud,cloud
+C000046,Mature regular,none,none,none
+C000048,Mature regular,streaming,insurance,insurance
+C000049,Mature regular,mobile,mobile,mobile
+C000057,Multi-subscription active,none,insurance,insurance
+C000058,Quiet / no detected cycle,none,none,none
+C000059,Short or lapsed explorer,cloud,cloud,cloud
+C000061,Short or lapsed explorer,cloud,cloud,cloud
+C000065,Mature regular,gym,software,software
+C000068,Mature regular,streaming,insurance,insurance
+C000070,Mature regular,streaming,streaming,streaming
+C000071,Mature regular,cloud,cloud,cloud
+C000075,Short or lapsed explorer,none,none,none
+C000081,Multi-subscription active,cloud,cloud,cloud
+C000086,Short or lapsed explorer,none,software,software
+C000087,Multi-subscription active,mobile,gym,gym
+C000089,Multi-subscription active,gym,gym,gym
+C000090,Mature regular,music,software,software
+C000092,Short or lapsed explorer,none,none,none
+C000096,Mature regular,music,gym,mobile
+C000107,Mature regular,streaming,software,software
+C000108,Multi-subscription active,streaming,software,software
+C000112,Mature regular,streaming,streaming,streaming
+C000123,Multi-subscription active,software,mobile,mobile
+C000125,Short or lapsed explorer,none,none,none
+C000126,Quiet / no detected cycle,software,none,none
+C000131,Multi-subscription active,cloud,cloud,cloud
+C000138,Quiet / no detected cycle,none,none,none
+C000143,Short or lapsed explorer,mobile,mobile,mobile
+C000145,Short or lapsed explorer,streaming,software,software
+C000147,Short or lapsed explorer,none,music,music
+C000151,Short or lapsed explorer,streaming,streaming,streaming
+C000154,Short or lapsed explorer,none,streaming,streaming
+C000156,Short or lapsed explorer,cloud,none,none
+C000170,Short or lapsed explorer,music,none,none
+C000176,Multi-subscription active,none,software,software
+C000180,Multi-subscription active,gym,software,software
+C000184,Short or lapsed explorer,none,none,none
+C000186,Mature regular,streaming,streaming,streaming
+C000193,Mature regular,none,none,none
+C000199,Multi-subscription active,mobile,music,music
+C000200,Mature regular,cloud,cloud,cloud
+C000204,Short or lapsed explorer,streaming,streaming,streaming
+C000209,Mature regular,gym,gym,gym
+C000215,Multi-subscription active,mobile,insurance,insurance
+C000216,Mature regular,streaming,software,software
+C000220,Short or lapsed explorer,none,none,none
+C000224,Mature regular,streaming,streaming,streaming
+C000227,Multi-subscription active,mobile,mobile,mobile
+C000229,Short or lapsed explorer,cloud,software,software
+C000232,Mature regular,software,software,software
+C000241,Mature regular,gym,gym,gym
+C000253,Short or lapsed explorer,gym,cloud,cloud
+C000256,Short or lapsed explorer,gym,gym,gym
+C000258,Mature regular,gym,gym,gym
+C000260,Mature regular,gym,gym,gym
+C000266,Short or lapsed explorer,none,none,none
+C000269,Multi-subscription active,cloud,cloud,cloud
+C000280,Mature regular,software,insurance,insurance
+C000289,Multi-subscription active,insurance,software,software
+C000294,Mature regular,insurance,mobile,mobile
+C000298,Short or lapsed explorer,software,none,none
+C000299,Multi-subscription active,streaming,streaming,streaming
+C000301,Multi-subscription active,none,mobile,mobile
+C000303,Multi-subscription active,none,none,none
+C000305,Mature regular,insurance,software,software
+C000312,Quiet / no detected cycle,streaming,none,none
+C000316,Mature regular,mobile,mobile,mobile
+C000318,Mature regular,music,music,music
+C000320,Short or lapsed explorer,mobile,mobile,mobile
+C000325,Multi-subscription active,software,music,music
+C000328,Short or lapsed explorer,mobile,mobile,mobile
+C000329,Mature regular,insurance,cloud,cloud
+C000331,Multi-subscription active,gym,gym,gym
+C000333,Short or lapsed explorer,music,streaming,streaming
+C000335,Short or lapsed explorer,none,streaming,none
+C000337,Mature regular,music,cloud,cloud
+C000340,Mature regular,none,music,music
+C000341,Short or lapsed explorer,software,gym,gym
+C000346,Short or lapsed explorer,software,software,software
+C000357,Short or lapsed explorer,none,streaming,streaming
+C000359,Quiet / no detected cycle,none,none,none
+C000362,Mature regular,none,software,software
+C000365,Quiet / no detected cycle,streaming,none,none
+C000366,Mature regular,mobile,software,software
+C000367,Multi-subscription active,streaming,none,none
+C000368,Mature regular,mobile,mobile,mobile
+C000370,Multi-subscription active,cloud,cloud,cloud
+C000371,Mature regular,insurance,insurance,insurance
+C000374,Short or lapsed explorer,music,music,music
+C000377,Quiet / no detected cycle,cloud,none,none
+C000380,Multi-subscription active,none,streaming,streaming
+C000383,Mature regular,gym,software,software
+C000384,Mature regular,insurance,mobile,mobile
+C000386,Mature regular,mobile,streaming,streaming
+C000393,Mature regular,cloud,cloud,cloud
+C000395,Short or lapsed explorer,gym,software,software
+C000396,Multi-subscription active,none,insurance,insurance
+C000397,Quiet / no detected cycle,cloud,none,none
+C000398,Short or lapsed explorer,none,none,none
+C000402,Mature regular,software,software,software
+C000405,Mature regular,streaming,streaming,streaming
+C000409,Mature regular,streaming,software,software
+C000411,Mature regular,music,cloud,cloud
+C000412,Short or lapsed explorer,cloud,cloud,cloud
+C000416,Mature regular,none,gym,gym
+C000419,Multi-subscription active,music,cloud,cloud
+C000423,Quiet / no detected cycle,mobile,none,none
+C000432,Multi-subscription active,music,software,software
+C000439,Short or lapsed explorer,none,none,none
+C000440,Quiet / no detected cycle,gym,none,none
+C000450,Multi-subscription active,gym,software,software
+C000451,Quiet / no detected cycle,none,none,none
+C000463,Multi-subscription active,none,streaming,streaming
+C000466,Short or lapsed explorer,mobile,streaming,streaming
+C000474,Mature regular,software,software,insurance
+C000476,Mature regular,none,software,software
+C000479,Mature regular,cloud,cloud,cloud
+C000483,Quiet / no detected cycle,insurance,none,none
+C000485,Quiet / no detected cycle,software,none,none
+C000486,Quiet / no detected cycle,none,none,none
+C000487,Mature regular,software,cloud,cloud
+C000491,Mature regular,music,software,software
+C000499,Mature regular,mobile,cloud,cloud
+C000505,Mature regular,mobile,insurance,insurance
+C000510,Mature regular,software,software,software
+C000514,Short or lapsed explorer,none,none,none
+C000515,Mature regular,gym,gym,gym
+C000517,Mature regular,mobile,mobile,mobile
+C000520,Short or lapsed explorer,mobile,mobile,mobile
+C000530,Multi-subscription active,insurance,insurance,insurance
+C000533,Short or lapsed explorer,software,software,software
+C000535,Multi-subscription active,insurance,insurance,insurance
+C000541,Mature regular,cloud,software,software
+C000542,Mature regular,insurance,insurance,insurance
+C000545,Mature regular,insurance,music,music
+C000547,Mature regular,cloud,insurance,insurance
+C000553,Multi-subscription active,none,gym,gym
+C000554,Multi-subscription active,gym,streaming,streaming
+C000562,Short or lapsed explorer,software,none,none
+C000565,Mature regular,gym,gym,gym
+C000566,Quiet / no detected cycle,insurance,none,none
+C000568,Multi-subscription active,gym,gym,gym
+C000569,Multi-subscription active,mobile,music,music
+C000571,Quiet / no detected cycle,none,none,none
+C000572,Multi-subscription active,software,mobile,mobile
+C000573,Mature regular,gym,software,software
+C000577,Short or lapsed explorer,none,software,none
+C000582,Quiet / no detected cycle,none,none,none
+C000583,Multi-subscription active,streaming,gym,gym
+C000593,Mature regular,streaming,software,software
+C000594,Multi-subscription active,none,cloud,cloud
+C000595,Mature regular,mobile,mobile,mobile
+C000601,Short or lapsed explorer,cloud,cloud,cloud
+C000604,Short or lapsed explorer,none,none,none
+C000616,Short or lapsed explorer,software,software,software
+C000619,Quiet / no detected cycle,software,none,none
+C000628,Multi-subscription active,streaming,music,music
+C000631,Short or lapsed explorer,insurance,insurance,insurance
+C000635,Multi-subscription active,none,mobile,mobile
+C000637,Multi-subscription active,insurance,insurance,insurance
+C000643,Short or lapsed explorer,cloud,cloud,cloud
+C000650,Multi-subscription active,none,music,music
+C000653,Mature regular,cloud,mobile,mobile
+C000654,Mature regular,music,music,music
+C000655,Short or lapsed explorer,none,mobile,mobile
+C000664,Short or lapsed explorer,gym,gym,gym
+C000673,Quiet / no detected cycle,cloud,none,none
+C000674,Mature regular,gym,gym,gym
+C000687,Mature regular,music,music,music
+C000688,Short or lapsed explorer,none,none,none
+C000691,Mature regular,none,mobile,mobile
+C000704,Short or lapsed explorer,none,music,music
+C000706,Multi-subscription active,gym,software,software
+C000708,Mature regular,mobile,mobile,mobile
+C000710,Quiet / no detected cycle,none,none,none
+C000711,Multi-subscription active,mobile,insurance,insurance
+C000715,Mature regular,gym,gym,gym
+C000716,Short or lapsed explorer,gym,gym,none
+C000718,Short or lapsed explorer,streaming,software,software
+C000719,Multi-subscription active,cloud,software,software
+C000720,Mature regular,cloud,insurance,insurance
+C000724,Mature regular,mobile,mobile,mobile
+C000729,Quiet / no detected cycle,none,none,none
+C000739,Mature regular,gym,none,none
+C000741,Mature regular,software,software,software
+C000745,Mature regular,none,gym,gym
+C000748,Quiet / no detected cycle,music,none,none
+C000752,Quiet / no detected cycle,none,none,none
+C000754,Mature regular,streaming,streaming,streaming
+C000757,Short or lapsed explorer,none,none,none
+C000759,Mature regular,cloud,cloud,cloud
+C000765,Short or lapsed explorer,none,none,none
+C000770,Mature regular,none,insurance,insurance
+C000773,Multi-subscription active,insurance,insurance,insurance
+C000774,Mature regular,none,insurance,insurance
+C000779,Mature regular,software,software,software
+C000780,Mature regular,mobile,mobile,mobile
+C000785,Short or lapsed explorer,none,none,none
+C000786,Mature regular,insurance,insurance,insurance
+C000788,Mature regular,streaming,streaming,streaming
+C000790,Quiet / no detected cycle,none,none,none
+C000791,Mature regular,gym,gym,gym
+C000795,Mature regular,software,music,music
+C000797,Multi-subscription active,insurance,insurance,insurance
+C000798,Multi-subscription active,streaming,streaming,streaming
+C000802,Short or lapsed explorer,gym,mobile,mobile
+C000803,Short or lapsed explorer,insurance,none,none
+C000804,Mature regular,cloud,cloud,cloud
+C000806,Multi-subscription active,software,software,software
+C000810,Quiet / no detected cycle,streaming,none,none
+C000811,Quiet / no detected cycle,none,none,none
+C000812,Mature regular,software,streaming,streaming
+C000818,Mature regular,music,music,music
+C000825,Mature regular,gym,insurance,insurance
+C000828,Short or lapsed explorer,mobile,mobile,mobile
+C000838,Multi-subscription active,mobile,software,software
+C000845,Mature regular,insurance,gym,gym
+C000849,Multi-subscription active,music,music,music
+C000853,Short or lapsed explorer,insurance,insurance,insurance
+C000855,Short or lapsed explorer,software,none,none
+C000860,Quiet / no detected cycle,none,none,none
+C000864,Short or lapsed explorer,cloud,software,software
+C000866,Multi-subscription active,gym,gym,gym
+C000869,Quiet / no detected cycle,none,none,none
+C000875,Mature regular,gym,gym,gym
+C000879,Mature regular,software,software,software
+C000881,Mature regular,streaming,streaming,streaming
+C000896,Mature regular,none,none,none
+C000897,Multi-subscription active,software,software,software
+C000898,Multi-subscription active,gym,gym,gym
+C000899,Multi-subscription active,cloud,gym,gym
+C000902,Mature regular,cloud,cloud,cloud
+C000908,Multi-subscription active,none,software,software
+C000909,Mature regular,gym,gym,gym
+C000913,Quiet / no detected cycle,none,none,none
+C000929,Quiet / no detected cycle,software,none,none
+C000937,Short or lapsed explorer,none,none,none
+C000941,Quiet / no detected cycle,gym,none,none
+C000943,Short or lapsed explorer,software,none,none
+C000944,Multi-subscription active,gym,software,software
+C000946,Multi-subscription active,cloud,cloud,cloud
+C000947,Mature regular,insurance,insurance,insurance
+C000952,Mature regular,mobile,mobile,mobile
+C000960,Quiet / no detected cycle,gym,none,none
+C000963,Short or lapsed explorer,cloud,cloud,cloud
+C000969,Mature regular,music,insurance,insurance
+C000973,Multi-subscription active,insurance,none,none
+C000979,Short or lapsed explorer,none,music,music
+C000986,Multi-subscription active,streaming,cloud,cloud
+C000987,Multi-subscription active,none,cloud,cloud
+C000995,Multi-subscription active,none,insurance,insurance
+C001005,Mature regular,none,software,insurance
+C001010,Multi-subscription active,music,streaming,streaming
+C001012,Short or lapsed explorer,software,software,software
+C001017,Short or lapsed explorer,none,none,none
+C001019,Multi-subscription active,software,insurance,insurance
+C001023,Mature regular,insurance,insurance,insurance
+C001025,Mature regular,gym,gym,gym
+C001026,Quiet / no detected cycle,none,none,none
+C001031,Short or lapsed explorer,none,gym,none
+C001032,Mature regular,streaming,streaming,insurance
+C001034,Multi-subscription active,insurance,gym,gym
+C001036,Short or lapsed explorer,music,music,music
+C001039,Short or lapsed explorer,insurance,insurance,insurance
+C001041,Multi-subscription active,software,software,software
+C001045,Mature regular,none,none,none
+C001048,Mature regular,none,mobile,mobile
+C001049,Quiet / no detected cycle,mobile,none,none
+C001054,Short or lapsed explorer,mobile,mobile,mobile
+C001059,Short or lapsed explorer,none,insurance,none
+C001065,Mature regular,none,insurance,insurance
+C001070,Mature regular,cloud,cloud,cloud
+C001073,Multi-subscription active,none,music,music
+C001078,Quiet / no detected cycle,none,none,none
+C001082,Mature regular,music,music,music
+C001083,Multi-subscription active,software,cloud,cloud
+C001085,Short or lapsed explorer,gym,gym,gym
+C001091,Multi-subscription active,none,software,software
+C001099,Short or lapsed explorer,none,none,none
+C001104,Multi-subscription active,music,software,software
+C001107,Short or lapsed explorer,cloud,cloud,cloud
+C001111,Short or lapsed explorer,software,software,software
+C001118,Short or lapsed explorer,gym,gym,gym
+C001125,Mature regular,cloud,insurance,insurance
+C001128,Short or lapsed explorer,none,software,software
+C001133,Mature regular,cloud,streaming,streaming
+C001137,Multi-subscription active,music,mobile,mobile
+C001145,Mature regular,music,music,music
+C001146,Mature regular,insurance,software,insurance
+C001158,Mature regular,none,streaming,streaming
+C001159,Short or lapsed explorer,mobile,mobile,mobile
+C001161,Short or lapsed explorer,gym,gym,none
+C001163,Short or lapsed explorer,none,none,none
+C001167,Short or lapsed explorer,mobile,insurance,insurance
+C001177,Multi-subscription active,streaming,streaming,streaming
+C001180,Mature regular,mobile,music,music
+C001186,Mature regular,gym,gym,gym
+C001187,Multi-subscription active,software,software,software
+C001190,Quiet / no detected cycle,insurance,none,none
+C001193,Short or lapsed explorer,software,gym,gym
+C001195,Mature regular,none,none,none
+C001197,Multi-subscription active,none,software,software
+C001201,Quiet / no detected cycle,mobile,none,none
+C001205,Multi-subscription active,streaming,gym,gym
+C001206,Mature regular,mobile,mobile,mobile
+C001215,Multi-subscription active,insurance,insurance,insurance
+C001217,Multi-subscription active,cloud,cloud,cloud
+C001218,Mature regular,streaming,music,music
+C001219,Quiet / no detected cycle,none,none,none
+C001246,Mature regular,none,mobile,mobile
+C001247,Quiet / no detected cycle,streaming,none,none
+C001251,Multi-subscription active,none,software,software
+C001257,Mature regular,none,software,software
+C001259,Short or lapsed explorer,cloud,cloud,cloud
+C001262,Quiet / no detected cycle,mobile,none,none
+C001263,Multi-subscription active,insurance,insurance,insurance
+C001270,Multi-subscription active,mobile,music,music
+C001274,Multi-subscription active,none,software,software
+C001281,Short or lapsed explorer,insurance,none,none
+C001282,Short or lapsed explorer,cloud,cloud,cloud
+C001285,Short or lapsed explorer,none,gym,none
+C001286,Mature regular,music,streaming,streaming
+C001287,Mature regular,insurance,music,music
+C001296,Short or lapsed explorer,mobile,none,none
+C001297,Mature regular,gym,gym,gym
+C001300,Mature regular,none,streaming,streaming
+C001304,Quiet / no detected cycle,none,none,none
+C001309,Mature regular,gym,music,music
+C001311,Multi-subscription active,none,insurance,insurance
+C001319,Multi-subscription active,music,software,software
+C001327,Short or lapsed explorer,cloud,cloud,cloud
+C001330,Mature regular,insurance,insurance,insurance
+C001332,Quiet / no detected cycle,none,none,none
+C001333,Mature regular,gym,gym,gym
+C001338,Mature regular,none,insurance,insurance
+C001339,Mature regular,streaming,streaming,streaming
+C001343,Short or lapsed explorer,insurance,insurance,insurance
+C001344,Multi-subscription active,none,gym,gym
+C001350,Multi-subscription active,mobile,mobile,mobile
+C001352,Short or lapsed explorer,none,none,none
+C001357,Short or lapsed explorer,none,none,none
+C001358,Mature regular,music,streaming,music
+C001360,Short or lapsed explorer,mobile,gym,none
+C001362,Mature regular,streaming,streaming,streaming
+C001363,Multi-subscription active,none,software,software
+C001365,Short or lapsed explorer,none,none,none
+C001368,Mature regular,gym,gym,gym
+C001369,Short or lapsed explorer,none,mobile,mobile
+C001370,Multi-subscription active,software,software,software
+C001371,Quiet / no detected cycle,software,none,none
+C001373,Mature regular,streaming,streaming,streaming
+C001379,Mature regular,gym,music,music
+C001388,Short or lapsed explorer,none,gym,gym
+C001394,Quiet / no detected cycle,none,none,none
+C001403,Short or lapsed explorer,none,none,none
+C001404,Multi-subscription active,software,cloud,cloud
+C001407,Mature regular,mobile,software,software
+C001423,Quiet / no detected cycle,gym,none,none
+C001425,Multi-subscription active,gym,mobile,mobile
+C001432,Multi-subscription active,software,streaming,streaming
+C001438,Short or lapsed explorer,none,none,none
+C001454,Short or lapsed explorer,cloud,cloud,cloud
+C001456,Multi-subscription active,software,software,software
+C001465,Multi-subscription active,insurance,streaming,streaming
+C001466,Mature regular,none,streaming,streaming
+C001468,Short or lapsed explorer,gym,gym,gym
+C001471,Mature regular,gym,insurance,insurance
+C001473,Mature regular,mobile,mobile,mobile
+C001477,Mature regular,mobile,mobile,mobile
+C001482,Mature regular,insurance,insurance,insurance
+C001489,Multi-subscription active,none,music,music
+C001496,Multi-subscription active,none,music,music
+C001505,Multi-subscription active,none,mobile,mobile
+C001508,Multi-subscription active,none,mobile,mobile
+C001510,Multi-subscription active,gym,mobile,mobile
+C001515,Short or lapsed explorer,none,none,none
+C001518,Mature regular,gym,insurance,insurance
+C001534,Multi-subscription active,gym,mobile,mobile
+C001535,Short or lapsed explorer,none,none,none
+C001538,Mature regular,streaming,streaming,streaming
+C001539,Mature regular,software,gym,gym
+C001541,Multi-subscription active,streaming,streaming,streaming
+C001543,Short or lapsed explorer,insurance,none,none
+C001544,Multi-subscription active,music,software,software
+C001545,Quiet / no detected cycle,none,none,none
+C001546,Mature regular,music,music,music
+C001550,Multi-subscription active,insurance,gym,gym
+C001552,Mature regular,streaming,streaming,streaming
+C001553,Mature regular,insurance,music,music
+C001558,Short or lapsed explorer,none,music,music
+C001566,Mature regular,none,mobile,mobile
+C001568,Mature regular,streaming,streaming,streaming
+C001573,Mature regular,none,software,software
+C001579,Mature regular,gym,gym,gym
+C001580,Multi-subscription active,music,music,music
+C001586,Multi-subscription active,mobile,mobile,mobile
+C001603,Multi-subscription active,gym,cloud,cloud
+C001605,Multi-subscription active,mobile,insurance,insurance
+C001606,Mature regular,none,streaming,streaming
+C001611,Mature regular,mobile,mobile,mobile
+C001612,Multi-subscription active,mobile,insurance,insurance
+C001619,Multi-subscription active,insurance,software,software
+C001622,Multi-subscription active,none,software,software
+C001623,Short or lapsed explorer,cloud,cloud,cloud
+C001628,Short or lapsed explorer,mobile,streaming,streaming
+C001636,Multi-subscription active,music,insurance,insurance
+C001637,Short or lapsed explorer,none,none,none
+C001638,Quiet / no detected cycle,none,none,none
+C001646,Mature regular,cloud,cloud,cloud
+C001651,Mature regular,none,streaming,streaming
+C001652,Multi-subscription active,gym,gym,gym
+C001654,Mature regular,streaming,mobile,mobile
+C001657,Mature regular,none,mobile,mobile
+C001659,Mature regular,music,music,music
+C001667,Multi-subscription active,none,cloud,cloud
+C001671,Mature regular,insurance,gym,gym
+C001675,Short or lapsed explorer,none,none,none
+C001679,Short or lapsed explorer,mobile,mobile,mobile
+C001684,Mature regular,mobile,mobile,mobile
+C001685,Multi-subscription active,none,mobile,mobile
+C001688,Mature regular,streaming,cloud,cloud
+C001690,Mature regular,software,insurance,insurance
+C001691,Quiet / no detected cycle,streaming,none,none
+C001694,Quiet / no detected cycle,software,none,none
+C001696,Multi-subscription active,music,music,music
+C001702,Mature regular,streaming,streaming,streaming
+C001711,Mature regular,cloud,cloud,cloud
+C001722,Short or lapsed explorer,none,none,none
+C001725,Short or lapsed explorer,none,none,none
+C001728,Short or lapsed explorer,mobile,none,none
+C001730,Multi-subscription active,mobile,software,software
+C001733,Multi-subscription active,gym,gym,gym
+C001738,Multi-subscription active,cloud,mobile,mobile
+C001739,Multi-subscription active,none,none,none
+C001741,Short or lapsed explorer,gym,none,none
+C001743,Mature regular,streaming,streaming,streaming
+C001746,Mature regular,streaming,music,gym
+C001748,Multi-subscription active,music,music,music
+C001754,Mature regular,mobile,mobile,mobile
+C001761,Mature regular,none,none,none
+C001764,Multi-subscription active,music,music,music
+C001771,Mature regular,insurance,insurance,insurance
+C001774,Multi-subscription active,gym,gym,gym
+C001777,Short or lapsed explorer,insurance,insurance,insurance
+C001780,Quiet / no detected cycle,mobile,none,none
+C001782,Mature regular,music,music,music
+C001784,Short or lapsed explorer,cloud,cloud,cloud
+C001786,Mature regular,gym,gym,gym
+C001796,Mature regular,streaming,gym,gym
+C001803,Mature regular,none,cloud,cloud
+C001808,Short or lapsed explorer,mobile,gym,gym
+C001811,Multi-subscription active,software,gym,gym
+C001812,Mature regular,none,music,music
+C001814,Multi-subscription active,none,cloud,cloud
+C001816,Short or lapsed explorer,streaming,software,software
+C001819,Multi-subscription active,none,mobile,mobile
+C001821,Short or lapsed explorer,none,none,none
+C001823,Multi-subscription active,none,streaming,streaming
+C001829,Quiet / no detected cycle,none,none,none
+C001830,Short or lapsed explorer,cloud,cloud,cloud
+C001835,Quiet / no detected cycle,mobile,none,none
+C001836,Mature regular,none,software,software
+C001837,Mature regular,gym,gym,gym
+C001845,Multi-subscription active,music,music,music
+C001861,Mature regular,insurance,insurance,insurance
+C001862,Multi-subscription active,insurance,none,none
+C001865,Mature regular,mobile,mobile,mobile
+C001869,Mature regular,music,gym,gym
+C001870,Quiet / no detected cycle,none,none,none
+C001874,Multi-subscription active,gym,gym,gym
+C001876,Short or lapsed explorer,streaming,software,software
+C001882,Multi-subscription active,none,streaming,streaming
+C001883,Short or lapsed explorer,mobile,none,none
+C001887,Short or lapsed explorer,streaming,gym,gym
+C001888,Quiet / no detected cycle,none,none,none
+C001889,Mature regular,none,software,software
+C001892,Multi-subscription active,gym,gym,gym
+C001895,Short or lapsed explorer,insurance,insurance,insurance
+C001899,Mature regular,streaming,streaming,streaming
+C001902,Short or lapsed explorer,cloud,cloud,cloud
+C001907,Quiet / no detected cycle,none,none,none
+C001910,Short or lapsed explorer,mobile,none,none
+C001917,Quiet / no detected cycle,mobile,none,none
+C001920,Multi-subscription active,insurance,insurance,insurance
+C001924,Short or lapsed explorer,none,none,none
+C001926,Short or lapsed explorer,streaming,insurance,insurance
+C001936,Mature regular,cloud,gym,gym
+C001938,Short or lapsed explorer,software,none,none
+C001954,Mature regular,streaming,none,none
+C001971,Multi-subscription active,none,music,music
+C001980,Mature regular,mobile,mobile,mobile
+C001982,Mature regular,software,software,software
+C001988,Short or lapsed explorer,insurance,insurance,insurance
+C001989,Multi-subscription active,cloud,cloud,cloud
+C001990,Multi-subscription active,streaming,software,software
+C001991,Quiet / no detected cycle,software,none,none
+C001992,Mature regular,streaming,mobile,mobile
+C002009,Multi-subscription active,music,music,music
+C002017,Mature regular,streaming,streaming,streaming
+C002019,Multi-subscription active,cloud,software,software
+C002023,Multi-subscription active,insurance,cloud,cloud
+C002029,Short or lapsed explorer,gym,gym,gym
+C002030,Mature regular,software,software,software
+C002034,Quiet / no detected cycle,streaming,none,none
+C002035,Multi-subscription active,none,cloud,cloud
+C002038,Mature regular,cloud,cloud,cloud
+C002048,Multi-subscription active,gym,music,music
+C002055,Multi-subscription active,gym,music,music
+C002059,Mature regular,software,software,software
+C002062,Mature regular,music,gym,gym
+C002065,Short or lapsed explorer,insurance,insurance,insurance
+C002066,Short or lapsed explorer,none,insurance,insurance
+C002071,Quiet / no detected cycle,mobile,none,none
+C002073,Short or lapsed explorer,insurance,none,none
+C002080,Mature regular,software,cloud,cloud
+C002083,Short or lapsed explorer,insurance,streaming,streaming
+C002090,Short or lapsed explorer,insurance,insurance,insurance
+C002096,Mature regular,music,insurance,cloud
+C002105,Short or lapsed explorer,insurance,insurance,insurance
+C002109,Multi-subscription active,cloud,streaming,streaming
+C002123,Quiet / no detected cycle,none,none,none
+C002125,Multi-subscription active,none,gym,gym
+C002130,Short or lapsed explorer,none,software,none
+C002133,Mature regular,gym,gym,gym
+C002137,Short or lapsed explorer,mobile,mobile,mobile
+C002140,Mature regular,cloud,cloud,cloud
+C002141,Short or lapsed explorer,insurance,music,music
+C002143,Multi-subscription active,music,music,music
+C002145,Short or lapsed explorer,none,cloud,cloud
+C002156,Mature regular,software,software,software
+C002159,Short or lapsed explorer,cloud,none,none
+C002161,Multi-subscription active,streaming,gym,gym
+C002169,Multi-subscription active,music,streaming,streaming
+C002171,Quiet / no detected cycle,gym,none,none
+C002178,Mature regular,mobile,mobile,mobile
+C002180,Multi-subscription active,cloud,cloud,cloud
+C002185,Short or lapsed explorer,music,cloud,cloud
+C002186,Multi-subscription active,cloud,gym,gym
+C002190,Quiet / no detected cycle,gym,none,none
+C002202,Short or lapsed explorer,none,streaming,streaming
+C002205,Short or lapsed explorer,streaming,none,none
+C002207,Mature regular,streaming,streaming,streaming
+C002210,Short or lapsed explorer,mobile,mobile,mobile
+C002211,Quiet / no detected cycle,none,none,none
+C002217,Short or lapsed explorer,none,cloud,cloud
+C002221,Multi-subscription active,none,none,none
+C002224,Short or lapsed explorer,software,streaming,streaming
+C002225,Short or lapsed explorer,none,cloud,cloud
+C002231,Mature regular,mobile,mobile,mobile
+C002244,Multi-subscription active,insurance,insurance,insurance
+C002248,Multi-subscription active,insurance,insurance,insurance
+C002252,Short or lapsed explorer,none,music,none
+C002254,Mature regular,software,gym,gym
+C002258,Short or lapsed explorer,software,software,software
+C002259,Mature regular,music,software,software
+C002262,Multi-subscription active,mobile,none,none
+C002263,Mature regular,software,software,software
+C002264,Multi-subscription active,software,none,none
+C002267,Multi-subscription active,none,insurance,insurance
+C002269,Mature regular,none,gym,gym
+C002270,Mature regular,mobile,mobile,mobile
+C002273,Short or lapsed explorer,mobile,mobile,mobile
+C002287,Quiet / no detected cycle,insurance,none,none
+C002289,Mature regular,music,music,music
+C002290,Short or lapsed explorer,none,none,none
+C002295,Multi-subscription active,gym,music,music
+C002298,Mature regular,software,software,software
+C002306,Multi-subscription active,gym,gym,gym
+C002308,Mature regular,gym,streaming,streaming
+C002309,Mature regular,software,mobile,mobile
+C002314,Multi-subscription active,none,software,software
+C002315,Multi-subscription active,none,mobile,mobile
+C002317,Short or lapsed explorer,none,software,software
+C002319,Multi-subscription active,software,insurance,insurance
+C002326,Multi-subscription active,insurance,cloud,cloud
+C002328,Multi-subscription active,insurance,insurance,insurance
+C002330,Short or lapsed explorer,insurance,none,none
+C002334,Mature regular,mobile,software,software
+C002336,Multi-subscription active,mobile,mobile,mobile
+C002339,Short or lapsed explorer,cloud,cloud,cloud
+C002340,Multi-subscription active,music,music,music
+C002341,Short or lapsed explorer,cloud,mobile,mobile
+C002342,Short or lapsed explorer,none,insurance,insurance
+C002345,Short or lapsed explorer,software,none,none
+C002348,Mature regular,software,software,software
+C002352,Multi-subscription active,mobile,insurance,insurance
+C002357,Short or lapsed explorer,gym,mobile,mobile
+C002359,Mature regular,insurance,streaming,streaming
+C002377,Multi-subscription active,none,insurance,insurance
+C002381,Multi-subscription active,mobile,mobile,mobile
+C002383,Short or lapsed explorer,cloud,cloud,cloud
+C002385,Mature regular,none,none,none
+C002387,Short or lapsed explorer,gym,none,none
+C002390,Short or lapsed explorer,none,none,none
+C002392,Multi-subscription active,insurance,cloud,cloud
+C002393,Mature regular,none,streaming,streaming
+C002396,Multi-subscription active,mobile,mobile,mobile
+C002403,Quiet / no detected cycle,none,none,none
+C002407,Mature regular,streaming,streaming,streaming
+C002408,Quiet / no detected cycle,none,none,none
+C002409,Mature regular,none,gym,gym
+C002410,Multi-subscription active,insurance,streaming,streaming
+C002412,Multi-subscription active,none,gym,gym
+C002416,Quiet / no detected cycle,gym,none,none
+C002417,Mature regular,streaming,streaming,streaming
+C002418,Multi-subscription active,software,software,software
+C002420,Multi-subscription active,insurance,insurance,insurance
+C002434,Short or lapsed explorer,none,none,none
+C002443,Short or lapsed explorer,none,mobile,mobile
+C002446,Short or lapsed explorer,none,gym,none
+C002453,Mature regular,mobile,mobile,mobile
+C002454,Mature regular,cloud,cloud,cloud
+C002459,Mature regular,software,gym,gym
+C002465,Multi-subscription active,insurance,insurance,insurance
+C002467,Mature regular,streaming,gym,gym
+C002469,Mature regular,streaming,streaming,streaming
+C002470,Multi-subscription active,software,cloud,cloud
+C002477,Short or lapsed explorer,gym,gym,gym
+C002484,Short or lapsed explorer,insurance,none,none
+C002486,Mature regular,mobile,mobile,mobile
+C002487,Quiet / no detected cycle,insurance,none,none
+C002489,Short or lapsed explorer,music,none,none
+C002496,Quiet / no detected cycle,cloud,none,none
+C002497,Mature regular,music,music,music
+C002502,Mature regular,music,streaming,streaming
+C002505,Multi-subscription active,software,insurance,insurance
+C002509,Mature regular,software,software,software
+C002510,Short or lapsed explorer,none,none,none
+C002511,Short or lapsed explorer,insurance,insurance,insurance
+C002513,Mature regular,gym,gym,gym
+C002515,Mature regular,none,cloud,cloud
+C002520,Short or lapsed explorer,streaming,none,none
+C002521,Mature regular,gym,gym,gym
+C002524,Quiet / no detected cycle,insurance,none,none
+C002529,Short or lapsed explorer,music,none,none
+C002538,Short or lapsed explorer,music,music,music
+C002540,Mature regular,gym,music,music
+C002545,Mature regular,music,music,music
+C002546,Quiet / no detected cycle,none,none,none
+C002547,Mature regular,gym,gym,gym
+C002551,Multi-subscription active,none,mobile,mobile
+C002554,Multi-subscription active,insurance,insurance,insurance
+C002556,Multi-subscription active,streaming,software,software
+C002557,Mature regular,gym,gym,gym
+C002558,Multi-subscription active,none,none,none
+C002561,Multi-subscription active,mobile,mobile,mobile
+C002565,Multi-subscription active,cloud,streaming,streaming
+C002568,Short or lapsed explorer,music,streaming,streaming
+C002576,Quiet / no detected cycle,none,none,none
+C002578,Multi-subscription active,insurance,insurance,insurance
+C002588,Short or lapsed explorer,none,none,none
+C002591,Multi-subscription active,gym,gym,gym
+C002592,Short or lapsed explorer,none,streaming,streaming
+C002593,Short or lapsed explorer,gym,none,none
+C002598,Quiet / no detected cycle,music,none,none
+C002604,Mature regular,streaming,streaming,streaming
+C002605,Short or lapsed explorer,none,software,software
+C002614,Mature regular,music,music,music
+C002619,Quiet / no detected cycle,none,none,none
+C002630,Mature regular,software,cloud,cloud
+C002631,Quiet / no detected cycle,insurance,none,none
+C002632,Mature regular,none,none,none
+C002640,Quiet / no detected cycle,software,none,none
+C002641,Multi-subscription active,software,software,software
+C002648,Short or lapsed explorer,none,software,software
+C002651,Multi-subscription active,music,cloud,cloud
+C002652,Multi-subscription active,streaming,streaming,streaming
+C002654,Mature regular,none,gym,gym
+C002658,Short or lapsed explorer,gym,mobile,mobile
+C002659,Mature regular,music,music,music
+C002662,Mature regular,mobile,mobile,mobile
+C002669,Multi-subscription active,none,insurance,insurance
+C002674,Multi-subscription active,gym,gym,gym
+C002675,Short or lapsed explorer,none,none,none
+C002679,Mature regular,software,software,software
+C002681,Short or lapsed explorer,none,none,none
+C002682,Mature regular,mobile,mobile,mobile
+C002684,Multi-subscription active,software,software,software
+C002685,Mature regular,cloud,cloud,cloud
+C002690,Mature regular,insurance,streaming,streaming
+C002691,Mature regular,gym,gym,gym
+C002693,Short or lapsed explorer,none,gym,gym
+C002695,Mature regular,software,software,software
+C002701,Quiet / no detected cycle,music,none,none
+C002702,Short or lapsed explorer,none,mobile,mobile
+C002704,Mature regular,none,insurance,none
+C002706,Short or lapsed explorer,none,none,software
+C002708,Multi-subscription active,mobile,streaming,streaming
+C002709,Multi-subscription active,none,gym,gym
+C002711,Multi-subscription active,none,none,none
+C002713,Multi-subscription active,cloud,mobile,mobile
+C002716,Quiet / no detected cycle,insurance,none,none
+C002718,Multi-subscription active,software,software,software
+C002722,Mature regular,music,music,music
+C002724,Multi-subscription active,streaming,streaming,streaming
+C002728,Short or lapsed explorer,insurance,streaming,streaming
+C002732,Mature regular,mobile,mobile,mobile
+C002735,Quiet / no detected cycle,gym,none,none
+C002741,Short or lapsed explorer,none,none,none
+C002744,Multi-subscription active,insurance,insurance,insurance
+C002745,Mature regular,gym,gym,gym
+C002748,Short or lapsed explorer,streaming,cloud,cloud
+C002756,Mature regular,none,none,none
+C002763,Multi-subscription active,gym,gym,gym
+C002766,Multi-subscription active,streaming,gym,gym
+C002770,Mature regular,none,none,none
+C002776,Mature regular,none,streaming,streaming
+C002778,Mature regular,music,mobile,mobile
+C002783,Short or lapsed explorer,cloud,cloud,cloud
+C002784,Quiet / no detected cycle,gym,none,none
+C002785,Short or lapsed explorer,none,mobile,mobile
+C002787,Short or lapsed explorer,streaming,music,music
+C002789,Mature regular,none,music,music
+C002790,Mature regular,gym,gym,gym
+C002797,Short or lapsed explorer,none,none,none
+C002811,Short or lapsed explorer,software,insurance,insurance
+C002824,Quiet / no detected cycle,mobile,none,none
+C002825,Short or lapsed explorer,mobile,music,music
+C002833,Mature regular,gym,gym,gym
+C002835,Quiet / no detected cycle,none,none,none
+C002845,Mature regular,insurance,insurance,insurance
+C002854,Multi-subscription active,none,music,music
+C002857,Mature regular,music,software,software
+C002860,Quiet / no detected cycle,software,none,none
+C002864,Mature regular,cloud,cloud,cloud
+C002865,Mature regular,software,software,software
+C002874,Multi-subscription active,none,mobile,mobile
+C002878,Short or lapsed explorer,none,none,none
+C002881,Mature regular,gym,streaming,streaming
+C002886,Mature regular,none,software,software
+C002887,Short or lapsed explorer,cloud,none,none
+C002888,Mature regular,none,none,none
+C002893,Mature regular,software,software,software
+C002901,Quiet / no detected cycle,software,none,none
+C002904,Multi-subscription active,none,mobile,mobile
+C002906,Short or lapsed explorer,none,none,none
+C002914,Multi-subscription active,streaming,gym,gym
+C002925,Multi-subscription active,none,cloud,cloud
+C002930,Short or lapsed explorer,cloud,cloud,cloud
+C002933,Multi-subscription active,none,cloud,cloud
+C002936,Mature regular,mobile,gym,gym
+C002937,Short or lapsed explorer,music,gym,gym
+C002939,Quiet / no detected cycle,streaming,none,none
+C002949,Multi-subscription active,gym,gym,gym
+C002951,Quiet / no detected cycle,none,none,none
+C002956,Mature regular,streaming,cloud,cloud
+C002961,Mature regular,software,streaming,streaming
+C002962,Short or lapsed explorer,none,none,none
+C002965,Short or lapsed explorer,software,none,none
+C002968,Short or lapsed explorer,mobile,mobile,mobile
+C002972,Short or lapsed explorer,mobile,insurance,none
+C002974,Short or lapsed explorer,software,mobile,mobile
+C002979,Short or lapsed explorer,none,music,music
+C002982,Quiet / no detected cycle,software,none,none
+C002983,Multi-subscription active,none,music,music
+C002985,Mature regular,gym,gym,gym
+C002986,Multi-subscription active,cloud,cloud,cloud
+C003000,Mature regular,none,software,software
+C003002,Quiet / no detected cycle,cloud,none,none
+C003003,Mature regular,gym,gym,gym
+C003005,Mature regular,none,gym,gym
+C003013,Multi-subscription active,software,software,software
+C003014,Mature regular,software,mobile,mobile
+C003016,Mature regular,none,none,none
+C003019,Mature regular,mobile,gym,gym
+C003027,Mature regular,streaming,streaming,streaming
+C003028,Quiet / no detected cycle,gym,none,none
+C003033,Short or lapsed explorer,insurance,insurance,insurance
+C003036,Short or lapsed explorer,gym,gym,gym
+C003039,Short or lapsed explorer,none,none,none
+C003040,Short or lapsed explorer,none,music,music
+C003042,Multi-subscription active,mobile,mobile,mobile
+C003043,Mature regular,streaming,cloud,cloud
+C003045,Multi-subscription active,gym,music,music
+C003052,Short or lapsed explorer,none,none,none
+C003056,Mature regular,gym,gym,gym
+C003057,Multi-subscription active,none,cloud,cloud
+C003059,Short or lapsed explorer,music,mobile,none
+C003064,Mature regular,software,software,software
+C003069,Mature regular,gym,insurance,insurance
+C003080,Mature regular,cloud,cloud,cloud
+C003082,Quiet / no detected cycle,cloud,none,none
+C003091,Mature regular,gym,gym,gym
+C003093,Multi-subscription active,software,software,software
+C003094,Multi-subscription active,software,gym,gym
+C003097,Multi-subscription active,music,gym,gym
+C003101,Multi-subscription active,none,insurance,insurance
+C003102,Mature regular,mobile,mobile,mobile
+C003105,Mature regular,none,software,software
+C003115,Multi-subscription active,none,software,software
+C003117,Mature regular,cloud,software,software
+C003131,Quiet / no detected cycle,gym,none,none
+C003136,Short or lapsed explorer,mobile,none,none
+C003142,Multi-subscription active,music,music,music
+C003151,Quiet / no detected cycle,none,none,none
+C003159,Short or lapsed explorer,music,none,none
+C003166,Mature regular,gym,gym,gym
+C003169,Multi-subscription active,software,software,software
+C003174,Short or lapsed explorer,none,none,none
+C003177,Multi-subscription active,streaming,cloud,cloud
+C003190,Mature regular,software,software,software
+C003195,Multi-subscription active,music,music,music
+C003199,Quiet / no detected cycle,none,none,none
+C003204,Multi-subscription active,software,software,software
+C003208,Mature regular,none,streaming,streaming
+C003212,Mature regular,insurance,gym,gym
+C003219,Mature regular,streaming,gym,gym
+C003222,Mature regular,cloud,cloud,cloud
+C003225,Multi-subscription active,none,insurance,insurance
+C003226,Multi-subscription active,mobile,mobile,mobile
+C003239,Mature regular,insurance,insurance,insurance
+C003245,Mature regular,cloud,cloud,cloud
+C003253,Multi-subscription active,streaming,streaming,streaming
+C003262,Short or lapsed explorer,insurance,streaming,none
+C003265,Short or lapsed explorer,none,gym,none
+C003275,Short or lapsed explorer,music,software,software
+C003277,Mature regular,software,software,software
+C003279,Short or lapsed explorer,none,none,none
+C003288,Multi-subscription active,gym,software,software
+C003292,Multi-subscription active,music,music,music
+C003296,Multi-subscription active,gym,gym,gym
+C003298,Mature regular,mobile,mobile,mobile
+C003300,Short or lapsed explorer,none,none,none
+C003304,Multi-subscription active,gym,gym,gym
+C003316,Multi-subscription active,music,insurance,insurance
+C003317,Mature regular,cloud,gym,gym
+C003318,Mature regular,none,insurance,insurance
+C003321,Short or lapsed explorer,none,software,software
+C003324,Multi-subscription active,streaming,gym,gym
+C003328,Short or lapsed explorer,none,none,none
+C003329,Multi-subscription active,music,cloud,cloud
+C003331,Mature regular,mobile,mobile,mobile
+C003335,Short or lapsed explorer,none,none,none
+C003336,Short or lapsed explorer,mobile,music,music
+C003337,Multi-subscription active,cloud,software,software
+C003341,Mature regular,software,music,music
+C003344,Multi-subscription active,none,gym,gym
+C003350,Short or lapsed explorer,none,none,none
+C003351,Mature regular,none,gym,gym
+C003353,Mature regular,none,software,software
+C003358,Multi-subscription active,software,cloud,cloud
+C003363,Multi-subscription active,none,software,software
+C003366,Multi-subscription active,software,mobile,mobile
+C003367,Mature regular,cloud,streaming,streaming
+C003368,Multi-subscription active,insurance,software,software
+C003370,Mature regular,insurance,insurance,insurance
+C003377,Multi-subscription active,insurance,cloud,cloud
+C003384,Short or lapsed explorer,mobile,mobile,mobile
+C003390,Mature regular,mobile,mobile,mobile
+C003394,Short or lapsed explorer,gym,none,none
+C003402,Short or lapsed explorer,none,insurance,none
+C003410,Mature regular,music,cloud,cloud
+C003411,Short or lapsed explorer,none,none,none
+C003416,Short or lapsed explorer,cloud,streaming,streaming
+C003417,Multi-subscription active,insurance,insurance,insurance
+C003418,Mature regular,cloud,cloud,cloud
+C003424,Mature regular,music,software,software
+C003426,Short or lapsed explorer,gym,streaming,streaming
+C003427,Mature regular,mobile,gym,mobile
+C003432,Quiet / no detected cycle,none,none,none
+C003434,Multi-subscription active,music,music,music
+C003436,Multi-subscription active,gym,gym,gym
+C003438,Multi-subscription active,cloud,cloud,cloud
+C003441,Short or lapsed explorer,insurance,insurance,insurance
+C003452,Mature regular,gym,streaming,gym
+C003454,Mature regular,none,gym,gym
+C003459,Mature regular,cloud,cloud,cloud
+C003463,Short or lapsed explorer,streaming,none,none
+C003464,Mature regular,streaming,streaming,streaming
+C003465,Mature regular,music,music,music
+C003471,Mature regular,mobile,mobile,mobile
+C003477,Mature regular,cloud,cloud,cloud
+C003499,Multi-subscription active,software,software,software
+C003503,Multi-subscription active,cloud,software,software
+C003505,Short or lapsed explorer,none,cloud,cloud
+C003523,Mature regular,none,insurance,insurance
+C003525,Quiet / no detected cycle,mobile,none,none
+C003527,Multi-subscription active,none,mobile,mobile
+C003533,Multi-subscription active,none,gym,gym
+C003541,Short or lapsed explorer,none,none,none
+C003545,Multi-subscription active,gym,gym,gym
+C003547,Quiet / no detected cycle,mobile,none,none
+C003548,Short or lapsed explorer,none,streaming,streaming
+C003551,Mature regular,mobile,insurance,insurance
+C003554,Short or lapsed explorer,cloud,cloud,cloud
+C003555,Short or lapsed explorer,insurance,cloud,cloud
+C003564,Mature regular,gym,streaming,streaming
+C003565,Mature regular,gym,gym,gym
+C003566,Short or lapsed explorer,none,none,none
+C003568,Short or lapsed explorer,streaming,none,none
+C003571,Mature regular,streaming,mobile,mobile
+C003574,Short or lapsed explorer,none,software,none
+C003581,Multi-subscription active,music,music,music
+C003584,Short or lapsed explorer,none,none,none
+C003587,Mature regular,none,cloud,cloud
+C003588,Mature regular,streaming,streaming,streaming
+C003589,Multi-subscription active,none,mobile,mobile
+C003601,Quiet / no detected cycle,none,none,none
+C003603,Short or lapsed explorer,none,none,none
+C003604,Quiet / no detected cycle,cloud,none,none
+C003605,Short or lapsed explorer,music,mobile,mobile
+C003611,Multi-subscription active,music,none,none
+C003620,Mature regular,software,software,software
+C003622,Multi-subscription active,none,streaming,streaming
+C003627,Mature regular,insurance,none,insurance
+C003628,Quiet / no detected cycle,none,none,none
+C003632,Multi-subscription active,cloud,gym,gym
+C003633,Mature regular,cloud,cloud,cloud
+C003637,Multi-subscription active,music,software,software
+C003643,Mature regular,gym,software,software
+C003645,Multi-subscription active,gym,gym,gym
+C003651,Short or lapsed explorer,music,software,software
+C003655,Short or lapsed explorer,streaming,none,none
+C003665,Mature regular,streaming,music,music
+C003671,Short or lapsed explorer,none,none,none
+C003673,Multi-subscription active,none,software,software
+C003678,Multi-subscription active,none,none,none
+C003679,Multi-subscription active,streaming,streaming,streaming
+C003681,Short or lapsed explorer,none,gym,gym
+C003682,Mature regular,insurance,cloud,cloud
+C003686,Mature regular,none,cloud,cloud
+C003688,Short or lapsed explorer,none,none,none
+C003692,Short or lapsed explorer,none,none,none
+C003701,Short or lapsed explorer,none,none,none
+C003702,Quiet / no detected cycle,none,none,none
+C003704,Mature regular,streaming,software,software
+C003707,Multi-subscription active,music,music,music
+C003711,Mature regular,music,insurance,insurance
+C003712,Quiet / no detected cycle,none,none,none
+C003714,Mature regular,music,music,music
+C003726,Quiet / no detected cycle,none,none,none
+C003729,Short or lapsed explorer,none,none,software
+C003730,Mature regular,music,music,music
+C003731,Mature regular,gym,gym,gym
+C003737,Mature regular,streaming,streaming,streaming
+C003742,Short or lapsed explorer,none,gym,gym
+C003744,Quiet / no detected cycle,none,none,none
+C003749,Multi-subscription active,software,software,software
+C003757,Short or lapsed explorer,mobile,none,none
+C003758,Multi-subscription active,software,software,software
+C003759,Short or lapsed explorer,streaming,streaming,streaming
+C003760,Multi-subscription active,insurance,insurance,insurance
+C003761,Mature regular,music,music,music
+C003772,Short or lapsed explorer,none,none,none
+C003777,Multi-subscription active,streaming,streaming,streaming
+C003783,Short or lapsed explorer,none,none,none
+C003795,Mature regular,software,none,none
+C003797,Multi-subscription active,music,music,music
+C003798,Short or lapsed explorer,none,insurance,insurance
+C003800,Mature regular,insurance,insurance,insurance
+C003803,Short or lapsed explorer,software,software,software
+C003804,Mature regular,insurance,insurance,insurance
+C003828,Short or lapsed explorer,gym,none,none
+C003834,Mature regular,music,insurance,insurance
+C003839,Mature regular,gym,gym,gym
+C003841,Mature regular,streaming,streaming,streaming
+C003842,Short or lapsed explorer,none,none,none
+C003845,Quiet / no detected cycle,none,none,none
+C003847,Mature regular,music,music,music
+C003859,Mature regular,insurance,music,music
+C003861,Short or lapsed explorer,none,none,none
+C003863,Short or lapsed explorer,mobile,mobile,mobile
+C003865,Short or lapsed explorer,none,mobile,none
+C003867,Mature regular,streaming,insurance,insurance
+C003868,Multi-subscription active,music,insurance,insurance
+C003871,Short or lapsed explorer,insurance,insurance,insurance
+C003884,Quiet / no detected cycle,music,none,none
+C003895,Multi-subscription active,music,cloud,cloud
+C003896,Short or lapsed explorer,mobile,none,none
+C003902,Multi-subscription active,cloud,cloud,cloud
+C003909,Short or lapsed explorer,insurance,insurance,insurance
+C003915,Mature regular,software,software,software
+C003916,Quiet / no detected cycle,gym,none,none
+C003922,Short or lapsed explorer,none,none,none
+C003923,Multi-subscription active,none,software,software
+C003934,Multi-subscription active,none,none,none
+C003937,Multi-subscription active,streaming,streaming,streaming
+C003940,Quiet / no detected cycle,none,none,none
+C003945,Short or lapsed explorer,gym,gym,gym
+C003948,Short or lapsed explorer,music,none,none
+C003955,Multi-subscription active,insurance,insurance,insurance
+C003956,Mature regular,music,mobile,mobile
+C003957,Quiet / no detected cycle,none,none,none
+C003958,Mature regular,insurance,music,music
+C003974,Multi-subscription active,software,software,software
+C003975,Multi-subscription active,software,insurance,insurance
+C003977,Multi-subscription active,none,streaming,streaming
+C003983,Mature regular,streaming,streaming,streaming
+C003984,Short or lapsed explorer,none,none,none
+C003996,Multi-subscription active,none,mobile,mobile
+C003997,Multi-subscription active,gym,music,music
+C003998,Short or lapsed explorer,mobile,mobile,mobile

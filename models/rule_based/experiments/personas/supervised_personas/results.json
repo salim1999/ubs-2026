@@ -1,0 +1,16 @@
+{
+  "selection_protocol": "5-fold stratified train-only OOF",
+  "selected_max_depth": 1,
+  "selected_min_leaf": 200,
+  "selected_oof_macro_f1": 0.5017979653211256,
+  "global_median_train_macro_f1": 0.5032857184959572,
+  "final_train_macro_f1_resubstitution": 0.5050984881681183,
+  "n_personas": 2,
+  "validation_scores": {
+    "original_mean_rule": 0.4844204458488582,
+    "global_median_rule": 0.49685288345096884,
+    "supervised_persona_router": 0.49166030781668757
+  },
+  "delta_vs_original": 0.007239861967829386,
+  "delta_vs_global_median": -0.005192575634281271
+}

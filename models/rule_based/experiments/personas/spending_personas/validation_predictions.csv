@@ -1,0 +1,1001 @@
+client_id,target_next_recurring_merchant,persona,global_median_prediction,persona_rule_prediction
+C000000,none,High-velocity spenders,streaming,streaming
+C000002,software,Subscription regulars,none,none
+C000003,none,Low-key everyday users,none,none
+C000006,insurance,Low-key everyday users,cloud,cloud
+C000013,none,High-velocity spenders,none,none
+C000032,insurance,High-velocity spenders,gym,gym
+C000036,none,Low-key everyday users,none,none
+C000042,cloud,Subscription regulars,cloud,cloud
+C000046,none,Low-key everyday users,none,mobile
+C000048,streaming,High-velocity spenders,insurance,insurance
+C000049,mobile,Transfer & cash movers,mobile,mobile
+C000057,none,High-velocity spenders,insurance,insurance
+C000058,none,Low-key everyday users,none,none
+C000059,cloud,Subscription regulars,cloud,cloud
+C000061,cloud,Transfer & cash movers,cloud,cloud
+C000065,gym,Subscription regulars,software,software
+C000068,streaming,High-velocity spenders,insurance,insurance
+C000070,streaming,Subscription regulars,streaming,streaming
+C000071,cloud,Transfer & cash movers,cloud,cloud
+C000075,none,Transfer & cash movers,none,none
+C000081,cloud,Transfer & cash movers,cloud,cloud
+C000086,none,Subscription regulars,software,software
+C000087,mobile,High-velocity spenders,gym,gym
+C000089,gym,High-velocity spenders,gym,gym
+C000090,music,High-velocity spenders,software,software
+C000092,none,Transfer & cash movers,none,none
+C000096,music,Transfer & cash movers,mobile,mobile
+C000107,streaming,Low-key everyday users,software,software
+C000108,streaming,High-velocity spenders,software,software
+C000112,streaming,High-velocity spenders,streaming,streaming
+C000123,software,High-velocity spenders,mobile,mobile
+C000125,none,Low-key everyday users,none,none
+C000126,software,Transfer & cash movers,none,none
+C000131,cloud,High-velocity spenders,cloud,cloud
+C000138,none,Transfer & cash movers,none,none
+C000143,mobile,High-velocity spenders,mobile,mobile
+C000145,streaming,High-velocity spenders,software,software
+C000147,none,Subscription regulars,music,music
+C000151,streaming,Subscription regulars,streaming,streaming
+C000154,none,Subscription regulars,streaming,streaming
+C000156,cloud,Subscription regulars,none,none
+C000170,music,Transfer & cash movers,none,none
+C000176,none,Subscription regulars,software,software
+C000180,gym,High-velocity spenders,software,software
+C000184,none,High-velocity spenders,none,none
+C000186,streaming,Transfer & cash movers,streaming,streaming
+C000193,none,Transfer & cash movers,none,none
+C000199,mobile,Transfer & cash movers,music,music
+C000200,cloud,Subscription regulars,cloud,cloud
+C000204,streaming,Subscription regulars,streaming,streaming
+C000209,gym,Subscription regulars,gym,gym
+C000215,mobile,High-velocity spenders,insurance,insurance
+C000216,streaming,Subscription regulars,software,software
+C000220,none,Low-key everyday users,none,none
+C000224,streaming,Transfer & cash movers,streaming,streaming
+C000227,mobile,High-velocity spenders,mobile,mobile
+C000229,cloud,Subscription regulars,software,software
+C000232,software,Transfer & cash movers,software,software
+C000241,gym,Low-key everyday users,gym,gym
+C000253,gym,Subscription regulars,cloud,cloud
+C000256,gym,Subscription regulars,gym,gym
+C000258,gym,High-velocity spenders,gym,gym
+C000260,gym,Subscription regulars,gym,gym
+C000266,none,Transfer & cash movers,none,none
+C000269,cloud,Subscription regulars,cloud,cloud
+C000280,software,High-velocity spenders,insurance,insurance
+C000289,insurance,High-velocity spenders,software,software
+C000294,insurance,Transfer & cash movers,mobile,mobile
+C000298,software,High-velocity spenders,none,none
+C000299,streaming,High-velocity spenders,streaming,streaming
+C000301,none,High-velocity spenders,mobile,mobile
+C000303,none,Subscription regulars,none,none
+C000305,insurance,High-velocity spenders,software,software
+C000312,streaming,Transfer & cash movers,none,none
+C000316,mobile,Subscription regulars,mobile,mobile
+C000318,music,Low-key everyday users,music,music
+C000320,mobile,Subscription regulars,mobile,mobile
+C000325,software,High-velocity spenders,music,music
+C000328,mobile,High-velocity spenders,mobile,mobile
+C000329,insurance,High-velocity spenders,cloud,cloud
+C000331,gym,High-velocity spenders,gym,gym
+C000333,music,Subscription regulars,streaming,streaming
+C000335,none,Subscription regulars,none,none
+C000337,music,High-velocity spenders,cloud,cloud
+C000340,none,Transfer & cash movers,music,music
+C000341,software,Transfer & cash movers,gym,gym
+C000346,software,Subscription regulars,software,software
+C000357,none,High-velocity spenders,streaming,streaming
+C000359,none,Low-key everyday users,none,none
+C000362,none,Low-key everyday users,software,software
+C000365,streaming,Low-key everyday users,none,none
+C000366,mobile,High-velocity spenders,software,software
+C000367,streaming,Subscription regulars,none,none
+C000368,mobile,Transfer & cash movers,mobile,mobile
+C000370,cloud,High-velocity spenders,cloud,cloud
+C000371,insurance,Low-key everyday users,insurance,insurance
+C000374,music,Transfer & cash movers,music,music
+C000377,cloud,Transfer & cash movers,none,none
+C000380,none,Subscription regulars,streaming,streaming
+C000383,gym,Subscription regulars,software,software
+C000384,insurance,High-velocity spenders,mobile,mobile
+C000386,mobile,Transfer & cash movers,streaming,streaming
+C000393,cloud,Subscription regulars,cloud,cloud
+C000395,gym,High-velocity spenders,software,software
+C000396,none,High-velocity spenders,insurance,insurance
+C000397,cloud,Transfer & cash movers,none,none
+C000398,none,Transfer & cash movers,none,none
+C000402,software,Transfer & cash movers,software,software
+C000405,streaming,Transfer & cash movers,streaming,streaming
+C000409,streaming,High-velocity spenders,software,software
+C000411,music,Subscription regulars,cloud,cloud
+C000412,cloud,High-velocity spenders,cloud,cloud
+C000416,none,High-velocity spenders,gym,gym
+C000419,music,High-velocity spenders,cloud,cloud
+C000423,mobile,Transfer & cash movers,none,none
+C000432,music,High-velocity spenders,software,software
+C000439,none,Transfer & cash movers,none,none
+C000440,gym,Transfer & cash movers,none,none
+C000450,gym,Subscription regulars,software,software
+C000451,none,Transfer & cash movers,none,none
+C000463,none,High-velocity spenders,streaming,streaming
+C000466,mobile,Subscription regulars,streaming,streaming
+C000474,software,Subscription regulars,insurance,insurance
+C000476,none,Transfer & cash movers,software,software
+C000479,cloud,High-velocity spenders,cloud,cloud
+C000483,insurance,Transfer & cash movers,none,none
+C000485,software,Transfer & cash movers,none,none
+C000486,none,Transfer & cash movers,none,none
+C000487,software,Transfer & cash movers,cloud,cloud
+C000491,music,Transfer & cash movers,software,software
+C000499,mobile,High-velocity spenders,cloud,cloud
+C000505,mobile,High-velocity spenders,insurance,insurance
+C000510,software,Low-key everyday users,software,software
+C000514,none,Transfer & cash movers,none,none
+C000515,gym,Subscription regulars,gym,gym
+C000517,mobile,Low-key everyday users,mobile,mobile
+C000520,mobile,Low-key everyday users,mobile,mobile
+C000530,insurance,High-velocity spenders,insurance,insurance
+C000533,software,Transfer & cash movers,software,software
+C000535,insurance,Subscription regulars,insurance,insurance
+C000541,cloud,High-velocity spenders,software,software
+C000542,insurance,Subscription regulars,insurance,insurance
+C000545,insurance,Subscription regulars,music,music
+C000547,cloud,High-velocity spenders,insurance,insurance
+C000553,none,High-velocity spenders,gym,gym
+C000554,gym,Subscription regulars,streaming,streaming
+C000562,software,High-velocity spenders,none,none
+C000565,gym,Transfer & cash movers,gym,gym
+C000566,insurance,Transfer & cash movers,none,none
+C000568,gym,High-velocity spenders,gym,gym
+C000569,mobile,High-velocity spenders,music,music
+C000571,none,Transfer & cash movers,none,none
+C000572,software,Subscription regulars,mobile,mobile
+C000573,gym,Low-key everyday users,software,software
+C000577,none,Subscription regulars,none,none
+C000582,none,Subscription regulars,none,none
+C000583,streaming,High-velocity spenders,gym,gym
+C000593,streaming,Subscription regulars,software,software
+C000594,none,High-velocity spenders,cloud,cloud
+C000595,mobile,Transfer & cash movers,mobile,mobile
+C000601,cloud,Transfer & cash movers,cloud,cloud
+C000604,none,High-velocity spenders,none,none
+C000616,software,High-velocity spenders,software,software
+C000619,software,Transfer & cash movers,none,none
+C000628,streaming,High-velocity spenders,music,music
+C000631,insurance,High-velocity spenders,insurance,insurance
+C000635,none,High-velocity spenders,mobile,mobile
+C000637,insurance,Subscription regulars,insurance,insurance
+C000643,cloud,High-velocity spenders,cloud,cloud
+C000650,none,High-velocity spenders,music,music
+C000653,cloud,High-velocity spenders,mobile,mobile
+C000654,music,Subscription regulars,music,music
+C000655,none,High-velocity spenders,mobile,mobile
+C000664,gym,Subscription regulars,gym,gym
+C000673,cloud,Transfer & cash movers,none,none
+C000674,gym,High-velocity spenders,gym,gym
+C000687,music,Transfer & cash movers,music,music
+C000688,none,Transfer & cash movers,none,none
+C000691,none,Transfer & cash movers,mobile,mobile
+C000704,none,Subscription regulars,music,music
+C000706,gym,High-velocity spenders,software,software
+C000708,mobile,High-velocity spenders,mobile,mobile
+C000710,none,Low-key everyday users,none,none
+C000711,mobile,High-velocity spenders,insurance,insurance
+C000715,gym,Transfer & cash movers,gym,gym
+C000716,gym,Subscription regulars,none,none
+C000718,streaming,Subscription regulars,software,software
+C000719,cloud,High-velocity spenders,software,software
+C000720,cloud,High-velocity spenders,insurance,insurance
+C000724,mobile,Transfer & cash movers,mobile,mobile
+C000729,none,Low-key everyday users,none,none
+C000739,gym,Subscription regulars,none,none
+C000741,software,Transfer & cash movers,software,software
+C000745,none,Subscription regulars,gym,gym
+C000748,music,Subscription regulars,none,none
+C000752,none,Transfer & cash movers,none,none
+C000754,streaming,Subscription regulars,streaming,streaming
+C000757,none,Subscription regulars,none,none
+C000759,cloud,High-velocity spenders,cloud,cloud
+C000765,none,Low-key everyday users,none,none
+C000770,none,Low-key everyday users,insurance,insurance
+C000773,insurance,Low-key everyday users,insurance,insurance
+C000774,none,Subscription regulars,insurance,insurance
+C000779,software,Subscription regulars,software,software
+C000780,mobile,Subscription regulars,mobile,mobile
+C000785,none,Subscription regulars,none,none
+C000786,insurance,Subscription regulars,insurance,insurance
+C000788,streaming,Transfer & cash movers,streaming,streaming
+C000790,none,Transfer & cash movers,none,none
+C000791,gym,Transfer & cash movers,gym,gym
+C000795,software,High-velocity spenders,music,music
+C000797,insurance,High-velocity spenders,insurance,insurance
+C000798,streaming,High-velocity spenders,streaming,streaming
+C000802,gym,High-velocity spenders,mobile,mobile
+C000803,insurance,High-velocity spenders,none,none
+C000804,cloud,Transfer & cash movers,cloud,cloud
+C000806,software,Subscription regulars,software,software
+C000810,streaming,Transfer & cash movers,none,none
+C000811,none,Transfer & cash movers,none,none
+C000812,software,Subscription regulars,streaming,streaming
+C000818,music,Low-key everyday users,music,music
+C000825,gym,Subscription regulars,insurance,insurance
+C000828,mobile,High-velocity spenders,mobile,mobile
+C000838,mobile,High-velocity spenders,software,software
+C000845,insurance,Subscription regulars,gym,gym
+C000849,music,High-velocity spenders,music,music
+C000853,insurance,High-velocity spenders,insurance,insurance
+C000855,software,Transfer & cash movers,none,none
+C000860,none,Transfer & cash movers,none,none
+C000864,cloud,Subscription regulars,software,software
+C000866,gym,Subscription regulars,gym,gym
+C000869,none,Low-key everyday users,none,none
+C000875,gym,Transfer & cash movers,gym,gym
+C000879,software,High-velocity spenders,software,software
+C000881,streaming,High-velocity spenders,streaming,streaming
+C000896,none,Transfer & cash movers,none,none
+C000897,software,High-velocity spenders,software,software
+C000898,gym,Subscription regulars,gym,gym
+C000899,cloud,High-velocity spenders,gym,gym
+C000902,cloud,Transfer & cash movers,cloud,cloud
+C000908,none,Subscription regulars,software,software
+C000909,gym,Low-key everyday users,gym,gym
+C000913,none,Transfer & cash movers,none,none
+C000929,software,Subscription regulars,none,none
+C000937,none,Subscription regulars,none,none
+C000941,gym,High-velocity spenders,none,none
+C000943,software,Low-key everyday users,none,none
+C000944,gym,High-velocity spenders,software,software
+C000946,cloud,High-velocity spenders,cloud,cloud
+C000947,insurance,Transfer & cash movers,insurance,insurance
+C000952,mobile,Subscription regulars,mobile,mobile
+C000960,gym,Transfer & cash movers,none,none
+C000963,cloud,Low-key everyday users,cloud,cloud
+C000969,music,Subscription regulars,insurance,insurance
+C000973,insurance,Subscription regulars,none,none
+C000979,none,Subscription regulars,music,music
+C000986,streaming,High-velocity spenders,cloud,cloud
+C000987,none,High-velocity spenders,cloud,cloud
+C000995,none,Subscription regulars,insurance,insurance
+C001005,none,Subscription regulars,insurance,insurance
+C001010,music,High-velocity spenders,streaming,streaming
+C001012,software,Transfer & cash movers,software,software
+C001017,none,Transfer & cash movers,none,none
+C001019,software,High-velocity spenders,insurance,insurance
+C001023,insurance,High-velocity spenders,insurance,insurance
+C001025,gym,High-velocity spenders,gym,gym
+C001026,none,Transfer & cash movers,none,none
+C001031,none,High-velocity spenders,none,none
+C001032,streaming,Subscription regulars,insurance,insurance
+C001034,insurance,High-velocity spenders,gym,gym
+C001036,music,Low-key everyday users,music,music
+C001039,insurance,High-velocity spenders,insurance,insurance
+C001041,software,Subscription regulars,software,software
+C001045,none,Transfer & cash movers,none,none
+C001048,none,Transfer & cash movers,mobile,mobile
+C001049,mobile,Transfer & cash movers,none,none
+C001054,mobile,Transfer & cash movers,mobile,mobile
+C001059,none,Subscription regulars,none,none
+C001065,none,Transfer & cash movers,insurance,insurance
+C001070,cloud,Subscription regulars,cloud,cloud
+C001073,none,High-velocity spenders,music,music
+C001078,none,Low-key everyday users,none,none
+C001082,music,High-velocity spenders,music,music
+C001083,software,High-velocity spenders,cloud,cloud
+C001085,gym,Subscription regulars,gym,gym
+C001091,none,High-velocity spenders,software,software
+C001099,none,Transfer & cash movers,none,none
+C001104,music,High-velocity spenders,software,software
+C001107,cloud,High-velocity spenders,cloud,cloud
+C001111,software,Transfer & cash movers,software,software
+C001118,gym,High-velocity spenders,gym,gym
+C001125,cloud,High-velocity spenders,insurance,insurance
+C001128,none,Subscription regulars,software,software
+C001133,cloud,Subscription regulars,streaming,streaming
+C001137,music,Subscription regulars,mobile,mobile
+C001145,music,Transfer & cash movers,music,music
+C001146,insurance,High-velocity spenders,insurance,insurance
+C001158,none,Transfer & cash movers,streaming,streaming
+C001159,mobile,High-velocity spenders,mobile,mobile
+C001161,gym,Transfer & cash movers,none,none
+C001163,none,Subscription regulars,none,none
+C001167,mobile,Subscription regulars,insurance,insurance
+C001177,streaming,High-velocity spenders,streaming,streaming
+C001180,mobile,High-velocity spenders,music,music
+C001186,gym,Transfer & cash movers,gym,gym
+C001187,software,Low-key everyday users,software,software
+C001190,insurance,Transfer & cash movers,none,none
+C001193,software,High-velocity spenders,gym,gym
+C001195,none,Transfer & cash movers,none,none
+C001197,none,High-velocity spenders,software,software
+C001201,mobile,Transfer & cash movers,none,none
+C001205,streaming,High-velocity spenders,gym,gym
+C001206,mobile,Low-key everyday users,mobile,mobile
+C001215,insurance,High-velocity spenders,insurance,insurance
+C001217,cloud,High-velocity spenders,cloud,cloud
+C001218,streaming,High-velocity spenders,music,music
+C001219,none,Transfer & cash movers,none,none
+C001246,none,Subscription regulars,mobile,mobile
+C001247,streaming,Transfer & cash movers,none,none
+C001251,none,Subscription regulars,software,software
+C001257,none,Transfer & cash movers,software,software
+C001259,cloud,Transfer & cash movers,cloud,cloud
+C001262,mobile,Transfer & cash movers,none,none
+C001263,insurance,High-velocity spenders,insurance,insurance
+C001270,mobile,High-velocity spenders,music,music
+C001274,none,High-velocity spenders,software,software
+C001281,insurance,Subscription regulars,none,none
+C001282,cloud,Transfer & cash movers,cloud,cloud
+C001285,none,Subscription regulars,none,none
+C001286,music,Subscription regulars,streaming,streaming
+C001287,insurance,High-velocity spenders,music,music
+C001296,mobile,Subscription regulars,none,none
+C001297,gym,Subscription regulars,gym,gym
+C001300,none,Transfer & cash movers,streaming,streaming
+C001304,none,Transfer & cash movers,none,none
+C001309,gym,Transfer & cash movers,music,music
+C001311,none,Subscription regulars,insurance,insurance
+C001319,music,High-velocity spenders,software,software
+C001327,cloud,Transfer & cash movers,cloud,cloud
+C001330,insurance,Transfer & cash movers,insurance,insurance
+C001332,none,Transfer & cash movers,none,none
+C001333,gym,Transfer & cash movers,gym,gym
+C001338,none,Transfer & cash movers,insurance,insurance
+C001339,streaming,Transfer & cash movers,streaming,streaming
+C001343,insurance,Subscription regulars,insurance,insurance
+C001344,none,High-velocity spenders,gym,gym
+C001350,mobile,High-velocity spenders,mobile,mobile
+C001352,none,Transfer & cash movers,none,none
+C001357,none,Subscription regulars,none,none
+C001358,music,High-velocity spenders,music,music
+C001360,mobile,High-velocity spenders,none,none
+C001362,streaming,Transfer & cash movers,streaming,streaming
+C001363,none,High-velocity spenders,software,software
+C001365,none,Low-key everyday users,none,none
+C001368,gym,High-velocity spenders,gym,gym
+C001369,none,Subscription regulars,mobile,mobile
+C001370,software,High-velocity spenders,software,software
+C001371,software,Transfer & cash movers,none,none
+C001373,streaming,Transfer & cash movers,streaming,streaming
+C001379,gym,High-velocity spenders,music,music
+C001388,none,High-velocity spenders,gym,gym
+C001394,none,Transfer & cash movers,none,none
+C001403,none,High-velocity spenders,none,none
+C001404,software,High-velocity spenders,cloud,cloud
+C001407,mobile,Transfer & cash movers,software,software
+C001423,gym,Subscription regulars,none,none
+C001425,gym,Subscription regulars,mobile,mobile
+C001432,software,High-velocity spenders,streaming,streaming
+C001438,none,Subscription regulars,none,none
+C001454,cloud,Subscription regulars,cloud,cloud
+C001456,software,High-velocity spenders,software,software
+C001465,insurance,Subscription regulars,streaming,streaming
+C001466,none,High-velocity spenders,streaming,streaming
+C001468,gym,Transfer & cash movers,gym,gym
+C001471,gym,Subscription regulars,insurance,insurance
+C001473,mobile,Subscription regulars,mobile,mobile
+C001477,mobile,Subscription regulars,mobile,mobile
+C001482,insurance,Transfer & cash movers,insurance,insurance
+C001489,none,Subscription regulars,music,music
+C001496,none,High-velocity spenders,music,music
+C001505,none,Subscription regulars,mobile,mobile
+C001508,none,Transfer & cash movers,mobile,mobile
+C001510,gym,High-velocity spenders,mobile,mobile
+C001515,none,Subscription regulars,none,none
+C001518,gym,Subscription regulars,insurance,insurance
+C001534,gym,Subscription regulars,mobile,mobile
+C001535,none,Transfer & cash movers,none,none
+C001538,streaming,Transfer & cash movers,streaming,streaming
+C001539,software,High-velocity spenders,gym,gym
+C001541,streaming,Subscription regulars,streaming,streaming
+C001543,insurance,Transfer & cash movers,none,none
+C001544,music,High-velocity spenders,software,software
+C001545,none,Transfer & cash movers,none,none
+C001546,music,Transfer & cash movers,music,music
+C001550,insurance,Subscription regulars,gym,gym
+C001552,streaming,Transfer & cash movers,streaming,streaming
+C001553,insurance,Transfer & cash movers,music,music
+C001558,none,Subscription regulars,music,music
+C001566,none,Transfer & cash movers,mobile,mobile
+C001568,streaming,Transfer & cash movers,streaming,streaming
+C001573,none,Transfer & cash movers,software,software
+C001579,gym,Transfer & cash movers,gym,gym
+C001580,music,High-velocity spenders,music,music
+C001586,mobile,Subscription regulars,mobile,mobile
+C001603,gym,Low-key everyday users,cloud,cloud
+C001605,mobile,High-velocity spenders,insurance,insurance
+C001606,none,Subscription regulars,streaming,streaming
+C001611,mobile,Transfer & cash movers,mobile,mobile
+C001612,mobile,High-velocity spenders,insurance,insurance
+C001619,insurance,Subscription regulars,software,software
+C001622,none,Subscription regulars,software,software
+C001623,cloud,High-velocity spenders,cloud,cloud
+C001628,mobile,High-velocity spenders,streaming,streaming
+C001636,music,Subscription regulars,insurance,insurance
+C001637,none,Low-key everyday users,none,none
+C001638,none,Transfer & cash movers,none,none
+C001646,cloud,Subscription regulars,cloud,cloud
+C001651,none,Low-key everyday users,streaming,streaming
+C001652,gym,High-velocity spenders,gym,gym
+C001654,streaming,Subscription regulars,mobile,mobile
+C001657,none,High-velocity spenders,mobile,mobile
+C001659,music,Transfer & cash movers,music,music
+C001667,none,Subscription regulars,cloud,cloud
+C001671,insurance,Subscription regulars,gym,gym
+C001675,none,Transfer & cash movers,none,none
+C001679,mobile,High-velocity spenders,mobile,mobile
+C001684,mobile,Transfer & cash movers,mobile,mobile
+C001685,none,Subscription regulars,mobile,mobile
+C001688,streaming,Transfer & cash movers,cloud,cloud
+C001690,software,High-velocity spenders,insurance,insurance
+C001691,streaming,Transfer & cash movers,none,none
+C001694,software,Transfer & cash movers,none,none
+C001696,music,Subscription regulars,music,music
+C001702,streaming,Transfer & cash movers,streaming,streaming
+C001711,cloud,Transfer & cash movers,cloud,cloud
+C001722,none,Transfer & cash movers,none,none
+C001725,none,Transfer & cash movers,none,none
+C001728,mobile,Transfer & cash movers,none,none
+C001730,mobile,Subscription regulars,software,software
+C001733,gym,High-velocity spenders,gym,gym
+C001738,cloud,Subscription regulars,mobile,mobile
+C001739,none,Subscription regulars,none,none
+C001741,gym,High-velocity spenders,none,none
+C001743,streaming,High-velocity spenders,streaming,streaming
+C001746,streaming,Subscription regulars,gym,gym
+C001748,music,High-velocity spenders,music,music
+C001754,mobile,Transfer & cash movers,mobile,mobile
+C001761,none,Subscription regulars,none,none
+C001764,music,High-velocity spenders,music,music
+C001771,insurance,Transfer & cash movers,insurance,insurance
+C001774,gym,High-velocity spenders,gym,gym
+C001777,insurance,Subscription regulars,insurance,insurance
+C001780,mobile,Low-key everyday users,none,none
+C001782,music,Subscription regulars,music,music
+C001784,cloud,Transfer & cash movers,cloud,cloud
+C001786,gym,Transfer & cash movers,gym,gym
+C001796,streaming,High-velocity spenders,gym,gym
+C001803,none,Subscription regulars,cloud,cloud
+C001808,mobile,High-velocity spenders,gym,gym
+C001811,software,High-velocity spenders,gym,gym
+C001812,none,Transfer & cash movers,music,music
+C001814,none,Transfer & cash movers,cloud,cloud
+C001816,streaming,Low-key everyday users,software,software
+C001819,none,High-velocity spenders,mobile,mobile
+C001821,none,Transfer & cash movers,none,none
+C001823,none,High-velocity spenders,streaming,streaming
+C001829,none,Transfer & cash movers,none,none
+C001830,cloud,Subscription regulars,cloud,cloud
+C001835,mobile,Subscription regulars,none,none
+C001836,none,High-velocity spenders,software,software
+C001837,gym,Transfer & cash movers,gym,gym
+C001845,music,Subscription regulars,music,music
+C001861,insurance,Transfer & cash movers,insurance,insurance
+C001862,insurance,Transfer & cash movers,none,none
+C001865,mobile,Transfer & cash movers,mobile,mobile
+C001869,music,Transfer & cash movers,gym,gym
+C001870,none,Transfer & cash movers,none,none
+C001874,gym,High-velocity spenders,gym,gym
+C001876,streaming,Transfer & cash movers,software,software
+C001882,none,High-velocity spenders,streaming,streaming
+C001883,mobile,Subscription regulars,none,none
+C001887,streaming,Subscription regulars,gym,gym
+C001888,none,Low-key everyday users,none,none
+C001889,none,High-velocity spenders,software,software
+C001892,gym,High-velocity spenders,gym,gym
+C001895,insurance,Transfer & cash movers,insurance,insurance
+C001899,streaming,High-velocity spenders,streaming,streaming
+C001902,cloud,Transfer & cash movers,cloud,cloud
+C001907,none,Transfer & cash movers,none,none
+C001910,mobile,High-velocity spenders,none,none
+C001917,mobile,High-velocity spenders,none,none
+C001920,insurance,High-velocity spenders,insurance,insurance
+C001924,none,Subscription regulars,none,none
+C001926,streaming,Transfer & cash movers,insurance,insurance
+C001936,cloud,Subscription regulars,gym,gym
+C001938,software,Transfer & cash movers,none,none
+C001954,streaming,Transfer & cash movers,none,none
+C001971,none,Subscription regulars,music,music
+C001980,mobile,Subscription regulars,mobile,mobile
+C001982,software,High-velocity spenders,software,software
+C001988,insurance,Subscription regulars,insurance,insurance
+C001989,cloud,Subscription regulars,cloud,cloud
+C001990,streaming,High-velocity spenders,software,software
+C001991,software,Transfer & cash movers,none,none
+C001992,streaming,Subscription regulars,mobile,mobile
+C002009,music,High-velocity spenders,music,music
+C002017,streaming,Transfer & cash movers,streaming,streaming
+C002019,cloud,Subscription regulars,software,software
+C002023,insurance,High-velocity spenders,cloud,cloud
+C002029,gym,High-velocity spenders,gym,gym
+C002030,software,Transfer & cash movers,software,software
+C002034,streaming,Transfer & cash movers,none,none
+C002035,none,High-velocity spenders,cloud,cloud
+C002038,cloud,Subscription regulars,cloud,cloud
+C002048,gym,High-velocity spenders,music,music
+C002055,gym,High-velocity spenders,music,music
+C002059,software,Transfer & cash movers,software,software
+C002062,music,Subscription regulars,gym,gym
+C002065,insurance,High-velocity spenders,insurance,insurance
+C002066,none,High-velocity spenders,insurance,insurance
+C002071,mobile,Transfer & cash movers,none,none
+C002073,insurance,Transfer & cash movers,none,none
+C002080,software,High-velocity spenders,cloud,cloud
+C002083,insurance,Subscription regulars,streaming,streaming
+C002090,insurance,Subscription regulars,insurance,insurance
+C002096,music,High-velocity spenders,cloud,cloud
+C002105,insurance,High-velocity spenders,insurance,insurance
+C002109,cloud,High-velocity spenders,streaming,streaming
+C002123,none,Transfer & cash movers,none,none
+C002125,none,Transfer & cash movers,gym,gym
+C002130,none,High-velocity spenders,none,none
+C002133,gym,Subscription regulars,gym,gym
+C002137,mobile,Subscription regulars,mobile,mobile
+C002140,cloud,High-velocity spenders,cloud,cloud
+C002141,insurance,High-velocity spenders,music,music
+C002143,music,High-velocity spenders,music,music
+C002145,none,Transfer & cash movers,cloud,cloud
+C002156,software,Transfer & cash movers,software,software
+C002159,cloud,Transfer & cash movers,none,none
+C002161,streaming,Subscription regulars,gym,gym
+C002169,music,Low-key everyday users,streaming,streaming
+C002171,gym,Transfer & cash movers,none,none
+C002178,mobile,High-velocity spenders,mobile,mobile
+C002180,cloud,High-velocity spenders,cloud,cloud
+C002185,music,Subscription regulars,cloud,cloud
+C002186,cloud,Subscription regulars,gym,gym
+C002190,gym,Transfer & cash movers,none,none
+C002202,none,Subscription regulars,streaming,streaming
+C002205,streaming,Transfer & cash movers,none,none
+C002207,streaming,Subscription regulars,streaming,streaming
+C002210,mobile,High-velocity spenders,mobile,mobile
+C002211,none,Transfer & cash movers,none,none
+C002217,none,Subscription regulars,cloud,cloud
+C002221,none,Low-key everyday users,none,insurance
+C002224,software,Subscription regulars,streaming,streaming
+C002225,none,Transfer & cash movers,cloud,cloud
+C002231,mobile,Transfer & cash movers,mobile,mobile
+C002244,insurance,High-velocity spenders,insurance,insurance
+C002248,insurance,Subscription regulars,insurance,insurance
+C002252,none,High-velocity spenders,none,none
+C002254,software,Transfer & cash movers,gym,gym
+C002258,software,Low-key everyday users,software,software
+C002259,music,Transfer & cash movers,software,software
+C002262,mobile,Subscription regulars,none,none
+C002263,software,Transfer & cash movers,software,software
+C002264,software,Low-key everyday users,none,mobile
+C002267,none,High-velocity spenders,insurance,insurance
+C002269,none,Low-key everyday users,gym,gym
+C002270,mobile,Subscription regulars,mobile,mobile
+C002273,mobile,Transfer & cash movers,mobile,mobile
+C002287,insurance,Transfer & cash movers,none,none
+C002289,music,Subscription regulars,music,music
+C002290,none,High-velocity spenders,none,none
+C002295,gym,High-velocity spenders,music,music
+C002298,software,High-velocity spenders,software,software
+C002306,gym,High-velocity spenders,gym,gym
+C002308,gym,Transfer & cash movers,streaming,streaming
+C002309,software,High-velocity spenders,mobile,mobile
+C002314,none,Subscription regulars,software,software
+C002315,none,High-velocity spenders,mobile,mobile
+C002317,none,Low-key everyday users,software,software
+C002319,software,High-velocity spenders,insurance,insurance
+C002326,insurance,High-velocity spenders,cloud,cloud
+C002328,insurance,High-velocity spenders,insurance,insurance
+C002330,insurance,Transfer & cash movers,none,none
+C002334,mobile,Subscription regulars,software,software
+C002336,mobile,High-velocity spenders,mobile,mobile
+C002339,cloud,High-velocity spenders,cloud,cloud
+C002340,music,High-velocity spenders,music,music
+C002341,cloud,Subscription regulars,mobile,mobile
+C002342,none,High-velocity spenders,insurance,insurance
+C002345,software,High-velocity spenders,none,none
+C002348,software,Subscription regulars,software,software
+C002352,mobile,High-velocity spenders,insurance,insurance
+C002357,gym,Subscription regulars,mobile,mobile
+C002359,insurance,Transfer & cash movers,streaming,streaming
+C002377,none,High-velocity spenders,insurance,insurance
+C002381,mobile,Subscription regulars,mobile,mobile
+C002383,cloud,Low-key everyday users,cloud,cloud
+C002385,none,High-velocity spenders,none,none
+C002387,gym,Subscription regulars,none,none
+C002390,none,High-velocity spenders,none,none
+C002392,insurance,High-velocity spenders,cloud,cloud
+C002393,none,Transfer & cash movers,streaming,streaming
+C002396,mobile,Transfer & cash movers,mobile,mobile
+C002403,none,Transfer & cash movers,none,none
+C002407,streaming,Transfer & cash movers,streaming,streaming
+C002408,none,Transfer & cash movers,none,none
+C002409,none,Subscription regulars,gym,gym
+C002410,insurance,Subscription regulars,streaming,streaming
+C002412,none,High-velocity spenders,gym,gym
+C002416,gym,Transfer & cash movers,none,none
+C002417,streaming,Transfer & cash movers,streaming,streaming
+C002418,software,High-velocity spenders,software,software
+C002420,insurance,High-velocity spenders,insurance,insurance
+C002434,none,High-velocity spenders,none,none
+C002443,none,High-velocity spenders,mobile,mobile
+C002446,none,Transfer & cash movers,none,none
+C002453,mobile,High-velocity spenders,mobile,mobile
+C002454,cloud,Subscription regulars,cloud,cloud
+C002459,software,Transfer & cash movers,gym,gym
+C002465,insurance,Subscription regulars,insurance,insurance
+C002467,streaming,Transfer & cash movers,gym,gym
+C002469,streaming,Subscription regulars,streaming,streaming
+C002470,software,High-velocity spenders,cloud,cloud
+C002477,gym,High-velocity spenders,gym,gym
+C002484,insurance,Transfer & cash movers,none,none
+C002486,mobile,High-velocity spenders,mobile,mobile
+C002487,insurance,Transfer & cash movers,none,none
+C002489,music,Transfer & cash movers,none,none
+C002496,cloud,Subscription regulars,none,none
+C002497,music,Transfer & cash movers,music,music
+C002502,music,Transfer & cash movers,streaming,streaming
+C002505,software,Subscription regulars,insurance,insurance
+C002509,software,Subscription regulars,software,software
+C002510,none,Subscription regulars,none,none
+C002511,insurance,High-velocity spenders,insurance,insurance
+C002513,gym,High-velocity spenders,gym,gym
+C002515,none,Subscription regulars,cloud,cloud
+C002520,streaming,Low-key everyday users,none,none
+C002521,gym,Transfer & cash movers,gym,gym
+C002524,insurance,Subscription regulars,none,none
+C002529,music,High-velocity spenders,none,none
+C002538,music,High-velocity spenders,music,music
+C002540,gym,High-velocity spenders,music,music
+C002545,music,Transfer & cash movers,music,music
+C002546,none,Low-key everyday users,none,none
+C002547,gym,Transfer & cash movers,gym,gym
+C002551,none,High-velocity spenders,mobile,mobile
+C002554,insurance,Subscription regulars,insurance,insurance
+C002556,streaming,High-velocity spenders,software,software
+C002557,gym,Subscription regulars,gym,gym
+C002558,none,Low-key everyday users,none,mobile
+C002561,mobile,High-velocity spenders,mobile,mobile
+C002565,cloud,Low-key everyday users,streaming,streaming
+C002568,music,Transfer & cash movers,streaming,streaming
+C002576,none,Transfer & cash movers,none,none
+C002578,insurance,High-velocity spenders,insurance,insurance
+C002588,none,Subscription regulars,none,none
+C002591,gym,High-velocity spenders,gym,gym
+C002592,none,Subscription regulars,streaming,streaming
+C002593,gym,High-velocity spenders,none,none
+C002598,music,Transfer & cash movers,none,none
+C002604,streaming,High-velocity spenders,streaming,streaming
+C002605,none,Subscription regulars,software,software
+C002614,music,Transfer & cash movers,music,music
+C002619,none,Transfer & cash movers,none,none
+C002630,software,High-velocity spenders,cloud,cloud
+C002631,insurance,Low-key everyday users,none,none
+C002632,none,Low-key everyday users,none,software
+C002640,software,Low-key everyday users,none,none
+C002641,software,High-velocity spenders,software,software
+C002648,none,High-velocity spenders,software,software
+C002651,music,Subscription regulars,cloud,cloud
+C002652,streaming,High-velocity spenders,streaming,streaming
+C002654,none,Low-key everyday users,gym,gym
+C002658,gym,High-velocity spenders,mobile,mobile
+C002659,music,Low-key everyday users,music,music
+C002662,mobile,High-velocity spenders,mobile,mobile
+C002669,none,High-velocity spenders,insurance,insurance
+C002674,gym,High-velocity spenders,gym,gym
+C002675,none,Subscription regulars,none,none
+C002679,software,Transfer & cash movers,software,software
+C002681,none,Subscription regulars,none,none
+C002682,mobile,High-velocity spenders,mobile,mobile
+C002684,software,High-velocity spenders,software,software
+C002685,cloud,Subscription regulars,cloud,cloud
+C002690,insurance,High-velocity spenders,streaming,streaming
+C002691,gym,High-velocity spenders,gym,gym
+C002693,none,Transfer & cash movers,gym,gym
+C002695,software,Subscription regulars,software,software
+C002701,music,Low-key everyday users,none,none
+C002702,none,High-velocity spenders,mobile,mobile
+C002704,none,Transfer & cash movers,none,none
+C002706,none,Subscription regulars,software,software
+C002708,mobile,High-velocity spenders,streaming,streaming
+C002709,none,High-velocity spenders,gym,gym
+C002711,none,Subscription regulars,none,none
+C002713,cloud,High-velocity spenders,mobile,mobile
+C002716,insurance,Subscription regulars,none,none
+C002718,software,High-velocity spenders,software,software
+C002722,music,Low-key everyday users,music,music
+C002724,streaming,Subscription regulars,streaming,streaming
+C002728,insurance,Subscription regulars,streaming,streaming
+C002732,mobile,High-velocity spenders,mobile,mobile
+C002735,gym,Transfer & cash movers,none,none
+C002741,none,High-velocity spenders,none,none
+C002744,insurance,High-velocity spenders,insurance,insurance
+C002745,gym,High-velocity spenders,gym,gym
+C002748,streaming,Subscription regulars,cloud,cloud
+C002756,none,High-velocity spenders,none,none
+C002763,gym,Subscription regulars,gym,gym
+C002766,streaming,High-velocity spenders,gym,gym
+C002770,none,Subscription regulars,none,none
+C002776,none,Subscription regulars,streaming,streaming
+C002778,music,Low-key everyday users,mobile,mobile
+C002783,cloud,Transfer & cash movers,cloud,cloud
+C002784,gym,Subscription regulars,none,none
+C002785,none,Transfer & cash movers,mobile,mobile
+C002787,streaming,Transfer & cash movers,music,music
+C002789,none,Transfer & cash movers,music,music
+C002790,gym,Transfer & cash movers,gym,gym
+C002797,none,Subscription regulars,none,none
+C002811,software,High-velocity spenders,insurance,insurance
+C002824,mobile,Subscription regulars,none,none
+C002825,mobile,High-velocity spenders,music,music
+C002833,gym,Subscription regulars,gym,gym
+C002835,none,High-velocity spenders,none,none
+C002845,insurance,Subscription regulars,insurance,insurance
+C002854,none,High-velocity spenders,music,music
+C002857,music,High-velocity spenders,software,software
+C002860,software,Transfer & cash movers,none,none
+C002864,cloud,Transfer & cash movers,cloud,cloud
+C002865,software,Subscription regulars,software,software
+C002874,none,High-velocity spenders,mobile,mobile
+C002878,none,High-velocity spenders,none,none
+C002881,gym,High-velocity spenders,streaming,streaming
+C002886,none,Subscription regulars,software,software
+C002887,cloud,Subscription regulars,none,none
+C002888,none,Transfer & cash movers,none,none
+C002893,software,High-velocity spenders,software,software
+C002901,software,Transfer & cash movers,none,none
+C002904,none,High-velocity spenders,mobile,mobile
+C002906,none,High-velocity spenders,none,none
+C002914,streaming,High-velocity spenders,gym,gym
+C002925,none,Low-key everyday users,cloud,cloud
+C002930,cloud,Transfer & cash movers,cloud,cloud
+C002933,none,High-velocity spenders,cloud,cloud
+C002936,mobile,Transfer & cash movers,gym,gym
+C002937,music,Subscription regulars,gym,gym
+C002939,streaming,Transfer & cash movers,none,none
+C002949,gym,High-velocity spenders,gym,gym
+C002951,none,Transfer & cash movers,none,none
+C002956,streaming,Subscription regulars,cloud,cloud
+C002961,software,Transfer & cash movers,streaming,streaming
+C002962,none,Low-key everyday users,none,none
+C002965,software,Subscription regulars,none,none
+C002968,mobile,Transfer & cash movers,mobile,mobile
+C002972,mobile,Subscription regulars,none,none
+C002974,software,Subscription regulars,mobile,mobile
+C002979,none,Transfer & cash movers,music,music
+C002982,software,Transfer & cash movers,none,none
+C002983,none,Low-key everyday users,music,music
+C002985,gym,Transfer & cash movers,gym,gym
+C002986,cloud,Subscription regulars,cloud,cloud
+C003000,none,Transfer & cash movers,software,software
+C003002,cloud,Transfer & cash movers,none,none
+C003003,gym,Transfer & cash movers,gym,gym
+C003005,none,Transfer & cash movers,gym,gym
+C003013,software,High-velocity spenders,software,software
+C003014,software,High-velocity spenders,mobile,mobile
+C003016,none,Transfer & cash movers,none,none
+C003019,mobile,Subscription regulars,gym,gym
+C003027,streaming,High-velocity spenders,streaming,streaming
+C003028,gym,Transfer & cash movers,none,none
+C003033,insurance,High-velocity spenders,insurance,insurance
+C003036,gym,Subscription regulars,gym,gym
+C003039,none,High-velocity spenders,none,none
+C003040,none,Transfer & cash movers,music,music
+C003042,mobile,High-velocity spenders,mobile,mobile
+C003043,streaming,Subscription regulars,cloud,cloud
+C003045,gym,High-velocity spenders,music,music
+C003052,none,Low-key everyday users,none,none
+C003056,gym,Transfer & cash movers,gym,gym
+C003057,none,High-velocity spenders,cloud,cloud
+C003059,music,High-velocity spenders,none,none
+C003064,software,Subscription regulars,software,software
+C003069,gym,Transfer & cash movers,insurance,insurance
+C003080,cloud,Low-key everyday users,cloud,cloud
+C003082,cloud,Transfer & cash movers,none,none
+C003091,gym,High-velocity spenders,gym,gym
+C003093,software,High-velocity spenders,software,software
+C003094,software,High-velocity spenders,gym,gym
+C003097,music,High-velocity spenders,gym,gym
+C003101,none,Subscription regulars,insurance,insurance
+C003102,mobile,Transfer & cash movers,mobile,mobile
+C003105,none,Subscription regulars,software,software
+C003115,none,High-velocity spenders,software,software
+C003117,cloud,High-velocity spenders,software,software
+C003131,gym,Subscription regulars,none,none
+C003136,mobile,Low-key everyday users,none,none
+C003142,music,High-velocity spenders,music,music
+C003151,none,Transfer & cash movers,none,none
+C003159,music,Low-key everyday users,none,none
+C003166,gym,Low-key everyday users,gym,gym
+C003169,software,Subscription regulars,software,software
+C003174,none,Subscription regulars,none,none
+C003177,streaming,Subscription regulars,cloud,cloud
+C003190,software,Transfer & cash movers,software,software
+C003195,music,Subscription regulars,music,music
+C003199,none,Transfer & cash movers,none,none
+C003204,software,Transfer & cash movers,software,software
+C003208,none,Transfer & cash movers,streaming,streaming
+C003212,insurance,High-velocity spenders,gym,gym
+C003219,streaming,Transfer & cash movers,gym,gym
+C003222,cloud,Low-key everyday users,cloud,cloud
+C003225,none,Subscription regulars,insurance,insurance
+C003226,mobile,High-velocity spenders,mobile,mobile
+C003239,insurance,Subscription regulars,insurance,insurance
+C003245,cloud,Subscription regulars,cloud,cloud
+C003253,streaming,High-velocity spenders,streaming,streaming
+C003262,insurance,Subscription regulars,none,none
+C003265,none,Subscription regulars,none,none
+C003275,music,Subscription regulars,software,software
+C003277,software,Subscription regulars,software,software
+C003279,none,Transfer & cash movers,none,none
+C003288,gym,High-velocity spenders,software,software
+C003292,music,High-velocity spenders,music,music
+C003296,gym,High-velocity spenders,gym,gym
+C003298,mobile,High-velocity spenders,mobile,mobile
+C003300,none,Transfer & cash movers,none,none
+C003304,gym,High-velocity spenders,gym,gym
+C003316,music,High-velocity spenders,insurance,insurance
+C003317,cloud,High-velocity spenders,gym,gym
+C003318,none,Transfer & cash movers,insurance,insurance
+C003321,none,High-velocity spenders,software,software
+C003324,streaming,High-velocity spenders,gym,gym
+C003328,none,Transfer & cash movers,none,none
+C003329,music,Subscription regulars,cloud,cloud
+C003331,mobile,Subscription regulars,mobile,mobile
+C003335,none,High-velocity spenders,none,none
+C003336,mobile,High-velocity spenders,music,music
+C003337,cloud,High-velocity spenders,software,software
+C003341,software,High-velocity spenders,music,music
+C003344,none,High-velocity spenders,gym,gym
+C003350,none,Transfer & cash movers,none,none
+C003351,none,Subscription regulars,gym,gym
+C003353,none,Transfer & cash movers,software,software
+C003358,software,Transfer & cash movers,cloud,cloud
+C003363,none,High-velocity spenders,software,software
+C003366,software,High-velocity spenders,mobile,mobile
+C003367,cloud,Transfer & cash movers,streaming,streaming
+C003368,insurance,High-velocity spenders,software,software
+C003370,insurance,Low-key everyday users,insurance,insurance
+C003377,insurance,Subscription regulars,cloud,cloud
+C003384,mobile,High-velocity spenders,mobile,mobile
+C003390,mobile,High-velocity spenders,mobile,mobile
+C003394,gym,Subscription regulars,none,none
+C003402,none,High-velocity spenders,none,none
+C003410,music,Transfer & cash movers,cloud,cloud
+C003411,none,Subscription regulars,none,none
+C003416,cloud,High-velocity spenders,streaming,streaming
+C003417,insurance,High-velocity spenders,insurance,insurance
+C003418,cloud,Transfer & cash movers,cloud,cloud
+C003424,music,Low-key everyday users,software,software
+C003426,gym,Subscription regulars,streaming,streaming
+C003427,mobile,High-velocity spenders,mobile,mobile
+C003432,none,Low-key everyday users,none,none
+C003434,music,High-velocity spenders,music,music
+C003436,gym,Subscription regulars,gym,gym
+C003438,cloud,Subscription regulars,cloud,cloud
+C003441,insurance,Transfer & cash movers,insurance,insurance
+C003452,gym,Subscription regulars,gym,gym
+C003454,none,Subscription regulars,gym,gym
+C003459,cloud,High-velocity spenders,cloud,cloud
+C003463,streaming,Transfer & cash movers,none,none
+C003464,streaming,Low-key everyday users,streaming,streaming
+C003465,music,Subscription regulars,music,music
+C003471,mobile,High-velocity spenders,mobile,mobile
+C003477,cloud,Subscription regulars,cloud,cloud
+C003499,software,Subscription regulars,software,software
+C003503,cloud,Low-key everyday users,software,software
+C003505,none,Transfer & cash movers,cloud,cloud
+C003523,none,Transfer & cash movers,insurance,insurance
+C003525,mobile,High-velocity spenders,none,none
+C003527,none,Subscription regulars,mobile,mobile
+C003533,none,High-velocity spenders,gym,gym
+C003541,none,High-velocity spenders,none,none
+C003545,gym,Subscription regulars,gym,gym
+C003547,mobile,Transfer & cash movers,none,none
+C003548,none,Subscription regulars,streaming,streaming
+C003551,mobile,High-velocity spenders,insurance,insurance
+C003554,cloud,Subscription regulars,cloud,cloud
+C003555,insurance,Subscription regulars,cloud,cloud
+C003564,gym,Transfer & cash movers,streaming,streaming
+C003565,gym,High-velocity spenders,gym,gym
+C003566,none,Transfer & cash movers,none,none
+C003568,streaming,Subscription regulars,none,none
+C003571,streaming,Subscription regulars,mobile,mobile
+C003574,none,Subscription regulars,none,none
+C003581,music,High-velocity spenders,music,music
+C003584,none,Transfer & cash movers,none,none
+C003587,none,Transfer & cash movers,cloud,cloud
+C003588,streaming,Transfer & cash movers,streaming,streaming
+C003589,none,Subscription regulars,mobile,mobile
+C003601,none,Transfer & cash movers,none,none
+C003603,none,Subscription regulars,none,none
+C003604,cloud,Transfer & cash movers,none,none
+C003605,music,Subscription regulars,mobile,mobile
+C003611,music,High-velocity spenders,none,none
+C003620,software,Transfer & cash movers,software,software
+C003622,none,Subscription regulars,streaming,streaming
+C003627,insurance,Transfer & cash movers,insurance,insurance
+C003628,none,Transfer & cash movers,none,none
+C003632,cloud,High-velocity spenders,gym,gym
+C003633,cloud,High-velocity spenders,cloud,cloud
+C003637,music,High-velocity spenders,software,software
+C003643,gym,Transfer & cash movers,software,software
+C003645,gym,High-velocity spenders,gym,gym
+C003651,music,High-velocity spenders,software,software
+C003655,streaming,Subscription regulars,none,none
+C003665,streaming,Subscription regulars,music,music
+C003671,none,High-velocity spenders,none,none
+C003673,none,Subscription regulars,software,software
+C003678,none,High-velocity spenders,none,none
+C003679,streaming,Subscription regulars,streaming,streaming
+C003681,none,High-velocity spenders,gym,gym
+C003682,insurance,High-velocity spenders,cloud,cloud
+C003686,none,High-velocity spenders,cloud,cloud
+C003688,none,High-velocity spenders,none,none
+C003692,none,Transfer & cash movers,none,none
+C003701,none,Subscription regulars,none,none
+C003702,none,Transfer & cash movers,none,none
+C003704,streaming,Transfer & cash movers,software,software
+C003707,music,High-velocity spenders,music,music
+C003711,music,Subscription regulars,insurance,insurance
+C003712,none,Transfer & cash movers,none,none
+C003714,music,Subscription regulars,music,music
+C003726,none,Subscription regulars,none,none
+C003729,none,Subscription regulars,software,software
+C003730,music,High-velocity spenders,music,music
+C003731,gym,Subscription regulars,gym,gym
+C003737,streaming,Low-key everyday users,streaming,streaming
+C003742,none,High-velocity spenders,gym,gym
+C003744,none,Transfer & cash movers,none,none
+C003749,software,High-velocity spenders,software,software
+C003757,mobile,High-velocity spenders,none,none
+C003758,software,Subscription regulars,software,software
+C003759,streaming,Subscription regulars,streaming,streaming
+C003760,insurance,Subscription regulars,insurance,insurance
+C003761,music,High-velocity spenders,music,music
+C003772,none,Transfer & cash movers,none,none
+C003777,streaming,High-velocity spenders,streaming,streaming
+C003783,none,Transfer & cash movers,none,none
+C003795,software,Transfer & cash movers,none,none
+C003797,music,Subscription regulars,music,music
+C003798,none,Low-key everyday users,insurance,insurance
+C003800,insurance,Subscription regulars,insurance,insurance
+C003803,software,High-velocity spenders,software,software
+C003804,insurance,Transfer & cash movers,insurance,insurance
+C003828,gym,Transfer & cash movers,none,none
+C003834,music,High-velocity spenders,insurance,insurance
+C003839,gym,Transfer & cash movers,gym,gym
+C003841,streaming,Transfer & cash movers,streaming,streaming
+C003842,none,Transfer & cash movers,none,none
+C003845,none,Low-key everyday users,none,none
+C003847,music,Subscription regulars,music,music
+C003859,insurance,Transfer & cash movers,music,music
+C003861,none,Low-key everyday users,none,none
+C003863,mobile,High-velocity spenders,mobile,mobile
+C003865,none,Transfer & cash movers,none,none
+C003867,streaming,High-velocity spenders,insurance,insurance
+C003868,music,Subscription regulars,insurance,insurance
+C003871,insurance,Subscription regulars,insurance,insurance
+C003884,music,Transfer & cash movers,none,none
+C003895,music,Subscription regulars,cloud,cloud
+C003896,mobile,High-velocity spenders,none,none
+C003902,cloud,High-velocity spenders,cloud,cloud
+C003909,insurance,Subscription regulars,insurance,insurance
+C003915,software,Low-key everyday users,software,software
+C003916,gym,Transfer & cash movers,none,none
+C003922,none,Transfer & cash movers,none,none
+C003923,none,High-velocity spenders,software,software
+C003934,none,Low-key everyday users,none,software
+C003937,streaming,High-velocity spenders,streaming,streaming
+C003940,none,Subscription regulars,none,none
+C003945,gym,High-velocity spenders,gym,gym
+C003948,music,Subscription regulars,none,none
+C003955,insurance,Subscription regulars,insurance,insurance
+C003956,music,High-velocity spenders,mobile,mobile
+C003957,none,Transfer & cash movers,none,none
+C003958,insurance,Subscription regulars,music,music
+C003974,software,Subscription regulars,software,software
+C003975,software,High-velocity spenders,insurance,insurance
+C003977,none,High-velocity spenders,streaming,streaming
+C003983,streaming,High-velocity spenders,streaming,streaming
+C003984,none,Transfer & cash movers,none,none
+C003996,none,High-velocity spenders,mobile,mobile
+C003997,gym,Subscription regulars,music,music
+C003998,mobile,High-velocity spenders,mobile,mobile

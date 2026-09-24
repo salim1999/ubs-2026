@@ -1,0 +1,4 @@
+model,validation_macro_f1,delta_vs_global_median,recommendation
+original_global_mean_gap,0.4844204458488582,-0.012432437602110658,reference_baseline
+global_median_gap,0.49685288345096884,0.0,recommended
+recurrence_persona_rules,0.48784700904107237,-0.009005874409896475,diagnostic_only

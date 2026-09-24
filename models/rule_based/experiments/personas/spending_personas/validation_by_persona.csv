@@ -1,0 +1,5 @@
+persona,n_valid_clients,selected_config,global_median_macro_f1,persona_rule_macro_f1
+High-velocity spenders,352,median_gap|grace=5|short_gate=true,0.45717246150742574,0.45717246150742574
+Low-key everyday users,78,mean_gap|grace=3|short_gate=false,0.5799712214114388,0.5355495199245198
+Subscription regulars,282,median_gap|grace=5|short_gate=true,0.46260009844393823,0.46260009844393823
+Transfer & cash movers,288,median_gap|grace=5|short_gate=true,0.5471752202182274,0.5471752202182274

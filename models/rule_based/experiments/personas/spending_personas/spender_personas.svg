@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720">
+<rect width="100%" height="100%" fill="#FBFAF8"/>
+<text x="48" y="55" font-family="Arial" font-size="30" font-weight="700" fill="#171717">Spender personas</text>
+<text x="48" y="85" font-family="Arial" font-size="15" fill="#666">Train-only behavioral clusters · axis values are relative percentiles</text>
+<polygon points="390.0,297.5 438.9,321.0 450.9,373.9 417.1,416.3 362.9,416.3 329.1,373.9 341.1,321.0" fill="none" stroke="#D9D5CE" stroke-width="1"/>
+<polygon points="390.0,235.0 487.7,282.1 511.9,387.8 444.2,472.6 335.8,472.6 268.1,387.8 292.3,282.1" fill="none" stroke="#D9D5CE" stroke-width="1"/>
+<polygon points="390.0,172.5 536.6,243.1 572.8,401.7 471.4,528.9 308.6,528.9 207.2,401.7 243.4,243.1" fill="none" stroke="#D9D5CE" stroke-width="1"/>
+<polygon points="390.0,110.0 585.5,204.1 633.7,415.6 498.5,585.2 281.5,585.2 146.3,415.6 194.5,204.1" fill="none" stroke="#D9D5CE" stroke-width="1"/>
+<line x1="390" y1="360" x2="390.0" y2="110.0" stroke="#D9D5CE"/>
+<text x="390.0" y="75.0" text-anchor="middle" font-family="Arial" font-size="14" fill="#333">Activity</text>
+<line x1="390" y1="360" x2="585.5" y2="204.1" stroke="#D9D5CE"/>
+<text x="612.8" y="182.3" text-anchor="start" font-family="Arial" font-size="14" fill="#333">Outflow</text>
+<line x1="390" y1="360" x2="633.7" y2="415.6" stroke="#D9D5CE"/>
+<text x="667.9" y="423.4" text-anchor="start" font-family="Arial" font-size="14" fill="#333">Inflow</text>
+<line x1="390" y1="360" x2="498.5" y2="585.2" stroke="#D9D5CE"/>
+<text x="513.7" y="616.8" text-anchor="start" font-family="Arial" font-size="14" fill="#333">Card use</text>
+<line x1="390" y1="360" x2="281.5" y2="585.2" stroke="#D9D5CE"/>
+<text x="266.3" y="616.8" text-anchor="end" font-family="Arial" font-size="14" fill="#333">Cash + P2P</text>
+<line x1="390" y1="360" x2="146.3" y2="415.6" stroke="#D9D5CE"/>
+<text x="112.1" y="423.4" text-anchor="end" font-family="Arial" font-size="14" fill="#333">Spend breadth</text>
+<line x1="390" y1="360" x2="194.5" y2="204.1" stroke="#D9D5CE"/>
+<text x="167.2" y="182.3" text-anchor="end" font-family="Arial" font-size="14" fill="#333">Subscriptions</text>
+<polygon points="390.0,110.0 585.5,204.1 633.7,415.6 444.2,472.6 308.6,528.9 146.3,415.6 194.5,204.1" fill="#E60028" fill-opacity="0.10" stroke="#E60028" stroke-width="3"/>
+<rect x="760" y="165" width="22" height="22" rx="4" fill="#E60028"/>
+<text x="798" y="180" font-family="Arial" font-size="18" font-weight="700" fill="#222">High-velocity spenders</text>
+<text x="798" y="207" font-family="Arial" font-size="14" fill="#666">604 clients · 30.2%</text>
+<polygon points="390.0,297.5 438.9,321.0 450.9,373.9 471.4,528.9 335.8,472.6 329.1,373.9 292.3,282.1" fill="#14A098" fill-opacity="0.10" stroke="#14A098" stroke-width="3"/>
+<rect x="760" y="253" width="22" height="22" rx="4" fill="#14A098"/>
+<text x="798" y="268" font-family="Arial" font-size="18" font-weight="700" fill="#222">Low-key everyday users</text>
+<text x="798" y="295" font-family="Arial" font-size="14" fill="#666">222 clients · 11.1%</text>
+<polygon points="390.0,172.5 487.7,282.1 511.9,387.8 498.5,585.2 362.9,416.3 207.2,401.7 243.4,243.1" fill="#FFB000" fill-opacity="0.10" stroke="#FFB000" stroke-width="3"/>
+<rect x="760" y="341" width="22" height="22" rx="4" fill="#FFB000"/>
+<text x="798" y="356" font-family="Arial" font-size="18" font-weight="700" fill="#222">Subscription regulars</text>
+<text x="798" y="383" font-family="Arial" font-size="14" fill="#666">586 clients · 29.3%</text>
+<polygon points="390.0,235.0 536.6,243.1 572.8,401.7 417.1,416.3 281.5,585.2 268.1,387.8 341.1,321.0" fill="#4464AD" fill-opacity="0.10" stroke="#4464AD" stroke-width="3"/>
+<rect x="760" y="429" width="22" height="22" rx="4" fill="#4464AD"/>
+<text x="798" y="444" font-family="Arial" font-size="18" font-weight="700" fill="#222">Transfer &amp; cash movers</text>
+<text x="798" y="471" font-family="Arial" font-size="14" fill="#666">588 clients · 29.4%</text>
+<text x="760" y="575" font-family="Arial" font-size="13" fill="#666">Larger radius = more of that behavior</text>
+</svg>

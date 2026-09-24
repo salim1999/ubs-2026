@@ -1,0 +1,5 @@
+persona,activity,outflow,inflow,card_use,cash_p2p,breadth,subscriptions,n_train_clients,share_of_train
+High-velocity spenders,100.0,100.0,100.0,50.0,75.0,100.0,100.0,604,0.302
+Low-key everyday users,25.0,25.0,25.0,75.0,50.0,25.0,50.0,222,0.111
+Subscription regulars,75.0,50.0,50.0,100.0,25.0,75.0,75.0,586,0.293
+Transfer & cash movers,50.0,75.0,75.0,25.0,100.0,50.0,25.0,588,0.294

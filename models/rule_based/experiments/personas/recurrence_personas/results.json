@@ -1,0 +1,62 @@
+{
+  "n_personas": 4,
+  "random_state": 31,
+  "raw_cluster_name_map": {
+    "0": "Quiet / no detected cycle",
+    "3": "Multi-subscription active",
+    "1": "Mature regular",
+    "2": "Short or lapsed explorer"
+  },
+  "global_fallback": {
+    "cadence": "median_gap",
+    "grace_days": 5,
+    "short_gate": true
+  },
+  "persona_rules": {
+    "Mature regular": {
+      "cadence": "recent3_median_gap",
+      "grace_days": 7,
+      "short_gate": true
+    },
+    "Multi-subscription active": {
+      "cadence": "median_gap",
+      "grace_days": 5,
+      "short_gate": true
+    },
+    "Quiet / no detected cycle": {
+      "cadence": "median_gap",
+      "grace_days": 5,
+      "short_gate": true
+    },
+    "Short or lapsed explorer": {
+      "cadence": "median_gap",
+      "grace_days": 3,
+      "short_gate": false
+    }
+  },
+  "train_global_fallback_macro_f1": 0.5032857184959572,
+  "train_persona_macro_f1": 0.5056991491483693,
+  "validation_was_read": true,
+  "validation_persona_macro_f1": 0.48784700904107237,
+  "validation_global_fallback_macro_f1": 0.49685288345096884,
+  "validation_original_mean_rule_macro_f1": 0.4844204458488582,
+  "validation_published_median_rule_macro_f1": 0.49685288345096884,
+  "delta_vs_original": 0.0034265631922141826,
+  "delta_vs_median": -0.009005874409896475,
+  "validation_persona_counts": {
+    "Mature regular": 346,
+    "Multi-subscription active": 274,
+    "Short or lapsed explorer": 272,
+    "Quiet / no detected cycle": 108
+  },
+  "validation_per_class_f1": {
+    "cloud": 0.5654450261780105,
+    "gym": 0.536,
+    "insurance": 0.4752475247524752,
+    "mobile": 0.5192307692307693,
+    "music": 0.44067796610169496,
+    "software": 0.4117647058823529,
+    "streaming": 0.44329896907216493,
+    "none": 0.5111111111111111
+  }
+}

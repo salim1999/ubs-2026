@@ -1,0 +1,108 @@
+{
+  "stream_reproduction": {
+    "max_overdue_days": 5.0,
+    "family_aggregation": "min",
+    "trial_gate": "baseline",
+    "gap_cv_penalty_days": 0.0,
+    "weak_keyword_penalty_days": 0.0,
+    "per_label_overdue": []
+  },
+  "corrected_family_aggregation": {
+    "max_overdue_days": 5.0,
+    "family_aggregation": "closest_live",
+    "trial_gate": "baseline",
+    "gap_cv_penalty_days": 0.0,
+    "weak_keyword_penalty_days": 0.0,
+    "per_label_overdue": []
+  },
+  "train_selected_global_gate": {
+    "max_overdue_days": 7.0,
+    "family_aggregation": "min",
+    "trial_gate": "baseline",
+    "gap_cv_penalty_days": 0.0,
+    "weak_keyword_penalty_days": 0.0,
+    "per_label_overdue": []
+  },
+  "train_selected_confidence": {
+    "max_overdue_days": 7.0,
+    "family_aggregation": "closest_live",
+    "trial_gate": "baseline",
+    "gap_cv_penalty_days": 2.0,
+    "weak_keyword_penalty_days": 2.0,
+    "per_label_overdue": []
+  },
+  "train_selected_per_label_min": {
+    "max_overdue_days": 7.0,
+    "family_aggregation": "min",
+    "trial_gate": "baseline",
+    "gap_cv_penalty_days": 0.0,
+    "weak_keyword_penalty_days": 0.0,
+    "per_label_overdue": [
+      [
+        "cloud",
+        5.0
+      ],
+      [
+        "gym",
+        7.0
+      ],
+      [
+        "insurance",
+        7.0
+      ],
+      [
+        "mobile",
+        10.0
+      ],
+      [
+        "music",
+        7.0
+      ],
+      [
+        "software",
+        0.0
+      ],
+      [
+        "streaming",
+        5.0
+      ]
+    ]
+  },
+  "train_selected_per_label_corrected": {
+    "max_overdue_days": 7.0,
+    "family_aggregation": "closest_live",
+    "trial_gate": "baseline",
+    "gap_cv_penalty_days": 2.0,
+    "weak_keyword_penalty_days": 2.0,
+    "per_label_overdue": [
+      [
+        "cloud",
+        5.0
+      ],
+      [
+        "gym",
+        7.0
+      ],
+      [
+        "insurance",
+        7.0
+      ],
+      [
+        "mobile",
+        10.0
+      ],
+      [
+        "music",
+        7.0
+      ],
+      [
+        "software",
+        0.0
+      ],
+      [
+        "streaming",
+        5.0
+      ]
+    ]
+  }
+}

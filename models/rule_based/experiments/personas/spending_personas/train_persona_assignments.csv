@@ -1,0 +1,2001 @@
+client_id,cluster,persona
+C000001,3,High-velocity spenders
+C000005,3,High-velocity spenders
+C000007,2,Low-key everyday users
+C000009,0,Subscription regulars
+C000012,0,Subscription regulars
+C000014,0,Subscription regulars
+C000015,2,Low-key everyday users
+C000016,3,High-velocity spenders
+C000017,0,Subscription regulars
+C000021,3,High-velocity spenders
+C000022,0,Subscription regulars
+C000024,3,High-velocity spenders
+C000025,3,High-velocity spenders
+C000026,3,High-velocity spenders
+C000027,3,High-velocity spenders
+C000028,3,High-velocity spenders
+C000029,3,High-velocity spenders
+C000030,1,Transfer & cash movers
+C000033,1,Transfer & cash movers
+C000035,0,Subscription regulars
+C000038,2,Low-key everyday users
+C000039,1,Transfer & cash movers
+C000040,3,High-velocity spenders
+C000041,3,High-velocity spenders
+C000043,1,Transfer & cash movers
+C000044,1,Transfer & cash movers
+C000047,0,Subscription regulars
+C000053,1,Transfer & cash movers
+C000055,1,Transfer & cash movers
+C000060,1,Transfer & cash movers
+C000062,3,High-velocity spenders
+C000063,0,Subscription regulars
+C000064,0,Subscription regulars
+C000066,1,Transfer & cash movers
+C000069,3,High-velocity spenders
+C000072,0,Subscription regulars
+C000073,2,Low-key everyday users
+C000077,3,High-velocity spenders
+C000078,0,Subscription regulars
+C000079,3,High-velocity spenders
+C000080,1,Transfer & cash movers
+C000084,1,Transfer & cash movers
+C000085,1,Transfer & cash movers
+C000088,0,Subscription regulars
+C000093,3,High-velocity spenders
+C000094,1,Transfer & cash movers
+C000095,3,High-velocity spenders
+C000100,3,High-velocity spenders
+C000101,1,Transfer & cash movers
+C000102,1,Transfer & cash movers
+C000103,3,High-velocity spenders
+C000104,3,High-velocity spenders
+C000105,3,High-velocity spenders
+C000106,1,Transfer & cash movers
+C000109,2,Low-key everyday users
+C000110,3,High-velocity spenders
+C000111,0,Subscription regulars
+C000113,0,Subscription regulars
+C000115,0,Subscription regulars
+C000116,3,High-velocity spenders
+C000117,2,Low-key everyday users
+C000119,2,Low-key everyday users
+C000120,2,Low-key everyday users
+C000122,0,Subscription regulars
+C000127,1,Transfer & cash movers
+C000128,3,High-velocity spenders
+C000129,0,Subscription regulars
+C000130,1,Transfer & cash movers
+C000132,3,High-velocity spenders
+C000134,1,Transfer & cash movers
+C000135,1,Transfer & cash movers
+C000136,3,High-velocity spenders
+C000137,0,Subscription regulars
+C000140,0,Subscription regulars
+C000142,0,Subscription regulars
+C000144,1,Transfer & cash movers
+C000148,0,Subscription regulars
+C000149,0,Subscription regulars
+C000150,1,Transfer & cash movers
+C000152,0,Subscription regulars
+C000153,1,Transfer & cash movers
+C000155,1,Transfer & cash movers
+C000157,2,Low-key everyday users
+C000159,1,Transfer & cash movers
+C000160,2,Low-key everyday users
+C000162,3,High-velocity spenders
+C000164,3,High-velocity spenders
+C000168,3,High-velocity spenders
+C000169,3,High-velocity spenders
+C000171,1,Transfer & cash movers
+C000172,1,Transfer & cash movers
+C000173,1,Transfer & cash movers
+C000174,1,Transfer & cash movers
+C000175,0,Subscription regulars
+C000177,3,High-velocity spenders
+C000179,3,High-velocity spenders
+C000181,0,Subscription regulars
+C000183,3,High-velocity spenders
+C000185,0,Subscription regulars
+C000187,1,Transfer & cash movers
+C000189,2,Low-key everyday users
+C000190,1,Transfer & cash movers
+C000191,0,Subscription regulars
+C000192,3,High-velocity spenders
+C000196,0,Subscription regulars
+C000197,0,Subscription regulars
+C000198,3,High-velocity spenders
+C000201,1,Transfer & cash movers
+C000202,3,High-velocity spenders
+C000203,0,Subscription regulars
+C000205,1,Transfer & cash movers
+C000206,3,High-velocity spenders
+C000207,0,Subscription regulars
+C000210,3,High-velocity spenders
+C000212,3,High-velocity spenders
+C000214,2,Low-key everyday users
+C000218,3,High-velocity spenders
+C000219,2,Low-key everyday users
+C000222,0,Subscription regulars
+C000223,0,Subscription regulars
+C000226,1,Transfer & cash movers
+C000228,3,High-velocity spenders
+C000230,0,Subscription regulars
+C000233,3,High-velocity spenders
+C000234,3,High-velocity spenders
+C000235,2,Low-key everyday users
+C000236,3,High-velocity spenders
+C000237,3,High-velocity spenders
+C000238,1,Transfer & cash movers
+C000239,0,Subscription regulars
+C000240,1,Transfer & cash movers
+C000242,0,Subscription regulars
+C000245,3,High-velocity spenders
+C000246,1,Transfer & cash movers
+C000248,0,Subscription regulars
+C000249,1,Transfer & cash movers
+C000250,0,Subscription regulars
+C000252,3,High-velocity spenders
+C000254,1,Transfer & cash movers
+C000257,1,Transfer & cash movers
+C000259,3,High-velocity spenders
+C000261,1,Transfer & cash movers
+C000262,2,Low-key everyday users
+C000263,3,High-velocity spenders
+C000264,1,Transfer & cash movers
+C000265,1,Transfer & cash movers
+C000270,1,Transfer & cash movers
+C000271,3,High-velocity spenders
+C000272,3,High-velocity spenders
+C000274,1,Transfer & cash movers
+C000275,0,Subscription regulars
+C000276,0,Subscription regulars
+C000281,0,Subscription regulars
+C000283,1,Transfer & cash movers
+C000284,1,Transfer & cash movers
+C000285,3,High-velocity spenders
+C000286,3,High-velocity spenders
+C000290,2,Low-key everyday users
+C000292,1,Transfer & cash movers
+C000295,1,Transfer & cash movers
+C000296,1,Transfer & cash movers
+C000297,0,Subscription regulars
+C000302,1,Transfer & cash movers
+C000306,1,Transfer & cash movers
+C000310,0,Subscription regulars
+C000311,1,Transfer & cash movers
+C000313,0,Subscription regulars
+C000319,3,High-velocity spenders
+C000322,3,High-velocity spenders
+C000323,0,Subscription regulars
+C000324,3,High-velocity spenders
+C000326,1,Transfer & cash movers
+C000330,3,High-velocity spenders
+C000332,0,Subscription regulars
+C000336,0,Subscription regulars
+C000338,0,Subscription regulars
+C000339,1,Transfer & cash movers
+C000342,0,Subscription regulars
+C000343,3,High-velocity spenders
+C000348,1,Transfer & cash movers
+C000350,3,High-velocity spenders
+C000351,0,Subscription regulars
+C000352,1,Transfer & cash movers
+C000353,1,Transfer & cash movers
+C000356,0,Subscription regulars
+C000358,2,Low-key everyday users
+C000361,3,High-velocity spenders
+C000363,0,Subscription regulars
+C000364,2,Low-key everyday users
+C000369,1,Transfer & cash movers
+C000372,1,Transfer & cash movers
+C000375,0,Subscription regulars
+C000376,2,Low-key everyday users
+C000381,1,Transfer & cash movers
+C000382,3,High-velocity spenders
+C000387,0,Subscription regulars
+C000388,0,Subscription regulars
+C000389,2,Low-key everyday users
+C000390,0,Subscription regulars
+C000392,0,Subscription regulars
+C000394,2,Low-key everyday users
+C000400,0,Subscription regulars
+C000401,1,Transfer & cash movers
+C000403,0,Subscription regulars
+C000406,0,Subscription regulars
+C000407,1,Transfer & cash movers
+C000408,2,Low-key everyday users
+C000410,0,Subscription regulars
+C000414,1,Transfer & cash movers
+C000417,1,Transfer & cash movers
+C000418,1,Transfer & cash movers
+C000420,3,High-velocity spenders
+C000422,0,Subscription regulars
+C000424,2,Low-key everyday users
+C000425,1,Transfer & cash movers
+C000426,2,Low-key everyday users
+C000427,0,Subscription regulars
+C000428,1,Transfer & cash movers
+C000431,1,Transfer & cash movers
+C000433,3,High-velocity spenders
+C000434,1,Transfer & cash movers
+C000436,3,High-velocity spenders
+C000437,1,Transfer & cash movers
+C000438,3,High-velocity spenders
+C000443,3,High-velocity spenders
+C000445,1,Transfer & cash movers
+C000446,3,High-velocity spenders
+C000447,3,High-velocity spenders
+C000448,3,High-velocity spenders
+C000452,3,High-velocity spenders
+C000453,3,High-velocity spenders
+C000454,0,Subscription regulars
+C000455,3,High-velocity spenders
+C000456,0,Subscription regulars
+C000457,1,Transfer & cash movers
+C000458,1,Transfer & cash movers
+C000461,0,Subscription regulars
+C000462,0,Subscription regulars
+C000464,0,Subscription regulars
+C000465,3,High-velocity spenders
+C000468,3,High-velocity spenders
+C000469,3,High-velocity spenders
+C000470,1,Transfer & cash movers
+C000471,1,Transfer & cash movers
+C000472,2,Low-key everyday users
+C000473,3,High-velocity spenders
+C000475,1,Transfer & cash movers
+C000477,3,High-velocity spenders
+C000481,3,High-velocity spenders
+C000482,1,Transfer & cash movers
+C000484,3,High-velocity spenders
+C000492,3,High-velocity spenders
+C000493,0,Subscription regulars
+C000497,3,High-velocity spenders
+C000498,1,Transfer & cash movers
+C000502,3,High-velocity spenders
+C000503,0,Subscription regulars
+C000504,0,Subscription regulars
+C000506,0,Subscription regulars
+C000508,0,Subscription regulars
+C000509,3,High-velocity spenders
+C000511,3,High-velocity spenders
+C000512,0,Subscription regulars
+C000513,1,Transfer & cash movers
+C000516,0,Subscription regulars
+C000518,3,High-velocity spenders
+C000521,0,Subscription regulars
+C000523,0,Subscription regulars
+C000526,0,Subscription regulars
+C000529,0,Subscription regulars
+C000531,0,Subscription regulars
+C000532,0,Subscription regulars
+C000534,3,High-velocity spenders
+C000536,3,High-velocity spenders
+C000539,0,Subscription regulars
+C000540,2,Low-key everyday users
+C000543,0,Subscription regulars
+C000544,1,Transfer & cash movers
+C000548,3,High-velocity spenders
+C000549,0,Subscription regulars
+C000550,2,Low-key everyday users
+C000551,3,High-velocity spenders
+C000552,1,Transfer & cash movers
+C000555,0,Subscription regulars
+C000556,0,Subscription regulars
+C000557,0,Subscription regulars
+C000558,2,Low-key everyday users
+C000559,3,High-velocity spenders
+C000561,2,Low-key everyday users
+C000563,2,Low-key everyday users
+C000564,3,High-velocity spenders
+C000567,1,Transfer & cash movers
+C000579,0,Subscription regulars
+C000580,3,High-velocity spenders
+C000586,0,Subscription regulars
+C000587,3,High-velocity spenders
+C000588,2,Low-key everyday users
+C000592,0,Subscription regulars
+C000596,1,Transfer & cash movers
+C000597,0,Subscription regulars
+C000599,1,Transfer & cash movers
+C000600,0,Subscription regulars
+C000602,3,High-velocity spenders
+C000605,3,High-velocity spenders
+C000606,1,Transfer & cash movers
+C000607,1,Transfer & cash movers
+C000609,0,Subscription regulars
+C000612,3,High-velocity spenders
+C000615,3,High-velocity spenders
+C000617,3,High-velocity spenders
+C000618,3,High-velocity spenders
+C000620,2,Low-key everyday users
+C000621,1,Transfer & cash movers
+C000622,3,High-velocity spenders
+C000624,1,Transfer & cash movers
+C000626,3,High-velocity spenders
+C000627,0,Subscription regulars
+C000629,3,High-velocity spenders
+C000630,2,Low-key everyday users
+C000633,0,Subscription regulars
+C000636,1,Transfer & cash movers
+C000638,0,Subscription regulars
+C000639,0,Subscription regulars
+C000640,2,Low-key everyday users
+C000641,3,High-velocity spenders
+C000644,0,Subscription regulars
+C000645,3,High-velocity spenders
+C000647,0,Subscription regulars
+C000648,1,Transfer & cash movers
+C000649,3,High-velocity spenders
+C000651,3,High-velocity spenders
+C000652,3,High-velocity spenders
+C000657,1,Transfer & cash movers
+C000660,0,Subscription regulars
+C000665,1,Transfer & cash movers
+C000666,2,Low-key everyday users
+C000667,0,Subscription regulars
+C000668,0,Subscription regulars
+C000669,2,Low-key everyday users
+C000670,0,Subscription regulars
+C000672,2,Low-key everyday users
+C000675,1,Transfer & cash movers
+C000677,2,Low-key everyday users
+C000678,1,Transfer & cash movers
+C000679,3,High-velocity spenders
+C000680,3,High-velocity spenders
+C000681,1,Transfer & cash movers
+C000682,3,High-velocity spenders
+C000683,0,Subscription regulars
+C000684,0,Subscription regulars
+C000694,2,Low-key everyday users
+C000696,1,Transfer & cash movers
+C000699,1,Transfer & cash movers
+C000700,0,Subscription regulars
+C000701,3,High-velocity spenders
+C000702,0,Subscription regulars
+C000705,1,Transfer & cash movers
+C000707,3,High-velocity spenders
+C000709,3,High-velocity spenders
+C000712,3,High-velocity spenders
+C000713,3,High-velocity spenders
+C000717,0,Subscription regulars
+C000721,3,High-velocity spenders
+C000725,0,Subscription regulars
+C000728,3,High-velocity spenders
+C000732,2,Low-key everyday users
+C000734,1,Transfer & cash movers
+C000735,3,High-velocity spenders
+C000737,3,High-velocity spenders
+C000738,2,Low-key everyday users
+C000743,0,Subscription regulars
+C000746,0,Subscription regulars
+C000747,1,Transfer & cash movers
+C000749,0,Subscription regulars
+C000750,1,Transfer & cash movers
+C000756,1,Transfer & cash movers
+C000758,1,Transfer & cash movers
+C000761,0,Subscription regulars
+C000763,3,High-velocity spenders
+C000764,3,High-velocity spenders
+C000766,1,Transfer & cash movers
+C000769,1,Transfer & cash movers
+C000771,1,Transfer & cash movers
+C000772,0,Subscription regulars
+C000775,1,Transfer & cash movers
+C000776,1,Transfer & cash movers
+C000778,0,Subscription regulars
+C000781,0,Subscription regulars
+C000783,1,Transfer & cash movers
+C000787,0,Subscription regulars
+C000792,2,Low-key everyday users
+C000793,2,Low-key everyday users
+C000794,3,High-velocity spenders
+C000799,1,Transfer & cash movers
+C000800,1,Transfer & cash movers
+C000805,3,High-velocity spenders
+C000807,3,High-velocity spenders
+C000808,1,Transfer & cash movers
+C000815,1,Transfer & cash movers
+C000819,3,High-velocity spenders
+C000821,1,Transfer & cash movers
+C000822,3,High-velocity spenders
+C000823,3,High-velocity spenders
+C000826,0,Subscription regulars
+C000827,3,High-velocity spenders
+C000829,1,Transfer & cash movers
+C000831,3,High-velocity spenders
+C000832,0,Subscription regulars
+C000835,3,High-velocity spenders
+C000836,3,High-velocity spenders
+C000837,3,High-velocity spenders
+C000840,1,Transfer & cash movers
+C000841,0,Subscription regulars
+C000842,0,Subscription regulars
+C000843,1,Transfer & cash movers
+C000844,3,High-velocity spenders
+C000850,1,Transfer & cash movers
+C000851,0,Subscription regulars
+C000854,3,High-velocity spenders
+C000856,1,Transfer & cash movers
+C000857,0,Subscription regulars
+C000858,0,Subscription regulars
+C000859,1,Transfer & cash movers
+C000862,3,High-velocity spenders
+C000865,1,Transfer & cash movers
+C000868,1,Transfer & cash movers
+C000873,0,Subscription regulars
+C000874,3,High-velocity spenders
+C000877,3,High-velocity spenders
+C000878,3,High-velocity spenders
+C000880,1,Transfer & cash movers
+C000883,3,High-velocity spenders
+C000885,3,High-velocity spenders
+C000886,3,High-velocity spenders
+C000887,3,High-velocity spenders
+C000889,0,Subscription regulars
+C000891,3,High-velocity spenders
+C000892,3,High-velocity spenders
+C000894,0,Subscription regulars
+C000895,1,Transfer & cash movers
+C000901,1,Transfer & cash movers
+C000903,0,Subscription regulars
+C000904,0,Subscription regulars
+C000905,1,Transfer & cash movers
+C000907,0,Subscription regulars
+C000911,3,High-velocity spenders
+C000912,0,Subscription regulars
+C000914,1,Transfer & cash movers
+C000916,0,Subscription regulars
+C000917,0,Subscription regulars
+C000920,1,Transfer & cash movers
+C000921,0,Subscription regulars
+C000922,2,Low-key everyday users
+C000923,0,Subscription regulars
+C000926,0,Subscription regulars
+C000927,3,High-velocity spenders
+C000930,1,Transfer & cash movers
+C000931,1,Transfer & cash movers
+C000932,3,High-velocity spenders
+C000933,1,Transfer & cash movers
+C000936,3,High-velocity spenders
+C000938,3,High-velocity spenders
+C000942,3,High-velocity spenders
+C000948,3,High-velocity spenders
+C000949,3,High-velocity spenders
+C000950,3,High-velocity spenders
+C000951,1,Transfer & cash movers
+C000954,3,High-velocity spenders
+C000956,0,Subscription regulars
+C000957,3,High-velocity spenders
+C000958,1,Transfer & cash movers
+C000959,1,Transfer & cash movers
+C000964,3,High-velocity spenders
+C000965,1,Transfer & cash movers
+C000966,0,Subscription regulars
+C000967,0,Subscription regulars
+C000968,0,Subscription regulars
+C000971,3,High-velocity spenders
+C000972,2,Low-key everyday users
+C000974,3,High-velocity spenders
+C000975,0,Subscription regulars
+C000977,1,Transfer & cash movers
+C000980,0,Subscription regulars
+C000981,2,Low-key everyday users
+C000983,3,High-velocity spenders
+C000985,3,High-velocity spenders
+C000988,1,Transfer & cash movers
+C000990,0,Subscription regulars
+C000993,3,High-velocity spenders
+C000994,0,Subscription regulars
+C000996,3,High-velocity spenders
+C000997,1,Transfer & cash movers
+C000998,1,Transfer & cash movers
+C000999,2,Low-key everyday users
+C001000,2,Low-key everyday users
+C001002,3,High-velocity spenders
+C001004,0,Subscription regulars
+C001006,1,Transfer & cash movers
+C001008,1,Transfer & cash movers
+C001013,1,Transfer & cash movers
+C001018,1,Transfer & cash movers
+C001020,3,High-velocity spenders
+C001021,3,High-velocity spenders
+C001022,0,Subscription regulars
+C001024,3,High-velocity spenders
+C001027,3,High-velocity spenders
+C001028,3,High-velocity spenders
+C001029,0,Subscription regulars
+C001030,2,Low-key everyday users
+C001033,3,High-velocity spenders
+C001035,0,Subscription regulars
+C001037,0,Subscription regulars
+C001038,0,Subscription regulars
+C001040,3,High-velocity spenders
+C001043,3,High-velocity spenders
+C001046,0,Subscription regulars
+C001050,3,High-velocity spenders
+C001051,3,High-velocity spenders
+C001055,1,Transfer & cash movers
+C001056,3,High-velocity spenders
+C001060,1,Transfer & cash movers
+C001061,2,Low-key everyday users
+C001062,0,Subscription regulars
+C001063,1,Transfer & cash movers
+C001064,1,Transfer & cash movers
+C001066,1,Transfer & cash movers
+C001067,0,Subscription regulars
+C001068,0,Subscription regulars
+C001072,3,High-velocity spenders
+C001074,1,Transfer & cash movers
+C001075,0,Subscription regulars
+C001077,0,Subscription regulars
+C001080,1,Transfer & cash movers
+C001084,3,High-velocity spenders
+C001086,0,Subscription regulars
+C001088,0,Subscription regulars
+C001090,1,Transfer & cash movers
+C001092,0,Subscription regulars
+C001093,1,Transfer & cash movers
+C001095,2,Low-key everyday users
+C001096,0,Subscription regulars
+C001098,3,High-velocity spenders
+C001100,1,Transfer & cash movers
+C001102,1,Transfer & cash movers
+C001106,3,High-velocity spenders
+C001108,0,Subscription regulars
+C001109,0,Subscription regulars
+C001110,2,Low-key everyday users
+C001112,0,Subscription regulars
+C001113,0,Subscription regulars
+C001115,0,Subscription regulars
+C001119,2,Low-key everyday users
+C001120,0,Subscription regulars
+C001121,0,Subscription regulars
+C001122,0,Subscription regulars
+C001123,0,Subscription regulars
+C001129,3,High-velocity spenders
+C001130,0,Subscription regulars
+C001132,3,High-velocity spenders
+C001134,3,High-velocity spenders
+C001135,1,Transfer & cash movers
+C001136,3,High-velocity spenders
+C001138,0,Subscription regulars
+C001139,1,Transfer & cash movers
+C001140,3,High-velocity spenders
+C001141,1,Transfer & cash movers
+C001143,3,High-velocity spenders
+C001147,1,Transfer & cash movers
+C001148,0,Subscription regulars
+C001149,3,High-velocity spenders
+C001151,0,Subscription regulars
+C001152,0,Subscription regulars
+C001153,0,Subscription regulars
+C001154,0,Subscription regulars
+C001156,1,Transfer & cash movers
+C001157,0,Subscription regulars
+C001160,1,Transfer & cash movers
+C001164,3,High-velocity spenders
+C001165,2,Low-key everyday users
+C001168,0,Subscription regulars
+C001170,2,Low-key everyday users
+C001171,0,Subscription regulars
+C001172,0,Subscription regulars
+C001173,3,High-velocity spenders
+C001174,3,High-velocity spenders
+C001175,3,High-velocity spenders
+C001176,3,High-velocity spenders
+C001181,3,High-velocity spenders
+C001182,1,Transfer & cash movers
+C001183,3,High-velocity spenders
+C001184,1,Transfer & cash movers
+C001185,0,Subscription regulars
+C001188,2,Low-key everyday users
+C001191,3,High-velocity spenders
+C001192,1,Transfer & cash movers
+C001194,1,Transfer & cash movers
+C001202,2,Low-key everyday users
+C001203,0,Subscription regulars
+C001204,3,High-velocity spenders
+C001207,2,Low-key everyday users
+C001209,0,Subscription regulars
+C001210,3,High-velocity spenders
+C001211,0,Subscription regulars
+C001214,3,High-velocity spenders
+C001216,3,High-velocity spenders
+C001220,2,Low-key everyday users
+C001221,2,Low-key everyday users
+C001222,3,High-velocity spenders
+C001223,3,High-velocity spenders
+C001224,0,Subscription regulars
+C001225,0,Subscription regulars
+C001229,3,High-velocity spenders
+C001230,3,High-velocity spenders
+C001232,0,Subscription regulars
+C001234,1,Transfer & cash movers
+C001237,2,Low-key everyday users
+C001238,0,Subscription regulars
+C001239,2,Low-key everyday users
+C001241,1,Transfer & cash movers
+C001243,2,Low-key everyday users
+C001244,0,Subscription regulars
+C001248,2,Low-key everyday users
+C001249,0,Subscription regulars
+C001252,3,High-velocity spenders
+C001254,2,Low-key everyday users
+C001255,3,High-velocity spenders
+C001256,0,Subscription regulars
+C001258,0,Subscription regulars
+C001260,0,Subscription regulars
+C001265,3,High-velocity spenders
+C001266,3,High-velocity spenders
+C001267,1,Transfer & cash movers
+C001268,0,Subscription regulars
+C001269,1,Transfer & cash movers
+C001271,2,Low-key everyday users
+C001272,3,High-velocity spenders
+C001275,1,Transfer & cash movers
+C001276,1,Transfer & cash movers
+C001279,3,High-velocity spenders
+C001280,3,High-velocity spenders
+C001283,1,Transfer & cash movers
+C001284,1,Transfer & cash movers
+C001288,3,High-velocity spenders
+C001289,1,Transfer & cash movers
+C001290,1,Transfer & cash movers
+C001291,0,Subscription regulars
+C001292,2,Low-key everyday users
+C001293,2,Low-key everyday users
+C001294,1,Transfer & cash movers
+C001299,0,Subscription regulars
+C001301,0,Subscription regulars
+C001306,1,Transfer & cash movers
+C001307,3,High-velocity spenders
+C001308,0,Subscription regulars
+C001310,3,High-velocity spenders
+C001312,3,High-velocity spenders
+C001316,0,Subscription regulars
+C001317,0,Subscription regulars
+C001318,1,Transfer & cash movers
+C001320,0,Subscription regulars
+C001321,1,Transfer & cash movers
+C001322,3,High-velocity spenders
+C001323,3,High-velocity spenders
+C001324,2,Low-key everyday users
+C001326,0,Subscription regulars
+C001328,3,High-velocity spenders
+C001331,3,High-velocity spenders
+C001335,2,Low-key everyday users
+C001336,0,Subscription regulars
+C001337,3,High-velocity spenders
+C001340,1,Transfer & cash movers
+C001345,0,Subscription regulars
+C001347,1,Transfer & cash movers
+C001348,0,Subscription regulars
+C001351,3,High-velocity spenders
+C001354,2,Low-key everyday users
+C001355,1,Transfer & cash movers
+C001356,1,Transfer & cash movers
+C001359,2,Low-key everyday users
+C001361,1,Transfer & cash movers
+C001364,0,Subscription regulars
+C001366,1,Transfer & cash movers
+C001367,1,Transfer & cash movers
+C001374,1,Transfer & cash movers
+C001377,1,Transfer & cash movers
+C001378,0,Subscription regulars
+C001380,0,Subscription regulars
+C001382,1,Transfer & cash movers
+C001385,2,Low-key everyday users
+C001386,3,High-velocity spenders
+C001389,3,High-velocity spenders
+C001391,3,High-velocity spenders
+C001397,0,Subscription regulars
+C001399,3,High-velocity spenders
+C001400,1,Transfer & cash movers
+C001402,2,Low-key everyday users
+C001406,2,Low-key everyday users
+C001408,1,Transfer & cash movers
+C001409,0,Subscription regulars
+C001410,3,High-velocity spenders
+C001413,3,High-velocity spenders
+C001414,3,High-velocity spenders
+C001415,0,Subscription regulars
+C001416,1,Transfer & cash movers
+C001417,1,Transfer & cash movers
+C001419,0,Subscription regulars
+C001420,0,Subscription regulars
+C001421,0,Subscription regulars
+C001422,0,Subscription regulars
+C001424,3,High-velocity spenders
+C001427,0,Subscription regulars
+C001428,3,High-velocity spenders
+C001433,3,High-velocity spenders
+C001436,1,Transfer & cash movers
+C001437,1,Transfer & cash movers
+C001439,3,High-velocity spenders
+C001440,1,Transfer & cash movers
+C001441,0,Subscription regulars
+C001442,1,Transfer & cash movers
+C001444,1,Transfer & cash movers
+C001445,1,Transfer & cash movers
+C001446,3,High-velocity spenders
+C001448,3,High-velocity spenders
+C001449,3,High-velocity spenders
+C001450,2,Low-key everyday users
+C001451,1,Transfer & cash movers
+C001452,3,High-velocity spenders
+C001453,1,Transfer & cash movers
+C001457,0,Subscription regulars
+C001458,2,Low-key everyday users
+C001459,0,Subscription regulars
+C001460,0,Subscription regulars
+C001461,1,Transfer & cash movers
+C001462,0,Subscription regulars
+C001463,1,Transfer & cash movers
+C001467,2,Low-key everyday users
+C001469,3,High-velocity spenders
+C001470,0,Subscription regulars
+C001472,0,Subscription regulars
+C001474,0,Subscription regulars
+C001475,1,Transfer & cash movers
+C001484,3,High-velocity spenders
+C001485,3,High-velocity spenders
+C001486,1,Transfer & cash movers
+C001487,3,High-velocity spenders
+C001492,2,Low-key everyday users
+C001493,3,High-velocity spenders
+C001497,3,High-velocity spenders
+C001498,3,High-velocity spenders
+C001499,0,Subscription regulars
+C001500,3,High-velocity spenders
+C001501,2,Low-key everyday users
+C001503,0,Subscription regulars
+C001504,1,Transfer & cash movers
+C001506,3,High-velocity spenders
+C001509,0,Subscription regulars
+C001513,1,Transfer & cash movers
+C001514,3,High-velocity spenders
+C001516,3,High-velocity spenders
+C001517,3,High-velocity spenders
+C001520,1,Transfer & cash movers
+C001524,0,Subscription regulars
+C001525,1,Transfer & cash movers
+C001526,1,Transfer & cash movers
+C001527,3,High-velocity spenders
+C001530,1,Transfer & cash movers
+C001533,3,High-velocity spenders
+C001536,2,Low-key everyday users
+C001540,3,High-velocity spenders
+C001548,3,High-velocity spenders
+C001549,2,Low-key everyday users
+C001554,0,Subscription regulars
+C001555,0,Subscription regulars
+C001560,1,Transfer & cash movers
+C001561,1,Transfer & cash movers
+C001564,3,High-velocity spenders
+C001567,0,Subscription regulars
+C001569,1,Transfer & cash movers
+C001570,3,High-velocity spenders
+C001571,3,High-velocity spenders
+C001572,0,Subscription regulars
+C001574,0,Subscription regulars
+C001575,0,Subscription regulars
+C001576,0,Subscription regulars
+C001577,3,High-velocity spenders
+C001578,0,Subscription regulars
+C001581,3,High-velocity spenders
+C001582,3,High-velocity spenders
+C001583,2,Low-key everyday users
+C001584,2,Low-key everyday users
+C001585,0,Subscription regulars
+C001587,0,Subscription regulars
+C001589,3,High-velocity spenders
+C001590,3,High-velocity spenders
+C001591,0,Subscription regulars
+C001592,1,Transfer & cash movers
+C001593,1,Transfer & cash movers
+C001594,1,Transfer & cash movers
+C001599,2,Low-key everyday users
+C001600,1,Transfer & cash movers
+C001601,3,High-velocity spenders
+C001602,1,Transfer & cash movers
+C001604,2,Low-key everyday users
+C001607,1,Transfer & cash movers
+C001608,1,Transfer & cash movers
+C001613,0,Subscription regulars
+C001614,2,Low-key everyday users
+C001615,3,High-velocity spenders
+C001616,0,Subscription regulars
+C001617,3,High-velocity spenders
+C001618,1,Transfer & cash movers
+C001621,0,Subscription regulars
+C001624,2,Low-key everyday users
+C001625,0,Subscription regulars
+C001626,1,Transfer & cash movers
+C001627,3,High-velocity spenders
+C001631,1,Transfer & cash movers
+C001634,1,Transfer & cash movers
+C001635,3,High-velocity spenders
+C001639,2,Low-key everyday users
+C001640,3,High-velocity spenders
+C001641,2,Low-key everyday users
+C001642,1,Transfer & cash movers
+C001644,0,Subscription regulars
+C001645,1,Transfer & cash movers
+C001648,1,Transfer & cash movers
+C001650,3,High-velocity spenders
+C001655,0,Subscription regulars
+C001656,3,High-velocity spenders
+C001660,2,Low-key everyday users
+C001662,0,Subscription regulars
+C001664,0,Subscription regulars
+C001665,2,Low-key everyday users
+C001666,1,Transfer & cash movers
+C001668,0,Subscription regulars
+C001670,0,Subscription regulars
+C001672,1,Transfer & cash movers
+C001673,3,High-velocity spenders
+C001674,3,High-velocity spenders
+C001676,0,Subscription regulars
+C001678,1,Transfer & cash movers
+C001680,1,Transfer & cash movers
+C001681,1,Transfer & cash movers
+C001682,1,Transfer & cash movers
+C001686,0,Subscription regulars
+C001692,1,Transfer & cash movers
+C001695,1,Transfer & cash movers
+C001697,1,Transfer & cash movers
+C001699,3,High-velocity spenders
+C001700,2,Low-key everyday users
+C001703,1,Transfer & cash movers
+C001704,0,Subscription regulars
+C001705,3,High-velocity spenders
+C001706,3,High-velocity spenders
+C001707,0,Subscription regulars
+C001708,1,Transfer & cash movers
+C001710,0,Subscription regulars
+C001712,3,High-velocity spenders
+C001713,0,Subscription regulars
+C001715,0,Subscription regulars
+C001717,1,Transfer & cash movers
+C001718,3,High-velocity spenders
+C001719,1,Transfer & cash movers
+C001720,2,Low-key everyday users
+C001721,2,Low-key everyday users
+C001723,1,Transfer & cash movers
+C001724,1,Transfer & cash movers
+C001732,0,Subscription regulars
+C001734,2,Low-key everyday users
+C001735,0,Subscription regulars
+C001736,1,Transfer & cash movers
+C001737,3,High-velocity spenders
+C001740,1,Transfer & cash movers
+C001742,1,Transfer & cash movers
+C001744,3,High-velocity spenders
+C001749,3,High-velocity spenders
+C001751,1,Transfer & cash movers
+C001753,0,Subscription regulars
+C001755,1,Transfer & cash movers
+C001757,2,Low-key everyday users
+C001758,0,Subscription regulars
+C001760,1,Transfer & cash movers
+C001762,1,Transfer & cash movers
+C001765,1,Transfer & cash movers
+C001766,1,Transfer & cash movers
+C001768,0,Subscription regulars
+C001772,2,Low-key everyday users
+C001773,1,Transfer & cash movers
+C001778,3,High-velocity spenders
+C001779,3,High-velocity spenders
+C001785,0,Subscription regulars
+C001787,3,High-velocity spenders
+C001788,1,Transfer & cash movers
+C001789,2,Low-key everyday users
+C001791,1,Transfer & cash movers
+C001792,2,Low-key everyday users
+C001793,3,High-velocity spenders
+C001794,3,High-velocity spenders
+C001795,0,Subscription regulars
+C001797,1,Transfer & cash movers
+C001799,0,Subscription regulars
+C001801,2,Low-key everyday users
+C001802,2,Low-key everyday users
+C001806,1,Transfer & cash movers
+C001809,3,High-velocity spenders
+C001810,1,Transfer & cash movers
+C001813,1,Transfer & cash movers
+C001815,1,Transfer & cash movers
+C001817,1,Transfer & cash movers
+C001818,1,Transfer & cash movers
+C001820,1,Transfer & cash movers
+C001824,3,High-velocity spenders
+C001826,2,Low-key everyday users
+C001827,1,Transfer & cash movers
+C001832,0,Subscription regulars
+C001834,1,Transfer & cash movers
+C001838,1,Transfer & cash movers
+C001840,2,Low-key everyday users
+C001841,2,Low-key everyday users
+C001843,3,High-velocity spenders
+C001844,3,High-velocity spenders
+C001846,1,Transfer & cash movers
+C001848,3,High-velocity spenders
+C001849,1,Transfer & cash movers
+C001850,0,Subscription regulars
+C001851,3,High-velocity spenders
+C001854,1,Transfer & cash movers
+C001855,0,Subscription regulars
+C001856,1,Transfer & cash movers
+C001857,3,High-velocity spenders
+C001859,0,Subscription regulars
+C001860,0,Subscription regulars
+C001863,1,Transfer & cash movers
+C001864,0,Subscription regulars
+C001866,1,Transfer & cash movers
+C001867,0,Subscription regulars
+C001871,2,Low-key everyday users
+C001873,1,Transfer & cash movers
+C001875,1,Transfer & cash movers
+C001879,3,High-velocity spenders
+C001880,0,Subscription regulars
+C001881,1,Transfer & cash movers
+C001884,0,Subscription regulars
+C001886,0,Subscription regulars
+C001891,3,High-velocity spenders
+C001893,1,Transfer & cash movers
+C001894,0,Subscription regulars
+C001896,0,Subscription regulars
+C001897,0,Subscription regulars
+C001898,3,High-velocity spenders
+C001900,1,Transfer & cash movers
+C001903,3,High-velocity spenders
+C001904,3,High-velocity spenders
+C001909,1,Transfer & cash movers
+C001911,3,High-velocity spenders
+C001914,0,Subscription regulars
+C001921,0,Subscription regulars
+C001922,3,High-velocity spenders
+C001923,1,Transfer & cash movers
+C001928,0,Subscription regulars
+C001929,2,Low-key everyday users
+C001930,3,High-velocity spenders
+C001931,2,Low-key everyday users
+C001932,3,High-velocity spenders
+C001933,0,Subscription regulars
+C001934,3,High-velocity spenders
+C001935,1,Transfer & cash movers
+C001937,3,High-velocity spenders
+C001939,2,Low-key everyday users
+C001940,0,Subscription regulars
+C001942,2,Low-key everyday users
+C001943,1,Transfer & cash movers
+C001947,0,Subscription regulars
+C001948,0,Subscription regulars
+C001949,3,High-velocity spenders
+C001950,0,Subscription regulars
+C001951,1,Transfer & cash movers
+C001952,2,Low-key everyday users
+C001953,2,Low-key everyday users
+C001955,3,High-velocity spenders
+C001956,3,High-velocity spenders
+C001958,3,High-velocity spenders
+C001960,3,High-velocity spenders
+C001962,0,Subscription regulars
+C001964,2,Low-key everyday users
+C001965,3,High-velocity spenders
+C001966,1,Transfer & cash movers
+C001968,1,Transfer & cash movers
+C001970,3,High-velocity spenders
+C001973,1,Transfer & cash movers
+C001974,0,Subscription regulars
+C001975,0,Subscription regulars
+C001978,3,High-velocity spenders
+C001983,1,Transfer & cash movers
+C001984,1,Transfer & cash movers
+C001987,2,Low-key everyday users
+C001993,2,Low-key everyday users
+C001994,1,Transfer & cash movers
+C001995,3,High-velocity spenders
+C001996,3,High-velocity spenders
+C001997,0,Subscription regulars
+C002000,1,Transfer & cash movers
+C002002,3,High-velocity spenders
+C002003,1,Transfer & cash movers
+C002004,3,High-velocity spenders
+C002005,3,High-velocity spenders
+C002008,3,High-velocity spenders
+C002010,3,High-velocity spenders
+C002012,0,Subscription regulars
+C002013,0,Subscription regulars
+C002014,0,Subscription regulars
+C002015,1,Transfer & cash movers
+C002020,0,Subscription regulars
+C002021,0,Subscription regulars
+C002022,0,Subscription regulars
+C002024,3,High-velocity spenders
+C002025,3,High-velocity spenders
+C002026,0,Subscription regulars
+C002028,2,Low-key everyday users
+C002031,1,Transfer & cash movers
+C002033,1,Transfer & cash movers
+C002037,0,Subscription regulars
+C002039,2,Low-key everyday users
+C002040,3,High-velocity spenders
+C002041,3,High-velocity spenders
+C002042,3,High-velocity spenders
+C002044,1,Transfer & cash movers
+C002045,0,Subscription regulars
+C002046,1,Transfer & cash movers
+C002049,0,Subscription regulars
+C002050,1,Transfer & cash movers
+C002051,3,High-velocity spenders
+C002053,1,Transfer & cash movers
+C002056,2,Low-key everyday users
+C002057,3,High-velocity spenders
+C002061,3,High-velocity spenders
+C002064,0,Subscription regulars
+C002067,0,Subscription regulars
+C002068,0,Subscription regulars
+C002069,0,Subscription regulars
+C002072,1,Transfer & cash movers
+C002074,3,High-velocity spenders
+C002075,2,Low-key everyday users
+C002076,3,High-velocity spenders
+C002078,3,High-velocity spenders
+C002079,1,Transfer & cash movers
+C002081,0,Subscription regulars
+C002082,1,Transfer & cash movers
+C002084,3,High-velocity spenders
+C002085,1,Transfer & cash movers
+C002086,3,High-velocity spenders
+C002088,3,High-velocity spenders
+C002089,1,Transfer & cash movers
+C002091,3,High-velocity spenders
+C002094,3,High-velocity spenders
+C002095,1,Transfer & cash movers
+C002097,1,Transfer & cash movers
+C002098,2,Low-key everyday users
+C002100,0,Subscription regulars
+C002101,0,Subscription regulars
+C002103,3,High-velocity spenders
+C002104,1,Transfer & cash movers
+C002108,0,Subscription regulars
+C002111,3,High-velocity spenders
+C002113,3,High-velocity spenders
+C002115,1,Transfer & cash movers
+C002116,3,High-velocity spenders
+C002117,3,High-velocity spenders
+C002118,1,Transfer & cash movers
+C002119,3,High-velocity spenders
+C002121,0,Subscription regulars
+C002122,3,High-velocity spenders
+C002124,1,Transfer & cash movers
+C002126,0,Subscription regulars
+C002127,1,Transfer & cash movers
+C002128,1,Transfer & cash movers
+C002129,0,Subscription regulars
+C002134,1,Transfer & cash movers
+C002136,1,Transfer & cash movers
+C002138,3,High-velocity spenders
+C002139,2,Low-key everyday users
+C002142,0,Subscription regulars
+C002144,1,Transfer & cash movers
+C002146,1,Transfer & cash movers
+C002147,1,Transfer & cash movers
+C002148,1,Transfer & cash movers
+C002149,0,Subscription regulars
+C002150,1,Transfer & cash movers
+C002151,2,Low-key everyday users
+C002153,2,Low-key everyday users
+C002154,0,Subscription regulars
+C002157,0,Subscription regulars
+C002158,1,Transfer & cash movers
+C002160,1,Transfer & cash movers
+C002162,0,Subscription regulars
+C002163,2,Low-key everyday users
+C002165,0,Subscription regulars
+C002166,1,Transfer & cash movers
+C002167,3,High-velocity spenders
+C002168,3,High-velocity spenders
+C002172,1,Transfer & cash movers
+C002173,2,Low-key everyday users
+C002174,2,Low-key everyday users
+C002175,0,Subscription regulars
+C002176,0,Subscription regulars
+C002177,1,Transfer & cash movers
+C002183,1,Transfer & cash movers
+C002184,3,High-velocity spenders
+C002187,1,Transfer & cash movers
+C002188,0,Subscription regulars
+C002189,1,Transfer & cash movers
+C002191,1,Transfer & cash movers
+C002194,3,High-velocity spenders
+C002195,1,Transfer & cash movers
+C002196,0,Subscription regulars
+C002197,0,Subscription regulars
+C002198,0,Subscription regulars
+C002199,3,High-velocity spenders
+C002200,3,High-velocity spenders
+C002206,1,Transfer & cash movers
+C002212,1,Transfer & cash movers
+C002215,3,High-velocity spenders
+C002216,3,High-velocity spenders
+C002218,3,High-velocity spenders
+C002222,1,Transfer & cash movers
+C002227,3,High-velocity spenders
+C002232,0,Subscription regulars
+C002234,2,Low-key everyday users
+C002235,1,Transfer & cash movers
+C002236,3,High-velocity spenders
+C002238,1,Transfer & cash movers
+C002241,3,High-velocity spenders
+C002242,3,High-velocity spenders
+C002243,0,Subscription regulars
+C002245,1,Transfer & cash movers
+C002247,3,High-velocity spenders
+C002250,3,High-velocity spenders
+C002251,1,Transfer & cash movers
+C002256,2,Low-key everyday users
+C002261,0,Subscription regulars
+C002265,1,Transfer & cash movers
+C002266,0,Subscription regulars
+C002274,2,Low-key everyday users
+C002275,0,Subscription regulars
+C002276,1,Transfer & cash movers
+C002277,1,Transfer & cash movers
+C002278,1,Transfer & cash movers
+C002280,1,Transfer & cash movers
+C002281,0,Subscription regulars
+C002282,0,Subscription regulars
+C002285,3,High-velocity spenders
+C002286,0,Subscription regulars
+C002288,3,High-velocity spenders
+C002291,1,Transfer & cash movers
+C002292,0,Subscription regulars
+C002293,1,Transfer & cash movers
+C002294,0,Subscription regulars
+C002296,3,High-velocity spenders
+C002297,0,Subscription regulars
+C002299,0,Subscription regulars
+C002300,3,High-velocity spenders
+C002301,0,Subscription regulars
+C002303,0,Subscription regulars
+C002304,1,Transfer & cash movers
+C002307,2,Low-key everyday users
+C002310,1,Transfer & cash movers
+C002311,1,Transfer & cash movers
+C002312,0,Subscription regulars
+C002313,2,Low-key everyday users
+C002316,1,Transfer & cash movers
+C002318,0,Subscription regulars
+C002320,3,High-velocity spenders
+C002321,0,Subscription regulars
+C002323,1,Transfer & cash movers
+C002331,2,Low-key everyday users
+C002333,3,High-velocity spenders
+C002335,1,Transfer & cash movers
+C002338,1,Transfer & cash movers
+C002346,1,Transfer & cash movers
+C002349,2,Low-key everyday users
+C002351,0,Subscription regulars
+C002353,0,Subscription regulars
+C002354,0,Subscription regulars
+C002355,3,High-velocity spenders
+C002358,0,Subscription regulars
+C002360,0,Subscription regulars
+C002361,1,Transfer & cash movers
+C002362,3,High-velocity spenders
+C002363,3,High-velocity spenders
+C002365,1,Transfer & cash movers
+C002366,3,High-velocity spenders
+C002367,3,High-velocity spenders
+C002368,1,Transfer & cash movers
+C002370,1,Transfer & cash movers
+C002371,1,Transfer & cash movers
+C002372,0,Subscription regulars
+C002373,0,Subscription regulars
+C002375,3,High-velocity spenders
+C002376,3,High-velocity spenders
+C002378,1,Transfer & cash movers
+C002379,1,Transfer & cash movers
+C002380,1,Transfer & cash movers
+C002382,1,Transfer & cash movers
+C002386,0,Subscription regulars
+C002388,0,Subscription regulars
+C002389,1,Transfer & cash movers
+C002394,0,Subscription regulars
+C002395,3,High-velocity spenders
+C002397,1,Transfer & cash movers
+C002398,1,Transfer & cash movers
+C002399,1,Transfer & cash movers
+C002401,1,Transfer & cash movers
+C002402,1,Transfer & cash movers
+C002404,1,Transfer & cash movers
+C002405,2,Low-key everyday users
+C002406,3,High-velocity spenders
+C002413,2,Low-key everyday users
+C002414,1,Transfer & cash movers
+C002419,1,Transfer & cash movers
+C002421,3,High-velocity spenders
+C002424,2,Low-key everyday users
+C002426,1,Transfer & cash movers
+C002428,2,Low-key everyday users
+C002429,0,Subscription regulars
+C002430,0,Subscription regulars
+C002431,1,Transfer & cash movers
+C002438,2,Low-key everyday users
+C002439,0,Subscription regulars
+C002441,1,Transfer & cash movers
+C002442,3,High-velocity spenders
+C002448,1,Transfer & cash movers
+C002449,1,Transfer & cash movers
+C002450,0,Subscription regulars
+C002451,3,High-velocity spenders
+C002452,3,High-velocity spenders
+C002456,0,Subscription regulars
+C002457,1,Transfer & cash movers
+C002458,2,Low-key everyday users
+C002460,1,Transfer & cash movers
+C002461,3,High-velocity spenders
+C002462,2,Low-key everyday users
+C002463,3,High-velocity spenders
+C002474,3,High-velocity spenders
+C002476,1,Transfer & cash movers
+C002479,0,Subscription regulars
+C002485,0,Subscription regulars
+C002488,0,Subscription regulars
+C002490,3,High-velocity spenders
+C002491,2,Low-key everyday users
+C002492,1,Transfer & cash movers
+C002493,1,Transfer & cash movers
+C002495,0,Subscription regulars
+C002498,1,Transfer & cash movers
+C002499,3,High-velocity spenders
+C002500,2,Low-key everyday users
+C002501,3,High-velocity spenders
+C002503,3,High-velocity spenders
+C002512,3,High-velocity spenders
+C002514,3,High-velocity spenders
+C002516,2,Low-key everyday users
+C002519,2,Low-key everyday users
+C002522,1,Transfer & cash movers
+C002523,3,High-velocity spenders
+C002526,3,High-velocity spenders
+C002527,0,Subscription regulars
+C002528,3,High-velocity spenders
+C002530,0,Subscription regulars
+C002531,1,Transfer & cash movers
+C002533,2,Low-key everyday users
+C002534,3,High-velocity spenders
+C002539,1,Transfer & cash movers
+C002541,0,Subscription regulars
+C002542,1,Transfer & cash movers
+C002544,3,High-velocity spenders
+C002548,3,High-velocity spenders
+C002550,3,High-velocity spenders
+C002553,0,Subscription regulars
+C002555,0,Subscription regulars
+C002559,2,Low-key everyday users
+C002563,1,Transfer & cash movers
+C002564,3,High-velocity spenders
+C002566,0,Subscription regulars
+C002567,0,Subscription regulars
+C002569,3,High-velocity spenders
+C002571,1,Transfer & cash movers
+C002573,3,High-velocity spenders
+C002581,0,Subscription regulars
+C002585,0,Subscription regulars
+C002587,2,Low-key everyday users
+C002590,0,Subscription regulars
+C002594,0,Subscription regulars
+C002595,0,Subscription regulars
+C002599,2,Low-key everyday users
+C002606,1,Transfer & cash movers
+C002608,0,Subscription regulars
+C002610,0,Subscription regulars
+C002611,3,High-velocity spenders
+C002612,1,Transfer & cash movers
+C002615,0,Subscription regulars
+C002617,1,Transfer & cash movers
+C002620,0,Subscription regulars
+C002621,0,Subscription regulars
+C002622,3,High-velocity spenders
+C002623,3,High-velocity spenders
+C002625,2,Low-key everyday users
+C002626,3,High-velocity spenders
+C002627,1,Transfer & cash movers
+C002628,1,Transfer & cash movers
+C002629,1,Transfer & cash movers
+C002634,1,Transfer & cash movers
+C002635,1,Transfer & cash movers
+C002636,0,Subscription regulars
+C002637,0,Subscription regulars
+C002638,3,High-velocity spenders
+C002642,3,High-velocity spenders
+C002643,0,Subscription regulars
+C002644,0,Subscription regulars
+C002647,0,Subscription regulars
+C002649,2,Low-key everyday users
+C002650,2,Low-key everyday users
+C002653,3,High-velocity spenders
+C002655,1,Transfer & cash movers
+C002656,0,Subscription regulars
+C002657,3,High-velocity spenders
+C002660,0,Subscription regulars
+C002663,1,Transfer & cash movers
+C002665,0,Subscription regulars
+C002666,3,High-velocity spenders
+C002667,1,Transfer & cash movers
+C002668,3,High-velocity spenders
+C002671,0,Subscription regulars
+C002677,1,Transfer & cash movers
+C002678,1,Transfer & cash movers
+C002680,3,High-velocity spenders
+C002683,2,Low-key everyday users
+C002686,0,Subscription regulars
+C002687,1,Transfer & cash movers
+C002688,2,Low-key everyday users
+C002689,3,High-velocity spenders
+C002692,3,High-velocity spenders
+C002694,0,Subscription regulars
+C002696,1,Transfer & cash movers
+C002697,0,Subscription regulars
+C002698,1,Transfer & cash movers
+C002699,3,High-velocity spenders
+C002700,0,Subscription regulars
+C002703,0,Subscription regulars
+C002705,2,Low-key everyday users
+C002707,1,Transfer & cash movers
+C002714,3,High-velocity spenders
+C002715,3,High-velocity spenders
+C002719,3,High-velocity spenders
+C002720,1,Transfer & cash movers
+C002721,0,Subscription regulars
+C002725,0,Subscription regulars
+C002729,2,Low-key everyday users
+C002731,0,Subscription regulars
+C002733,0,Subscription regulars
+C002734,3,High-velocity spenders
+C002736,1,Transfer & cash movers
+C002737,3,High-velocity spenders
+C002738,3,High-velocity spenders
+C002739,1,Transfer & cash movers
+C002740,0,Subscription regulars
+C002742,3,High-velocity spenders
+C002746,1,Transfer & cash movers
+C002747,1,Transfer & cash movers
+C002749,1,Transfer & cash movers
+C002751,1,Transfer & cash movers
+C002753,1,Transfer & cash movers
+C002755,1,Transfer & cash movers
+C002757,3,High-velocity spenders
+C002758,1,Transfer & cash movers
+C002760,3,High-velocity spenders
+C002762,3,High-velocity spenders
+C002764,0,Subscription regulars
+C002767,3,High-velocity spenders
+C002768,2,Low-key everyday users
+C002769,3,High-velocity spenders
+C002771,3,High-velocity spenders
+C002772,1,Transfer & cash movers
+C002773,0,Subscription regulars
+C002775,0,Subscription regulars
+C002779,3,High-velocity spenders
+C002780,1,Transfer & cash movers
+C002786,1,Transfer & cash movers
+C002788,1,Transfer & cash movers
+C002793,1,Transfer & cash movers
+C002794,1,Transfer & cash movers
+C002795,1,Transfer & cash movers
+C002796,1,Transfer & cash movers
+C002798,3,High-velocity spenders
+C002800,3,High-velocity spenders
+C002801,0,Subscription regulars
+C002802,0,Subscription regulars
+C002804,2,Low-key everyday users
+C002805,2,Low-key everyday users
+C002808,3,High-velocity spenders
+C002809,1,Transfer & cash movers
+C002810,1,Transfer & cash movers
+C002812,0,Subscription regulars
+C002813,1,Transfer & cash movers
+C002814,0,Subscription regulars
+C002816,3,High-velocity spenders
+C002817,0,Subscription regulars
+C002820,0,Subscription regulars
+C002821,0,Subscription regulars
+C002822,2,Low-key everyday users
+C002826,3,High-velocity spenders
+C002829,3,High-velocity spenders
+C002834,0,Subscription regulars
+C002836,2,Low-key everyday users
+C002838,0,Subscription regulars
+C002839,0,Subscription regulars
+C002840,2,Low-key everyday users
+C002842,0,Subscription regulars
+C002843,3,High-velocity spenders
+C002844,1,Transfer & cash movers
+C002846,1,Transfer & cash movers
+C002847,1,Transfer & cash movers
+C002849,0,Subscription regulars
+C002851,1,Transfer & cash movers
+C002852,3,High-velocity spenders
+C002853,0,Subscription regulars
+C002855,0,Subscription regulars
+C002856,0,Subscription regulars
+C002859,3,High-velocity spenders
+C002861,0,Subscription regulars
+C002862,0,Subscription regulars
+C002863,2,Low-key everyday users
+C002866,3,High-velocity spenders
+C002869,3,High-velocity spenders
+C002870,1,Transfer & cash movers
+C002871,3,High-velocity spenders
+C002876,1,Transfer & cash movers
+C002877,0,Subscription regulars
+C002879,3,High-velocity spenders
+C002880,1,Transfer & cash movers
+C002883,3,High-velocity spenders
+C002884,3,High-velocity spenders
+C002885,0,Subscription regulars
+C002889,3,High-velocity spenders
+C002890,0,Subscription regulars
+C002891,3,High-velocity spenders
+C002892,1,Transfer & cash movers
+C002894,2,Low-key everyday users
+C002895,1,Transfer & cash movers
+C002896,0,Subscription regulars
+C002898,3,High-velocity spenders
+C002899,1,Transfer & cash movers
+C002900,1,Transfer & cash movers
+C002902,0,Subscription regulars
+C002903,3,High-velocity spenders
+C002907,2,Low-key everyday users
+C002908,3,High-velocity spenders
+C002909,1,Transfer & cash movers
+C002910,1,Transfer & cash movers
+C002912,3,High-velocity spenders
+C002913,3,High-velocity spenders
+C002916,3,High-velocity spenders
+C002918,0,Subscription regulars
+C002919,0,Subscription regulars
+C002920,3,High-velocity spenders
+C002924,0,Subscription regulars
+C002926,3,High-velocity spenders
+C002927,3,High-velocity spenders
+C002928,0,Subscription regulars
+C002931,0,Subscription regulars
+C002932,0,Subscription regulars
+C002934,0,Subscription regulars
+C002935,3,High-velocity spenders
+C002940,3,High-velocity spenders
+C002941,3,High-velocity spenders
+C002942,0,Subscription regulars
+C002943,1,Transfer & cash movers
+C002948,0,Subscription regulars
+C002953,0,Subscription regulars
+C002955,1,Transfer & cash movers
+C002957,1,Transfer & cash movers
+C002958,1,Transfer & cash movers
+C002964,1,Transfer & cash movers
+C002966,3,High-velocity spenders
+C002967,3,High-velocity spenders
+C002970,1,Transfer & cash movers
+C002971,1,Transfer & cash movers
+C002973,3,High-velocity spenders
+C002975,2,Low-key everyday users
+C002977,0,Subscription regulars
+C002987,0,Subscription regulars
+C002988,1,Transfer & cash movers
+C002989,0,Subscription regulars
+C002990,3,High-velocity spenders
+C002994,0,Subscription regulars
+C002996,1,Transfer & cash movers
+C002998,1,Transfer & cash movers
+C002999,2,Low-key everyday users
+C003001,3,High-velocity spenders
+C003004,1,Transfer & cash movers
+C003006,1,Transfer & cash movers
+C003007,2,Low-key everyday users
+C003008,0,Subscription regulars
+C003009,3,High-velocity spenders
+C003010,2,Low-key everyday users
+C003011,3,High-velocity spenders
+C003015,0,Subscription regulars
+C003017,2,Low-key everyday users
+C003020,3,High-velocity spenders
+C003023,0,Subscription regulars
+C003024,3,High-velocity spenders
+C003025,3,High-velocity spenders
+C003026,3,High-velocity spenders
+C003031,2,Low-key everyday users
+C003034,3,High-velocity spenders
+C003035,3,High-velocity spenders
+C003037,3,High-velocity spenders
+C003038,0,Subscription regulars
+C003041,3,High-velocity spenders
+C003044,1,Transfer & cash movers
+C003046,1,Transfer & cash movers
+C003049,3,High-velocity spenders
+C003051,1,Transfer & cash movers
+C003054,1,Transfer & cash movers
+C003058,1,Transfer & cash movers
+C003060,3,High-velocity spenders
+C003062,0,Subscription regulars
+C003065,1,Transfer & cash movers
+C003066,0,Subscription regulars
+C003067,0,Subscription regulars
+C003071,0,Subscription regulars
+C003072,0,Subscription regulars
+C003073,1,Transfer & cash movers
+C003075,0,Subscription regulars
+C003076,3,High-velocity spenders
+C003079,3,High-velocity spenders
+C003083,0,Subscription regulars
+C003084,0,Subscription regulars
+C003085,0,Subscription regulars
+C003086,3,High-velocity spenders
+C003095,1,Transfer & cash movers
+C003096,3,High-velocity spenders
+C003098,1,Transfer & cash movers
+C003099,3,High-velocity spenders
+C003100,1,Transfer & cash movers
+C003106,0,Subscription regulars
+C003108,0,Subscription regulars
+C003110,1,Transfer & cash movers
+C003112,3,High-velocity spenders
+C003113,3,High-velocity spenders
+C003114,2,Low-key everyday users
+C003116,1,Transfer & cash movers
+C003118,2,Low-key everyday users
+C003119,1,Transfer & cash movers
+C003122,1,Transfer & cash movers
+C003124,1,Transfer & cash movers
+C003126,1,Transfer & cash movers
+C003127,3,High-velocity spenders
+C003129,3,High-velocity spenders
+C003132,1,Transfer & cash movers
+C003138,0,Subscription regulars
+C003139,3,High-velocity spenders
+C003140,3,High-velocity spenders
+C003143,0,Subscription regulars
+C003144,0,Subscription regulars
+C003145,3,High-velocity spenders
+C003146,0,Subscription regulars
+C003147,3,High-velocity spenders
+C003148,0,Subscription regulars
+C003149,3,High-velocity spenders
+C003150,3,High-velocity spenders
+C003152,1,Transfer & cash movers
+C003153,1,Transfer & cash movers
+C003154,3,High-velocity spenders
+C003155,2,Low-key everyday users
+C003157,1,Transfer & cash movers
+C003160,0,Subscription regulars
+C003162,0,Subscription regulars
+C003163,3,High-velocity spenders
+C003164,1,Transfer & cash movers
+C003167,1,Transfer & cash movers
+C003176,1,Transfer & cash movers
+C003178,3,High-velocity spenders
+C003180,3,High-velocity spenders
+C003184,3,High-velocity spenders
+C003185,2,Low-key everyday users
+C003186,2,Low-key everyday users
+C003188,0,Subscription regulars
+C003189,1,Transfer & cash movers
+C003191,0,Subscription regulars
+C003194,0,Subscription regulars
+C003196,3,High-velocity spenders
+C003197,1,Transfer & cash movers
+C003198,0,Subscription regulars
+C003201,2,Low-key everyday users
+C003202,1,Transfer & cash movers
+C003203,0,Subscription regulars
+C003205,0,Subscription regulars
+C003206,0,Subscription regulars
+C003210,3,High-velocity spenders
+C003211,1,Transfer & cash movers
+C003214,0,Subscription regulars
+C003216,3,High-velocity spenders
+C003217,2,Low-key everyday users
+C003218,0,Subscription regulars
+C003220,1,Transfer & cash movers
+C003223,1,Transfer & cash movers
+C003228,3,High-velocity spenders
+C003229,1,Transfer & cash movers
+C003231,3,High-velocity spenders
+C003232,1,Transfer & cash movers
+C003233,0,Subscription regulars
+C003234,2,Low-key everyday users
+C003238,3,High-velocity spenders
+C003240,1,Transfer & cash movers
+C003242,3,High-velocity spenders
+C003243,3,High-velocity spenders
+C003244,1,Transfer & cash movers
+C003246,1,Transfer & cash movers
+C003247,1,Transfer & cash movers
+C003248,3,High-velocity spenders
+C003249,2,Low-key everyday users
+C003250,0,Subscription regulars
+C003252,2,Low-key everyday users
+C003254,1,Transfer & cash movers
+C003256,0,Subscription regulars
+C003257,1,Transfer & cash movers
+C003259,3,High-velocity spenders
+C003260,1,Transfer & cash movers
+C003261,0,Subscription regulars
+C003266,3,High-velocity spenders
+C003268,3,High-velocity spenders
+C003270,1,Transfer & cash movers
+C003278,0,Subscription regulars
+C003280,1,Transfer & cash movers
+C003281,1,Transfer & cash movers
+C003282,1,Transfer & cash movers
+C003283,3,High-velocity spenders
+C003285,0,Subscription regulars
+C003290,0,Subscription regulars
+C003294,0,Subscription regulars
+C003295,0,Subscription regulars
+C003299,2,Low-key everyday users
+C003301,0,Subscription regulars
+C003302,3,High-velocity spenders
+C003303,1,Transfer & cash movers
+C003305,3,High-velocity spenders
+C003306,3,High-velocity spenders
+C003308,3,High-velocity spenders
+C003310,0,Subscription regulars
+C003311,1,Transfer & cash movers
+C003312,3,High-velocity spenders
+C003313,1,Transfer & cash movers
+C003315,1,Transfer & cash movers
+C003319,0,Subscription regulars
+C003322,0,Subscription regulars
+C003325,1,Transfer & cash movers
+C003326,0,Subscription regulars
+C003327,3,High-velocity spenders
+C003330,0,Subscription regulars
+C003332,3,High-velocity spenders
+C003333,2,Low-key everyday users
+C003334,3,High-velocity spenders
+C003338,2,Low-key everyday users
+C003339,0,Subscription regulars
+C003340,2,Low-key everyday users
+C003342,0,Subscription regulars
+C003343,1,Transfer & cash movers
+C003345,1,Transfer & cash movers
+C003346,1,Transfer & cash movers
+C003347,0,Subscription regulars
+C003348,3,High-velocity spenders
+C003349,1,Transfer & cash movers
+C003352,1,Transfer & cash movers
+C003354,1,Transfer & cash movers
+C003355,1,Transfer & cash movers
+C003356,1,Transfer & cash movers
+C003357,2,Low-key everyday users
+C003359,1,Transfer & cash movers
+C003361,3,High-velocity spenders
+C003362,3,High-velocity spenders
+C003364,3,High-velocity spenders
+C003365,3,High-velocity spenders
+C003371,3,High-velocity spenders
+C003372,3,High-velocity spenders
+C003373,0,Subscription regulars
+C003374,1,Transfer & cash movers
+C003375,3,High-velocity spenders
+C003376,3,High-velocity spenders
+C003378,3,High-velocity spenders
+C003381,2,Low-key everyday users
+C003382,1,Transfer & cash movers
+C003383,1,Transfer & cash movers
+C003385,2,Low-key everyday users
+C003386,1,Transfer & cash movers
+C003387,2,Low-key everyday users
+C003388,3,High-velocity spenders
+C003392,1,Transfer & cash movers
+C003393,0,Subscription regulars
+C003396,1,Transfer & cash movers
+C003398,1,Transfer & cash movers
+C003399,0,Subscription regulars
+C003400,1,Transfer & cash movers
+C003401,1,Transfer & cash movers
+C003403,0,Subscription regulars
+C003404,3,High-velocity spenders
+C003405,2,Low-key everyday users
+C003406,2,Low-key everyday users
+C003408,0,Subscription regulars
+C003409,0,Subscription regulars
+C003412,1,Transfer & cash movers
+C003414,3,High-velocity spenders
+C003419,0,Subscription regulars
+C003420,3,High-velocity spenders
+C003421,1,Transfer & cash movers
+C003422,1,Transfer & cash movers
+C003423,1,Transfer & cash movers
+C003428,1,Transfer & cash movers
+C003430,0,Subscription regulars
+C003431,3,High-velocity spenders
+C003435,0,Subscription regulars
+C003437,1,Transfer & cash movers
+C003446,0,Subscription regulars
+C003447,1,Transfer & cash movers
+C003448,3,High-velocity spenders
+C003449,3,High-velocity spenders
+C003453,0,Subscription regulars
+C003455,1,Transfer & cash movers
+C003456,0,Subscription regulars
+C003457,3,High-velocity spenders
+C003460,2,Low-key everyday users
+C003462,0,Subscription regulars
+C003466,2,Low-key everyday users
+C003468,0,Subscription regulars
+C003469,2,Low-key everyday users
+C003470,1,Transfer & cash movers
+C003472,0,Subscription regulars
+C003473,0,Subscription regulars
+C003474,3,High-velocity spenders
+C003475,0,Subscription regulars
+C003478,0,Subscription regulars
+C003479,3,High-velocity spenders
+C003481,0,Subscription regulars
+C003482,3,High-velocity spenders
+C003484,0,Subscription regulars
+C003487,0,Subscription regulars
+C003488,0,Subscription regulars
+C003489,0,Subscription regulars
+C003490,0,Subscription regulars
+C003491,0,Subscription regulars
+C003492,1,Transfer & cash movers
+C003493,1,Transfer & cash movers
+C003494,3,High-velocity spenders
+C003496,0,Subscription regulars
+C003497,1,Transfer & cash movers
+C003498,0,Subscription regulars
+C003504,2,Low-key everyday users
+C003506,0,Subscription regulars
+C003507,0,Subscription regulars
+C003508,1,Transfer & cash movers
+C003510,3,High-velocity spenders
+C003514,3,High-velocity spenders
+C003515,3,High-velocity spenders
+C003516,1,Transfer & cash movers
+C003517,0,Subscription regulars
+C003518,0,Subscription regulars
+C003520,3,High-velocity spenders
+C003521,3,High-velocity spenders
+C003522,0,Subscription regulars
+C003526,0,Subscription regulars
+C003528,1,Transfer & cash movers
+C003529,3,High-velocity spenders
+C003531,0,Subscription regulars
+C003532,0,Subscription regulars
+C003534,0,Subscription regulars
+C003537,0,Subscription regulars
+C003540,0,Subscription regulars
+C003542,3,High-velocity spenders
+C003543,0,Subscription regulars
+C003544,3,High-velocity spenders
+C003546,0,Subscription regulars
+C003549,2,Low-key everyday users
+C003550,2,Low-key everyday users
+C003553,3,High-velocity spenders
+C003558,1,Transfer & cash movers
+C003559,3,High-velocity spenders
+C003562,2,Low-key everyday users
+C003563,3,High-velocity spenders
+C003567,3,High-velocity spenders
+C003569,2,Low-key everyday users
+C003570,1,Transfer & cash movers
+C003573,0,Subscription regulars
+C003576,1,Transfer & cash movers
+C003577,1,Transfer & cash movers
+C003579,3,High-velocity spenders
+C003580,1,Transfer & cash movers
+C003585,1,Transfer & cash movers
+C003586,0,Subscription regulars
+C003590,1,Transfer & cash movers
+C003591,0,Subscription regulars
+C003593,1,Transfer & cash movers
+C003594,1,Transfer & cash movers
+C003595,1,Transfer & cash movers
+C003596,3,High-velocity spenders
+C003597,0,Subscription regulars
+C003598,2,Low-key everyday users
+C003599,2,Low-key everyday users
+C003600,1,Transfer & cash movers
+C003607,0,Subscription regulars
+C003609,1,Transfer & cash movers
+C003612,1,Transfer & cash movers
+C003613,2,Low-key everyday users
+C003614,0,Subscription regulars
+C003617,3,High-velocity spenders
+C003619,0,Subscription regulars
+C003621,1,Transfer & cash movers
+C003623,1,Transfer & cash movers
+C003624,1,Transfer & cash movers
+C003626,3,High-velocity spenders
+C003629,1,Transfer & cash movers
+C003631,0,Subscription regulars
+C003634,3,High-velocity spenders
+C003635,3,High-velocity spenders
+C003636,2,Low-key everyday users
+C003638,3,High-velocity spenders
+C003639,3,High-velocity spenders
+C003640,3,High-velocity spenders
+C003642,2,Low-key everyday users
+C003647,3,High-velocity spenders
+C003648,2,Low-key everyday users
+C003649,2,Low-key everyday users
+C003652,1,Transfer & cash movers
+C003653,0,Subscription regulars
+C003654,3,High-velocity spenders
+C003658,2,Low-key everyday users
+C003659,0,Subscription regulars
+C003660,1,Transfer & cash movers
+C003661,1,Transfer & cash movers
+C003662,0,Subscription regulars
+C003663,0,Subscription regulars
+C003664,1,Transfer & cash movers
+C003666,0,Subscription regulars
+C003667,1,Transfer & cash movers
+C003669,3,High-velocity spenders
+C003672,1,Transfer & cash movers
+C003676,3,High-velocity spenders
+C003677,3,High-velocity spenders
+C003684,0,Subscription regulars
+C003687,0,Subscription regulars
+C003689,1,Transfer & cash movers
+C003690,3,High-velocity spenders
+C003693,2,Low-key everyday users
+C003696,3,High-velocity spenders
+C003697,0,Subscription regulars
+C003698,0,Subscription regulars
+C003699,0,Subscription regulars
+C003700,2,Low-key everyday users
+C003708,3,High-velocity spenders
+C003710,2,Low-key everyday users
+C003715,3,High-velocity spenders
+C003716,0,Subscription regulars
+C003717,3,High-velocity spenders
+C003718,1,Transfer & cash movers
+C003719,1,Transfer & cash movers
+C003722,1,Transfer & cash movers
+C003723,3,High-velocity spenders
+C003727,3,High-velocity spenders
+C003728,0,Subscription regulars
+C003733,0,Subscription regulars
+C003734,0,Subscription regulars
+C003736,0,Subscription regulars
+C003738,0,Subscription regulars
+C003739,3,High-velocity spenders
+C003740,3,High-velocity spenders
+C003741,2,Low-key everyday users
+C003743,3,High-velocity spenders
+C003745,0,Subscription regulars
+C003746,3,High-velocity spenders
+C003748,3,High-velocity spenders
+C003750,3,High-velocity spenders
+C003751,3,High-velocity spenders
+C003753,1,Transfer & cash movers
+C003754,2,Low-key everyday users
+C003756,1,Transfer & cash movers
+C003764,1,Transfer & cash movers
+C003765,3,High-velocity spenders
+C003766,2,Low-key everyday users
+C003770,1,Transfer & cash movers
+C003773,3,High-velocity spenders
+C003774,3,High-velocity spenders
+C003775,1,Transfer & cash movers
+C003776,0,Subscription regulars
+C003778,3,High-velocity spenders
+C003779,3,High-velocity spenders
+C003781,1,Transfer & cash movers
+C003784,0,Subscription regulars
+C003785,0,Subscription regulars
+C003786,2,Low-key everyday users
+C003788,3,High-velocity spenders
+C003789,2,Low-key everyday users
+C003790,1,Transfer & cash movers
+C003791,2,Low-key everyday users
+C003792,1,Transfer & cash movers
+C003793,3,High-velocity spenders
+C003799,0,Subscription regulars
+C003801,0,Subscription regulars
+C003802,1,Transfer & cash movers
+C003805,0,Subscription regulars
+C003806,0,Subscription regulars
+C003807,3,High-velocity spenders
+C003808,1,Transfer & cash movers
+C003809,0,Subscription regulars
+C003811,3,High-velocity spenders
+C003812,2,Low-key everyday users
+C003813,3,High-velocity spenders
+C003814,3,High-velocity spenders
+C003816,0,Subscription regulars
+C003817,1,Transfer & cash movers
+C003818,0,Subscription regulars
+C003821,0,Subscription regulars
+C003822,0,Subscription regulars
+C003823,0,Subscription regulars
+C003824,0,Subscription regulars
+C003826,1,Transfer & cash movers
+C003831,2,Low-key everyday users
+C003838,0,Subscription regulars
+C003843,1,Transfer & cash movers
+C003846,0,Subscription regulars
+C003848,3,High-velocity spenders
+C003850,3,High-velocity spenders
+C003852,1,Transfer & cash movers
+C003854,1,Transfer & cash movers
+C003856,1,Transfer & cash movers
+C003858,3,High-velocity spenders
+C003860,0,Subscription regulars
+C003862,3,High-velocity spenders
+C003869,1,Transfer & cash movers
+C003870,0,Subscription regulars
+C003872,1,Transfer & cash movers
+C003873,0,Subscription regulars
+C003877,1,Transfer & cash movers
+C003880,3,High-velocity spenders
+C003881,0,Subscription regulars
+C003886,3,High-velocity spenders
+C003887,1,Transfer & cash movers
+C003888,0,Subscription regulars
+C003889,1,Transfer & cash movers
+C003891,1,Transfer & cash movers
+C003892,0,Subscription regulars
+C003894,3,High-velocity spenders
+C003898,3,High-velocity spenders
+C003901,1,Transfer & cash movers
+C003907,3,High-velocity spenders
+C003908,0,Subscription regulars
+C003910,1,Transfer & cash movers
+C003912,3,High-velocity spenders
+C003918,3,High-velocity spenders
+C003919,1,Transfer & cash movers
+C003920,1,Transfer & cash movers
+C003921,3,High-velocity spenders
+C003924,3,High-velocity spenders
+C003925,3,High-velocity spenders
+C003926,2,Low-key everyday users
+C003928,3,High-velocity spenders
+C003929,0,Subscription regulars
+C003930,0,Subscription regulars
+C003931,0,Subscription regulars
+C003933,2,Low-key everyday users
+C003935,0,Subscription regulars
+C003936,3,High-velocity spenders
+C003938,3,High-velocity spenders
+C003939,2,Low-key everyday users
+C003941,1,Transfer & cash movers
+C003942,2,Low-key everyday users
+C003944,3,High-velocity spenders
+C003946,3,High-velocity spenders
+C003947,0,Subscription regulars
+C003949,0,Subscription regulars
+C003959,0,Subscription regulars
+C003961,3,High-velocity spenders
+C003963,0,Subscription regulars
+C003964,3,High-velocity spenders
+C003965,3,High-velocity spenders
+C003966,0,Subscription regulars
+C003967,3,High-velocity spenders
+C003970,0,Subscription regulars
+C003976,3,High-velocity spenders
+C003978,0,Subscription regulars
+C003980,0,Subscription regulars
+C003981,0,Subscription regulars
+C003982,1,Transfer & cash movers
+C003985,0,Subscription regulars
+C003986,1,Transfer & cash movers
+C003987,0,Subscription regulars
+C003988,0,Subscription regulars
+C003990,2,Low-key everyday users
+C003991,1,Transfer & cash movers
+C003992,1,Transfer & cash movers
+C003993,3,High-velocity spenders
+C003994,1,Transfer & cash movers
+C003995,1,Transfer & cash movers
+C003999,1,Transfer & cash movers

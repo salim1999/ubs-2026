@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="460" viewBox="0 0 1200 460">
+<rect width="100%" height="100%" fill="#f7f8fc"/>
+<style>text{font-family:Arial,sans-serif;fill:#172033}.title{font-size:16px;font-weight:700}.small{font-size:13px}.edge{font-size:12px;fill:#5f6b7a}</style>
+<line x1="600.0" y1="104" x2="400.0" y2="322" stroke="#8090a4" stroke-width="2"/>
+<text class="edge" x="500.0" y="211.0" text-anchor="middle">YES</text>
+<line x1="600.0" y1="104" x2="800.0" y2="322" stroke="#8090a4" stroke-width="2"/>
+<text class="edge" x="700.0" y="211.0" text-anchor="middle">NO</text>
+<rect x="475.0" y="32" width="250" height="76" rx="12" fill="#e8f1ff" stroke="#3976c5" stroke-width="2"/>
+<text class="title" x="600.0" y="57" text-anchor="middle">Average outgoing payment</text>
+<text class="small" x="600.0" y="78" text-anchor="middle">at most 140.61?</text>
+<text class="small" x="600.0" y="97" text-anchor="middle">n=2000</text>
+<rect x="275.0" y="322" width="250" height="76" rx="12" fill="#e5f7ee" stroke="#20845b" stroke-width="2"/>
+<text class="title" x="400.0" y="347" text-anchor="middle">Everyday spenders</text>
+<text class="small" x="400.0" y="368" text-anchor="middle">Median cadence, 7-day grace</text>
+<text class="small" x="400.0" y="387" text-anchor="middle">n=1700</text>
+<rect x="675.0" y="322" width="250" height="76" rx="12" fill="#e5f7ee" stroke="#20845b" stroke-width="2"/>
+<text class="title" x="800.0" y="347" text-anchor="middle">High-ticket spenders</text>
+<text class="small" x="800.0" y="368" text-anchor="middle">Median cadence, 3-day grace</text>
+<text class="small" x="800.0" y="387" text-anchor="middle">n=300</text>
+</svg>
