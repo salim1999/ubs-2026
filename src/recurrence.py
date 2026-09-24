@@ -140,9 +140,14 @@ def detect_streams(df: pd.DataFrame) -> pd.DataFrame:
     dining / electronics / marketplace spend on the overloaded mccs) are
     excluded upfront so they can't dilute or merge with genuine
     subscription-amount clusters.
+
+    Only outgoing money is considered: refunds share the mcc and amount of
+    the charge they reverse, land 1-3 days after it, and would otherwise
+    drag the mean gap below the monthly band or inflate gap_cv.
     """
-    pool = df[
-        ~df.apply(lambda r: _is_excluded_literal(r["mcc"], r["description"]), axis=1)
+    out = df[df["direction"] == "out"]
+    pool = out[
+        ~out.apply(lambda r: _is_excluded_literal(r["mcc"], r["description"]), axis=1)
     ]
 
     rows = []
