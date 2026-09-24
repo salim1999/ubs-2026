@@ -98,16 +98,13 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
             first_date=("first_date", "min"),
             mean_amount=("mean_amount", "mean"),
             gap_cv=("gap_cv", "mean"),
-            mean_gap_days=("mean_gap_days", "mean"),
         )
         .reset_index()
     )
-    agg["recency_days"] = (cutoff - agg["last_date"]).dt.days
     agg["tenure_days"] = (cutoff - agg["first_date"]).dt.days
-    # Expected next charge relative to cutoff: last charge + typical cadence.
-    # Small/negative = due soon (or overdue); this, not recency, decides
-    # which stream fires first in the prediction window.
-    agg["days_until_next_due"] = agg["mean_gap_days"] - agg["recency_days"]
+    # Timing (recency, mean gap, days until next due) lives in the live-stream
+    # features (over_days_, first_due_, bill_day_); the raw versions added
+    # nothing on top of them (exp 12, 13).
 
     wide_frames = []
     for cat in TARGET_CATEGORIES:
@@ -116,12 +113,9 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
             [
                 "n_streams",
                 "n_occurrences",
-                "recency_days",
                 "tenure_days",
                 "mean_amount",
                 "gap_cv",
-                "mean_gap_days",
-                "days_until_next_due",
             ]
         ]
         sub.columns = [f"{c}_{cat}" for c in sub.columns]
@@ -131,12 +125,6 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
     wide = pd.concat(wide_frames, axis=1)
     for cat in TARGET_CATEGORIES:
         wide[f"active_{cat}"] = wide[f"active_{cat}"].fillna(0).astype(int)
-
-    wide["n_active_categories"] = wide[[f"active_{c}" for c in TARGET_CATEGORIES]].sum(axis=1)
-    wide["n_missing_categories"] = len(TARGET_CATEGORIES) - wide["n_active_categories"]
-
-    tenure_cols = [f"tenure_days_{c}" for c in TARGET_CATEGORIES]
-    wide["days_since_last_new_category"] = wide[tenure_cols].min(axis=1)
 
     return wide
 
@@ -170,6 +158,32 @@ def _live_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.Dat
     out = out.join(per_client, how="outer")
     out["n_live_streams"] = out["n_live_streams"].fillna(0)
     out["short_live_stream"] = out["max_live_n_occurrences"].isin([3, 4]).astype(int)
+
+    # "The rule's vote": the live family due first (largest over = closest to
+    # its next charge), or 'none' when nothing is live / it's a short trial.
+    first = live.sort_values("over", ascending=False).groupby("client_id")["category"].first()
+    first = first.reindex(out.index)
+    for cat in TARGET_CATEGORIES:
+        out[f"first_due_{cat}"] = (first == cat).astype(int)
+    out["rule_says_none"] = (first.isna() | (out["short_live_stream"] == 1)).astype(int)
+    return out
+
+
+def _billing_day_features(df: pd.DataFrame, streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
+    """"The calendar": usual billing day of month of each live family.
+
+    Subscriptions charge on a fixed day, so with a Jan 1 cutoff the family
+    with the earliest billing day is usually charged first.
+    """
+    active = streams[streams["is_recurring"] & streams["category"].notna()].copy()
+    active["over"] = (cutoff - active["last_date"]).dt.days - active["mean_gap_days"]
+    live = active[active["over"] <= LIVE_MAX_OVER_DAYS][["client_id", "category"]].drop_duplicates()
+
+    charges = df[df["direction"] == "out"][["client_id", "category", "timestamp"]].dropna()
+    charges = charges.merge(live, on=["client_id", "category"])
+    day = charges.assign(day=charges["timestamp"].dt.day).groupby(["client_id", "category"])["day"].median()
+    out = day.unstack().reindex(columns=TARGET_CATEGORIES).add_prefix("bill_day_")
+    out["earliest_bill_day"] = out.min(axis=1)
     return out
 
 
@@ -200,21 +214,27 @@ def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
     recent = _early_adoption_features(df, cutoff)
 
     live = _live_stream_features(streams, cutoff)
+    billing = _billing_day_features(df, streams, cutoff)
 
-    features = general.join(cat_features, how="left").join(recent, how="left").join(live, how="left")
+    features = (
+        general.join(cat_features, how="left")
+        .join(recent, how="left")
+        .join(live, how="left")
+        .join(billing, how="left")
+    )
 
     active_cols = [f"active_{c}" for c in TARGET_CATEGORIES]
     features[active_cols] = features[active_cols].fillna(0).astype(int)
-    features["n_active_categories"] = features["n_active_categories"].fillna(0)
-    features["n_missing_categories"] = features["n_missing_categories"].fillna(len(TARGET_CATEGORIES))
     recent_cols = [f"recent_txns_{c}" for c in TARGET_CATEGORIES]
     features[recent_cols] = features[recent_cols].fillna(0).astype(int)
-    live_flags = [f"is_live_{c}" for c in TARGET_CATEGORIES] + ["n_live_streams", "short_live_stream"]
+    live_flags = (
+        [f"is_live_{c}" for c in TARGET_CATEGORIES]
+        + [f"first_due_{c}" for c in TARGET_CATEGORIES]
+        + ["n_live_streams", "short_live_stream"]
+    )
     features[live_flags] = features[live_flags].fillna(0).astype(int)
-
-    features["adoption_rate_per_year"] = features["n_active_categories"] / (
-        features["tenure_days"] / 365
-    ).clip(lower=1 / 365)
+    # No recurring stream at all -> the rule says none.
+    features["rule_says_none"] = features["rule_says_none"].fillna(1).astype(int)
 
     return features.reset_index()
 
