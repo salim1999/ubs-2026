@@ -41,7 +41,7 @@ RAW TRANSACTIONS
   ─▶ E  Training-table construction            (features + labels join)
   ─▶ F  Missing-value handling + scaling        src/model.py  build_logreg
   ─▶ G  Final multiclass classifier            src/model.py
-  ─▶ H  Prediction / decision rule             src/model.py  (argmax; rule_predict)
+  ─▶ H  Prediction / decision rule             models/rule_based/model.py
   ─▶ I  Validation + macro-F1 evaluation       src/model.py  evaluate
 ```
 
@@ -322,6 +322,8 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 8 | B1 | Token `pass` → music ("member pass" was music's untagged description) | **0.460** | 0.455 | **0.484** | – | 0.690 | ✅ LogReg/rule +0.012, HGB flat |
 | 9 | C5 | Stream vote: keyword tags first, MCC fallback only if no keyword | 0.455 | 0.449 | 0.487 | – | 0.693 | ❌ dropped: models −0.005, rule +0.003 (noise), extra code |
 | 10 | F | LogReg: absent per-family/stream features filled with 0 instead of median (flags carry absence) | 0.461 | – | – | – | – | ❌ +0.001 = noise, dropped |
+| 11 | D (scratchpad) | Persona features on top of exp 8, scored with LogReg L2 / L1 (C=0.3): **rule's vote** (`first_due_<cat>`, `rule_says_none`) ✅ +0.007/+0.007; quitter ❌; newcomer ❌ (−0.008); **calendar** (`bill_day_<cat>`, `earliest_bill_day`) ✅ +0.005/+0.006; traveller ❌ | 0.472 | – | – | – | – | ✅ not yet in `src/` |
+| 12 | D (scratchpad) | Shrink on top of 11: remove old timing (`recency_days_*`, `days_until_next_due_*`) and D3 adoption → 108 features. Kept (removal hurt): D1 general −0.011, stream stats, stream counts, D4 recent_txns −0.033 | **0.475** (L1 **0.486**) | – | – | – | – | ✅ not yet in `src/` |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
