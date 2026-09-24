@@ -1,0 +1,9 @@
+time,note,logreg,hgb,rule,cv_logreg,cv_hgb,c_detect,c_nextdue,c_none_active,c_fams
+2026-09-24T14:13:24,0 baseline regenerated (code unchanged),0.3843,0.3497,0.3367,,,0.369,0.266,0.642,1.112
+2026-09-24T14:16:59,1 C1: streams from direction=out only (drop refunds),0.3663,0.3602,0.3020,,,0.492,0.361,0.710,1.331
+2026-09-24T14:19:36,"2 D2: + mean_gap_days, days_until_next_due per family (original C)",0.3817,0.3689,0.3367,,,0.369,0.266,0.642,1.112
+2026-09-24T14:21:50,3 C1: + streams from direction=out only (on top of D2 next-due),0.3742,0.3528,0.3020,,,0.492,0.361,0.710,1.331
+2026-09-24T14:26:19,3 (CV rerun) D2 + C1 out-only,0.3742,0.3528,0.3020,0.4077,0.4656,0.492,0.361,0.710,1.331
+2026-09-24T14:30:18,2 (CV rerun) D2 only,0.3817,0.3689,0.3367,0.4069,0.4381,0.369,0.266,0.642,1.112
+2026-09-24T14:34:04,0 (CV rerun) baseline,0.3843,0.3497,0.3367,0.4077,0.4352,0.369,0.266,0.642,1.112
+2026-09-24T15:08:00,"4 C1/C2: pool client's charges across MCCs, phrase-based non-sub exclusion, amount tol 0.3/0.03 (on top of exp 3)",0.4242,0.4411,0.2290,0.4275,0.4791,0.673,0.460,0.829,1.710

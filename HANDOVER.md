@@ -1,6 +1,7 @@
 # Handover: Next Recurring Merchant Prediction
 
 Start here for team context. The official challenge spec is in [README.md](README.md).
+Step names (A–I) for discussing changes, plus the experiment log: [PIPELINE.md](PIPELINE.md).
 
 ## Goal
 
