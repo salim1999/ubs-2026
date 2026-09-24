@@ -42,49 +42,11 @@ from sklearn.metrics import confusion_matrix, f1_score
 from sklearn.model_selection import StratifiedKFold
 
 from src.features import CUTOFF, build_all, recurring_streams
-from src.model import ALL_LABELS, LABEL_COL, RankingModel, build_hgb, build_logreg, rule_predict
+from src.model import ALL_LABELS, LABEL_COL, MODELS
 
 LOG_PATH = "experiments.csv"
 N_FOLDS = 5
 VCV_SEED = 0
-
-
-class RuleModel:
-    """rule_predict behind the fit/predict interface; nothing to learn."""
-
-    def fit(self, X, y):
-        return self
-
-    def predict(self, X):
-        return rule_predict(X)
-
-
-class EnsembleModel:
-    """Mean class probabilities of logreg, hgb and the ranking model."""
-
-    def fit(self, X, y):
-        self.members_ = [build().fit(X, y) for build in (build_logreg, build_hgb, RankingModel)]
-        self.classes_ = np.array(ALL_LABELS)
-        return self
-
-    def predict_proba(self, X):
-        probas = []
-        for m in self.members_:
-            p = m.predict_proba(X)
-            probas.append(p[:, [list(m.classes_).index(c) for c in ALL_LABELS]])
-        return np.mean(probas, axis=0)
-
-    def predict(self, X):
-        return self.classes_[self.predict_proba(X).argmax(1)]
-
-
-MODELS = {
-    "rule": RuleModel,
-    "logreg": build_logreg,
-    "hgb": build_hgb,
-    "rank": RankingModel,
-    "ens": EnsembleModel,
-}
 
 
 def macro_f1(y_true, y_pred) -> float:
@@ -132,9 +94,11 @@ def git_sha() -> str:
 
 
 def log_row(note: str, valid: dict, vcv: dict, diag: dict) -> None:
-    header = ["time", "sha", "note", *(f"valid_{k}" for k in valid), *(f"vcv_{k}" for k in vcv), *diag]
+    """Models not run this time (--models) get blank cells, so columns stay aligned."""
+    header = ["time", "sha", "note", *(f"valid_{k}" for k in MODELS), *(f"vcv_{k}" for k in MODELS), *diag]
     row = [dt.datetime.now().isoformat(timespec="seconds"), git_sha(), note,
-           *(f"{s:.4f}" for s in valid.values()), *(f"{s:.4f}" for s in vcv.values()),
+           *(f"{valid[k]:.4f}" if k in valid else "" for k in MODELS),
+           *(f"{vcv[k]:.4f}" if k in vcv else "" for k in MODELS),
            *(f"{v:.3f}" for v in diag.values())]
     new = not os.path.exists(LOG_PATH)
     with open(LOG_PATH, "a", newline="", encoding="utf-8") as f:

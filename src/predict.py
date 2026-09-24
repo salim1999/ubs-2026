@@ -1,13 +1,14 @@
 """Produces the competition submission from the processed feature tables.
 
-The model is chosen by validation macro-F1 (fit on train, scored on valid)
-unless --model names one. It is then refit on train + valid (all labelled
+The model is chosen by vcv macro-F1 (src.evaluate: 5 folds over the valid
+clients, each fit on train + the other 4/5 of valid) unless --model names
+one; the single train->valid split is too noisy (+-~0.02) to choose on. It is then refit on train + valid (all labelled
 clients) and predicts target_next_recurring_merchant for every client in
 sample_submission.csv. Clients missing from test_features.csv (no usable
 history) fall back to 'none', the majority class.
 
 Usage (after `python -m src.features`):
-    python -m src.predict [--model auto|logreg|hgb|rank] [--out submission.csv]
+    python -m src.predict [--model auto|rule|logreg|hgb|rank|ens] [--out submission.csv]
 """
 
 from __future__ import annotations
@@ -16,11 +17,9 @@ import argparse
 import pathlib
 
 import pandas as pd
-from sklearn.metrics import f1_score
 
-from src.model import ALL_LABELS, RankingModel, build_hgb, build_logreg, load_xy
-
-MODELS = {"logreg": build_logreg, "hgb": build_hgb, "rank": RankingModel}
+from src.evaluate import macro_f1, vcv_predictions
+from src.model import ALL_LABELS, MODELS, load_xy
 
 
 def main() -> None:
@@ -44,9 +43,9 @@ def main() -> None:
     if name == "auto":
         scores = {}
         for candidate, build in MODELS.items():
-            pred = build().fit(X_train, y_train).predict(X_valid)
-            scores[candidate] = f1_score(y_valid, pred, average="macro", labels=ALL_LABELS, zero_division=0)
-            print(f"  valid macro-F1 {candidate:7s} {scores[candidate]:.4f}")
+            pred = vcv_predictions(build, X_train, y_train, X_valid[X_train.columns], y_valid)
+            scores[candidate] = macro_f1(y_valid, pred)
+            print(f"  vcv macro-F1 {candidate:7s} {scores[candidate]:.4f}")
         name = max(scores, key=scores.get)
 
     model = MODELS[name]()

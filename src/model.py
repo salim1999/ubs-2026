@@ -49,44 +49,37 @@ def majority_predict(y_train: pd.Series, n: int) -> np.ndarray:
 
 
 def rule_predict(X: pd.DataFrame) -> np.ndarray:
-    """No learning: use the engineered features directly.
+    """No learning: live-aware rule (ported from timmyo).
 
-    Preference order per client: (a) among categories with recent
-    transactions but no active recurring stream, the one with the most
-    recent transactions; else (b) the active (still-live) category due for
-    its next payment soonest (smallest days_to_next = cadence minus days
-    since last charge; negative means overdue); else (c) 'none'.
-
-    Branch (b)'s ordering barely matters: on multi-category validation
-    clients, days_to_next, most-recent and least-recent all pick the target
-    ~29-31% of the time. So this baseline is weak and understates what
-    the engineered features alone can do - read the gap to the trained
-    models with that in mind.
+    'none' if no stream is live (all overdue by more than
+    features.LIVE_MAX_OVER_DAYS = stopped) or the longest live stream has
+    only 3-4 charges (a trial that ends); else the live family due soonest
+    (smallest days_to_next). On timmyo's features this rule scored
+    0.472-0.487 valid, above every trained model there.
     """
     preds = []
     for _, row in X.iterrows():
-        recent_candidates = [
-            (cat, row[f"recent_txns_{cat}"])
-            for cat in TARGET_CATEGORIES
-            if row[f"recent_txns_{cat}"] > 0 and row[f"active_{cat}"] == 0
-        ]
-        if recent_candidates:
-            recent_candidates.sort(key=lambda t: -t[1])
-            preds.append(recent_candidates[0][0])
-            continue
-
-        active_candidates = [
+        live = [
             (cat, row[f"days_to_next_{cat}"])
             for cat in TARGET_CATEGORIES
             if row[f"active_{cat}"] == 1 and not pd.isna(row[f"days_to_next_{cat}"])
         ]
-        if active_candidates:
-            active_candidates.sort(key=lambda t: t[1])
-            preds.append(active_candidates[0][0])
+        if not live or row["short_live_stream"] == 1:
+            preds.append("none")
             continue
-
-        preds.append("none")
+        live.sort(key=lambda t: t[1])
+        preds.append(live[0][0])
     return np.array(preds)
+
+
+class RuleModel:
+    """rule_predict behind the fit/predict interface; nothing to learn."""
+
+    def fit(self, X, y):
+        return self
+
+    def predict(self, X):
+        return rule_predict(X)
 
 
 def build_logreg() -> Pipeline:
@@ -162,6 +155,34 @@ class RankingModel:
 
     def predict(self, X: pd.DataFrame) -> np.ndarray:
         return self.classes_[self.predict_proba(X).argmax(1)]
+
+
+class EnsembleModel:
+    """Mean class probabilities of logreg, hgb and the ranking model."""
+
+    def fit(self, X: pd.DataFrame, y: pd.Series) -> "EnsembleModel":
+        self.members_ = [build().fit(X, y) for build in (build_logreg, build_hgb, RankingModel)]
+        self.classes_ = np.array(ALL_LABELS)
+        return self
+
+    def predict_proba(self, X: pd.DataFrame) -> np.ndarray:
+        probas = []
+        for m in self.members_:
+            p = m.predict_proba(X)
+            probas.append(p[:, [list(m.classes_).index(c) for c in ALL_LABELS]])
+        return np.mean(probas, axis=0)
+
+    def predict(self, X: pd.DataFrame) -> np.ndarray:
+        return self.classes_[self.predict_proba(X).argmax(1)]
+
+
+MODELS = {
+    "rule": RuleModel,
+    "logreg": build_logreg,
+    "hgb": build_hgb,
+    "rank": RankingModel,
+    "ens": EnsembleModel,
+}
 
 
 def evaluate(name: str, y_true: pd.Series, y_pred: np.ndarray) -> float:
