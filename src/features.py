@@ -39,7 +39,11 @@ DATA_DIR = "data/dataset/dataset"
 PROCESSED_DIR = "data/processed"
 CUTOFF = "2026-01-01"
 RECENT_WINDOW_DAYS = 90
-STALE_GAP_MULTIPLE = 2.0
+# A stream counts as live if its next charge is overdue by at most this many
+# days (ported from timmyo). The former rule (silent <= 2x cadence + 5 days)
+# still called a monthly stream live after 65 silent days; on timmyo's
+# features this change took LogReg 0.424 -> 0.448 and HGB 0.441 -> 0.456.
+LIVE_MAX_OVER_DAYS = 5
 
 # Raw persona-module features kept as model inputs: the ones whose permutation
 # importance on valid macro-F1 clearly exceeded noise. The rest (salary,
@@ -134,15 +138,15 @@ def recurring_streams(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFra
     """Recurring target-family streams with recency, days_to_next and is_live.
 
     A recurring stream only counts as live if it is still charging at the
-    cutoff: silent for more than STALE_GAP_MULTIPLE of its own cadence
-    means it was most likely cancelled. Lapsed streams are kept as a
+    cutoff: overdue by more than LIVE_MAX_OVER_DAYS past its next expected
+    charge means it was most likely cancelled. Lapsed streams are kept as a
     separate flag - "had it, dropped it" is a different state from "never
     had it". Shared with the step-C diagnostics in src.evaluate.
     """
     recurring = streams[streams["is_recurring"] & streams["category"].isin(TARGET_CATEGORIES)].copy()
     recurring["recency_days"] = (cutoff - recurring["last_date"]).dt.total_seconds() / 86400
     recurring["days_to_next"] = recurring["median_gap_days"] - recurring["recency_days"]
-    recurring["is_live"] = recurring["recency_days"] <= STALE_GAP_MULTIPLE * recurring["median_gap_days"] + 5
+    recurring["is_live"] = recurring["days_to_next"] >= -LIVE_MAX_OVER_DAYS
     return recurring
 
 
@@ -201,6 +205,13 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
     wide["n_overdue_streams"] = (wide[due_cols] < 0).sum(axis=1)
     wide["n_live_streams"] = active.groupby("client_id").size().reindex(wide.index).fillna(0)
 
+    # Ported from timmyo: a longest live stream of only 3-4 charges looks like
+    # a trial that ends - those clients are mostly 'none' (train and valid).
+    # min_over_days covers lapsed streams too (over = -days_to_next).
+    wide["max_live_n_occurrences"] = active.groupby("client_id")["n_occurrences"].max().reindex(wide.index)
+    wide["short_live_stream"] = wide["max_live_n_occurrences"].isin([3, 4]).astype(int)
+    wide["min_over_days"] = -recurring.groupby("client_id")["days_to_next"].max().reindex(wide.index)
+
     return wide
 
 
@@ -245,6 +256,9 @@ def build_features(
     features[active_cols] = features[active_cols].fillna(0).astype(int)
     lapsed_cols = [f"lapsed_{c}" for c in TARGET_CATEGORIES]
     features[lapsed_cols] = features[lapsed_cols].fillna(0).astype(int)
+    features[["n_live_streams", "short_live_stream"]] = (
+        features[["n_live_streams", "short_live_stream"]].fillna(0).astype(int)
+    )
     features["n_active_categories"] = features["n_active_categories"].fillna(0)
     features["n_missing_categories"] = features["n_missing_categories"].fillna(len(TARGET_CATEGORIES))
     recent_cols = [f"recent_txns_{c}" for c in TARGET_CATEGORIES]
