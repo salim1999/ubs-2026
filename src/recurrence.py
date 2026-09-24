@@ -25,7 +25,7 @@ from collections import Counter
 import numpy as np
 import pandas as pd
 
-from src.category_map import NON_SUBSCRIPTION_LITERALS, classify
+from src.category_map import NON_SUBSCRIPTION_LITERAL_TOKENS, classify
 
 # Only these two mccs are known to (a) be overloaded with unrelated real
 # merchants and (b) have subscriptions that rotate their description text
@@ -36,6 +36,14 @@ from src.category_map import NON_SUBSCRIPTION_LITERALS, classify
 # pure chance, producing false positives. Those mccs keep the simpler
 # whole-group test.
 AMOUNT_CLUSTERED_MCCS = {"5812", "5732"}
+
+# Experiment toggle: apply amount-clustering to every mcc's (client, mcc)
+# group, not just the two overloaded ones above. Earlier in this session
+# this was rejected based on inspecting raw stream counts alone (many
+# small 2-txn clusters on noisy mccs looked like false positives) without
+# ever measuring the actual downstream macro-F1 impact - testing that
+# properly now. False = current, validated design.
+AMOUNT_CLUSTER_ALL_MCCS = True
 
 # Single monthly cadence band. Six variants were tried to also admit
 # weekly/biweekly billing (contiguous 14-45/14-90, disjoint bands at loose
@@ -71,7 +79,8 @@ def load_transactions(path: str) -> pd.DataFrame:
 
 
 def _is_excluded_literal(mcc: str, description: str) -> bool:
-    return description in NON_SUBSCRIPTION_LITERALS.get(mcc, set())
+    tokens = set(description.split())
+    return bool(tokens & NON_SUBSCRIPTION_LITERAL_TOKENS.get(mcc, set()))
 
 
 def _cluster_by_amount(group: pd.DataFrame) -> list[pd.DataFrame]:
@@ -148,8 +157,35 @@ def _stream_stats(cluster: pd.DataFrame) -> dict:
     }
 
 
+# Experiment toggle: cluster purely by (client_id, amount), ignoring mcc
+# entirely, instead of clustering by amount only within (client_id, mcc).
+# Tested and measured worse (macro-F1 0.3982 -> 0.3596): the 4 "clean"
+# mccs (gym/insurance/software/mobile) currently work as one coherent
+# whole-group per client with no need for amount sub-clustering - removing
+# the mcc partition subjects them to the same greedy amount-matching as
+# the noisy pool, fragmenting/merging what used to be clean streams (gym
+# recurring-cluster count alone dropped 82%, 491 -> 86). MCC is doing real
+# partitioning work, not just incidental structure. Keep False.
+CLUSTER_IGNORING_MCC = False
+
+
 def detect_streams(df: pd.DataFrame) -> pd.DataFrame:
     """One row per recurring-candidate amount cluster.
+
+    Tested filtering the pool to direction="out" only, since direction="in"
+    rows on target-relevant mccs are almost entirely type="refund" (5308
+    of them, ~7.6% of target-mcc traffic) and can corrupt cadence (a
+    charge-then-refund pair a few days apart drags mean_gap down, pushing
+    a genuine ~30-day subscription's mean_gap below the 20-45 day band).
+    Concretely demonstrated on client C000012's mcc=5734 history: mixing
+    in the refunds made mean_gap~17 days (band miss); out-only gave a
+    clean mean_gap~36 (band hit). Despite that, and a broad +610 increase
+    in recurring clusters across every category, downstream macro-F1
+    measured worse (0.3982 -> 0.3683). This is the 8th detector-expansion
+    change tried that increases raw catch rate yet hurts the final
+    metric - treated as a closed question; kept as a comment for the next
+    person tempted to try it, not re-enabled. Pool is unfiltered by
+    direction.
 
     Clusters within known non-subscription literal descriptions (real
     dining / electronics / marketplace spend on the overloaded mccs) are
@@ -161,13 +197,21 @@ def detect_streams(df: pd.DataFrame) -> pd.DataFrame:
     ]
 
     rows = []
-    for (client_id, mcc), group in pool.groupby(["client_id", "mcc"]):
-        clusters = (
-            _cluster_by_amount(group) if mcc in AMOUNT_CLUSTERED_MCCS else [group]
-        )
-        for cluster in clusters:
-            stats = _stream_stats(cluster)
-            rows.append({"client_id": client_id, "mcc": mcc, **stats})
+    if CLUSTER_IGNORING_MCC:
+        for client_id, group in pool.groupby("client_id"):
+            for cluster in _cluster_by_amount(group):
+                stats = _stream_stats(cluster)
+                # mcc is no longer a single value for a mixed-mcc cluster;
+                # report the most common one present for bookkeeping only.
+                mcc = cluster["mcc"].mode().iloc[0]
+                rows.append({"client_id": client_id, "mcc": mcc, **stats})
+    else:
+        for (client_id, mcc), group in pool.groupby(["client_id", "mcc"]):
+            do_cluster = AMOUNT_CLUSTER_ALL_MCCS or mcc in AMOUNT_CLUSTERED_MCCS
+            clusters = _cluster_by_amount(group) if do_cluster else [group]
+            for cluster in clusters:
+                stats = _stream_stats(cluster)
+                rows.append({"client_id": client_id, "mcc": mcc, **stats})
 
     return pd.DataFrame(rows)
 
