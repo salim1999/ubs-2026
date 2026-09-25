@@ -313,6 +313,49 @@ def _client_story_features(df: pd.DataFrame, streams: pd.DataFrame, cutoff: pd.T
     return out.fillna({c: fills.get(c, 0.0) for c in out.columns})
 
 
+def _traveller_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
+    """D7 "the traveller" persona: how often and how recently a client travels.
+
+    Hotel (mcc 7011) and ride-share (mcc 4111) spending is a spread-out habit,
+    not discrete trips (median 51 days between hotel bookings), so it is
+    measured as frequency + recency. Frequent travellers end with "none" far
+    less often (train: 38% -> 20% from least to most travel) and renew
+    insurance more often (8% -> 14%). Only the two together help the models.
+    """
+    clients = pd.Index(df["client_id"].unique(), name="client_id")
+    hotel = df[df["mcc"] == "7011"].groupby("client_id").size().reindex(clients, fill_value=0)
+    ride = df[df["mcc"] == "4111"].groupby("client_id").size().reindex(clients, fill_value=0)
+    last_trip = df[df["mcc"].isin(["7011", "4111"])].groupby("client_id")["timestamp"].max().reindex(clients)
+    return pd.DataFrame(
+        {
+            "traveler_intensity": np.log1p(hotel) + np.log1p(ride),
+            "days_since_trip": ((cutoff - last_trip).dt.total_seconds() / 86400).fillna(180).clip(upper=180),
+        },
+        index=clients,
+    )
+
+
+def _traveller_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
+    """D7 "the traveller" persona: how often and how recently a client travels.
+
+    Hotel (mcc 7011) and ride-share (mcc 4111) spending is a spread-out habit,
+    not discrete trips, so it is measured as frequency + recency. Frequent
+    travellers end with "none" less often (train: 38% -> 20% from least to most
+    travel) and renew insurance more often (8% -> 14%).
+    """
+    clients = pd.Index(df["client_id"].unique(), name="client_id")
+    hotel = df[df["mcc"] == "7011"].groupby("client_id").size().reindex(clients, fill_value=0)
+    ride = df[df["mcc"] == "4111"].groupby("client_id").size().reindex(clients, fill_value=0)
+    last_trip = df[df["mcc"].isin(["7011", "4111"])].groupby("client_id")["timestamp"].max().reindex(clients)
+    return pd.DataFrame(
+        {
+            "traveler_intensity": np.log1p(hotel) + np.log1p(ride),
+            "days_since_trip": ((cutoff - last_trip).dt.total_seconds() / 86400).fillna(180).clip(upper=180),
+        },
+        index=clients,
+    )
+
+
 def _early_adoption_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
     recent = df[
         (df["category"].notna())
@@ -364,6 +407,8 @@ def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
 
     features = features.join(_story_features(df, streams, cutoff), how="left")
     features = features.join(_client_story_features(df, streams, cutoff), how="left")
+    features = features.join(_traveller_features(df, cutoff), how="left")
+    features = features.join(_traveller_features(df, cutoff), how="left")
 
     return features.reset_index()
 
