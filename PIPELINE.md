@@ -339,6 +339,8 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 25 | L3 | is_live loosened: OR ≥ 2 tagged charges in 90 d over ≥ 2 months. Train-only 0.504 → 0.512 (old timing), with pseudo + lever 2: 0.514 | – | – | – | – | – | ❌ ±0.001 with pseudo data; reverted |
 | 26 | H | Per-class log-prob biases for macro-F1 (Lipton et al. 2014), tuned by coordinate ascent on 5-fold train OOF (pseudo rows as extra training data). OOF 0.509 → 0.521, valid −0.009; no shrink factor beats no-bias on valid | – | – | – | – | – | ❌ does not transfer train → valid (distribution shift) |
 | 27 | D | Discrete-time competing-risks hazard LogReg (daily charge hazard per live family, trained self-supervised on 6 historical cutoffs of train history; billing-day buckets dominate, OR 2.0 on the day, 0.08 at 8-14 days) -> p_first_<fam>, p_none90. Label-free first-charge hit 66.9% vs 66.6% day-of-month rule. Final model: + all 0.502, + p_none90 0.511, hazard-only rule 0.450 | – | – | 0.450 | – | – | ❌ timing already in the features |
+| 28 | D | Same window last year (charged in Jan / Jan-Mar 2025 per family, annual flag, n families Jan 2025). Month dummies are constant (shared cutoff). New-year check: no January start spike (gym ratio 1.11 like all families), no year-end cancellation wave | – | – | – | – | – | ❌ final 0.495-0.509 |
+| 29 | B/C5 | Tagging gap: untagged live 9-25 EUR streams -> music (<15.5) / streaming. Only 66 train clients; music band = base rate. Fold into is_live/active 0.503, 2 flags 0.504 | – | – | – | – | – | ❌ brand-new targets are genuinely new |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
