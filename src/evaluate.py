@@ -37,7 +37,7 @@ from src.recurrence import detect_streams, load_transactions
 from sklearn.ensemble import HistGradientBoostingClassifier
 
 CUTOFF = "2026-01-01"
-LOG_PATH = "experiments.csv"
+LOG_PATH = "extra_info/experiments.csv"
 
 
 def labelled_features(split: str) -> pd.DataFrame:

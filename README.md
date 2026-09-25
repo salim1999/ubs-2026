@@ -106,7 +106,6 @@ valid / test (20% vs 6% of subscription charges on a foreign MCC).
 
 ```
 README.md               this document
-experiments.csv         raw log of every src.evaluate run
 src/
   category_map.py       transaction -> family
   recurrence.py         recurring-stream detection
@@ -115,9 +114,8 @@ src/
   model.py              sparse per-label L1 (final), global LogReg, rule
   evaluate.py           score on valid + log
   make_submission.py    submission CSV
-pseudo_labels/          pretrain pseudo-labels (from Salim's branch)
-extra_info/             experiment log, interpretation, coefficients
-data/                   raw data (gitignored except the zips)
+extra_info/             experiment log (+ experiments.csv), interpretation, coefficients
+data/                   raw data (gitignored except the zips) + pretrain_labels_merged.csv (pseudo-labels, tracked)
 ```
 
 Setup: Python >= 3.10, `pip install -e .`, unzip `data/dataset.zip` into `data/`.

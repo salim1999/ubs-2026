@@ -306,7 +306,7 @@ architecture when only one step needs work.
 
 Scores: `LogReg / HGB / Rule` = macro-F1 on valid. `CV` = 5-fold on train+valid
 (LogReg / HGB). `C det` = share of non-`none` valid clients whose target family
-is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `experiments.csv`.
+is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `extra_info/experiments.csv`.
 
 | # | Step | Change | LogReg | HGB | Rule | CV | C det | Keep? |
 |---|---|---|---|---|---|---|---|---|

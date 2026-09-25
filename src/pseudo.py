@@ -1,6 +1,6 @@
 """Pseudo-labelled pretrain clients as extra training rows for the final model.
 
-Labels: pseudo_labels/pretrain_labels_merged.csv, copied from Salim's branch
+Labels: data/pretrain_labels_merged.csv, copied from Salim's branch
 (origin/Salim, commit 34ae845, data/labeled_pretrain_labels_merged.csv). Each of
 the 10,000 unlabeled pretrain clients got a label from three sources: an
 unsupervised labeler, an LLM (gpt-4.1-mini) and a model trained on the 2,000
@@ -24,7 +24,7 @@ import pandas as pd
 from src.features import build_features
 from src.model import LABEL_COL
 
-PSEUDO_LABELS_PATH = "pseudo_labels/pretrain_labels_merged.csv"
+PSEUDO_LABELS_PATH = "data/pretrain_labels_merged.csv"
 PRETRAIN_PATH = "data/unlabeled_pretrain_transactions.jsonl"
 MIN_SOURCES_AGREE = 3
 CUTOFF = "2026-01-01"
