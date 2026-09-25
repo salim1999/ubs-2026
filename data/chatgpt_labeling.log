@@ -1,0 +1,786 @@
+few-shot examples: ['none', 'cloud', 'gym', 'mobile', 'music', 'none', 'software', 'streaming', 'gym', 'insurance']
+loading data/dataset/dataset/unlabeled_pretrain_transactions.jsonl ...
+0 already labelled in data/labeled_pretrain_transactions_chatgpt.jsonl, 10000 to go
+  50/10000 labelled, 0 errors
+  100/10000 labelled, 0 errors
+  150/10000 labelled, 0 errors
+  200/10000 labelled, 0 errors
+  250/10000 labelled, 0 errors
+  300/10000 labelled, 0 errors
+[error] U000172: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 2000000, Requested 18916. Please try again in 567ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+[error] U000176: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 2000000, Requested 19774. Please try again in 593ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  350/10000 labelled, 2 errors
+[error] U000239: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 2000000, Requested 18454. Please try again in 553ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  400/10000 labelled, 3 errors
+  450/10000 labelled, 3 errors
+[error] U000345: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1983308, Requested 18956. Please try again in 67ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  500/10000 labelled, 4 errors
+wrote 500 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+software     0.156
+mobile       0.150
+cloud        0.142
+insurance    0.134
+none         0.110
+gym          0.106
+music        0.104
+streaming    0.098
+  checkpoint: 500 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+[error] U000392: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1988038, Requested 18633. Please try again in 200ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+[error] U000400: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 2000000, Requested 19313. Please try again in 579ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  550/10000 labelled, 6 errors
+  600/10000 labelled, 6 errors
+  650/10000 labelled, 6 errors
+  700/10000 labelled, 6 errors
+  750/10000 labelled, 6 errors
+  800/10000 labelled, 6 errors
+  850/10000 labelled, 6 errors
+  900/10000 labelled, 6 errors
+  950/10000 labelled, 6 errors
+  1000/10000 labelled, 6 errors
+wrote 1000 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+mobile       0.160
+insurance    0.148
+software     0.135
+cloud        0.133
+gym          0.119
+none         0.112
+music        0.102
+streaming    0.091
+  checkpoint: 1000 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1050/10000 labelled, 6 errors
+  1100/10000 labelled, 6 errors
+  1150/10000 labelled, 6 errors
+[error] U001038: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1984124, Requested 18914. Please try again in 91ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  1200/10000 labelled, 7 errors
+  1250/10000 labelled, 7 errors
+  1300/10000 labelled, 7 errors
+  1350/10000 labelled, 7 errors
+  1400/10000 labelled, 7 errors
+  1450/10000 labelled, 7 errors
+  1500/10000 labelled, 7 errors
+wrote 1500 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+mobile       0.153
+insurance    0.150
+software     0.135
+gym          0.122
+cloud        0.120
+none         0.114
+streaming    0.103
+music        0.103
+  checkpoint: 1500 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1550/10000 labelled, 7 errors
+  1600/10000 labelled, 7 errors
+  1650/10000 labelled, 7 errors
+  1700/10000 labelled, 7 errors
+  1750/10000 labelled, 7 errors
+[error] U001619: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1997599, Requested 19150. Please try again in 502ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  1800/10000 labelled, 8 errors
+  1850/10000 labelled, 8 errors
+  1900/10000 labelled, 8 errors
+  1950/10000 labelled, 8 errors
+  2000/10000 labelled, 8 errors
+wrote 2000 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.157
+mobile       0.149
+software     0.130
+gym          0.127
+cloud        0.123
+none         0.110
+music        0.106
+streaming    0.100
+  checkpoint: 2000 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  2050/10000 labelled, 8 errors
+  2100/10000 labelled, 8 errors
+  2150/10000 labelled, 8 errors
+  2200/10000 labelled, 8 errors
+[error] U002081: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1988779, Requested 19072. Please try again in 235ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  2250/10000 labelled, 9 errors
+  2300/10000 labelled, 9 errors
+  2350/10000 labelled, 9 errors
+  2400/10000 labelled, 9 errors
+  2450/10000 labelled, 9 errors
+[error] U002313: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1989867, Requested 19307. Please try again in 275ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  2500/10000 labelled, 10 errors
+wrote 2500 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.150
+mobile       0.147
+gym          0.136
+software     0.130
+cloud        0.122
+none         0.108
+music        0.105
+streaming    0.102
+  checkpoint: 2500 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  2550/10000 labelled, 10 errors
+  2600/10000 labelled, 10 errors
+[error] U002464: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1999690, Requested 18621. Please try again in 549ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  2650/10000 labelled, 11 errors
+  2700/10000 labelled, 11 errors
+  2750/10000 labelled, 11 errors
+  2800/10000 labelled, 11 errors
+[error] U002678: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1997558, Requested 18696. Please try again in 487ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  2850/10000 labelled, 12 errors
+[error] U002760: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1981613, Requested 19471. Please try again in 32ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  2900/10000 labelled, 13 errors
+  2950/10000 labelled, 13 errors
+  3000/10000 labelled, 13 errors
+wrote 3000 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+mobile       0.147
+insurance    0.145
+gym          0.141
+software     0.129
+cloud        0.126
+none         0.106
+music        0.104
+streaming    0.101
+  checkpoint: 3000 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  3050/10000 labelled, 13 errors
+  3100/10000 labelled, 13 errors
+  3150/10000 labelled, 13 errors
+  3200/10000 labelled, 13 errors
+[error] U003097: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 2000000, Requested 18905. Please try again in 567ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  3250/10000 labelled, 14 errors
+  3300/10000 labelled, 14 errors
+[error] U003209: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1984888, Requested 18893. Please try again in 113ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  3350/10000 labelled, 15 errors
+  3400/10000 labelled, 15 errors
+  3450/10000 labelled, 15 errors
+  3500/10000 labelled, 15 errors
+wrote 3500 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+mobile       0.147
+insurance    0.145
+gym          0.140
+software     0.128
+cloud        0.128
+none         0.108
+music        0.103
+streaming    0.101
+  checkpoint: 3500 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  3550/10000 labelled, 15 errors
+  3600/10000 labelled, 15 errors
+  3650/10000 labelled, 15 errors
+[error] U003555: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1988507, Requested 18660. Please try again in 215ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+[error] U003557: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1985908, Requested 19406. Please try again in 159ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  3700/10000 labelled, 17 errors
+  3750/10000 labelled, 17 errors
+=== resumed 2026-09-25 07:14:50 ===
+few-shot examples: ['none', 'cloud', 'gym', 'mobile', 'music', 'none', 'software', 'streaming', 'gym', 'insurance']
+loading data/dataset/dataset/unlabeled_pretrain_transactions.jsonl ...
+3794 already labelled in data/labeled_pretrain_transactions_chatgpt.jsonl, 6206 to go
+  50/6206 labelled, 0 errors
+  100/6206 labelled, 0 errors
+  150/6206 labelled, 0 errors
+  200/6206 labelled, 0 errors
+  250/6206 labelled, 0 errors
+[error] U003907: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 2000000, Requested 19209. Please try again in 576ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  300/6206 labelled, 1 errors
+[error] U003973: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1988018, Requested 19593. Please try again in 228ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  350/6206 labelled, 2 errors
+[error] U004006: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1989551, Requested 18439. Please try again in 239ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+[error] U004007: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1991083, Requested 19417. Please try again in 315ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  400/6206 labelled, 4 errors
+  450/6206 labelled, 4 errors
+  500/6206 labelled, 4 errors
+wrote 4294 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.143
+mobile       0.140
+gym          0.137
+cloud        0.132
+software     0.131
+none         0.110
+music        0.105
+streaming    0.102
+  checkpoint: 4294 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  550/6206 labelled, 4 errors
+  600/6206 labelled, 4 errors
+  650/6206 labelled, 4 errors
+  700/6206 labelled, 4 errors
+[error] U004366: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 2000000, Requested 19626. Please try again in 588ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+[error] U004364: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1996159, Requested 19246. Please try again in 462ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  750/6206 labelled, 6 errors
+  800/6206 labelled, 6 errors
+  850/6206 labelled, 6 errors
+  900/6206 labelled, 6 errors
+  950/6206 labelled, 6 errors
+  1000/6206 labelled, 6 errors
+wrote 4794 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.146
+mobile       0.138
+gym          0.138
+cloud        0.132
+software     0.132
+none         0.110
+music        0.104
+streaming    0.100
+  checkpoint: 4794 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+[error] U004778: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004793: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004794: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004824: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004823: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004822: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004826: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004825: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004827: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004829: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004828: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004830: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004833: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004832: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004831: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004834: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004835: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004836: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004837: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004838: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004839: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004840: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004841: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U004842: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+  1050/6206 labelled, 30 errors
+  1100/6206 labelled, 30 errors
+  1150/6206 labelled, 30 errors
+  1200/6206 labelled, 30 errors
+  1250/6206 labelled, 30 errors
+  1300/6206 labelled, 30 errors
+  1350/6206 labelled, 30 errors
+  1400/6206 labelled, 30 errors
+  1450/6206 labelled, 30 errors
+  1500/6206 labelled, 30 errors
+wrote 5294 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.145
+mobile       0.138
+gym          0.137
+software     0.132
+cloud        0.132
+none         0.110
+music        0.105
+streaming    0.100
+  checkpoint: 5294 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1550/6206 labelled, 30 errors
+[error] U005245: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1990291, Requested 18709. Please try again in 270ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  1600/6206 labelled, 31 errors
+  1650/6206 labelled, 31 errors
+  1700/6206 labelled, 31 errors
+  1750/6206 labelled, 31 errors
+  1800/6206 labelled, 31 errors
+  1850/6206 labelled, 31 errors
+  1900/6206 labelled, 31 errors
+  1950/6206 labelled, 31 errors
+  2000/6206 labelled, 31 errors
+wrote 5794 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.142
+gym          0.140
+mobile       0.138
+software     0.133
+cloud        0.132
+none         0.111
+music        0.104
+streaming    0.100
+  checkpoint: 5794 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  2050/6206 labelled, 31 errors
+  2100/6206 labelled, 31 errors
+  2150/6206 labelled, 31 errors
+  2200/6206 labelled, 31 errors
+  2250/6206 labelled, 31 errors
+[error] U005937: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1998950, Requested 19509. Please try again in 553ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+[error] U005966: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1990350, Requested 18575. Please try again in 267ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  2300/6206 labelled, 33 errors
+exit 127
+=== resumed with gpt-6-luna 2026-09-25 08:00:02 ===
+few-shot examples: ['none', 'cloud', 'gym', 'mobile', 'music', 'none', 'software', 'streaming', 'gym', 'insurance']
+loading data/dataset/dataset/unlabeled_pretrain_transactions.jsonl ...
+6117 already labelled in data/labeled_pretrain_transactions_chatgpt.jsonl, 3883 to go
+  50/3883 labelled, 0 errors
+  100/3883 labelled, 0 errors
+  150/3883 labelled, 0 errors
+  200/3883 labelled, 0 errors
+  250/3883 labelled, 0 errors
+  300/3883 labelled, 0 errors
+  350/3883 labelled, 0 errors
+  400/3883 labelled, 0 errors
+  450/3883 labelled, 0 errors
+  500/3883 labelled, 0 errors
+wrote 6617 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.141
+gym          0.140
+mobile       0.138
+software     0.134
+cloud        0.130
+none         0.112
+music        0.105
+streaming    0.100
+  checkpoint: 6617 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  550/3883 labelled, 0 errors
+  600/3883 labelled, 0 errors
+  650/3883 labelled, 0 errors
+  700/3883 labelled, 0 errors
+  750/3883 labelled, 0 errors
+  800/3883 labelled, 0 errors
+  850/3883 labelled, 0 errors
+  900/3883 labelled, 0 errors
+  950/3883 labelled, 0 errors
+  1000/3883 labelled, 0 errors
+wrote 7117 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.141
+gym          0.140
+mobile       0.136
+software     0.135
+cloud        0.130
+none         0.112
+music        0.104
+streaming    0.101
+  checkpoint: 7117 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1050/3883 labelled, 0 errors
+  1100/3883 labelled, 0 errors
+  1150/3883 labelled, 0 errors
+  1200/3883 labelled, 0 errors
+  1250/3883 labelled, 0 errors
+  1300/3883 labelled, 0 errors
+  1350/3883 labelled, 0 errors
+  1400/3883 labelled, 0 errors
+  1450/3883 labelled, 0 errors
+  1500/3883 labelled, 0 errors
+wrote 7617 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.140
+gym          0.137
+software     0.135
+mobile       0.135
+cloud        0.133
+none         0.114
+music        0.103
+streaming    0.103
+  checkpoint: 7617 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1550/3883 labelled, 0 errors
+  1600/3883 labelled, 0 errors
+  1650/3883 labelled, 0 errors
+  1700/3883 labelled, 0 errors
+  1750/3883 labelled, 0 errors
+  1800/3883 labelled, 0 errors
+  1850/3883 labelled, 0 errors
+  1900/3883 labelled, 0 errors
+  1950/3883 labelled, 0 errors
+  2000/3883 labelled, 0 errors
+wrote 8117 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.139
+gym          0.137
+software     0.136
+mobile       0.134
+cloud        0.133
+none         0.115
+music        0.103
+streaming    0.102
+  checkpoint: 8117 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  2050/3883 labelled, 0 errors
+  2100/3883 labelled, 0 errors
+  2150/3883 labelled, 0 errors
+  2200/3883 labelled, 0 errors
+exit 127
+=== relabel all with gpt-6-luna 2026-09-25 08:35:53 ===
+few-shot examples: ['none', 'cloud', 'gym', 'mobile', 'music', 'none', 'software', 'streaming', 'gym', 'insurance']
+loading data/dataset/dataset/unlabeled_pretrain_transactions.jsonl ...
+2232 already labelled in data/labeled_pretrain_transactions_chatgpt.jsonl, 7768 to go
+  50/7768 labelled, 0 errors
+  100/7768 labelled, 0 errors
+  150/7768 labelled, 0 errors
+  200/7768 labelled, 0 errors
+  250/7768 labelled, 0 errors
+  300/7768 labelled, 0 errors
+  350/7768 labelled, 0 errors
+  400/7768 labelled, 0 errors
+  450/7768 labelled, 0 errors
+  500/7768 labelled, 0 errors
+wrote 8349 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.139
+gym          0.137
+software     0.135
+mobile       0.133
+cloud        0.132
+none         0.119
+music        0.105
+streaming    0.101
+  checkpoint: 2732 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  550/7768 labelled, 0 errors
+  600/7768 labelled, 0 errors
+  650/7768 labelled, 0 errors
+  700/7768 labelled, 0 errors
+  750/7768 labelled, 0 errors
+  800/7768 labelled, 0 errors
+  850/7768 labelled, 0 errors
+  900/7768 labelled, 0 errors
+  950/7768 labelled, 0 errors
+  1000/7768 labelled, 0 errors
+wrote 8349 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.137
+gym          0.136
+software     0.135
+cloud        0.132
+mobile       0.132
+none         0.122
+music        0.105
+streaming    0.101
+  checkpoint: 3232 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1050/7768 labelled, 0 errors
+  1100/7768 labelled, 0 errors
+  1150/7768 labelled, 0 errors
+  1200/7768 labelled, 0 errors
+  1250/7768 labelled, 0 errors
+[error] U001224: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U001232: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+[error] U001246: network error: <urlopen error [Errno 11001] getaddrinfo failed>
+  1300/7768 labelled, 3 errors
+  1350/7768 labelled, 3 errors
+  1400/7768 labelled, 3 errors
+  1450/7768 labelled, 3 errors
+  1500/7768 labelled, 3 errors
+wrote 8349 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.137
+gym          0.136
+software     0.135
+cloud        0.132
+mobile       0.130
+none         0.124
+music        0.105
+streaming    0.101
+  checkpoint: 3732 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1550/7768 labelled, 3 errors
+  1600/7768 labelled, 3 errors
+  1650/7768 labelled, 3 errors
+  1700/7768 labelled, 3 errors
+  1750/7768 labelled, 3 errors
+  1800/7768 labelled, 3 errors
+exit 127
+=== fill missing with gpt-4.1-mini 2026-09-25 09:10:34 ===
+few-shot examples: ['none', 'cloud', 'gym', 'mobile', 'music', 'none', 'software', 'streaming', 'gym', 'insurance']
+loading data/dataset/dataset/unlabeled_pretrain_transactions.jsonl ...
+8349 already labelled in data/labeled_pretrain_transactions_chatgpt.jsonl, 1651 to go
+  50/1651 labelled, 0 errors
+  100/1651 labelled, 0 errors
+  150/1651 labelled, 0 errors
+  200/1651 labelled, 0 errors
+  250/1651 labelled, 0 errors
+  300/1651 labelled, 0 errors
+  350/1651 labelled, 0 errors
+  400/1651 labelled, 0 errors
+  450/1651 labelled, 0 errors
+  500/1651 labelled, 0 errors
+wrote 8849 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+insurance    0.136
+gym          0.135
+software     0.135
+cloud        0.131
+mobile       0.129
+none         0.126
+music        0.104
+streaming    0.103
+  checkpoint: 8849 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  550/1651 labelled, 0 errors
+  600/1651 labelled, 0 errors
+  650/1651 labelled, 0 errors
+  700/1651 labelled, 0 errors
+  750/1651 labelled, 0 errors
+  800/1651 labelled, 0 errors
+  850/1651 labelled, 0 errors
+  900/1651 labelled, 0 errors
+  950/1651 labelled, 0 errors
+  1000/1651 labelled, 0 errors
+wrote 9349 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+gym          0.136
+software     0.136
+insurance    0.134
+cloud        0.132
+mobile       0.130
+none         0.125
+music        0.105
+streaming    0.104
+  checkpoint: 9349 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1050/1651 labelled, 0 errors
+  1100/1651 labelled, 0 errors
+  1150/1651 labelled, 0 errors
+  1200/1651 labelled, 0 errors
+  1250/1651 labelled, 0 errors
+[error] U009461: HTTP 429: {
+    "error": {
+        "message": "Rate limit reached for gpt-4.1-mini in organization org-XOH5HtFjcGVcwWjGMcwPhnfz on tokens per min (TPM): Limit 2000000, Used 1987445, Requested 19232. Please try again in 200ms. Visit https://platform.openai.com/account/rate-limits to learn more.",
+        "type": "tokens",
+        "param": null,
+        "code": "rate_limit_exceeded"
+    }
+}
+
+  1300/1651 labelled, 1 errors
+  1350/1651 labelled, 1 errors
+  1400/1651 labelled, 1 errors
+  1450/1651 labelled, 1 errors
+  1500/1651 labelled, 1 errors
+wrote 9849 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+gym          0.136
+software     0.136
+insurance    0.133
+cloud        0.132
+mobile       0.130
+none         0.124
+music        0.105
+streaming    0.105
+  checkpoint: 9849 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+  1550/1651 labelled, 1 errors
+  1600/1651 labelled, 1 errors
+  1650/1651 labelled, 1 errors
+wrote 9999 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+software     0.136
+gym          0.136
+insurance    0.133
+cloud        0.131
+mobile       0.130
+none         0.124
+streaming    0.105
+music        0.105
+  checkpoint: 9999 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+done: 1650 labelled this run, 1 errors, 1 still to label -> re-run the same command to resume
+exit 0
+=== retry last missing 2026-09-25 09:41:41 ===
+few-shot examples: ['none', 'cloud', 'gym', 'mobile', 'music', 'none', 'software', 'streaming', 'gym', 'insurance']
+loading data/dataset/dataset/unlabeled_pretrain_transactions.jsonl ...
+9999 already labelled in data/labeled_pretrain_transactions_chatgpt.jsonl, 1 to go
+wrote 10000 labels to data/labeled_pretrain_labels_chatgpt.csv
+target_next_recurring_merchant
+software     0.136
+gym          0.136
+insurance    0.133
+cloud        0.131
+mobile       0.130
+none         0.124
+streaming    0.105
+music        0.105
+  checkpoint: 10000 labelled in total, saved to data/labeled_pretrain_transactions_chatgpt.jsonl
+done: 1 labelled this run, 0 errors, 0 still to label

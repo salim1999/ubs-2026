@@ -1,0 +1,73 @@
+{"amount": 81.29, "client_id": "U000004", "currency": "gbp", "description": "casual dining", "direction": "in", "fee": 0.0, "mcc": "5812", "timestamp": "2024-11-07T06:10:34Z", "type": "refund"}
+{"amount": 87.63, "client_id": "U000004", "currency": "chf", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2024-11-21T06:48:02Z", "type": "card_payment"}
+{"amount": 11.29, "client_id": "U000004", "currency": "chf", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2024-11-25T21:43:30Z", "type": "transfer"}
+{"amount": 69.05, "client_id": "U000004", "currency": "chf", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2024-11-27T08:34:08Z", "type": "card_payment"}
+{"amount": 76.23, "client_id": "U000004", "currency": "chf", "description": "online marketplace", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2024-11-30T21:49:41Z", "type": "card_payment"}
+{"amount": 4.21, "client_id": "U000004", "currency": "chf", "description": "coffee shop", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2024-12-02T08:16:30Z", "type": "card_payment"}
+{"amount": 143.19, "client_id": "U000004", "currency": "chf", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2024-12-04T19:02:22Z", "type": "card_payment"}
+{"amount": 22.78, "client_id": "U000004", "currency": "chf", "description": "coffee shop", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2024-12-18T15:20:05Z", "type": "card_payment"}
+{"amount": 5.3, "client_id": "U000004", "currency": "chf", "description": "service fee", "direction": "out", "fee": 0.0, "mcc": "6012", "timestamp": "2024-12-22T11:11:13Z", "type": "fee"}
+{"amount": 144.7, "client_id": "U000004", "currency": "chf", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2024-12-25T21:12:43Z", "type": "card_payment"}
+{"amount": 123.59, "client_id": "U000004", "currency": "chf", "description": "neighborhood market", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2024-12-29T18:48:01Z", "type": "transfer"}
+{"amount": 309.62, "client_id": "U000004", "currency": "chf", "description": "atm withdrawal", "direction": "out", "fee": 0.0, "mcc": "6011", "timestamp": "2025-01-08T08:48:07Z", "type": "atm"}
+{"amount": 121.41, "client_id": "U000004", "currency": "chf", "description": "neighborhood market", "direction": "out", "fee": 1.98, "mcc": "5411", "timestamp": "2025-01-21T08:38:55Z", "type": "card_payment"}
+{"amount": 130.11, "client_id": "U000004", "currency": "chf", "description": "grocery store", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-02-06T01:36:03Z", "type": "card_payment"}
+{"amount": 65.77, "client_id": "U000004", "currency": "chf", "description": "ride share", "direction": "out", "fee": 0.0, "mcc": "4111", "timestamp": "2025-02-08T15:36:15Z", "type": "card_payment"}
+{"amount": 318.85, "client_id": "U000004", "currency": "chf", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-02-18T23:12:38Z", "type": "card_payment"}
+{"amount": 148.66, "client_id": "U000004", "currency": "gbp", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-02-22T21:02:50Z", "type": "card_payment"}
+{"amount": 6500.86, "client_id": "U000004", "currency": "chf", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-03-04T13:54:23Z", "type": "topup"}
+{"amount": 38.62, "client_id": "U000004", "currency": "chf", "description": "saas billing", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-03-17T08:15:26Z", "type": "card_payment"}
+{"amount": 165.75, "client_id": "U000004", "currency": "chf", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-03-17T08:36:11Z", "type": "card_payment"}
+{"amount": 113.5, "client_id": "U000004", "currency": "gbp", "description": "grocery store", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-03-20T19:59:06Z", "type": "transfer"}
+{"amount": 136.46, "client_id": "U000004", "currency": "chf", "description": "online marketplace", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-03-23T11:57:44Z", "type": "transfer"}
+{"amount": 8637.16, "client_id": "U000004", "currency": "chf", "description": "salary", "direction": "in", "fee": 0.57, "mcc": "6012", "timestamp": "2025-03-23T16:47:02Z", "type": "topup"}
+{"amount": 236.66, "client_id": "U000004", "currency": "chf", "description": "online marketplace", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-03-29T04:26:01Z", "type": "card_payment"}
+{"amount": 133.93, "client_id": "U000004", "currency": "chf", "description": "atm withdrawal", "direction": "out", "fee": 0.0, "mcc": "6011", "timestamp": "2025-04-02T09:16:59Z", "type": "atm"}
+{"amount": 216.82, "client_id": "U000004", "currency": "chf", "description": "online marketplace", "direction": "out", "fee": 2.94, "mcc": "5732", "timestamp": "2025-04-15T10:12:10Z", "type": "card_payment"}
+{"amount": 39.19, "client_id": "U000004", "currency": "chf", "description": "saas billing", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-04-16T08:55:20Z", "type": "card_payment"}
+{"amount": 1173.38, "client_id": "U000004", "currency": "chf", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-04-19T19:47:31Z", "type": "topup"}
+{"amount": 66.21, "client_id": "U000004", "currency": "chf", "description": "neighborhood market", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-04-28T15:06:52Z", "type": "card_payment"}
+{"amount": 44.19, "client_id": "U000004", "currency": "chf", "description": "safe", "direction": "out", "fee": 0.0, "mcc": "6300", "timestamp": "2025-05-12T17:46:56Z", "type": "card_payment"}
+{"amount": 32.39, "client_id": "U000004", "currency": "chf", "description": "ride share", "direction": "out", "fee": 0.78, "mcc": "4111", "timestamp": "2025-05-14T09:20:33Z", "type": "card_payment"}
+{"amount": 80.15, "client_id": "U000004", "currency": "chf", "description": "neighborhood market", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-05-14T19:57:41Z", "type": "card_payment"}
+{"amount": 38.88, "client_id": "U000004", "currency": "chf", "description": "productivity suite", "direction": "out", "fee": 0.49, "mcc": "5734", "timestamp": "2025-05-17T08:11:35Z", "type": "card_payment"}
+{"amount": 149.29, "client_id": "U000004", "currency": "chf", "description": "fresh foods digital", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-05-20T17:15:20Z", "type": "card_payment"}
+{"amount": 46.68, "client_id": "U000004", "currency": "chf", "description": "member safe cover digital", "direction": "out", "fee": 0.0, "mcc": "6300", "timestamp": "2025-06-12T08:04:51Z", "type": "card_payment"}
+{"amount": 39.04, "client_id": "U000004", "currency": "chf", "description": "productivity suite", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-06-19T11:00:49Z", "type": "card_payment"}
+{"amount": 137.67, "client_id": "U000004", "currency": "chf", "description": "fresh foods plus", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-07-02T18:34:30Z", "type": "card_payment"}
+{"amount": 188.02, "client_id": "U000004", "currency": "chf", "description": "p2p send", "direction": "out", "fee": 0.0, "mcc": "6012", "timestamp": "2025-07-02T20:27:57Z", "type": "p2p_transfer"}
+{"amount": 61.42, "client_id": "U000004", "currency": "chf", "description": "online marketplace", "direction": "out", "fee": 1.73, "mcc": "5732", "timestamp": "2025-07-07T21:08:24Z", "type": "card_payment"}
+{"amount": 4588.15, "client_id": "U000004", "currency": "chf", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-07-08T19:29:11Z", "type": "topup"}
+{"amount": 12.46, "client_id": "U000004", "currency": "chf", "description": "pharmacy", "direction": "out", "fee": 0.0, "mcc": "5912", "timestamp": "2025-07-11T11:16:18Z", "type": "card_payment"}
+{"amount": 2.87, "client_id": "U000004", "currency": "chf", "description": "cloud backup", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-07-13T12:58:45Z", "type": "card_payment"}
+{"amount": 43.24, "client_id": "U000004", "currency": "chf", "description": "safe cover core", "direction": "out", "fee": 0.0, "mcc": "6300", "timestamp": "2025-07-14T09:25:10Z", "type": "card_payment"}
+{"amount": 127.06, "client_id": "U000004", "currency": "chf", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-07-18T16:47:39Z", "type": "card_payment"}
+{"amount": 38.39, "client_id": "U000004", "currency": "chf", "description": "software access", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-07-22T19:52:51Z", "type": "card_payment"}
+{"amount": 485.63, "client_id": "U000004", "currency": "chf", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-07-29T05:51:24Z", "type": "card_payment"}
+{"amount": 7028.59, "client_id": "U000004", "currency": "usd", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-08-09T20:17:02Z", "type": "topup"}
+{"amount": 2.72, "client_id": "U000004", "currency": "chf", "description": "cloud backup", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-08-14T12:20:50Z", "type": "card_payment"}
+{"amount": 208.7, "client_id": "U000004", "currency": "chf", "description": "p2p receive", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-08-18T18:54:45Z", "type": "p2p_transfer"}
+{"amount": 110.79, "client_id": "U000004", "currency": "chf", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-08-21T19:25:06Z", "type": "card_payment"}
+{"amount": 39.4, "client_id": "U000004", "currency": "chf", "description": "productivity suite", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-08-22T20:22:28Z", "type": "card_payment"}
+{"amount": 2.05, "client_id": "U000004", "currency": "chf", "description": "service fee", "direction": "out", "fee": 0.0, "mcc": "6012", "timestamp": "2025-08-24T15:21:36Z", "type": "fee"}
+{"amount": 40.01, "client_id": "U000004", "currency": "chf", "description": "digital plus service", "direction": "out", "fee": 0.0, "mcc": "4814", "timestamp": "2025-08-25T18:34:43Z", "type": "card_payment"}
+{"amount": 7293.76, "client_id": "U000004", "currency": "chf", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-08-30T08:44:46Z", "type": "topup"}
+{"amount": 2.74, "client_id": "U000004", "currency": "chf", "description": "cloud backup", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-09-11T10:31:20Z", "type": "card_payment"}
+{"amount": 39.27, "client_id": "U000004", "currency": "chf", "description": "saas billing", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-09-22T08:53:16Z", "type": "card_payment"}
+{"amount": 39.0, "client_id": "U000004", "currency": "chf", "description": "digital plus", "direction": "out", "fee": 0.0, "mcc": "4814", "timestamp": "2025-09-23T04:20:57Z", "type": "card_payment"}
+{"amount": 24.46, "client_id": "U000004", "currency": "gbp", "description": "pharmacy", "direction": "in", "fee": 0.0, "mcc": "5912", "timestamp": "2025-09-23T12:51:12Z", "type": "refund"}
+{"amount": 3.0, "client_id": "U000004", "currency": "chf", "description": "cloud backup", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-10-02T10:18:52Z", "type": "card_payment"}
+{"amount": 174.7, "client_id": "U000004", "currency": "chf", "description": "atm withdrawal", "direction": "out", "fee": 0.0, "mcc": "6011", "timestamp": "2025-10-04T14:01:00Z", "type": "atm"}
+{"amount": 39.34, "client_id": "U000004", "currency": "chf", "description": "premium plan", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-10-20T18:57:14Z", "type": "card_payment"}
+{"amount": 38.98, "client_id": "U000004", "currency": "chf", "description": "dgtl plus", "direction": "out", "fee": 0.0, "mcc": "4814", "timestamp": "2025-10-24T08:56:47Z", "type": "card_payment"}
+{"amount": 29.3, "client_id": "U000004", "currency": "chf", "description": "pharmacy", "direction": "out", "fee": 0.0, "mcc": "5912", "timestamp": "2025-10-25T08:30:30Z", "type": "card_payment"}
+{"amount": 160.32, "client_id": "U000004", "currency": "chf", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-11-15T19:23:53Z", "type": "card_payment"}
+{"amount": 38.52, "client_id": "U000004", "currency": "chf", "description": "saas billing", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-11-22T21:44:55Z", "type": "card_payment"}
+{"amount": 62.1, "client_id": "U000004", "currency": "chf", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-11-26T17:56:52Z", "type": "card_payment"}
+{"amount": 477.42, "client_id": "U000004", "currency": "chf", "description": "atm withdrawal", "direction": "out", "fee": 1.3, "mcc": "6011", "timestamp": "2025-12-01T22:53:17Z", "type": "atm"}
+{"amount": 222.44, "client_id": "U000004", "currency": "chf", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-12-06T11:24:18Z", "type": "card_payment"}
+{"amount": 38.53, "client_id": "U000004", "currency": "chf", "description": "premium plan", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-12-20T11:45:24Z", "type": "card_payment"}
+{"amount": 122.48, "client_id": "U000004", "currency": "usd", "description": "hotel booking", "direction": "out", "fee": 2.76, "mcc": "7011", "timestamp": "2025-12-20T15:11:33Z", "type": "card_payment"}
+{"amount": 203.01, "client_id": "U000004", "currency": "chf", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-12-21T17:17:30Z", "type": "transfer"}
+{"amount": 25.77, "client_id": "U000004", "currency": "chf", "description": "ride share", "direction": "out", "fee": 0.0, "mcc": "4111", "timestamp": "2025-12-24T22:21:38Z", "type": "transfer"}
+{"amount": 5353.07, "client_id": "U000004", "currency": "chf", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-12-27T06:56:41Z", "type": "topup"}

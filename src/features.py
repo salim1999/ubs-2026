@@ -20,6 +20,9 @@ One row per client, built purely from transactions up to the cutoff date
      category but describe the client's overall situation (e.g. clients
      with many active categories are less likely to add another - the
      "saturation" effect found during exploration).
+  4. Unsupervised client embeddings (src.unsupervised): an LSA spending
+     profile + KMeans segment distances, fit on the 10,000 unlabeled
+     pretrain clients only and applied here as a fixed transform.
 """
 
 from __future__ import annotations
@@ -31,8 +34,8 @@ import numpy as np
 import pandas as pd
 
 from src.category_map import TARGET_CATEGORIES
-from src.recurrence import CADENCE_CODE, detect_streams, load_transactions
-from src import personas
+from src.recurrence import detect_streams, load_transactions
+from src import personas, unsupervised
 
 PERSONA_NAMES = list(personas.PERSONA_RULES)
 DATA_DIR = "data/dataset/dataset"
@@ -55,6 +58,8 @@ PERSONA_RAW_FEATURES = [
 # The 10 rule-based persona scores (+ top margin) average strong and useless
 # features together and added ~nothing in permutation importance.
 USE_PERSONA_SCORES = False
+# Unsupervised embedding features from src.unsupervised (see its docstring).
+USE_UNSUP_FEATURES = True
 
 
 def _persona_features(df, cutoff, scorer=None):
@@ -130,7 +135,7 @@ STREAM_FEATURES = [
     "n_streams", "n_occurrences", "recency_days", "tenure_days", "mean_amount", "gap_cv",
     "median_gap_days", "days_to_next", "due_rank", "days_to_next_vs_min", "is_soonest",
     "n_last_30d", "n_last_60d", "n_last_90d", "n_refunds", "refund_ratio",
-    "last_event_is_refund", "amount_trend", "cadence_code", "n_mccs",
+    "last_event_is_refund", "amount_trend", "n_mccs",
 ]
 
 
@@ -152,7 +157,6 @@ def recurring_streams(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFra
 
 def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
     recurring = recurring_streams(streams, cutoff)
-    recurring["cadence_code"] = recurring["cadence"].map(CADENCE_CODE)
     is_live = recurring["is_live"]
     active = recurring[is_live]
     lapsed = recurring[~is_live]
@@ -166,7 +170,7 @@ def _category_stream_features(streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd
         **{c: (c, "first") for c in [
             "recency_days", "mean_amount", "gap_cv", "median_gap_days", "days_to_next",
             "n_last_30d", "n_last_60d", "n_last_90d", "n_refunds", "refund_ratio",
-            "last_event_is_refund", "amount_trend", "cadence_code", "n_mccs",
+            "last_event_is_refund", "amount_trend", "n_mccs",
         ]},
     ).reset_index()
     agg["tenure_days"] = (cutoff - agg["first_date"]).dt.days
@@ -251,6 +255,9 @@ def build_features(
     persona_cols, fitted = _persona_features(df, cutoff, persona_scorer)
     features = features.join(persona_cols, how="left")
     features[persona_cols.columns] = features[persona_cols.columns].fillna(0.0)
+
+    if USE_UNSUP_FEATURES:
+        features = features.join(unsupervised.client_features(df, cutoff), how="left")
 
     active_cols = [f"active_{c}" for c in TARGET_CATEGORIES]
     features[active_cols] = features[active_cols].fillna(0).astype(int)

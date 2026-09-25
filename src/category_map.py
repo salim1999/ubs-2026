@@ -97,6 +97,25 @@ CLEAN_MCC_CATEGORY = {
     "5812": MEDIA,
 }
 
+# Pool exclusion for stream detection (ported from timmyo): real,
+# non-subscription merchants rotate affixes and hop mccs like
+# subscriptions do, so they are matched as substrings on any mcc and
+# dropped before amount clustering.
+# The last four are opaque descriptions of everyday spend (audit
+# 2026-09-25): absent from pretrain, ~1.4 rows per train client but ~12
+# per valid client (98% of test clients have them); mccs and amounts
+# match grocery / dining / electronics / pharmacy / hotel / ride share.
+# Pooled, they joined subscription amount clusters. Dropping them took
+# valid c_none_active 0.823 -> 0.703 and c_nextdue 0.511 -> 0.521 (train
+# ~unchanged).
+POOL_EXCLUDE_PHRASES = [
+    "atm withdrawal", "p2p send", "service fee", "casual dining", "coffee shop",
+    "electronics shop", "pharmacy", "neighborhood market", "ride share",
+    "hotel booking", "fresh foods", "online marketplace", "grocery store",
+    "digital order", "card purchase", "merchant charge", "service payment",
+]
+POOL_EXCLUDE_TYPES = {"atm", "fee", "p2p_transfer"}
+
 ABBREVIATIONS = {"prem": "premium", "mth": "monthly", "dgtl": "digital", "prod": "productivity"}
 NOISE_PREFIXES = {"pay", "member", "billing"}
 NOISE_SUFFIXES = {"core", "online", "plus", "digital", "service"}

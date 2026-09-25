@@ -1,0 +1,96 @@
+{"amount": 117.87, "client_id": "U000000", "currency": "gbp", "description": "grocery store", "direction": "out", "fee": 3.23, "mcc": "5411", "timestamp": "2024-11-15T09:08:31Z", "type": "card_payment"}
+{"amount": 464.65, "client_id": "U000000", "currency": "eur", "description": "p2p receive", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2024-11-20T10:44:39Z", "type": "p2p_transfer"}
+{"amount": 189.94, "client_id": "U000000", "currency": "chf", "description": "online marketplace", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2024-12-09T09:53:05Z", "type": "card_payment"}
+{"amount": 29.96, "client_id": "U000000", "currency": "gbp", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2024-12-10T09:11:23Z", "type": "card_payment"}
+{"amount": 3878.35, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2024-12-10T17:53:54Z", "type": "topup"}
+{"amount": 129.62, "client_id": "U000000", "currency": "usd", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2024-12-14T08:52:54Z", "type": "card_payment"}
+{"amount": 2.68, "client_id": "U000000", "currency": "eur", "description": "service fee", "direction": "out", "fee": 0.0, "mcc": "6012", "timestamp": "2024-12-24T21:47:38Z", "type": "fee"}
+{"amount": 2775.73, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-01-05T09:09:53Z", "type": "topup"}
+{"amount": 141.22, "client_id": "U000000", "currency": "gbp", "description": "neighborhood market", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-01-09T07:39:53Z", "type": "card_payment"}
+{"amount": 325.44, "client_id": "U000000", "currency": "gbp", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-01-15T08:07:26Z", "type": "transfer"}
+{"amount": 146.26, "client_id": "U000000", "currency": "gbp", "description": "neighborhood market", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-01-25T01:07:51Z", "type": "card_payment"}
+{"amount": 20.22, "client_id": "U000000", "currency": "chf", "description": "ride share", "direction": "out", "fee": 0.0, "mcc": "4111", "timestamp": "2025-01-27T18:51:13Z", "type": "card_payment"}
+{"amount": 178.18, "client_id": "U000000", "currency": "gbp", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-01-27T21:42:49Z", "type": "card_payment"}
+{"amount": 201.65, "client_id": "U000000", "currency": "gbp", "description": "atm withdrawal", "direction": "out", "fee": 0.0, "mcc": "6011", "timestamp": "2025-01-29T11:22:06Z", "type": "atm"}
+{"amount": 92.89, "client_id": "U000000", "currency": "gbp", "description": "casual dining", "direction": "out", "fee": 2.9, "mcc": "5812", "timestamp": "2025-02-04T13:42:28Z", "type": "card_payment"}
+{"amount": 203.24, "client_id": "U000000", "currency": "chf", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-02-13T14:02:42Z", "type": "transfer"}
+{"amount": 388.14, "client_id": "U000000", "currency": "gbp", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-02-20T13:35:18Z", "type": "transfer"}
+{"amount": 8449.75, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-02-23T14:28:18Z", "type": "topup"}
+{"amount": 20.89, "client_id": "U000000", "currency": "gbp", "description": "pharmacy", "direction": "out", "fee": 0.0, "mcc": "5912", "timestamp": "2025-02-26T14:18:51Z", "type": "card_payment"}
+{"amount": 18.72, "client_id": "U000000", "currency": "gbp", "description": "coffee shop", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-03-13T18:22:59Z", "type": "transfer"}
+{"amount": 38.56, "client_id": "U000000", "currency": "gbp", "description": "ride share", "direction": "out", "fee": 0.0, "mcc": "4111", "timestamp": "2025-03-13T20:18:23Z", "type": "card_payment"}
+{"amount": 63.89, "client_id": "U000000", "currency": "gbp", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-03-27T10:26:23Z", "type": "card_payment"}
+{"amount": 502.09, "client_id": "U000000", "currency": "gbp", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-04-15T07:13:57Z", "type": "card_payment"}
+{"amount": 11.23, "client_id": "U000000", "currency": "gbp", "description": "premium plan", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-04-27T08:30:44Z", "type": "card_payment"}
+{"amount": 63.85, "client_id": "U000000", "currency": "gbp", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-04-30T01:48:45Z", "type": "card_payment"}
+{"amount": 8512.13, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-05-11T10:39:58Z", "type": "topup"}
+{"amount": 420.86, "client_id": "U000000", "currency": "gbp", "description": "p2p receive", "direction": "in", "fee": 0.57, "mcc": "6012", "timestamp": "2025-05-12T12:45:54Z", "type": "p2p_transfer"}
+{"amount": 157.46, "client_id": "U000000", "currency": "gbp", "description": "neighborhood market", "direction": "out", "fee": 1.09, "mcc": "5411", "timestamp": "2025-05-16T13:15:12Z", "type": "card_payment"}
+{"amount": 220.85, "client_id": "U000000", "currency": "gbp", "description": "online marketplace", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-05-19T10:50:13Z", "type": "card_payment"}
+{"amount": 145.3, "client_id": "U000000", "currency": "gbp", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2025-05-19T18:20:33Z", "type": "card_payment"}
+{"amount": 10.88, "client_id": "U000000", "currency": "gbp", "description": "audio streaming", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-05-27T09:03:56Z", "type": "card_payment"}
+{"amount": 178.28, "client_id": "U000000", "currency": "gbp", "description": "atm withdrawal", "direction": "out", "fee": 0.0, "mcc": "6011", "timestamp": "2025-05-29T07:48:37Z", "type": "atm"}
+{"amount": 3437.67, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-05-31T15:45:39Z", "type": "topup"}
+{"amount": 144.65, "client_id": "U000000", "currency": "gbp", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-06-02T18:55:40Z", "type": "card_payment"}
+{"amount": 1453.8, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-06-02T20:34:36Z", "type": "topup"}
+{"amount": 432.93, "client_id": "U000000", "currency": "eur", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-06-05T09:03:26Z", "type": "card_payment"}
+{"amount": 205.88, "client_id": "U000000", "currency": "gbp", "description": "casual dining", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-06-09T18:06:43Z", "type": "card_payment"}
+{"amount": 55.51, "client_id": "U000000", "currency": "gbp", "description": "saas billing", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-06-16T08:01:30Z", "type": "card_payment"}
+{"amount": 141.04, "client_id": "U000000", "currency": "gbp", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-06-18T16:43:21Z", "type": "card_payment"}
+{"amount": 22.22, "client_id": "U000000", "currency": "gbp", "description": "coffee shop", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-06-21T12:07:17Z", "type": "transfer"}
+{"amount": 261.93, "client_id": "U000000", "currency": "gbp", "description": "hotel booking", "direction": "in", "fee": 0.0, "mcc": "7011", "timestamp": "2025-06-21T21:12:29Z", "type": "refund"}
+{"amount": 162.39, "client_id": "U000000", "currency": "gbp", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-06-22T08:45:33Z", "type": "card_payment"}
+{"amount": 11.93, "client_id": "U000000", "currency": "gbp", "description": "digital plus", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-06-24T11:20:29Z", "type": "card_payment"}
+{"amount": 11.76, "client_id": "U000000", "currency": "gbp", "description": "p2p receive", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-06-25T16:30:47Z", "type": "p2p_transfer"}
+{"amount": 116.8, "client_id": "U000000", "currency": "gbp", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-06-29T22:29:06Z", "type": "card_payment"}
+{"amount": 280.32, "client_id": "U000000", "currency": "gbp", "description": "atm withdrawal", "direction": "out", "fee": 0.7, "mcc": "6011", "timestamp": "2025-07-03T17:15:50Z", "type": "atm"}
+{"amount": 433.71, "client_id": "U000000", "currency": "gbp", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-07-12T20:08:16Z", "type": "transfer"}
+{"amount": 5659.98, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-07-17T03:33:51Z", "type": "topup"}
+{"amount": 55.44, "client_id": "U000000", "currency": "gbp", "description": "productivity suite", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-07-17T10:02:02Z", "type": "card_payment"}
+{"amount": 458.49, "client_id": "U000000", "currency": "chf", "description": "atm withdrawal", "direction": "out", "fee": 3.36, "mcc": "6011", "timestamp": "2025-07-18T15:58:15Z", "type": "atm"}
+{"amount": 12.44, "client_id": "U000000", "currency": "gbp", "description": "premium plan", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-07-21T13:21:27Z", "type": "card_payment"}
+{"amount": 304.02, "client_id": "U000000", "currency": "gbp", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-07-23T16:14:06Z", "type": "card_payment"}
+{"amount": 96.1, "client_id": "U000000", "currency": "chf", "description": "casual dining", "direction": "in", "fee": 0.0, "mcc": "5812", "timestamp": "2025-07-24T09:00:07Z", "type": "refund"}
+{"amount": 22.36, "client_id": "U000000", "currency": "gbp", "description": "neighborhood market", "direction": "in", "fee": 0.0, "mcc": "5411", "timestamp": "2025-07-24T15:23:52Z", "type": "refund"}
+{"amount": 273.97, "client_id": "U000000", "currency": "chf", "description": "p2p receive", "direction": "in", "fee": 0.67, "mcc": "6012", "timestamp": "2025-07-25T08:59:49Z", "type": "p2p_transfer"}
+{"amount": 184.32, "client_id": "U000000", "currency": "gbp", "description": "atm withdrawal", "direction": "out", "fee": 0.0, "mcc": "6011", "timestamp": "2025-07-25T12:22:42Z", "type": "atm"}
+{"amount": 63.51, "client_id": "U000000", "currency": "gbp", "description": "ride share", "direction": "out", "fee": 0.0, "mcc": "4111", "timestamp": "2025-07-27T09:51:32Z", "type": "card_payment"}
+{"amount": 15.2, "client_id": "U000000", "currency": "gbp", "description": "service fee", "direction": "out", "fee": 0.0, "mcc": "6012", "timestamp": "2025-07-29T05:11:12Z", "type": "fee"}
+{"amount": 23.03, "client_id": "U000000", "currency": "gbp", "description": "coffee shop", "direction": "out", "fee": 1.09, "mcc": "5812", "timestamp": "2025-08-01T15:52:37Z", "type": "card_payment"}
+{"amount": 130.2, "client_id": "U000000", "currency": "gbp", "description": "hotel", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-08-01T16:25:39Z", "type": "card_payment"}
+{"amount": 2434.29, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-08-08T20:15:58Z", "type": "topup"}
+{"amount": 60.52, "client_id": "U000000", "currency": "gbp", "description": "grocery store", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-08-12T09:01:41Z", "type": "transfer"}
+{"amount": 54.58, "client_id": "U000000", "currency": "gbp", "description": "productivity suite", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-08-15T12:05:32Z", "type": "card_payment"}
+{"amount": 8.2, "client_id": "U000000", "currency": "gbp", "description": "service fee", "direction": "out", "fee": 0.0, "mcc": "6012", "timestamp": "2025-08-17T15:47:09Z", "type": "fee"}
+{"amount": 117.34, "client_id": "U000000", "currency": "gbp", "description": "grocery store", "direction": "out", "fee": 2.13, "mcc": "5411", "timestamp": "2025-08-20T03:01:14Z", "type": "card_payment"}
+{"amount": 12.39, "client_id": "U000000", "currency": "gbp", "description": "digital plus", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-08-23T08:33:00Z", "type": "card_payment"}
+{"amount": 138.24, "client_id": "U000000", "currency": "gbp", "description": "p2p receive", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-08-23T14:20:18Z", "type": "p2p_transfer"}
+{"amount": 358.23, "client_id": "U000000", "currency": "gbp", "description": "atm withdrawal", "direction": "out", "fee": 1.23, "mcc": "6011", "timestamp": "2025-08-23T16:40:22Z", "type": "atm"}
+{"amount": 8340.19, "client_id": "U000000", "currency": "eur", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-09-06T09:47:04Z", "type": "topup"}
+{"amount": 4539.54, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-09-07T02:14:42Z", "type": "topup"}
+{"amount": 234.85, "client_id": "U000000", "currency": "gbp", "description": "p2p send", "direction": "out", "fee": 0.37, "mcc": "6012", "timestamp": "2025-09-07T22:44:40Z", "type": "p2p_transfer"}
+{"amount": 55.11, "client_id": "U000000", "currency": "gbp", "description": "software access", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-09-13T07:40:50Z", "type": "card_payment"}
+{"amount": 123.37, "client_id": "U000000", "currency": "gbp", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-09-16T14:35:32Z", "type": "card_payment"}
+{"amount": 13.7, "client_id": "U000000", "currency": "gbp", "description": "premium plan", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-09-19T08:10:40Z", "type": "card_payment"}
+{"amount": 27.83, "client_id": "U000000", "currency": "gbp", "description": "casual dining", "direction": "out", "fee": 1.33, "mcc": "5812", "timestamp": "2025-09-19T15:33:07Z", "type": "card_payment"}
+{"amount": 272.61, "client_id": "U000000", "currency": "gbp", "description": "atm withdrawal", "direction": "out", "fee": 0.0, "mcc": "6011", "timestamp": "2025-09-27T20:18:15Z", "type": "atm"}
+{"amount": 344.45, "client_id": "U000000", "currency": "gbp", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-09-30T10:39:07Z", "type": "card_payment"}
+{"amount": 25.84, "client_id": "U000000", "currency": "gbp", "description": "pharmacy", "direction": "out", "fee": 0.0, "mcc": "5912", "timestamp": "2025-10-14T18:40:24Z", "type": "card_payment"}
+{"amount": 55.07, "client_id": "U000000", "currency": "gbp", "description": "premium plan", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-10-20T20:54:10Z", "type": "card_payment"}
+{"amount": 13.93, "client_id": "U000000", "currency": "gbp", "description": "audio streaming", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-10-23T14:06:33Z", "type": "card_payment"}
+{"amount": 485.95, "client_id": "U000000", "currency": "gbp", "description": "hotel booking plus", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-11-05T16:05:25Z", "type": "card_payment"}
+{"amount": 1282.19, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-11-08T20:02:02Z", "type": "topup"}
+{"amount": 154.01, "client_id": "U000000", "currency": "gbp", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-11-11T23:21:24Z", "type": "card_payment"}
+{"amount": 55.23, "client_id": "U000000", "currency": "gbp", "description": "saas billing", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-11-17T11:47:19Z", "type": "card_payment"}
+{"amount": 14.41, "client_id": "U000000", "currency": "gbp", "description": "member pass", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-11-18T13:29:05Z", "type": "card_payment"}
+{"amount": 621.72, "client_id": "U000000", "currency": "gbp", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-11-21T10:15:56Z", "type": "card_payment"}
+{"amount": 106.51, "client_id": "U000000", "currency": "gbp", "description": "fresh foods", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-11-25T21:23:44Z", "type": "card_payment"}
+{"amount": 46.95, "client_id": "U000000", "currency": "gbp", "description": "ride share", "direction": "out", "fee": 0.0, "mcc": "4111", "timestamp": "2025-11-26T19:49:32Z", "type": "transfer"}
+{"amount": 15.06, "client_id": "U000000", "currency": "gbp", "description": "grocery store", "direction": "out", "fee": 0.88, "mcc": "5411", "timestamp": "2025-11-27T20:18:47Z", "type": "card_payment"}
+{"amount": 517.31, "client_id": "U000000", "currency": "gbp", "description": "hotel booking", "direction": "out", "fee": 0.0, "mcc": "7011", "timestamp": "2025-12-01T20:50:13Z", "type": "card_payment"}
+{"amount": 80.66, "client_id": "U000000", "currency": "gbp", "description": "grocery store", "direction": "out", "fee": 2.26, "mcc": "5411", "timestamp": "2025-12-10T21:13:21Z", "type": "card_payment"}
+{"amount": 49.86, "client_id": "U000000", "currency": "gbp", "description": "neighborhood market", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2025-12-11T15:55:59Z", "type": "card_payment"}
+{"amount": 2059.69, "client_id": "U000000", "currency": "gbp", "description": "salary", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2025-12-14T08:33:57Z", "type": "topup"}
+{"amount": 55.3, "client_id": "U000000", "currency": "gbp", "description": "saas billing", "direction": "out", "fee": 0.0, "mcc": "5734", "timestamp": "2025-12-19T10:03:45Z", "type": "card_payment"}
+{"amount": 13.59, "client_id": "U000000", "currency": "gbp", "description": "premium plan", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2025-12-24T10:31:21Z", "type": "card_payment"}
+{"amount": 368.38, "client_id": "U000000", "currency": "gbp", "description": "atm withdrawal", "direction": "out", "fee": 0.0, "mcc": "6011", "timestamp": "2025-12-26T13:02:53Z", "type": "atm"}

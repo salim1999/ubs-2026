@@ -1,21 +1,35 @@
 """Detects recurring merchant streams per client from raw transactions.
 
-A "stream" is a cluster of one client's subscription charges in the same
-merchant family at a similar amount. Design decisions, each backed by an
-audit of the train data:
+Detection ported from timmyo. A "stream" is a cluster of one client's
+outgoing charges at a similar amount, pooled across *all* mccs and
+descriptions, found by 1D amount clustering. Design decisions, each backed
+by an audit or a measured experiment:
 
-  - Streams are grouped by *category*, not mcc: ~5% of subscription charges
-    carry an unrelated mcc, and grouping by mcc split those streams.
-  - Only outgoing charges define the stream. Refunds (~8% of subscription
-    rows) used to be counted as occurrences, which broke the gap statistics
-    (e.g. a monthly charge + refund 3 days later looked like a 15-day
-    cadence and fell outside every band). Refunds are kept as features.
-  - Generic descriptions ("digital plus", "monthly plan", ...) are attached
-    to the client's strong-evidence cluster with the nearest amount; this
-    also resolves 5812's music-vs-streaming ambiguity, since both families
-    share "digital plus" / "premium plan".
-  - Cadence uses the median gap and includes weekly / biweekly bands:
-    ~10% of streams bill every ~14 days.
+  - Pool across mccs, label afterwards. The same subscription rotates its
+    description month to month ("digital plus" -> "premium plan" -> "media
+    streaming") while its mcc alternates (e.g. 5812 / 5411). ~20% of valid
+    subscription charges switch mcc (6% in train), so grouping by mcc or by
+    a per-row family split streams into fragments that failed n >= 2 or the
+    cadence test. Pooling raised c_detect on valid from 0.37 to 0.67
+    (timmyo exp 4).
+  - Category = majority vote over the members' per-row families
+    (category_map.classify, strong / clean-mcc evidence only), which
+    imputes a family for the keyword-less cycles of a rotating description. category_agreement / n_keyword_hits
+    record how clear the vote was.
+  - Only outgoing money defines the stream. Refunds share the amount of the
+    charge they reverse and land 1-3 days after it; counted as occurrences
+    they dragged the gap below the monthly band. They are attached to the
+    nearest-amount stream afterwards as features only.
+  - Known non-subscription merchants (dining, groceries, ATM, p2p, ...) are
+    dropped before clustering (substring match, any mcc) so they can't merge
+    with subscription-amount clusters.
+  - Tight amount tolerance, max(0.3, 0.03 * running mean): once all mccs
+    share a pool, Salim's former 25% tolerance merged neighbouring streams
+    (e.g. cloud ~9 and music ~11). On train 0.5/0.05 .. 0.2/0.02 detect the
+    same streams; 0.1/0.01 starts splitting real streams.
+  - Monthly cadence only (mean gap 20-45 days, gap_cv <= 0.5). Adding
+    weekly..annual bands on top of this detection was negative in a shared
+    benchmark (LogReg -0.02, valid ensemble -0.03).
 """
 
 from __future__ import annotations
@@ -26,29 +40,18 @@ from collections import Counter
 import numpy as np
 import pandas as pd
 
-from src.category_map import MEDIA, TARGET_CATEGORIES, classify
+from src.category_map import POOL_EXCLUDE_PHRASES, POOL_EXCLUDE_TYPES, TARGET_CATEGORIES, classify
 
-CADENCE_BANDS = {
-    "weekly": (5, 9),
-    "biweekly": (9, 20),
-    "monthly": (20, 45),
-    "bimonthly": (45, 75),
-    "quarterly": (75, 105),
-    "semiannual": (165, 200),
-    "annual": (330, 400),
-}
-CADENCE_CODE = {name: i for i, name in enumerate(CADENCE_BANDS)}
-MAX_GAP_CV = 0.6
+MIN_GAP_DAYS = 20
+MAX_GAP_DAYS = 45
+MAX_GAP_CV = 0.5
 MAX_AMOUNT_CV = 0.35
 
-# Greedy 1D amount clustering: a new cluster starts when the next amount
-# (sorted ascending) exceeds the running mean by this relative/absolute
-# margin. Loose enough for gradual price increases (e.g. 74 -> 95).
-AMOUNT_REL_TOL = 0.25
-AMOUNT_ABS_TOL = 3.0
-# Generic-description rows join a strong cluster only when this close.
-ATTACH_REL_TOL = 0.12
-ATTACH_ABS_TOL = 1.5
+# Amount-clustering tolerance: a new cluster starts when the next amount
+# (sorted ascending) exceeds the running cluster mean by more than
+# max(AMOUNT_ABS_TOL, AMOUNT_REL_TOL * mean). Also used to match refunds.
+AMOUNT_REL_TOL = 0.03
+AMOUNT_ABS_TOL = 0.3
 
 
 def load_transactions(path: str) -> pd.DataFrame:
@@ -58,57 +61,65 @@ def load_transactions(path: str) -> pd.DataFrame:
             records.append(json.loads(line))
     df = pd.DataFrame.from_records(records)
     df["timestamp"] = pd.to_datetime(df["timestamp"])
+    # Per-row vote: Salim's classify() (canonical phrases, abbreviation
+    # expansion, affix stripping). Only family-specific ("strong") and
+    # clean-mcc ("mcc") evidence votes; generic / music-or-streaming rows
+    # get their family from their cluster siblings.
     classified = [classify(mcc, desc) for mcc, desc in zip(df["mcc"], df["description"])]
-    df["category"] = [c for c, _ in classified]
-    df["cat_strength"] = [s for _, s in classified]
+    df["category"] = [
+        cat if strength in ("strong", "mcc") and cat in TARGET_CATEGORIES else None
+        for cat, strength in classified
+    ]
     df["is_refund"] = df["type"] == "refund"
     return df
 
 
-def _cluster_by_amount(amounts: pd.Series) -> list[list]:
-    """Greedy 1D clustering; returns lists of index labels."""
-    ordered = amounts.sort_values()
-    clusters, current, total = [], [], 0.0
-    for idx, amount in ordered.items():
-        if current:
-            mean = total / len(current)
-            if amount - mean > max(AMOUNT_ABS_TOL, AMOUNT_REL_TOL * mean):
-                clusters.append(current)
-                current, total = [], 0.0
+def _tol(mean: float) -> float:
+    return max(AMOUNT_ABS_TOL, AMOUNT_REL_TOL * mean)
+
+
+def _cluster_by_amount(group: pd.DataFrame) -> list[pd.DataFrame]:
+    """Greedy 1D clustering of one client's candidate rows by amount."""
+    ordered = group.sort_values("amount")
+    clusters: list[list] = []
+    current: list = []
+    total = 0.0
+    for idx, amount in zip(ordered.index, ordered["amount"]):
+        if current and amount - total / len(current) > _tol(total / len(current)):
+            clusters.append(current)
+            current, total = [], 0.0
         current.append(idx)
         total += amount
     if current:
         clusters.append(current)
-    return clusters
+    return [group.loc[idx] for idx in clusters]
 
 
-def _cadence(gap: float) -> str | None:
-    for name, (lo, hi) in CADENCE_BANDS.items():
-        if lo <= gap < hi:
-            return name
-    return None
+def _stream_stats(cluster: pd.DataFrame, refunds: pd.DataFrame, cutoff: pd.Timestamp | None) -> dict:
+    ordered = cluster.sort_values("timestamp")
+    dates = ordered["timestamp"]
+    amounts = ordered["amount"].to_numpy()
+    n = len(cluster)
 
-
-def _stream_stats(charges: pd.DataFrame, refunds: pd.DataFrame, cutoff: pd.Timestamp | None) -> dict:
-    dates = charges["timestamp"].sort_values()
-    amounts = charges.sort_values("timestamp")["amount"].to_numpy()
-    n = len(charges)
-
-    gaps = dates.diff().dt.total_seconds().dropna().to_numpy() / 86400
-    median_gap = float(np.median(gaps)) if len(gaps) else np.nan
+    gaps = dates.diff().dt.days.dropna().to_numpy()
     mean_gap = float(np.mean(gaps)) if len(gaps) else np.nan
-    gap_cv = float(np.std(gaps) / mean_gap) if len(gaps) > 1 and mean_gap > 0 else np.nan
+    median_gap = float(np.median(gaps)) if len(gaps) else np.nan
+    gap_cv = float(np.std(gaps) / mean_gap) if len(gaps) and mean_gap > 0 else np.nan
 
     mean_amount = float(amounts.mean())
-    amount_cv = float(amounts.std() / mean_amount) if n > 1 and mean_amount > 0 else 0.0
-    cadence = _cadence(median_gap) if not np.isnan(median_gap) else None
+    amount_cv = float(amounts.std(ddof=1) / mean_amount) if n > 1 and mean_amount > 0 else 0.0
 
     is_recurring = bool(
         n >= 2
-        and cadence is not None
+        and not np.isnan(mean_gap)
+        and MIN_GAP_DAYS <= mean_gap <= MAX_GAP_DAYS
         and (np.isnan(gap_cv) or gap_cv <= MAX_GAP_CV)
         and amount_cv <= MAX_AMOUNT_CV
     )
+
+    votes = Counter(c for c in cluster["category"] if pd.notna(c))
+    top = votes.most_common(1)
+    n_votes = sum(votes.values())
 
     last_charge = dates.iloc[-1]
     last_refund = refunds["timestamp"].max() if len(refunds) else pd.NaT
@@ -122,13 +133,14 @@ def _stream_stats(charges: pd.DataFrame, refunds: pd.DataFrame, cutoff: pd.Times
         "mean_gap_days": mean_gap,
         "median_gap_days": median_gap,
         "gap_cv": gap_cv,
-        "cadence": cadence,
         "is_recurring": is_recurring,
+        "category": top[0][0] if top else None,
+        "category_agreement": top[0][1] / n_votes if top else np.nan,
+        "n_keyword_hits": n_votes,
         "n_refunds": len(refunds),
         "refund_ratio": len(refunds) / n,
         "last_event_is_refund": int(pd.notna(last_refund) and last_refund >= last_charge),
-        "n_strong": int((charges["cat_strength"] == "strong").sum()),
-        "n_mccs": charges["mcc"].nunique(),
+        "n_mccs": cluster["mcc"].nunique(),
     }
     if cutoff is not None:
         for window in (30, 60, 90):
@@ -136,68 +148,33 @@ def _stream_stats(charges: pd.DataFrame, refunds: pd.DataFrame, cutoff: pd.Times
     return stats
 
 
-def _client_streams(g: pd.DataFrame) -> list[tuple[str, pd.DataFrame]]:
-    """Split one client's subscription rows into (category, rows) clusters."""
-    strong = g[g["cat_strength"].isin(["strong", "mcc"]) & g["category"].isin(TARGET_CATEGORIES)]
-    weak = g.drop(strong.index)
-
-    # Strong-evidence clusters per category; "mcc"-strength rows are
-    # provisional and can be re-homed below if their amount says otherwise.
-    anchors = strong[strong["cat_strength"] == "strong"]
-    clusters: list[tuple[str, list]] = []
-    for cat, cg in anchors.groupby("category"):
-        charges = cg[~cg["is_refund"]]
-        for idx in _cluster_by_amount(charges["amount"] if len(charges) else cg["amount"]):
-            clusters.append((cat, list(idx)))
-    centers = [(cat, g.loc[idx, "amount"].median()) for cat, idx in clusters]
-
-    def nearest(amount: float, allowed: set[str] | None, prefer: str | None) -> int | None:
-        best, best_d = None, None
-        for i, (cat, center) in enumerate(centers):
-            if allowed is not None and cat not in allowed:
-                continue
-            d = abs(amount - center)
-            if d > max(ATTACH_ABS_TOL, ATTACH_REL_TOL * center):
-                continue
-            # same-category match wins ties within tolerance
-            key = (cat != prefer, d)
-            if best_d is None or key < best_d:
-                best, best_d = i, key
-        return best
-
-    leftovers: dict[str, list] = {}
-    for idx, row in pd.concat([strong[strong["cat_strength"] == "mcc"], weak]).iterrows():
-        cat = row["category"]
-        allowed = {"music", "streaming"} if cat == MEDIA else None
-        hit = nearest(row["amount"], allowed, cat)
-        if hit is not None:
-            clusters[hit][1].append(idx)
-        elif cat in TARGET_CATEGORIES:
-            leftovers.setdefault(cat, []).append(idx)
-
-    # Generic rows on a clean mcc with no strong sibling still form streams
-    # of their own (e.g. a mobile plan billed only as "monthly plan").
-    for cat, idx_list in leftovers.items():
-        sub = g.loc[idx_list]
-        for idx in _cluster_by_amount(sub["amount"]):
-            clusters.append((cat, list(idx)))
-
-    return [(cat, g.loc[idx]) for cat, idx in clusters]
+def _assign_refunds(clusters: list[pd.DataFrame], refunds: pd.DataFrame) -> list[list]:
+    """Refund rows -> nearest-amount cluster within the clustering tolerance."""
+    means = np.array([c["amount"].mean() for c in clusters])
+    assigned: list[list] = [[] for _ in clusters]
+    for idx, amount in zip(refunds.index, refunds["amount"]):
+        d = np.abs(means - amount)
+        k = int(d.argmin())
+        if d[k] <= _tol(means[k]):
+            assigned[k].append(idx)
+    return assigned
 
 
 def detect_streams(df: pd.DataFrame, cutoff: pd.Timestamp | None = None) -> pd.DataFrame:
-    """One row per (client, category, amount-cluster) subscription stream."""
-    pool = df[df["cat_strength"].notna() & (df["category"].notna())]
-    pool = pool[(pool["direction"] == "out") | pool["is_refund"]]
+    """One row per amount cluster of a client's candidate subscription charges."""
+    non_sub = df["description"].str.contains("|".join(POOL_EXCLUDE_PHRASES))
+    pool = df[(df["direction"] == "out") & ~df["type"].isin(POOL_EXCLUDE_TYPES) & ~non_sub]
+    # Refunds of dining/grocery/... purchases must not land on a
+    # subscription cluster by amount coincidence.
+    refunds_by_client = dict(tuple(df[df["is_refund"] & ~non_sub].groupby("client_id")))
 
     rows = []
-    for client_id, g in pool.groupby("client_id"):
-        for cat, rows_df in _client_streams(g):
-            charges = rows_df[~rows_df["is_refund"]]
-            if charges.empty:
-                continue
-            refunds = rows_df[rows_df["is_refund"]]
-            rows.append({"client_id": client_id, "category": cat, **_stream_stats(charges, refunds, cutoff)})
+    for client_id, group in pool.groupby("client_id"):
+        clusters = _cluster_by_amount(group)
+        client_refunds = refunds_by_client.get(client_id, df.iloc[:0])
+        for cluster, ref_idx in zip(clusters, _assign_refunds(clusters, client_refunds)):
+            refunds = client_refunds.loc[ref_idx]
+            rows.append({"client_id": client_id, **_stream_stats(cluster, refunds, cutoff)})
 
     return pd.DataFrame(rows)
 
@@ -210,10 +187,6 @@ if __name__ == "__main__":
     streams = detect_streams(df, pd.Timestamp("2026-01-01", tz="UTC"))
 
     print(f"Loaded {len(df):,} transactions for {df['client_id'].nunique():,} clients")
-    print(f"Streams: {len(streams):,}   recurring: {streams['is_recurring'].sum():,}")
+    print(f"Amount clusters: {len(streams):,}   recurring: {streams['is_recurring'].sum():,}")
     recurring = streams[streams["is_recurring"]]
-    print(recurring["category"].value_counts())
-    print(recurring["cadence"].value_counts())
-    check = ["C000005", "C000007", "C000009", "C000012", "C000014", "C000024"]
-    cols = ["client_id", "category", "n_occurrences", "mean_amount", "median_gap_days", "cadence", "is_recurring", "last_date"]
-    print(streams[streams["client_id"].isin(check)][cols].to_string(index=False))
+    print(recurring["category"].value_counts(dropna=False))
