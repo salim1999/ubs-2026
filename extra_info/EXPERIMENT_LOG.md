@@ -2,8 +2,7 @@
 
 This is the shared vocabulary for improving the model **one step at a time**.
 Say "let's work on **C4**" or "change **D4**" and everyone knows which part of
-the code is meant. Challenge spec: [README.md](README.md). Team context:
-[HANDOVER.md](HANDOVER.md).
+the code is meant. Main document: [README.md](../README.md).
 
 Items marked *(verified)* were checked against the code on 2026-09-24.
 
@@ -221,7 +220,7 @@ that are already part of a recurring stream, and including decoys. The
 (`active_<cat> == 0`), not in the feature itself.
 
 Motivation from earlier analysis: about 47% of non-`none` targets looked like
-new categories. HANDOVER disputes this (about 80% of labelled families recur
+new categories. A later check disputes this (about 80% of labelled families recur
 in 3+ months of history), so the figure may reflect C missing real streams.
 
 ## E — Training-table construction
