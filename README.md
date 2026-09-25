@@ -102,6 +102,19 @@ Splitting clients into personas / segments, fixed small scorecards and
 payment-sequence features did not improve validation performance; see
 [MODEL_COMPARISON.md](MODEL_COMPARISON.md) and [PIPELINE.md](PIPELINE.md).
 
+### Final model
+
+**Sparse per-label logistic regression** (benchmark 2) on the `lean` feature
+set, trained on the 2,000 train clients **plus 3,152 pseudo-labelled pretrain
+clients** for which all three label sources agree (unsupervised, LLM, and a
+model trained on train only; labels from Salim's branch, see `src/pseudo.py`).
+Valid macro-F1 **0.513** (0.504 without the pseudo rows). Looser pseudo-label
+filters did not help.
+
+```bash
+py -3.10 -m src.make_submission sparse --features lean --pseudo
+```
+
 ### Feature sets
 
 Every feature we built stays in `src/features.py`, so nothing gets lost. Two

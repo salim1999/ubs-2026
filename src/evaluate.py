@@ -32,6 +32,7 @@ from sklearn.utils.class_weight import compute_sample_weight
 
 from src.features import build_features, select_features
 from src.model import ALL_LABELS, LABEL_COL, build_logreg, build_sparse_logreg, rule_predict
+from src.pseudo import pseudo_labelled_features
 from src.recurrence import detect_streams, load_transactions
 from sklearn.ensemble import HistGradientBoostingClassifier
 
@@ -101,7 +102,13 @@ def main() -> None:
     #   logreg = global L2 LogReg, sparse_logreg = one sparse L1 LogReg per label;
     #   no suffix = "full" set (all features), "_lean" = fewer-features model.
     Xtr_lean, Xva_lean = select_features(X_train, "lean"), select_features(X_valid, "lean")
+    # Final model: sparse per-label LogReg on lean, trained on train + pseudo-labelled
+    # pretrain clients where all three label sources agree (src/pseudo.py).
+    pseudo = pseudo_labelled_features()
+    Xtr_final = pd.concat([Xtr_lean, pseudo[Xtr_lean.columns]], ignore_index=True)
+    ytr_final = pd.concat([y_train, pseudo[LABEL_COL]], ignore_index=True)
     preds = {
+        "final_sparse_lean_pseudo": build_sparse_logreg().fit(Xtr_final, ytr_final).predict(Xva_lean),
         "logreg": logreg.predict(X_valid),
         "sparse_logreg": build_sparse_logreg().fit(X_train, y_train).predict(X_valid),
         "logreg_lean": build_logreg().fit(Xtr_lean, y_train).predict(Xva_lean),
@@ -127,9 +134,10 @@ def main() -> None:
     print("step C diagnostics (valid):")
     for k, v in diag.items():
         print(f"  {k:14s} {v:.3f}")
-    bench = ("logreg", "sparse_logreg", "logreg_lean", "sparse_logreg_lean")
-    print(f"\nper-class F1 (benchmark models; full = {X_train.shape[1]} features, lean = {Xtr_lean.shape[1]}):")
-    print(f"  {'':10s} {'logreg':>8s} {'sparse':>8s} {'lr_lean':>8s} {'sp_lean':>8s}")
+    bench = ("logreg", "sparse_logreg", "logreg_lean", "sparse_logreg_lean", "final_sparse_lean_pseudo")
+    print(f"\nper-class F1 (benchmark models; full = {X_train.shape[1]} features, lean = {Xtr_lean.shape[1]}, "
+          f"final = lean + {len(pseudo)} pseudo rows):")
+    print(f"  {'':10s} {'logreg':>8s} {'sparse':>8s} {'lr_lean':>8s} {'sp_lean':>8s} {'final':>8s}")
     per_class = {k: f1_score(y_valid, preds[k], average=None, labels=ALL_LABELS, zero_division=0) for k in bench}
     for i, lab in enumerate(ALL_LABELS):
         print(f"  {lab:10s} " + " ".join(f"{per_class[k][i]:8.3f}" for k in bench))
