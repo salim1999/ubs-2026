@@ -334,6 +334,7 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 20 | D6 | 10 client-level story features (due in 30/90 d, established, dormancy, timing margin, first-due cycle position / age, entropy, dominant share, cooling families) → `full` set 130; `lean` set 101 = −21 redundant cols, + cooling + dormancy only | full 0.474 / lean 0.484 (sparse 0.489 / **0.495**) | 0.485 | 0.484 | – | – | ✅ both sets kept; lean recommended |
 | 21 | D7 | Traveller persona (`traveler_intensity`, `days_since_trip`) in full and lean | – | – | 0.484 | – | – | ✅ sparse lean 0.495 → 0.504 |
 | 22 | D8 | **Final model**: sparse per-label lean + 3,152 pseudo-labelled pretrain clients (all 3 sources agree; Salim's merged labels). Looser filters / LLM labels: no gain or worse | 0.489 (lean) | – | 0.484 | – | – | ✅ **0.513** |
+| 23 | G | Different model per label (L1, L2, HGB, RF, ET; chosen by train CV, pseudo rows as extra training data). All-HGB 0.530, best-per-label 0.528, calibration / meta-LogReg no help. HGB clearly better in train CV for gym, mobile, insurance, software; music prefers L1 | – | **0.530** (all-HGB) | – | – | – | ❌ kept L1 for interpretability (user decision); HGB = upside +0.017 |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
