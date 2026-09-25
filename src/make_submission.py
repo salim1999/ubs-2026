@@ -9,6 +9,7 @@
 
 import argparse
 
+import numpy as np
 import pandas as pd
 
 from src.evaluate import CUTOFF, labelled_features, macro_f1
@@ -19,6 +20,11 @@ from src.pseudo import pseudo_labelled_features
 BUILDERS = {"logreg": build_logreg, "sparse": build_sparse_logreg}
 
 
+def _weights(model: str, w) -> dict:
+    """Sample weights for the pipeline's classifier step (only the sparse model uses them)."""
+    return {"clf__sample_weight": w} if model == "sparse" else {}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("model", choices=["rule", "logreg", "sparse"])
@@ -26,6 +32,8 @@ def main() -> None:
                         help="feature set: full (all features, default) or lean (fewer-features model)")
     parser.add_argument("--pseudo", action="store_true",
                         help="also train on pseudo-labelled pretrain clients where all 3 sources agree (final model)")
+    parser.add_argument("--pseudo-weight", type=float, default=1.0,
+                        help="sample weight of pseudo rows (real rows = 1); 1.0 was best on valid (0.5 -> -0.006)")
     parser.add_argument("--suffix", help="output suffix (defaults to the model name)")
     args = parser.parse_args()
     default_suffix = args.model if args.features == "full" else f"{args.model}_{args.features}"
@@ -37,16 +45,18 @@ def main() -> None:
     X_train = select_features(train.drop(columns=["client_id", LABEL_COL]), args.features)
     X_valid = valid.drop(columns=["client_id", LABEL_COL]).reindex(columns=X_train.columns)
     y_train = train[LABEL_COL]
+    w_train = np.ones(len(X_train))
     if args.pseudo:
         pseudo = pseudo_labelled_features()
         X_train = pd.concat([X_train, pseudo[X_train.columns]], ignore_index=True)
         y_train = pd.concat([y_train, pseudo[LABEL_COL]], ignore_index=True)
+        w_train = np.r_[w_train, np.full(len(pseudo), args.pseudo_weight)]
         print(f"+ {len(pseudo)} pseudo-labelled pretrain clients")
 
     if args.model == "rule":
         valid_pred = rule_predict(X_valid)
     else:
-        selection_model = BUILDERS[args.model]().fit(X_train, y_train)
+        selection_model = BUILDERS[args.model]().fit(X_train, y_train, **_weights(args.model, w_train))
         valid_pred = selection_model.predict(X_valid)
     print(f"{args.model} valid macro-F1: {macro_f1(valid[LABEL_COL], valid_pred):.4f}")
 
@@ -63,7 +73,8 @@ def main() -> None:
     else:
         X_full = pd.concat([X_train, X_valid], ignore_index=True)
         y_full = pd.concat([y_train, valid[LABEL_COL]], ignore_index=True)
-        final_model = BUILDERS[args.model]().fit(X_full, y_full)
+        w_full = np.r_[w_train, np.ones(len(X_valid))]
+        final_model = BUILDERS[args.model]().fit(X_full, y_full, **_weights(args.model, w_full))
         test_pred = final_model.predict(X_test)
 
     sub = pd.DataFrame(

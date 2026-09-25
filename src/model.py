@@ -105,20 +105,23 @@ class SparsePerLabelLogReg(BaseEstimator, ClassifierMixin):
         return LogisticRegression(penalty="l1", solver="liblinear", C=C,
                                   class_weight="balanced", max_iter=2000, random_state=0)
 
-    def fit(self, X, y):
+    def fit(self, X, y, sample_weight=None):
+        """sample_weight: optional per-row weights, e.g. lower weight for pseudo-labelled rows."""
         X, y = np.asarray(X), np.asarray(y)
+        w = np.ones(len(y)) if sample_weight is None else np.asarray(sample_weight, dtype=float)
         self.classes_ = np.array(ALL_LABELS)
         self.models_, self.C_ = {}, {}
         for label in self.classes_:
             yb = (y == label).astype(int)
             folds = StratifiedKFold(self.inner_folds, shuffle=True, random_state=0)
             cv = {
-                C: np.mean([f1_score(yb[te], self._model(C).fit(X[tr], yb[tr]).predict(X[te]), zero_division=0)
+                C: np.mean([f1_score(yb[te], self._model(C).fit(X[tr], yb[tr], sample_weight=w[tr]).predict(X[te]),
+                                     sample_weight=w[te], zero_division=0)
                             for tr, te in folds.split(X, yb)])
                 for C in self.Cs
             }
             self.C_[label] = max(cv, key=cv.get)
-            self.models_[label] = self._model(self.C_[label]).fit(X, yb)
+            self.models_[label] = self._model(self.C_[label]).fit(X, yb, sample_weight=w)
         return self
 
     def predict_proba(self, X):
