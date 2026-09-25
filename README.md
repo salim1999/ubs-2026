@@ -100,7 +100,7 @@ Example story from benchmark 2: *gym* is predicted by recent gym payments (+)
 and the age of the gym subscription (+), and pushed down by insurance activity (−).
 Splitting clients into personas / segments, fixed small scorecards and
 payment-sequence features did not improve validation performance; see
-[MODEL_COMPARISON.md](MODEL_COMPARISON.md) and [PIPELINE.md](PIPELINE.md).
+[PIPELINE.md](PIPELINE.md).
 
 ### Final model
 
