@@ -1,252 +1,136 @@
-# Transaction Activity Forecasting
+# Transaction Activity Forecasting: Next Recurring Merchant Family
 
 > How can we use AI to predict a client's future transaction activity from
 > their historical financial transaction patterns?
 
-Clients generate rich streams of everyday banking activity: salary deposits,
-subscriptions, utility and other household bills, loan repayments, card
-purchases, transfers, and cash withdrawals. Some of these transactions are
-one-off, while others follow recognizable patterns and form recurring payment
-streams that reflect a client's financial commitments and lifestyle.
-
-Understanding and anticipating these recurring transactions can help clients
-stay in control of their finances: planning ahead for regular outgoings,
-avoiding missed payments, and spotting changes early. It also enables more
-tailored support, such as personalized insights, relevant alerts, and guidance
-aligned with each client's situation and goals, as well as earlier detection
-of unusual activity that may indicate fraud or misuse.
-
-In this challenge, you will work with a synthetic transaction dataset designed
-to resemble real-world client behavior. Each record represents an individual
-transaction and includes information such as timing, transaction type,
-amount, merchant category, and description. Using historical transaction
-data, your task is to predict the next recurring transaction a client is
-expected to make.
-
-A useful solution does not need to identify the exact merchant: predicting
-the next likely recurring **merchant family** (e.g. mobile, insurance,
-streaming) is enough to power reminders, cashflow forecasts, subscription
-reviews, and proactive budgeting experiences.
-
-The challenge requires participants to uncover recurring payment patterns
-hidden within noisy transaction histories. Successful solutions will
-recognize behavioral regularities, capture temporal relationships, and
-generalize across diverse client spending and payment habits, ultimately
-helping us anticipate client needs and support them more effectively.
-
-## Objectives
-
-- Build an AI pipeline that uses historical transaction data to predict a
-  client's next recurring merchant family (e.g. cloud, gym, software).
-- Identify and model recurring transaction patterns from raw transactional
-  data, including temporal, behavioral, and merchant-related signals.
-- Explore different approaches to feature engineering, sequence
-  representation, and recurrence detection.
-- Compare multiple modeling techniques and evaluate their performance using
-  appropriate forecasting metrics.
-- Analyze the strengths, limitations, and interpretability of their
-  solution, and communicate key insights derived from the data.
-
-## Why Hack?
-
-This challenge lets you apply modern AI techniques to a realistic financial
-time-series problem. You will explore how to turn raw transaction histories
-into meaningful signals, design and compare different modeling approaches,
-and think about what "good" prediction performance means in real-world
-banking scenarios.
-
-This is an opportunity to tackle a real-world financial problem and
-demonstrate how AI can turn transactional data into actionable insights: the
-same merchant-family predictions you build here are what could power
-reminders, cashflow forecasts, subscription reviews, and proactive budgeting
-experiences for real clients.
-
-## Task Specification
-
-Build a supervised prediction workflow that predicts the **next recurring
-merchant family** for each client after the cutoff date (`2026-01-01`).
-
-- Target column (`train_labels.csv` / `valid_labels.csv`):
-  `target_next_recurring_merchant`
-- Prediction column (your submission CSV):
-  `predicted_next_recurring_merchant`
-
-For each client, the model receives transaction history up to the cutoff date
-and must forecast which merchant family (if any) recurs within the 90-day
-horizon after that cutoff, maximizing `macro-F1` (arithmetic mean of class-wise F1 scores) across the label set below.
-
-Allowed labels:
+For each client we predict the **next recurring merchant family** in the 90
+days after the cutoff `2026-01-01`:
 
 ```text
 cloud, gym, insurance, mobile, music, software, streaming, none
 ```
 
-Use `none` when no recurring merchant family is expected to recur within the
-90-day horizon.
+`none` means no recurring family recurs in the window. The metric is
+**macro-F1** over all 8 labels, so every label counts equally.
 
-## Our Main Models
+Our approach: **find the right features, keep the model lean, make the
+forecast understandable.** We engineer behavioural and timing features from
+raw transactions and use a sparse, per-label logistic regression, so every
+prediction can be explained by a few coefficients.
 
-Our modeling strategy deliberately favors simplicity and interpretability.
-We always benchmark **both** logistic models below (plus the rule), fit on
-train only and scored with macro-F1 on valid (`py -3.10 -m src.evaluate "<note>"`).
+## Final model
 
-| Model | What it is | Valid macro-F1 |
-|---|---|---|
-| **Benchmark 1: global logistic regression** | One class-balanced multinomial L2 logistic model over all 101 engineered features (transaction, recurrence, live-stream, per-family). | 0.4771 |
-| **Benchmark 2: sparse per-label logistic regression** | One L1 yes/no logistic model per label ("is it gym?", ..., "is it none?"). Each label picks its own penalty by inner CV on train, so it keeps only its own predictors (27–94 of 101). Predict = most probable label. Best learned model and the most interpretable: every coefficient is the effect on the odds of *that* label vs all others (`coef_table()` in `src/model.py`). | **0.4844** |
-| Due-date rule | Predict the live family due soonest; `none` if no stream is live or the strongest live stream looks like a short trial. No training. | 0.4844 |
+| | |
+|---|---|
+| **Model** | **Sparse per-label logistic regression**: one L1-penalised (lasso) yes/no logistic regression per label ("is it gym?", ..., "is it none?"). Each label picks its own penalty by inner CV, so it keeps only its own predictors (music 23, none 80 of 103). Prediction = most probable label. |
+| **Features** | `lean` set, 103 features in 5 blocks (see below) |
+| **Training data** | 2,000 train clients + 3,152 pseudo-labelled pretrain clients whose three label sources agree (unsupervised, LLM, model trained on train only) |
+| **Valid macro-F1** | **0.513** (fit without valid) |
+| **Code** | `build_sparse_logreg()` in `src/model.py`, pseudo rows in `src/pseudo.py` |
 
-Example story from benchmark 2: *gym* is predicted by recent gym payments (+)
-and the age of the gym subscription (+), and pushed down by insurance activity (−).
-Splitting clients into personas / segments, fixed small scorecards and
-payment-sequence features did not improve validation performance; see
-[PIPELINE.md](PIPELINE.md).
-
-### Final model
-
-**Sparse per-label logistic regression** (benchmark 2) on the `lean` feature
-set, trained on the 2,000 train clients **plus 3,152 pseudo-labelled pretrain
-clients** for which all three label sources agree (unsupervised, LLM, and a
-model trained on train only; labels from Salim's branch, see `src/pseudo.py`).
-Valid macro-F1 **0.513** (0.504 without the pseudo rows). Looser pseudo-label
-filters did not help.
+The test predictions come from exactly this model; it is **not** refit on valid.
 
 ```bash
-py -3.10 -m src.make_submission sparse --features lean --pseudo
+py -3.10 -m src.make_submission sparse --features lean --pseudo --suffix final
+# -> data/submission_final.csv
 ```
 
-### Feature sets
+### Results on valid (macro-F1, models fit without valid)
 
-Every feature we built stays in `src/features.py`, so nothing gets lost. Two
-feature sets pick from them (`select_features()` in `src/features.py`), and
-`src.evaluate` scores both benchmark models on both sets:
+| Model | Valid macro-F1 |
+|---|---|
+| **Sparse per-label LogReg, lean + pseudo (final)** | **0.513** |
+| Sparse per-label LogReg, lean, train only | 0.504 |
+| Global L2 LogReg, lean | 0.489 |
+| Due-date rule (no training) | 0.484 |
+| Per-label gradient boosting (not used, black box) | 0.530 |
 
-| Feature set | Columns | What's in it | Global LogReg | Sparse per-label |
-|---|---|---|---|---|
-| `full` (default) | 130 | All features: 120 (general, streams, live, rule's vote, calendar, story blocks D5) + 10 client-level story features (D6) | 0.474 | 0.489 |
-| `lean` ("fewer-features model") | 101 | `full` minus 21 redundant columns (average amounts, total in/out, net flow, transaction counts, streams per family, gap variation per family) and minus 8 of the D6 story features; keeps `cooling_families` and `dormancy_score` | 0.484 | **0.495** |
+Benchmarking always reports both logistic models (`py -3.10 -m src.evaluate "<note>"`,
+`--fast` for the lean models only). Noise level with 1,000 valid clients: ~0.01-0.02.
 
-Valid macro-F1, fit on train only. The D6 story features were each
-score-neutral on their own but add noise together, which is why `full` scores
-lower; `lean` is the recommended set for the best score and the simplest story.
+## Pipeline
 
-Generate a submission with:
-
-```bash
-py -3.10 -m src.make_submission rule
-py -3.10 -m src.make_submission logreg   # benchmark 1
-py -3.10 -m src.make_submission sparse   # benchmark 2
-py -3.10 -m src.make_submission sparse --features lean   # fewer-features model
+```
+raw transactions
+  -> B  tag each transaction with a family (keywords first, then clean MCCs)     src/category_map.py
+  -> C  detect recurring streams: pool a client's charges across MCCs,           src/recurrence.py
+        cluster by amount, keep ~monthly and stable ones
+  -> D  one feature row per client (5 blocks, below)                              src/features.py
+  -> G  sparse per-label L1 logistic regression                                   src/model.py
+  -> H  argmax of the 8 label probabilities
 ```
 
-## Data Package
+### Feature blocks (lean set) and their importance
 
-You can find the following files in the `data` directory of this repository:
+Importance = macro-F1 points lost on valid when the block is shuffled.
 
-- `unlabeled_pretrain_transactions.jsonl`
-- `train_transactions.jsonl`
-- `train_labels.csv`
-- `valid_transactions.jsonl`
-- `valid_labels.csv`
-- `test_transactions.jsonl`
-- `sample_submission.csv`
+| Block | Features | What it captures | Importance |
+|---|---|---|---|
+| Subscription status & timing | 42 | still live? overdue? due first? short trial? billing day | 22.5 |
+| Habits | 7 | recent payments per family (last 90 days) | 13.5 |
+| Subscription history | 28 | age, number of charges, amount per family | 4.4 |
+| Portfolio changes & refunds | 13 | families gained or dropped, refunds | 3.6 |
+| Account behaviour | 13 | payment mix (card / ATM / p2p), top-ups, merchant variety, travel | 2.9 |
 
-Use the files as follows:
+`src/features.py` also keeps a `full` set (132 columns, every feature we built);
+`lean` drops 21 redundant columns and most client-level story features.
 
-- `unlabeled_pretrain_transactions.jsonl`: optional extra transaction histories
-  without labels. Use this only if you want to learn general transaction
-  patterns before training a supervised model.
-- `train_transactions.jsonl`: transaction histories for the training clients
-  up to the cutoff date (labels are in `train_labels.csv`).
-- `train_labels.csv`: target labels for the training clients.
-- `valid_transactions.jsonl`: transaction histories for the validation
-  clients up to the cutoff date (labels are in `valid_labels.csv`).
-- `valid_labels.csv`: target labels for local validation and model selection.
-- `test_transactions.jsonl`: hidden-test client histories up to the cutoff
-  date. Use this to generate your milestone submission.
-- `sample_submission.csv`: the exact test `client_id` set and required
-  submission schema. Your submitted CSV must contain these clients.
+## What the model tells us (verified on train and valid)
 
-### Data Shape
+- **Habits are sticky:** recent payments in a family raise its odds ×1.9-2.8 per SD;
+  no recent payment ~2% vs 3-5 payments ~31% renewal.
+- **The calendar decides the race:** among several live subscriptions, the one due
+  first wins; insurance due first lowers gym odds (×0.6).
+- **Endings are predictable:** short trials (3-4 charges) end in `none` 67% of the time;
+  one missed cycle -> 68% `none` vs 23% when the next charge is not yet due.
+- **Lifestyle:** frequent travellers end with nothing new less often (38% -> 20% `none`);
+  clients with varied spending go to gym / insurance / mobile, narrow digital users to streaming / cloud.
+- Don't read correlated twins alone (`n_occurrences_*` vs subscription age): their signs offset.
 
-Transaction files are JSON Lines. Each line is one transaction event. Label and
-submission files are CSV.
+Details: `extra_info/INTERPRETATION.md` (verified statements) and
+`extra_info/COEFFICIENTS.md` (every label's coefficients as sentences).
 
-#### Transaction Fields
+## What did not help
 
-| Field | Type | Description | Example |
-| --- | --- | --- | --- |
-| `client_id` | string | Unique client identifier. | `C000001` |
-| `timestamp` | string | Date and time the transaction occurred. | `2024-11-08T01:14:02Z` |
-| `amount` | float | Transaction amount, in `currency`. | `275.94` |
-| `currency` | string | Currency code for `amount`. | `eur` |
-| `direction` | string | Whether funds moved into (`in`) or out of (`out`) the client's account. | `out` |
-| `type` | string | Transaction type. | `card_payment` |
-| `mcc` | string | Merchant category code. | `5411` |
-| `description` | string | Free-text merchant/transaction description. | `neighborhood market` |
-| `fee` | float | Fee charged for the transaction, in `currency`. | `0.0` |
+Tested and dropped (full log with numbers: `extra_info/EXPERIMENT_LOG.md`):
+client personas / clusters / segment models, fixed small scorecards,
+last-k payment sequences, time-of-day and new-year / seasonal features,
+income stress, relaxed lasso, invariance / anchor regression, per-class
+decision biases, a competing-risks hazard model, billing-day due dates in the
+model (they help the rule only), looser live definitions, lower weight for
+pseudo rows. Main reasons: ~10% of targets are brand-new families with no trace
+in the history, billing dates scatter by ±3 days, and train is cleaner than
+valid / test (20% vs 6% of subscription charges on a foreign MCC).
 
-`train_transactions.jsonl`
+## Repository
 
-```jsonl
-{"amount": 275.94, "client_id": "C000001", "currency": "eur", "description": "p2p receive", "direction": "in", "fee": 0.0, "mcc": "6012", "timestamp": "2024-11-08T01:14:02Z", "type": "p2p_transfer"}
-{"amount": 143.27, "client_id": "C000001", "currency": "eur", "description": "neighborhood market", "direction": "out", "fee": 0.0, "mcc": "5411", "timestamp": "2024-11-11T06:25:52Z", "type": "card_payment"}
-{"amount": 15.81, "client_id": "C000001", "currency": "eur", "description": "coffee shop", "direction": "out", "fee": 0.0, "mcc": "5812", "timestamp": "2024-11-12T15:45:16Z", "type": "card_payment"}
-{"amount": 491.24, "client_id": "C000001", "currency": "eur", "description": "electronics shop", "direction": "out", "fee": 0.0, "mcc": "5732", "timestamp": "2024-11-14T09:39:25Z", "type": "card_payment"}
+```
+README.md               this document
+experiments.csv         raw log of every src.evaluate run
+src/
+  category_map.py       transaction -> family
+  recurrence.py         recurring-stream detection
+  features.py           features + feature sets (full / lean)
+  pseudo.py             pseudo-labelled pretrain clients (cached features)
+  model.py              sparse per-label L1 (final), global LogReg, rule
+  evaluate.py           score on valid + log
+  make_submission.py    submission CSV
+pseudo_labels/          pretrain pseudo-labels (from Salim's branch)
+extra_info/             experiment log, interpretation, coefficients
+data/                   raw data (gitignored except the zips)
 ```
 
-`train_labels.csv`
+Setup: Python >= 3.10, `pip install -e .`, unzip `data/dataset.zip` into `data/`.
 
-```csv
-client_id,cutoff_date,target_next_recurring_merchant
-C000001,2026-01-01,streaming
-C000005,2026-01-01,mobile
-C000007,2026-01-01,cloud
-```
+## Challenge reference
 
-## Submissions
+**Data** (`data/`): `train_transactions.jsonl` + `train_labels.csv` (2,000 clients),
+`valid_transactions.jsonl` + `valid_labels.csv` (1,000), `test_transactions.jsonl`
+(1,000, hidden labels), `unlabeled_pretrain_transactions.jsonl` (10,000, no labels),
+`sample_submission.csv`. Each transaction: `client_id, timestamp, amount, currency,
+direction, type, mcc, description, fee`. History covers 2024-11 to 2025-12.
 
-### Milestones
-
-All deadlines are in Central European Summer Time (CEST), Zurich.
-
-| Milestone | Deadline |
-| --- | --- |
-| 1 | Day 1 before 12:00 |
-| 2 | Day 1 before 17:00 |
-| 3 | Day 2 before 12:00 |
-| 4 | Day 2 before 17:30 (submission to main jury) |
-
-### Submission Contract
-
-Create a submission file with the following schema:
-
-```csv
-client_id,predicted_next_recurring_merchant
-C000004,none
-C000008,none
-```
-
-- Use exactly the client IDs from `sample_submission.csv`, one row each.
-- Use only the allowed labels listed in [Task Specification](#task-specification).
-- Keep the required column names unchanged.
-
-A submission is **valid** if it satisfies all of the rules above.
-
-### Submission Workflow
-
-Submit your predictions via [this form](https://forms.gle/3mgyM9D8d2quqXQ59):
-
-- Your team name
-- A link to your code repository
-- Your submission file (matching the Submission Contract above)
-
-You can submit multiple times before a milestone deadline; only your last
-valid submission before the deadline is considered for scoring. A submission
-made after a milestone deadline is instead taken into account for the next
-milestone. Submissions cannot be made after the milestone 4 deadline.
-
-### Scoring
-
-Each team's final rank is based on the best macro-F1 achieved by any of
-their valid milestone submissions across the whole event.
+**Submission contract**: CSV with columns `client_id,predicted_next_recurring_merchant`,
+exactly the client IDs of `sample_submission.csv` (one row each), only the 8 labels above.
+Submit via [this form](https://forms.gle/3mgyM9D8d2quqXQ59) with team name and repo link;
+the best macro-F1 over all valid milestone submissions counts.
