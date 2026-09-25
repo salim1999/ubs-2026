@@ -30,7 +30,7 @@ from sklearn.metrics import confusion_matrix, f1_score
 from sklearn.model_selection import StratifiedKFold
 from sklearn.utils.class_weight import compute_sample_weight
 
-from src.features import build_features
+from src.features import build_features, select_features
 from src.model import ALL_LABELS, LABEL_COL, build_logreg, build_sparse_logreg, rule_predict
 from src.recurrence import detect_streams, load_transactions
 from sklearn.ensemble import HistGradientBoostingClassifier
@@ -97,11 +97,15 @@ def main() -> None:
     X_valid = valid.drop(columns=["client_id", LABEL_COL])[X_train.columns]
 
     logreg = build_logreg().fit(X_train, y_train)
-    # Benchmark models (always both): logreg = global L2 LogReg (main),
-    # sparse_logreg = one sparse L1 LogReg per label (interpretable).
+    # Benchmark models (always both), on both feature sets:
+    #   logreg = global L2 LogReg, sparse_logreg = one sparse L1 LogReg per label;
+    #   no suffix = "full" set (all features), "_lean" = fewer-features model.
+    Xtr_lean, Xva_lean = select_features(X_train, "lean"), select_features(X_valid, "lean")
     preds = {
         "logreg": logreg.predict(X_valid),
         "sparse_logreg": build_sparse_logreg().fit(X_train, y_train).predict(X_valid),
+        "logreg_lean": build_logreg().fit(Xtr_lean, y_train).predict(Xva_lean),
+        "sparse_logreg_lean": build_sparse_logreg().fit(Xtr_lean, y_train).predict(Xva_lean),
         "hgb": fit_hgb(X_train, y_train).predict(X_valid),
         "rule": rule_predict(X_valid),
     }
@@ -123,12 +127,12 @@ def main() -> None:
     print("step C diagnostics (valid):")
     for k, v in diag.items():
         print(f"  {k:14s} {v:.3f}")
-    print("\nper-class F1 (benchmark models):")
-    print(f"  {'':10s} {'logreg':>8s} {'sparse':>8s}")
-    per_class = {k: f1_score(y_valid, preds[k], average=None, labels=ALL_LABELS, zero_division=0)
-                 for k in ("logreg", "sparse_logreg")}
+    bench = ("logreg", "sparse_logreg", "logreg_lean", "sparse_logreg_lean")
+    print(f"\nper-class F1 (benchmark models; full = {X_train.shape[1]} features, lean = {Xtr_lean.shape[1]}):")
+    print(f"  {'':10s} {'logreg':>8s} {'sparse':>8s} {'lr_lean':>8s} {'sp_lean':>8s}")
+    per_class = {k: f1_score(y_valid, preds[k], average=None, labels=ALL_LABELS, zero_division=0) for k in bench}
     for i, lab in enumerate(ALL_LABELS):
-        print(f"  {lab:10s} {per_class['logreg'][i]:8.3f} {per_class['sparse_logreg'][i]:8.3f}")
+        print(f"  {lab:10s} " + " ".join(f"{per_class[k][i]:8.3f}" for k in bench))
     print("\nconfusion (rows=true, cols=pred):")
     print(pd.DataFrame(confusion_matrix(y_valid, preds[best], labels=ALL_LABELS),
                        index=ALL_LABELS, columns=ALL_LABELS))

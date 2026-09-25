@@ -102,12 +102,28 @@ Splitting clients into personas / segments, fixed small scorecards and
 payment-sequence features did not improve validation performance; see
 [MODEL_COMPARISON.md](MODEL_COMPARISON.md) and [PIPELINE.md](PIPELINE.md).
 
+### Feature sets
+
+Every feature we built stays in `src/features.py`, so nothing gets lost. Two
+feature sets pick from them (`select_features()` in `src/features.py`), and
+`src.evaluate` scores both benchmark models on both sets:
+
+| Feature set | Columns | What's in it | Global LogReg | Sparse per-label |
+|---|---|---|---|---|
+| `full` (default) | 130 | All features: 120 (general, streams, live, rule's vote, calendar, story blocks D5) + 10 client-level story features (D6) | 0.474 | 0.489 |
+| `lean` ("fewer-features model") | 101 | `full` minus 21 redundant columns (average amounts, total in/out, net flow, transaction counts, streams per family, gap variation per family) and minus 8 of the D6 story features; keeps `cooling_families` and `dormancy_score` | 0.484 | **0.495** |
+
+Valid macro-F1, fit on train only. The D6 story features were each
+score-neutral on their own but add noise together, which is why `full` scores
+lower; `lean` is the recommended set for the best score and the simplest story.
+
 Generate a submission with:
 
 ```bash
 py -3.10 -m src.make_submission rule
 py -3.10 -m src.make_submission logreg   # benchmark 1
 py -3.10 -m src.make_submission sparse   # benchmark 2
+py -3.10 -m src.make_submission sparse --features lean   # fewer-features model
 ```
 
 ## Data Package

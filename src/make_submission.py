@@ -3,6 +3,7 @@
     py -3.10 -m src.make_submission rule
     py -3.10 -m src.make_submission logreg    # benchmark 1: global LogReg
     py -3.10 -m src.make_submission sparse    # benchmark 2: sparse per-label LogReg
+    py -3.10 -m src.make_submission sparse --features lean   # fewer-features model
 """
 
 import argparse
@@ -10,7 +11,7 @@ import argparse
 import pandas as pd
 
 from src.evaluate import CUTOFF, labelled_features, macro_f1
-from src.features import build_features
+from src.features import FEATURE_SETS, build_features, select_features
 from src.model import ALL_LABELS, LABEL_COL, build_logreg, build_sparse_logreg, rule_predict
 
 BUILDERS = {"logreg": build_logreg, "sparse": build_sparse_logreg}
@@ -19,13 +20,16 @@ BUILDERS = {"logreg": build_logreg, "sparse": build_sparse_logreg}
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("model", choices=["rule", "logreg", "sparse"])
+    parser.add_argument("--features", choices=FEATURE_SETS, default="full",
+                        help="feature set: full (all features, default) or lean (fewer-features model)")
     parser.add_argument("--suffix", help="output suffix (defaults to the model name)")
     args = parser.parse_args()
-    out_path = f"data/submission_{args.suffix or args.model}.csv"
+    default_suffix = args.model if args.features == "full" else f"{args.model}_{args.features}"
+    out_path = f"data/submission_{args.suffix or default_suffix}.csv"
 
     train = labelled_features("train")
     valid = labelled_features("valid")
-    X_train = train.drop(columns=["client_id", LABEL_COL])
+    X_train = select_features(train.drop(columns=["client_id", LABEL_COL]), args.features)
     X_valid = valid.drop(columns=["client_id", LABEL_COL]).reindex(columns=X_train.columns)
 
     if args.model == "rule":

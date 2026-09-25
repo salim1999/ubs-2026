@@ -35,6 +35,28 @@ LIVE_MAX_OVER_DAYS = 5
 # D5 story-feature blocks (19 columns): lateness (8), portfolio (3), refund (8).
 STORY_BLOCKS = ("late_bro", "portfolio_bro", "refund_bro")
 
+# Feature sets (see README "Feature sets"). "full" = every feature we built (no
+# feature gets lost). "lean" = the fewer-features model: 21 redundant columns
+# removed (same valid score, better train CV) and, of the client-level story
+# features, only cooling_families + dormancy_score kept.
+LEAN_DROP = (
+    ["avg_txn_amount", "avg_out_amount", "total_in", "total_out", "net_flow", "n_txns", "n_txns_per_month"]
+    + [f"n_streams_{c}" for c in TARGET_CATEGORIES]
+    + [f"gap_cv_{c}" for c in TARGET_CATEGORIES]
+    + ["n_fams_due_30d", "n_fams_due_90d", "established_score", "timing_margin",
+       "first_due_cycle_position", "first_due_months_active", "portfolio_entropy", "dominant_share"]
+)
+FEATURE_SETS = ("full", "lean")
+
+
+def select_features(X: pd.DataFrame, feature_set: str = "full") -> pd.DataFrame:
+    """Columns of the chosen feature set ("full" = all, "lean" = fewer-features model)."""
+    if feature_set == "full":
+        return X
+    if feature_set == "lean":
+        return X.drop(columns=[c for c in LEAN_DROP if c in X.columns])
+    raise ValueError(f"unknown feature set {feature_set!r}, use one of {FEATURE_SETS}")
+
 
 def _gap_stats(dates: pd.Series) -> tuple[float, float]:
     dates = dates.sort_values()
@@ -244,6 +266,53 @@ def _story_features(df: pd.DataFrame, streams: pd.DataFrame, cutoff: pd.Timestam
     return out
 
 
+def _client_story_features(df: pd.DataFrame, streams: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
+    """D6 client-level story features: one number per client, each with a one-line story.
+
+    Tested one by one on top of the 120 features: all score-neutral (none a
+    clear gain), so they live in the "full" set; the "lean" set keeps only
+    cooling_families and dormancy_score.
+    """
+    clients = pd.Index(df["client_id"].unique(), name="client_id")
+    active = streams[streams["is_recurring"] & streams["category"].notna()].copy()
+    active["over"] = (cutoff - active["last_date"]).dt.days - active["mean_gap_days"]
+    live = active[active["over"] <= LIVE_MAX_OVER_DAYS].copy()
+    live["next_in"] = -live["over"]  # days until the expected next charge
+    out = pd.DataFrame(index=clients)
+
+    # "How many subscriptions are coming due soon?"
+    due = live[live["next_in"] >= -5]
+    out["n_fams_due_30d"] = due[due["next_in"] <= 30].groupby("client_id").size()
+    out["n_fams_due_90d"] = due[due["next_in"] <= 90].groupby("client_id").size()
+    # "How deeply rooted is the subscription portfolio?" (live streams x mean years)
+    years = (cutoff - live["first_date"]).dt.days / 365
+    out["established_score"] = years.groupby(live["client_id"]).size() * years.groupby(live["client_id"]).mean()
+    # "Which share of the client's subscriptions went quiet (missed a full cycle)?"
+    quiet = (active["over"] > active["mean_gap_days"]).astype(float)
+    out["dormancy_score"] = quiet.groupby(active["client_id"]).mean()
+    # "Is there one clear next bill, or several tied?" (2nd soonest - soonest)
+    ranked = live.sort_values("next_in").groupby("client_id")["next_in"]
+    out["timing_margin"] = (ranked.nth(1) - ranked.nth(0)).reindex(clients)
+    # "Where in its cycle is the subscription due first, and how old is it?"
+    first = live.sort_values("over", ascending=False).groupby("client_id").head(1).set_index("client_id")
+    out["first_due_cycle_position"] = ((cutoff - first["last_date"]).dt.days / first["mean_gap_days"]).clip(0, 6)
+    out["first_due_months_active"] = (cutoff - first["first_date"]).dt.days / 30
+    # "Is subscription spend concentrated on one family or spread out?"
+    tags = df[df["category"].notna()].groupby(["client_id", "category"]).size().unstack(fill_value=0)
+    share = tags.div(tags.sum(axis=1), axis=0)
+    out["portfolio_entropy"] = -(share * np.log(share.where(share > 0, 1))).sum(axis=1)
+    out["dominant_share"] = share.max(axis=1)
+    # "Habits that were active 6-12 months ago but went quiet in the last 90 days"
+    charges = df[(df["direction"] == "out") & df["category"].notna()]
+    age = (cutoff - charges["timestamp"]).dt.days
+    hist = charges[(age >= 180) & (age < 365)].groupby(["client_id", "category"]).size() / 6
+    recent = charges[age < 90].groupby(["client_id", "category"]).size().reindex(hist.index).fillna(0) / 3
+    out["cooling_families"] = ((hist >= 2 / 6) & (recent < 0.5 * hist)).groupby("client_id").sum()
+
+    fills = {"timing_margin": 120.0, "first_due_cycle_position": 6.0}
+    return out.fillna({c: fills.get(c, 0.0) for c in out.columns})
+
+
 def _early_adoption_features(df: pd.DataFrame, cutoff: pd.Timestamp) -> pd.DataFrame:
     recent = df[
         (df["category"].notna())
@@ -294,6 +363,7 @@ def build_features(transactions_path: str, cutoff_date: str) -> pd.DataFrame:
     features["rule_says_none"] = features["rule_says_none"].fillna(1).astype(int)
 
     features = features.join(_story_features(df, streams, cutoff), how="left")
+    features = features.join(_client_story_features(df, streams, cutoff), how="left")
 
     return features.reset_index()
 

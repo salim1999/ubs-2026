@@ -330,6 +330,8 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 16 | D5 | `late_bro`: late_cycles_<fam> = over_days / mean gap, capped [−1, 3], 3 = no stream; late_min_cycles (8) | 0.477 (sparse 0.479) | – | 0.484 | – | – | ≈ flat |
 | 17 | D5 | + `portfolio_bro`: families with ≥2 charges ever / last 90 d / dropped (3) | 0.478 (sparse 0.480) | – | 0.484 | – | – | ≈ flat |
 | 18 | D5 | + `refund_bro`: tagged refund per family in last 90 d + count (8); all 19 story cols → 120 features | **0.489** (sparse **0.494**) | – | 0.484 | – | – | ✅ both models beat the rule; none F1 0.57 → 0.62 |
+| 19 | D (scratchpad) | 31 ideas from the feature README as 7-col per-family blocks (timing clock, cadence, calendar, competition, client state, income, novelty, kNN priors) | – | – | – | – | – | ❌ none passed; mostly restate existing timing features |
+| 20 | D6 | 10 client-level story features (due in 30/90 d, established, dormancy, timing margin, first-due cycle position / age, entropy, dominant share, cooling families) → `full` set 130; `lean` set 101 = −21 redundant cols, + cooling + dormancy only | full 0.474 / lean 0.484 (sparse 0.489 / **0.495**) | 0.485 | 0.484 | – | – | ✅ both sets kept; lean recommended |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
