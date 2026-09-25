@@ -338,6 +338,7 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 24 | L2 | Due date = next billing day of the last charge (`days_to_bill_<fam>`, first_due ranked by it). Label-free check on history: picks the actual next charge 68-78% vs 64-67%. Rule 0.484 → 0.496, but final model 0.509 (−0.004), without the days_to_bill columns 0.512 | – | – | 0.496 | – | – | ❌ model already has the timing signal; reverted |
 | 25 | L3 | is_live loosened: OR ≥ 2 tagged charges in 90 d over ≥ 2 months. Train-only 0.504 → 0.512 (old timing), with pseudo + lever 2: 0.514 | – | – | – | – | – | ❌ ±0.001 with pseudo data; reverted |
 | 26 | H | Per-class log-prob biases for macro-F1 (Lipton et al. 2014), tuned by coordinate ascent on 5-fold train OOF (pseudo rows as extra training data). OOF 0.509 → 0.521, valid −0.009; no shrink factor beats no-bias on valid | – | – | – | – | – | ❌ does not transfer train → valid (distribution shift) |
+| 27 | D | Discrete-time competing-risks hazard LogReg (daily charge hazard per live family, trained self-supervised on 6 historical cutoffs of train history; billing-day buckets dominate, OR 2.0 on the day, 0.08 at 8-14 days) -> p_first_<fam>, p_none90. Label-free first-charge hit 66.9% vs 66.6% day-of-month rule. Final model: + all 0.502, + p_none90 0.511, hazard-only rule 0.450 | – | – | 0.450 | – | – | ❌ timing already in the features |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
