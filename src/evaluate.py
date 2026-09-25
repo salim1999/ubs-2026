@@ -90,6 +90,8 @@ def stream_diagnostics(split: str) -> dict[str, float]:
 def main() -> None:
     note = sys.argv[1] if len(sys.argv) > 1 else ""
     submit = "--submit" in sys.argv
+    # --fast: only the lean models + final model and the rule (no full-set models, HGB or CV)
+    fast = "--fast" in sys.argv
 
     train = labelled_features("train")
     valid = labelled_features("valid")
@@ -97,7 +99,6 @@ def main() -> None:
     X_train = train.drop(columns=["client_id", LABEL_COL])
     X_valid = valid.drop(columns=["client_id", LABEL_COL])[X_train.columns]
 
-    logreg = build_logreg().fit(X_train, y_train)
     # Benchmark models (always both), on both feature sets:
     #   logreg = global L2 LogReg, sparse_logreg = one sparse L1 LogReg per label;
     #   no suffix = "full" set (all features), "_lean" = fewer-features model.
@@ -109,17 +110,18 @@ def main() -> None:
     ytr_final = pd.concat([y_train, pseudo[LABEL_COL]], ignore_index=True)
     preds = {
         "final_sparse_lean_pseudo": build_sparse_logreg().fit(Xtr_final, ytr_final).predict(Xva_lean),
-        "logreg": logreg.predict(X_valid),
-        "sparse_logreg": build_sparse_logreg().fit(X_train, y_train).predict(X_valid),
         "logreg_lean": build_logreg().fit(Xtr_lean, y_train).predict(Xva_lean),
         "sparse_logreg_lean": build_sparse_logreg().fit(Xtr_lean, y_train).predict(Xva_lean),
-        "hgb": fit_hgb(X_train, y_train).predict(X_valid),
         "rule": rule_predict(X_valid),
     }
+    if not fast:
+        preds["logreg"] = build_logreg().fit(X_train, y_train).predict(X_valid)
+        preds["sparse_logreg"] = build_sparse_logreg().fit(X_train, y_train).predict(X_valid)
+        preds["hgb"] = fit_hgb(X_train, y_train).predict(X_valid)
     scores = {k: macro_f1(y_valid, p) for k, p in preds.items()}
     X_all = pd.concat([X_train, X_valid], ignore_index=True)
     y_all = pd.concat([y_train, y_valid], ignore_index=True)
-    cv = {
+    cv = {} if fast else {
         "cv_logreg": cv_macro_f1(X_all, y_all, lambda X, y: build_logreg().fit(X, y)),
         "cv_hgb": cv_macro_f1(X_all, y_all, fit_hgb),
     }
@@ -134,10 +136,11 @@ def main() -> None:
     print("step C diagnostics (valid):")
     for k, v in diag.items():
         print(f"  {k:14s} {v:.3f}")
-    bench = ("logreg", "sparse_logreg", "logreg_lean", "sparse_logreg_lean", "final_sparse_lean_pseudo")
+    bench = [k for k in ("logreg", "sparse_logreg", "logreg_lean", "sparse_logreg_lean", "final_sparse_lean_pseudo")
+             if k in preds]
     print(f"\nper-class F1 (benchmark models; full = {X_train.shape[1]} features, lean = {Xtr_lean.shape[1]}, "
           f"final = lean + {len(pseudo)} pseudo rows):")
-    print(f"  {'':10s} {'logreg':>8s} {'sparse':>8s} {'lr_lean':>8s} {'sp_lean':>8s} {'final':>8s}")
+    print(f"  {'':10s} " + " ".join(f"{k[:8]:>8s}" for k in bench))
     per_class = {k: f1_score(y_valid, preds[k], average=None, labels=ALL_LABELS, zero_division=0) for k in bench}
     for i, lab in enumerate(ALL_LABELS):
         print(f"  {lab:10s} " + " ".join(f"{per_class[k][i]:8.3f}" for k in bench))

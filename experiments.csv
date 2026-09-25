@@ -20,3 +20,4 @@ time,note,logreg,hgb,rule,cv_logreg,cv_hgb,c_detect,c_nextdue,c_none_active,c_fa
 2026-09-24T21:53:49,"19 D5 check: refund_bro only (without late_bro, portfolio_bro)",0.4878,0.4881,0.4844,0.4863,0.4875,0.690,0.472,0.836,1.754,0.4971,,,
 2026-09-25T09:41:02,"20 D6: full set = 120 + 10 client story features (130); lean = 101 (pruned + cooling_families, dormancy_score)",0.4742,0.4852,0.4844,0.4880,0.4980,0.690,0.472,0.836,1.754,0.4885,0.4844,0.4945,
 2026-09-25T14:38:03,"22 D8: final model = sparse per-label lean + 3,152 pseudo-labelled pretrain clients (all 3 sources agree, Salim's merged labels)",0.4739,0.4741,0.4844,0.4883,0.5024,0.690,0.472,0.836,1.754,0.4876,0.4889,0.5036,0.5127
+2026-09-25T15:20:40,"24 L2 (timmyo6): due date = next billing day of last charge; days_to_bill_<fam>, first_due ranked by it",,,0.4958,,,0.690,0.472,0.836,1.754,,0.4834,0.4941,0.5091

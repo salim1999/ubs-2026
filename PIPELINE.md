@@ -335,6 +335,9 @@ is an active stream. Run with `py -3.10 -m src.evaluate "<note>"`, raw rows in `
 | 21 | D7 | Traveller persona (`traveler_intensity`, `days_since_trip`) in full and lean | – | – | 0.484 | – | – | ✅ sparse lean 0.495 → 0.504 |
 | 22 | D8 | **Final model**: sparse per-label lean + 3,152 pseudo-labelled pretrain clients (all 3 sources agree; Salim's merged labels). Looser filters / LLM labels: no gain or worse | 0.489 (lean) | – | 0.484 | – | – | ✅ **0.513** |
 | 23 | G | Different model per label (L1, L2, HGB, RF, ET; chosen by train CV, pseudo rows as extra training data). All-HGB 0.530, best-per-label 0.528, calibration / meta-LogReg no help. HGB clearly better in train CV for gym, mobile, insurance, software; music prefers L1 | – | **0.530** (all-HGB) | – | – | – | ❌ kept L1 for interpretability (user decision); HGB = upside +0.017 |
+| 24 | L2 | Due date = next billing day of the last charge (`days_to_bill_<fam>`, first_due ranked by it). Label-free check on history: picks the actual next charge 68-78% vs 64-67%. Rule 0.484 → 0.496, but final model 0.509 (−0.004), without the days_to_bill columns 0.512 | – | – | 0.496 | – | – | ❌ model already has the timing signal; reverted |
+| 25 | L3 | is_live loosened: OR ≥ 2 tagged charges in 90 d over ≥ 2 months. Train-only 0.504 → 0.512 (old timing), with pseudo + lever 2: 0.514 | – | – | – | – | – | ❌ ±0.001 with pseudo data; reverted |
+| 26 | H | Per-class log-prob biases for macro-F1 (Lipton et al. 2014), tuned by coordinate ascent on 5-fold train OOF (pseudo rows as extra training data). OOF 0.509 → 0.521, valid −0.009; no shrink factor beats no-bias on valid | – | – | – | – | – | ❌ does not transfer train → valid (distribution shift) |
 
 **Note (2026-09-24): valid/test differ from train.** Detected families per
 client: train 1.71, valid 1.33, test 1.19. Candidate subscription streams exist
