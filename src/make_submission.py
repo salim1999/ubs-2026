@@ -71,11 +71,9 @@ def main() -> None:
     if args.model == "rule":
         test_pred = rule_predict(X_test)
     else:
-        X_full = pd.concat([X_train, X_valid], ignore_index=True)
-        y_full = pd.concat([y_train, valid[LABEL_COL]], ignore_index=True)
-        w_full = np.r_[w_train, np.ones(len(X_valid))]
-        final_model = BUILDERS[args.model]().fit(X_full, y_full, **_weights(args.model, w_full))
-        test_pred = final_model.predict(X_test)
+        # The final model is NOT refit on valid: the test predictions come from the
+        # same model that was scored on valid (train [+ pseudo] only).
+        test_pred = selection_model.predict(X_test)
 
     sub = pd.DataFrame(
         {
